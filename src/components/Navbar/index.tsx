@@ -8,7 +8,6 @@ import {
   LockOpen,
   Tag,
 } from 'phosphor-react'
-import { LogoWhite } from '../LogoWhite'
 
 export function Navbar() {
   return (
@@ -19,7 +18,7 @@ export function Navbar() {
         }
       >
         <div className="px-[14px] w-full h-full flex items-center justify-between tablet:hidden">
-          <LogoWhite />
+          <img className="max-w-[59px]" src="/logo-white.png" alt="" />
           <Link href="/">
             <a>
               <List size={24} />
@@ -27,7 +26,7 @@ export function Navbar() {
           </Link>
         </div>
 
-        <div className="hidden w-full px-[14px] tablet:h-full tablet:max-w-[1280px] tablet:m-auto tablet:flex items-center justify-between">
+        <div className="hidden w-full px-[14px] tablet:h-full tablet:max-w-[1280px] tablet:m-auto tablet:flex items-center justify-between gap-4">
           <Link href="/">
             <a className="flex items-center gap-2">
               <House size={20} weight="light" />
