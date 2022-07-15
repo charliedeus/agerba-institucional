@@ -8,6 +8,16 @@
   }
 
   body {
-    @apply px-[14px]
+    font-weight: normal;
+    font-size: 1rem;
+
+    line-height: 1.1;
+    letter-spacing: 0em;
+
+    scrollbar-width: none;
+  }
+
+  *, button, input {
+    box-sizing: border-box;
   }
 }
