@@ -12,9 +12,9 @@ export function DefaultLayout({ children }: LayoutProps) {
     <>
       <Header />
       <Navbar />
-      <div className="mx-auto transition-all duration-500 ease-linear">
-        <main className="m-auto">{children}</main>
-      </div>
+      <main className="mx-auto transition-all duration-500 ease-linear">
+        {children}
+      </main>
     </>
   )
 }

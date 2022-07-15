@@ -18,7 +18,10 @@ export function Navbar() {
         }
       >
         <div className="px-[14px] w-full h-full flex items-center justify-between tablet:hidden">
-          <img className="max-w-[59px]" src="/logo-white.png" alt="" />
+          <Link href="/">
+            <img className="max-w-[59px]" src="/logo-white.png" alt="" />
+          </Link>
+
           <Link href="/">
             <a>
               <List size={24} />
