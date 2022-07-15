@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { List } from 'phosphor-react'
-import { LogoDefault, LogoWhite } from '../Logo'
+import { LogoWhite } from '../Logo'
 
 export function Header() {
   return (
