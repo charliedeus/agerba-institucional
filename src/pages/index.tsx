@@ -5,11 +5,15 @@ import type { NextPageWithLayout } from './_app'
 const Home: NextPageWithLayout = () => {
   return (
     <section className="w-full h-[calc(100vh-50px)] tablet:h-[calc(100vh-150px)] relative">
-      <div className="w-full h-full flex items-end px-8 pb-16 absolute top-0">
+      <div className="w-full h-full flex flex-col justify-end gap-4 px-8 pb-16 absolute top-0">
         <h3 className="font-bold text-white">
           RELATÓRIOS DO PLANO DIRETOR DO SISTEMA DE TRAVESSIA POR TRANSPORTE
           HIDROVIÁRIO DE VALENÇA E ÁREAS DE INFLUÊNCIA
         </h3>
+
+        <button className="font-normal px-8 py-2 text-white outline-none border border-white rounded-lg">
+          Leia mais
+        </button>
       </div>
 
       <div className="w-full h-full p-[14px]">
