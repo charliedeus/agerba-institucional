@@ -49,13 +49,37 @@ const Home: NextPageWithLayout = () => {
       <section className="w-full h-screen p-[14px] m-auto">
         <h3 className="font-bold text-base uppercase">PAINEL DE SERVIÇOS</h3>
 
-        <div className="h-[300px] flex flex-wrap gap-4 items-center justify-center mt-[0.875rem]">
-          <Swiper className="h-full border border-black" slidesPerView={4}>
-            <SwiperSlide className="bg-red-300">
-              <h3>Rodoviário</h3>
+        <div className="h-[250px] mt-[0.875rem]">
+          <Swiper
+            className="h-full w-[200px]"
+            slidesPerView={1}
+            centeredSlides={true}
+            spaceBetween={7}
+            grabCursor={true}
+          >
+            <SwiperSlide className="bg-red-300 flex flex-col justify-between p-4">
+              <h3 className="text-base font-bold">Transportes</h3>
+
+              <a
+                className="px-4 py-2 bg-[#3F3F95] bg-opacity-50 rounded-lg"
+                href="#"
+              >
+                <span className="text-sm font-bold leading-tight">
+                  Clique aqui
+                </span>
+              </a>
             </SwiperSlide>
-            <SwiperSlide className="">
-              <h3>Hidroviários</h3>
+            <SwiperSlide className="bg-green-300 flex flex-col justify-between p-4">
+              <h3 className="text-base font-bold">Rodovias</h3>
+
+              <a
+                className="px-4 py-2 bg-[#3F3F95] bg-opacity-50 rounded-lg"
+                href="#"
+              >
+                <span className="text-sm font-bold leading-tight">
+                  Clique aqui
+                </span>
+              </a>
             </SwiperSlide>
           </Swiper>
         </div>
