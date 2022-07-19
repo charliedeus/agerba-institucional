@@ -1,7 +1,11 @@
-import Link from 'next/link'
 import type { ReactElement } from 'react'
-import { DefaultLayout } from '../layouts/DefaultLayout'
+import Link from 'next/link'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
 import type { NextPageWithLayout } from './_app'
+
+import { DefaultLayout } from '../layouts/DefaultLayout'
+import 'swiper/css'
 
 const Home: NextPageWithLayout = () => {
   return (
@@ -45,40 +49,15 @@ const Home: NextPageWithLayout = () => {
       <section className="w-full h-screen p-[14px] m-auto">
         <h3 className="font-bold text-base uppercase">PAINEL DE SERVIÇOS</h3>
 
-        <div className="h-[300px] flex flex-wrap gap-4 justify-center mt-[0.875rem]">
-          <div className="w-[200px] flex flex-col justify-between min-w-[200px] h-[300px] p-6 shadow-[2px_2px_8px_rgba(0,0,0,0.25)] shadow-gray-400">
-            <h3 className="text-base font-bold">Transportes</h3>
-            <a
-              className="px-4 py-2 bg-[#3F3F95] bg-opacity-50 rounded-lg"
-              href="#"
-            >
-              <span className="text-sm font-bold leading-tight">
-                Clique aqui
-              </span>
-            </a>
-          </div>
-          <div className="w-[200px] flex flex-col justify-between min-w-[200px] h-[300px] p-6 shadow-[2px_2px_8px_rgba(0,0,0,0.25)] shadow-gray-400">
-            <h3 className="text-base font-bold">Transportes</h3>
-            <a
-              className="px-4 py-2 bg-[#3F3F95] bg-opacity-50 rounded-lg"
-              href="#"
-            >
-              <span className="text-sm font-bold leading-tight">
-                Clique aqui
-              </span>
-            </a>
-          </div>
-          <div className="w-[200px] flex flex-col justify-between min-w-[200px] h-[300px] p-6 shadow-[2px_2px_8px_rgba(0,0,0,0.25)] shadow-gray-400">
-            <h3 className="text-base font-bold">Transportes</h3>
-            <a
-              className="px-4 py-2 bg-[#3F3F95] bg-opacity-50 rounded-lg"
-              href="#"
-            >
-              <span className="text-sm font-bold leading-tight">
-                Clique aqui
-              </span>
-            </a>
-          </div>
+        <div className="h-[300px] flex flex-wrap gap-4 items-center justify-center mt-[0.875rem]">
+          <Swiper className="h-full border border-black" slidesPerView={4}>
+            <SwiperSlide className="bg-red-300">
+              <h3>Rodoviário</h3>
+            </SwiperSlide>
+            <SwiperSlide className="">
+              <h3>Hidroviários</h3>
+            </SwiperSlide>
+          </Swiper>
         </div>
       </section>
     </>

@@ -18,6 +18,9 @@
     letter-spacing: 0em;
 
     scrollbar-width: none;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothign: grayscale;
   }
 
   *, button, input {
