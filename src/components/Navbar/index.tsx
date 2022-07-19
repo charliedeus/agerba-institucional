@@ -17,7 +17,7 @@ export function Navbar() {
           'w-full h-[50px] min-h-[50px] bg-gradient-to-r from-[#EF3037] to-[#3F3F95] flex justify-center text-white text-sm transition-all duration-500 ease-linear'
         }
       >
-        <div className="px-[14px] w-full h-full flex items-center justify-between tablet:hidden">
+        <div className="px-[14px] w-full h-full flex items-center justify-between laptop:hidden">
           <Link href="/">
             <img className="max-w-[59px]" src="/logo-white.png" alt="" />
           </Link>
@@ -29,7 +29,7 @@ export function Navbar() {
           </Link>
         </div>
 
-        <div className="hidden w-full px-[14px] tablet:h-full tablet:max-w-[1280px] tablet:m-auto tablet:flex items-center justify-between gap-4">
+        <div className="hidden w-full px-[14px] laptop:h-full laptop:max-w-[1280px] laptop:m-auto laptop:flex items-center justify-between gap-4">
           <Link href="/">
             <a className="flex items-center gap-2">
               <House size={20} weight="light" />
