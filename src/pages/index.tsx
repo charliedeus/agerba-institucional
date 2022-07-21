@@ -193,6 +193,14 @@ const Home: NextPageWithLayout = () => {
           </div>
         </div>
       </section>
+
+      <section className="pb-2">
+        <Link href="http://carteira.agerba.ba.gov.br/">
+          <a target="_blank">
+            <img src="/banner-carteira-estudante.png" alt="" />
+          </a>
+        </Link>
+      </section>
     </>
   )
 }

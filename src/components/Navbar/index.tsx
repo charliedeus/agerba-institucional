@@ -66,6 +66,17 @@ export function Navbar() {
               <span className="font-normal">Transparência</span>
             </a>
           </Link>
+          <Link href="http://www.acessoainformacao.ba.gov.br">
+            <a
+              className="flex items-center rounded-lg bg-white gap-2"
+              target="_blank"
+            >
+              <img
+                src="http://www.agerba.ba.gov.br/themes/custom/secom/image/acessoinformacao.png"
+                alt=""
+              />
+            </a>
+          </Link>
         </div>
       </nav>
     </>
