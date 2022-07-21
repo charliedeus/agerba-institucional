@@ -10,7 +10,7 @@ export function HeroSection() {
             HIDROVIÁRIO DE VALENÇA E ÁREAS DE INFLUÊNCIA
           </h3>
 
-          <button className="font-normal flex items-center justify-center gap-4 laptop:w-80 px-8 py-2 laptop:py-4 text-white outline-none border border-white rounded-lg hover:bg-primary ">
+          <button className="font-normal flex items-center justify-center gap-2 laptop:w-80 px-8 py-2 laptop:py-4 text-white outline-none border border-white rounded-lg hover:bg-primary ">
             <span>Leia mais</span>
             <CaretDoubleRight />
           </button>
