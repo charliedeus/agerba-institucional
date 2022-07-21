@@ -5,7 +5,7 @@ export function HeroSection() {
     <>
       <section className="w-full desktop:max-w-[1280px] h-[calc(100vh-50px)] m-auto tablet:h-[calc(100vh-150px)]">
         <div className="h-full flex flex-col justify-end gap-4 px-8 laptop:px-24 pb-16 laptop:pb-24 absolute top-0 z-50 ">
-          <h3 className="font-bold text-white laptop:text-[1.75rem] tablet:text-[1.5rem] leading-tight laptop:leading-relaxed tablet:leading-snug laptop:max-w-[50rem] tablet:max-w-[30rem] ">
+          <h3 className="font-bold text-white laptop:text-[1.75rem] tablet:text-[1.5rem] leading-tight laptop:leading-relaxed tablet:leading-snug laptop:max-w-[50rem] tablet:max-w-[30rem]">
             RELATÓRIOS DO PLANO DIRETOR DO SISTEMA DE TRAVESSIA POR TRANSPORTE
             HIDROVIÁRIO DE VALENÇA E ÁREAS DE INFLUÊNCIA
           </h3>
