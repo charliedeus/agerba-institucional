@@ -4,7 +4,6 @@ import Link from 'next/link'
 import type { NextPageWithLayout } from './_app'
 
 import { DefaultLayout } from '../layouts/DefaultLayout'
-import 'swiper/css'
 
 const Home: NextPageWithLayout = () => {
   return (
@@ -194,10 +193,14 @@ const Home: NextPageWithLayout = () => {
         </div>
       </section>
 
-      <section className="pb-2">
+      <section className="w-full pb-2 desktop:w-[1280px] desktop:max-w-[1280px] flex justify-center m-auto">
         <Link href="http://carteira.agerba.ba.gov.br/">
           <a target="_blank">
-            <img src="/banner-carteira-estudante.png" alt="" />
+            <img
+              className="object-cover"
+              src="/banner-carteira-estudante.png"
+              alt=""
+            />
           </a>
         </Link>
       </section>
