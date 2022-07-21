@@ -16,7 +16,6 @@ export function DefaultLayout({ children }: LayoutProps) {
       <main className="mx-auto transition-all duration-500 ease-linear">
         {children}
       </main>
-      <Footer />
     </>
   )
 }
