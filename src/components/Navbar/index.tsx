@@ -15,7 +15,7 @@ export function Navbar() {
     <>
       <nav
         className={
-          'w-full h-[70px] min-h-[70px] bg-gradient-to-r from-[#EF3037] to-[#3F3F95] flex justify-center text-white text-sm transition-all duration-500 ease-linear'
+          'w-full h-[70px] laptop:h-[50px] bg-gradient-to-r from-[#EF3037] to-[#3F3F95] flex justify-center text-white text-sm transition-all duration-500 ease-linear'
         }
       >
         <div className="px-[14px] w-full h-full flex items-center justify-between laptop:hidden">
