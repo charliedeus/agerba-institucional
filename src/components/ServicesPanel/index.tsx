@@ -20,7 +20,7 @@ export function ServicesPanel() {
         </div>
         <div className="flex flex-col justify-between w-[200px] h-full min-h-[250px] p-4 shadow-[2px_2px_8px_rgba(0,0,0,0.25)] shadow-gray-400 laptop:hover:bg-[#3F3F95] laptop:hover:text-[#3F3F95] group">
           <h3 className="text-base font-bold laptop:group-hover:text-white">
-            Rodovias
+            Terminais
           </h3>
 
           <a
@@ -44,7 +44,7 @@ export function ServicesPanel() {
         </div>
         <div className="flex flex-col justify-between w-[200px] h-full min-h-[250px] p-4 shadow-[2px_2px_8px_rgba(0,0,0,0.25)] shadow-gray-400 laptop:hover:bg-[#3F3F95] laptop:hover:text-[#3F3F95] group">
           <h3 className="text-base font-bold laptop:group-hover:text-white">
-            Rodovias
+            Gás
           </h3>
 
           <a

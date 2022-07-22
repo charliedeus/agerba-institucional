@@ -4,20 +4,18 @@ import type { NextPageWithLayout } from './_app'
 
 import { DefaultLayout } from '../layouts/DefaultLayout'
 
-import { HeroSection } from '../components/HeroSection'
+import { SuspendedNews } from '../components/Banners/SuspendedNews'
 import { Transparency } from '../components/Banners/Transparency'
 import { ServicesPanel } from '../components/ServicesPanel'
 import { SchoolCard } from '../components/Banners/SchoolCard'
-import { Footer } from '../components/Footer'
 
 const Home: NextPageWithLayout = () => {
   return (
     <>
-      <HeroSection />
+      <SuspendedNews />
       <Transparency />
       <ServicesPanel />
       <SchoolCard />
-      <Footer />
     </>
   )
 }
