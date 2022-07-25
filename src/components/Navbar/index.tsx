@@ -28,7 +28,6 @@ export function Navbar() {
                 aria-expanded="false"
                 aria-label="Abrir menu"
                 className="open-menu"
-              // onClick={handleOpenMenu}
               >
                 <svg
                   width="40"
