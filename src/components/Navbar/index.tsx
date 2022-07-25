@@ -1,18 +1,16 @@
 import Link from 'next/link'
-import {
-  Bank,
-  BookBookmark,
-  House,
-  Info,
-  List,
-  LockOpen,
-  Tag,
-} from 'phosphor-react'
+import { Bank, BookBookmark, House, Info, LockOpen, Tag } from 'phosphor-react'
 import { Menu } from '@headlessui/react'
 
 export function Navbar() {
   return (
     <>
+      {/* <nav
+        id="menu-expanded"
+        className="hidden absolute top-0 left-0 right-0 h-[100%] bg-primary z-50"
+      >
+        Teste
+      </nav> */}
       <nav
         className={
           'w-full h-[70px] laptop:h-[50px] bg-gradient-to-r from-[#EF3037] to-[#3F3F95] flex justify-center text-white text-sm transition-all duration-500 ease-linear'
@@ -25,7 +23,43 @@ export function Navbar() {
 
           <Link href="/">
             <a>
-              <List size={24} />
+              {/* <List size={24} /> */}
+              <button
+                aria-expanded="false"
+                aria-label="Abrir menu"
+                className="open-menu"
+              // onClick={handleOpenMenu}
+              >
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 40 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10 20H30"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M10 12H30"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M18 28L30 28"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
             </a>
           </Link>
         </div>
@@ -43,7 +77,7 @@ export function Navbar() {
               <Bank size={20} weight="light" />
               <span className="font-normal">Institucional</span>
             </Menu.Button>
-            <Menu.Items className="absolute flex flex-col justify-around gap-2 w-max mt-4 py-2 px-6 border border-gray-400 rounded bg-white">
+            <Menu.Items className="absolute flex flex-col justify-around gap-2 w-max mt-4 py-2 px-6 border border-gray-400 rounded bg-white ">
               <Menu.Item as="div">
                 <span className="font-base text-gray-900 cursor-pointer">
                   Quem Somos
