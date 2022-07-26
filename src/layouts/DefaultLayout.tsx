@@ -13,7 +13,7 @@ export function DefaultLayout({ children }: LayoutProps) {
     <>
       <Header />
       <Navbar />
-      <main className="transition-all duration-500 ease-linear">
+      <main className="flex-1 transition-all duration-500 ease-linear">
         {children}
       </main>
       <Footer />

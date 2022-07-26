@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --nav-height: 6.25rem;
+  }
+
   html {
+    @apply text-gray-900;
     font-family: 'Roboto', sans-serif;
     scroll-behavior: smooth;
   }

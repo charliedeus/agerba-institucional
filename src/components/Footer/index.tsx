@@ -3,7 +3,7 @@ import Link from 'next/link'
 export function Footer() {
   return (
     <footer className="min-h-[300px] flex items-center justify-center bg-[#3F3F95] py-16">
-      <div className="w-full desktop:max-w-[1280px] flex flex-col desktop:flex-row items-start justify-between gap-10 text-white">
+      <div className="w-full desktop:max-w-[1280px] flex flex-col desktop:flex-row items-center laptop:items-start justify-between gap-10 text-white">
         <Link href="/">
           <a>
             <img className="max-w-[10rem]" src="/logo-white.png" alt="" />

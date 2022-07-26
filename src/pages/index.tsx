@@ -1,4 +1,5 @@
-import type { ReactElement } from 'react'
+import { ReactElement } from 'react'
+import { gql, useQuery } from '@apollo/client'
 
 import type { NextPageWithLayout } from './_app'
 
@@ -6,8 +7,21 @@ import { DefaultLayout } from '../layouts/DefaultLayout'
 
 import { SuspendedNews } from '../components/Banners/SuspendedNews'
 import { Transparency } from '../components/Banners/Transparency'
-import { ServicesPanel } from '../components/ServicesPanel'
 import { SchoolCard } from '../components/Banners/SchoolCard'
+import { ServicesPanel } from '../components/ServicesPanel'
+
+const GET_SERVICES_QUERY = gql`
+  query {
+    servicos {
+      id
+      title
+      titulo
+      Links {
+        url
+      }
+    }
+  }
+`
 
 const Home: NextPageWithLayout = () => {
   return (

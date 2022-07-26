@@ -1,16 +1,12 @@
 import Link from 'next/link'
 import { Bank, BookBookmark, House, Info, LockOpen, Tag } from 'phosphor-react'
-import { Menu } from '@headlessui/react'
+import { Menu, Transition } from '@headlessui/react'
+
+import { NextLink } from '../NextLink'
 
 export function Navbar() {
   return (
     <>
-      {/* <nav
-        id="menu-expanded"
-        className="hidden absolute top-0 left-0 right-0 h-[100%] bg-primary z-50"
-      >
-        Teste
-      </nav> */}
       <nav
         className={
           'w-full h-[70px] laptop:h-[50px] bg-gradient-to-r from-[#EF3037] to-[#3F3F95] flex justify-center text-white text-sm transition-all duration-500 ease-linear'
@@ -76,28 +72,58 @@ export function Navbar() {
               <Bank size={20} weight="light" />
               <span className="font-normal">Institucional</span>
             </Menu.Button>
-            <Menu.Items className="absolute flex flex-col justify-around gap-2 w-max mt-4 py-2 px-6 border border-gray-400 rounded bg-white ">
-              <Menu.Item as="div">
-                <span className="font-base text-gray-900 cursor-pointer">
-                  Quem Somos
-                </span>
-              </Menu.Item>
-              <Menu.Item as="div">
-                <span className="font-base text-gray-900 cursor-pointer">
-                  Estrutura Organizacional
-                </span>
-              </Menu.Item>
-              <Menu.Item as="div">
-                <span className="font-base text-gray-900 cursor-pointer">
-                  Organograma
-                </span>
-              </Menu.Item>
-              <Menu.Item as="div">
-                <span className="font-base text-gray-900 cursor-pointer">
-                  Polos Regionais
-                </span>
-              </Menu.Item>
-            </Menu.Items>
+            <Transition
+              enter="transition duration-100 ease-out"
+              enterFrom="transform scale-95 opacity-0"
+              enterTo="transform scale-100 opacity-100"
+              leave="transition duration-75 ease-out"
+              leaveFrom="transform scale-100 opacity-100"
+              leaveTo="transform scale-95 opacity-0"
+            >
+              <Menu.Items className="absolute flex flex-col justify-around gap-2 w-max mt-4 py-2 px-6 border border-gray-400 rounded bg-white">
+                <Menu.Item>
+                  {({ active }) => (
+                    <NextLink
+                      href="/about-page"
+                      className={`${active && 'text-gray-900'}`}
+                    >
+                      Quem somos
+                    </NextLink>
+                  )}
+                </Menu.Item>
+
+                <Menu.Item>
+                  {({ active }) => (
+                    <NextLink
+                      href="/"
+                      className={`${active && 'text-gray-900'}`}
+                    >
+                      Estrutura Organizacional
+                    </NextLink>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <NextLink
+                      href="/"
+                      className={`${active && 'text-gray-900'}`}
+                    >
+                      Organograma
+                    </NextLink>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <NextLink
+                      href="/"
+                      className={`${active && 'text-gray-900'}`}
+                    >
+                      Polos Regionais
+                    </NextLink>
+                  )}
+                </Menu.Item>
+              </Menu.Items>
+            </Transition>
           </Menu>
 
           <Menu as="div" className="relative">
