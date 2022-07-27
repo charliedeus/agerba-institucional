@@ -84,7 +84,7 @@ export function Navbar() {
                 <Menu.Item>
                   {({ active }) => (
                     <NextLink
-                      href="/about-page"
+                      href="/about"
                       className={`${active && 'text-gray-900'}`}
                     >
                       Quem somos
@@ -95,20 +95,22 @@ export function Navbar() {
                 <Menu.Item>
                   {({ active }) => (
                     <NextLink
-                      href="/"
+                      href="/structure"
                       className={`${active && 'text-gray-900'}`}
                     >
                       Estrutura Organizacional
                     </NextLink>
                   )}
                 </Menu.Item>
-                <Menu.Item>
+                <Menu.Item disabled>
                   {({ active }) => (
                     <NextLink
                       href="/"
                       className={`${active && 'text-gray-900'}`}
                     >
-                      Organograma
+                      <span className="opacity-50 cursor-not-allowed">
+                        Organograma (em breve)
+                      </span>
                     </NextLink>
                   )}
                 </Menu.Item>
@@ -118,7 +120,9 @@ export function Navbar() {
                       href="/"
                       className={`${active && 'text-gray-900'}`}
                     >
-                      Polos Regionais
+                      <span className="opacity-50 cursor-not-allowed">
+                        Polos Regionais (em breve)
+                      </span>
                     </NextLink>
                   )}
                 </Menu.Item>
