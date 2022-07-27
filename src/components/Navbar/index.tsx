@@ -84,7 +84,7 @@ export function Navbar() {
                 <Menu.Item>
                   {({ active }) => (
                     <NextLink
-                      href="/about"
+                      href="/sobre"
                       className={`${active && 'text-gray-900'}`}
                     >
                       Quem somos
@@ -95,7 +95,7 @@ export function Navbar() {
                 <Menu.Item>
                   {({ active }) => (
                     <NextLink
-                      href="/structure"
+                      href="/estrutura"
                       className={`${active && 'text-gray-900'}`}
                     >
                       Estrutura Organizacional
@@ -147,10 +147,11 @@ export function Navbar() {
               </Menu.Item>
               <Menu.Item>
                 {({ active }) => (
-                  <NextLink href="/" className={`${active && 'text-gray-900'}`}>
-                    <span className="opacity-50 cursor-not-allowed">
-                      Transporte Hidroviário (em breve)
-                    </span>
+                  <NextLink
+                    href="/transportes/hidroviario"
+                    className={`${active && 'text-gray-900'}`}
+                  >
+                    <span>Transporte Hidroviário</span>
                   </NextLink>
                 )}
               </Menu.Item>
