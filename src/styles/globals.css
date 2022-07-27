@@ -33,4 +33,36 @@
   *, button, input {
     box-sizing: border-box;
   }
+
+  body.menu-expanded {
+    overflow: hidden;
+  }
+
+  body.menu-expanded > :not(nav) {
+    visibility: hidden;
+  }
+
+  .menu, 
+  .close-menu,
+  body.menu-expanded .open-menu {
+      opacity: 0;
+      visibility: hidden;
+  }
+
+  body.menu-expanded .menu, 
+  body.menu-expanded .close-menu {
+      opacity: 1;
+      visibility: visible;
+  }
+
+  .menu {
+    transform: translateY(100%);
+  } 
+
+  body.menu-expanded .menu {
+    @apply bg-primary absolute left-0 top-0 w-full h-full px-[14px];
+
+    transition: transform 300ms;
+    transform: translateY(0);
+  }
 }
