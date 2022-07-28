@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
+import { EnvelopeSimple, Phone } from 'phosphor-react'
 
 const structureItems = [
   {
@@ -137,24 +138,34 @@ const StructureOrganizationPage: NextPageWithLayout = () => {
                 key={member.id}
                 className="list-none w-full laptop:max-w-[25rem]"
               >
-                <div className="group flex flex-col gap-4 items-center bg-gray-100 py-8 p-2 laptop:p-8">
+                <div className="group flex flex-col gap-4 items-center bg-gray-100 py-8 p-2 laptop:p-8 hover:bg-primary rounded-lg">
                   <img
                     className="shrink-0 h-16 w-16 rounded-full"
                     src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=60"
                     alt=""
                   />
                   <div className="ltr:ml-3 rtl:mr-3 flex-1 pl-2">
-                    <p className="text-base font-bold text-slate-300 group-hover:text-gray-900">
+                    <p className="text-base font-bold text-gray-900 group-hover:text-gray-100">
                       {member.name}
                     </p>
-                    <p className="text-sm font-medium text-slate-500 group-hover:text-slate-300">
+                    <p className="text-sm font-medium text-gray-900 group-hover:text-gray-200">
                       {member.occupation}
                     </p>
-                    <p className="text-sm font-medium text-slate-500 group-hover:text-slate-300">
-                      Tel: {member.phone}
+                    <p className="flex gap-2 text-sm font-medium text-gray-700 group-hover:text-gray-300">
+                      <Phone
+                        size={16}
+                        weight="light"
+                        className="text-gray-700 group-hover:text-gray-300"
+                      />
+                      {member.phone}
                     </p>
-                    <p className="text-sm font-medium text-slate-500 group-hover:text-slate-300">
-                      e-mail: {member.email}
+                    <p className="flex gap-2 text-sm font-medium text-gray-700 group-hover:text-gray-300">
+                      <EnvelopeSimple
+                        size={16}
+                        weight="light"
+                        className="text-gray-700 group-hover:text-gray-300"
+                      />
+                      {member.email}
                     </p>
                   </div>
                 </div>
