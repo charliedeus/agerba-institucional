@@ -105,6 +105,11 @@ export function Navbar() {
                 <a onClick={handleCloseMenu}>Transporte Hidroviário</a>
               </Link>
             </li>
+            <li>
+              <Link href="/faq">
+                <a onClick={handleCloseMenu}>FAQ</a>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
@@ -167,6 +172,16 @@ export function Navbar() {
                     <span className="opacity-50 cursor-not-allowed">
                       Polos Regionais (em breve)
                     </span>
+                  </NextLink>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <NextLink
+                    href="/faq"
+                    className={`${active && 'text-gray-900'}`}
+                  >
+                    <span>FAQ</span>
                   </NextLink>
                 )}
               </Menu.Item>

@@ -1,0 +1,8 @@
+query GetFaqs {
+  ascomFaqs {
+    id
+    pergunta
+    resposta
+    published_at
+  }
+}
