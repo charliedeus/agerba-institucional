@@ -62,3 +62,28 @@ FaqPage.getLayout = function getLayout(page: ReactElement) {
 }
 
 export default FaqPage
+
+// export const getServerSideProps: GetServerSideProps = async (ctx) => {
+//   const data = await getServerPageGetFaqs({}, ctx)
+
+//   const formattedFaqs = data?.props.data.ascomFaqs?.map((faq: any) => {
+//     return {
+//       ...faq,
+//       publishedAtFormatted: format(
+//         new Date(faq?.published_at),
+//         "EEEE' • 'dd' de 'MMMM' de 'yyyy'",
+//         {
+//           locale: ptBR,
+//         },
+//       ),
+//     }
+//   })
+
+//   return {
+//     props: {
+//       data: formattedFaqs,
+//     },
+//   }
+// }
+
+// export default withApollo(ssrGetFaqs.withPage()(FaqPage))

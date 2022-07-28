@@ -1,0 +1,12 @@
+query GetTerminaisRodoviarios {
+  terminaisRodoviarios {
+    id
+    terminal
+    telefone
+    email
+    contrato {
+      id
+      name
+    }
+  }
+}

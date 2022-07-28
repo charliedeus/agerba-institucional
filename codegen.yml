@@ -1,3 +1,5 @@
+overwrite: true
+
 schema: http://localhost:1337/graphql
 
 documents: './src/graphql/**/*.graphql'
@@ -13,3 +15,18 @@ generates:
       withHooks: true
       withHOC: false
       withComponent: false
+  ./src/graphql/generated/page.tsx:
+    documents: './src/graphql/**/*.graphql'
+    config:
+      documentMode: external
+      importDocumentNodeExternallyFrom: ./graphql
+      reactApolloVersion: 3
+      withHooks: true
+      contextType: 'ApolloClientContext'
+      contextTypeRequired: true
+      apolloClientInstanceImport: '../lib/withApollo'
+    preset: import-types
+    presetConfig:
+      typesPath: ./graphql
+    plugins:
+      - 'graphql-codegen-apollo-next-ssr'

@@ -1,0 +1,12 @@
+query GetTerminaisAeroviarios {
+  terminaisAeroviarios {
+    id
+    terminal
+    telefone
+    email
+    contrato {
+      id
+      name
+    }
+  }
+}
