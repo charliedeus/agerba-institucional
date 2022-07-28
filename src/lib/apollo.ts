@@ -1,17 +1,21 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
+import api from '../services/api'
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:1337/graphql',
+  uri: `${process.env.NEXT_PUBLIC_STRAPI_API_BASEURL}/graphql`,
 })
 
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('token')
+const authLink = setContext(async (_, { headers }) => {
+  const { data } = await api.post('/auth/local', {
+    identifier: process.env.NEXT_PUBLIC_STRAPI_API_USER,
+    password: process.env.NEXT_PUBLIC_STRAPI_API_PASSWORD,
+  })
 
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: data ? `Bearer ${data.jwt}` : '',
     },
   }
 })

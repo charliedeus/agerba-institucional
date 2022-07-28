@@ -138,7 +138,7 @@ const StructureOrganizationPage: NextPageWithLayout = () => {
                 key={member.id}
                 className="list-none w-full laptop:max-w-[25rem]"
               >
-                <div className="group flex flex-col gap-4 items-center bg-gray-100 py-8 p-2 laptop:p-8 hover:bg-primary rounded-lg">
+                <div className="group flex flex-col gap-4 items-center bg-gray-100 py-8 p-2 laptop:p-8 hover:bg-primary rounded-lg transition-colors duration-75">
                   <img
                     className="shrink-0 h-16 w-16 rounded-full"
                     src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=60"
