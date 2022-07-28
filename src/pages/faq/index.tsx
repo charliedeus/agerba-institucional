@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { format, parseISO } from 'date-fns'
+import { format } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import { Disclosure, Transition } from '@headlessui/react'
 
