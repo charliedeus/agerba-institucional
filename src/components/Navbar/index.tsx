@@ -106,6 +106,16 @@ export function Navbar() {
               </Link>
             </li>
             <li>
+              <Link href="/terminais/rodoviarios">
+                <a onClick={handleCloseMenu}>Terminais Rodoviários</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/terminais/aeroviarios">
+                <a onClick={handleCloseMenu}>Terminais Aeroviários</a>
+              </Link>
+            </li>
+            <li>
               <Link href="/faq">
                 <a onClick={handleCloseMenu}>FAQ</a>
               </Link>
