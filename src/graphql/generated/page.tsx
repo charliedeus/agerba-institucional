@@ -77,6 +77,41 @@ export const ssrGetTerminaisAeroviarios = {
       withPage: withPageGetTerminaisAeroviarios,
       usePage: useGetTerminaisAeroviarios,
     }
+export async function getServerPageGetTerminaisHidroviarios
+    (options: Omit<Apollo.QueryOptions<Types.GetTerminaisHidroviariosQueryVariables>, 'query'>, ctx: ApolloClientContext ){
+        const apolloClient = getApolloClient(ctx);
+        
+        const data = await apolloClient.query<Types.GetTerminaisHidroviariosQuery>({ ...options, query: Operations.GetTerminaisHidroviariosDocument });
+        
+        const apolloState = apolloClient.cache.extract();
+
+        return {
+            props: {
+                apolloState: apolloState,
+                data: data?.data,
+                error: data?.error ?? data?.errors ?? null,
+            },
+        };
+      }
+export const useGetTerminaisHidroviarios = (
+  optionsFunc?: (router: NextRouter)=> QueryHookOptions<Types.GetTerminaisHidroviariosQuery, Types.GetTerminaisHidroviariosQueryVariables>) => {
+  const router = useRouter();
+  const options = optionsFunc ? optionsFunc(router) : {};
+  return useQuery(Operations.GetTerminaisHidroviariosDocument, options);
+};
+export type PageGetTerminaisHidroviariosComp = React.FC<{data?: Types.GetTerminaisHidroviariosQuery, error?: Apollo.ApolloError}>;
+export const withPageGetTerminaisHidroviarios = (optionsFunc?: (router: NextRouter)=> QueryHookOptions<Types.GetTerminaisHidroviariosQuery, Types.GetTerminaisHidroviariosQueryVariables>) => (WrappedComponent:PageGetTerminaisHidroviariosComp) : NextPage  => (props) => {
+                const router = useRouter()
+                const options = optionsFunc ? optionsFunc(router) : {};
+                const {data, error } = useQuery(Operations.GetTerminaisHidroviariosDocument, options)    
+                return <WrappedComponent {...props} data={data} error={error} /> ;
+                   
+            }; 
+export const ssrGetTerminaisHidroviarios = {
+      getServerPage: getServerPageGetTerminaisHidroviarios,
+      withPage: withPageGetTerminaisHidroviarios,
+      usePage: useGetTerminaisHidroviarios,
+    }
 export async function getServerPageGetTerminaisRodoviarios
     (options: Omit<Apollo.QueryOptions<Types.GetTerminaisRodoviariosQueryVariables>, 'query'>, ctx: ApolloClientContext ){
         const apolloClient = getApolloClient(ctx);

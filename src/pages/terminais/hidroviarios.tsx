@@ -1,16 +1,16 @@
 import { EnvelopeSimple, Phone } from 'phosphor-react'
 import { ReactElement } from 'react'
-import { useGetTerminaisRodoviariosQuery } from '../../../graphql/generated'
+import { useGetTerminaisHidroviariosQuery } from '../../graphql/generated'
 
-import { DefaultLayout } from '../../../layouts/DefaultLayout'
-import { NextPageWithLayout } from '../../_app'
+import { DefaultLayout } from '../../layouts/DefaultLayout'
+import { NextPageWithLayout } from '../_app'
 
-const BusTerminalsPage: NextPageWithLayout = () => {
-  const { data } = useGetTerminaisRodoviariosQuery()
+const PortsPage: NextPageWithLayout = () => {
+  const { data } = useGetTerminaisHidroviariosQuery()
 
   return (
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
-      <h1 className="font-bold text-[2rem]">Terminais Rodoviários</h1>
+      <h1 className="font-bold text-[2rem]">Terminais Hidroviários</h1>
 
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -25,18 +25,18 @@ const BusTerminalsPage: NextPageWithLayout = () => {
       </p>
 
       <p>
-        São Terminais <span className="font-bold">Rodoviários</span>:
+        São Terminais <span className="font-bold">Hidroviários</span>:
       </p>
 
       <ul role="list" className="flex flex-col gap-2">
-        {data?.terminaisRodoviarios?.map((terminal) => (
+        {data?.terminaisHidroviarios?.map((terminal) => (
           <li
             key={terminal?.id}
             className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg"
           >
             <img
               className="shrink-0 h-12 w-12 rounded-full"
-              src="https://images.unsplash.com/photo-1596598756374-d46541826aff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=40"
+              src="https://images.unsplash.com/photo-1524592714635-d77511a4834d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=40"
               alt=""
             />
             <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
@@ -63,8 +63,8 @@ const BusTerminalsPage: NextPageWithLayout = () => {
   )
 }
 
-BusTerminalsPage.getLayout = function getLayout(page: ReactElement) {
+PortsPage.getLayout = function getLayout(page: ReactElement) {
   return <DefaultLayout>{page}</DefaultLayout>
 }
 
-export default BusTerminalsPage
+export default PortsPage

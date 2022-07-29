@@ -236,10 +236,11 @@ export function Navbar() {
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
-                  <span className="opacity-50 cursor-not-allowed">
-                    Terminais Hidroviários (em breve)
-                  </span>
+                <NextLink
+                  href="/terminais/hidroviarios"
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>Terminais Hidroviários</span>
                 </NextLink>
               )}
             </Menu.Item>
@@ -264,10 +265,11 @@ export function Navbar() {
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
-                  <span className="opacity-50 cursor-not-allowed">
-                    Gás (em breve)
-                  </span>
+                <NextLink
+                  href="/gas"
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>Gás</span>
                 </NextLink>
               )}
             </Menu.Item>

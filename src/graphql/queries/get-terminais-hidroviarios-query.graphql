@@ -1,0 +1,8 @@
+query GetTerminaisHidroviarios {
+  terminaisHidroviarios {
+    id
+    terminal
+    telefone
+    email
+  }
+}

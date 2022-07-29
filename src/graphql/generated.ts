@@ -6577,6 +6577,11 @@ export type GetTerminaisAeroviariosQueryVariables = Exact<{ [key: string]: never
 
 export type GetTerminaisAeroviariosQuery = { __typename?: 'Query', terminaisAeroviarios?: Array<{ __typename?: 'TerminaisAeroviarios', id: string, terminal?: string | null, telefone?: string | null, email?: string | null, contrato?: { __typename?: 'UploadFile', id: string, name: string } | null } | null> | null };
 
+export type GetTerminaisHidroviariosQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetTerminaisHidroviariosQuery = { __typename?: 'Query', terminaisHidroviarios?: Array<{ __typename?: 'TerminaisHidroviarios', id: string, terminal?: string | null, telefone?: string | null, email?: string | null } | null> | null };
+
 export type GetTerminaisRodoviariosQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6661,6 +6666,43 @@ export function useGetTerminaisAeroviariosLazyQuery(baseOptions?: Apollo.LazyQue
 export type GetTerminaisAeroviariosQueryHookResult = ReturnType<typeof useGetTerminaisAeroviariosQuery>;
 export type GetTerminaisAeroviariosLazyQueryHookResult = ReturnType<typeof useGetTerminaisAeroviariosLazyQuery>;
 export type GetTerminaisAeroviariosQueryResult = Apollo.QueryResult<GetTerminaisAeroviariosQuery, GetTerminaisAeroviariosQueryVariables>;
+export const GetTerminaisHidroviariosDocument = gql`
+    query GetTerminaisHidroviarios {
+  terminaisHidroviarios {
+    id
+    terminal
+    telefone
+    email
+  }
+}
+    `;
+
+/**
+ * __useGetTerminaisHidroviariosQuery__
+ *
+ * To run a query within a React component, call `useGetTerminaisHidroviariosQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTerminaisHidroviariosQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetTerminaisHidroviariosQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetTerminaisHidroviariosQuery(baseOptions?: Apollo.QueryHookOptions<GetTerminaisHidroviariosQuery, GetTerminaisHidroviariosQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetTerminaisHidroviariosQuery, GetTerminaisHidroviariosQueryVariables>(GetTerminaisHidroviariosDocument, options);
+      }
+export function useGetTerminaisHidroviariosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTerminaisHidroviariosQuery, GetTerminaisHidroviariosQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetTerminaisHidroviariosQuery, GetTerminaisHidroviariosQueryVariables>(GetTerminaisHidroviariosDocument, options);
+        }
+export type GetTerminaisHidroviariosQueryHookResult = ReturnType<typeof useGetTerminaisHidroviariosQuery>;
+export type GetTerminaisHidroviariosLazyQueryHookResult = ReturnType<typeof useGetTerminaisHidroviariosLazyQuery>;
+export type GetTerminaisHidroviariosQueryResult = Apollo.QueryResult<GetTerminaisHidroviariosQuery, GetTerminaisHidroviariosQueryVariables>;
 export const GetTerminaisRodoviariosDocument = gql`
     query GetTerminaisRodoviarios {
   terminaisRodoviarios {
