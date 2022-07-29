@@ -34,11 +34,13 @@ const BusTerminalsPage: NextPageWithLayout = () => {
             key={terminal?.id}
             className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg"
           >
-            <img
-              className="shrink-0 h-12 w-12 rounded-full"
-              src="https://images.unsplash.com/photo-1596598756374-d46541826aff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=40"
-              alt=""
-            />
+            <picture>
+              <img
+                className="shrink-0 h-12 w-12 rounded-full"
+                src="https://images.unsplash.com/photo-1596598756374-d46541826aff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=40"
+                alt=""
+              />
+            </picture>
             <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
               <span className="font-bold laptop:flex-1 laptop:pl-2">
                 {terminal?.terminal}

@@ -49,7 +49,9 @@ const GasPage: NextPageWithLayout = () => {
         gás natural.
       </p>
 
-      <img className="w-[30rem] m-auto" src="/fluxoGasNatural.png" alt="" />
+      <picture>
+        <img className="w-[30rem] m-auto" src="/fluxoGasNatural.png" alt="" />
+      </picture>
 
       <p>
         O início da estruturação do setor de gás canalizado no Estado da Bahia
@@ -81,11 +83,11 @@ const GasPage: NextPageWithLayout = () => {
 
       <p>
         O consumidor tem o direito de receber energia elétrica com segurança e
-        qualidade, e se isso não acontecer, deve dirigir-se à  Coelba para
+        qualidade, e se isso não acontecer, deve dirigir-se à Coelba para
         solucionar o problema. Caso não consiga resolvê-lo diretamente com a
-        Coelba, ele deve recorrer à  AGERBA - Agência Estadual de Regulação de
+        Coelba, ele deve recorrer à AGERBA - Agência Estadual de Regulação de
         Serviços Públicos de Energia, Transportes e Comunicações da Bahia. A
-        AGERBA, autarquia criada em 1998, vinculada à  Secretaria de
+        AGERBA, autarquia criada em 1998, vinculada à Secretaria de
         Infra-estrutura - SEINFRA, tem por finalidade exercer a regulação, o
         controle e a fiscalização dos serviços públicos, explorados por empresas
         privadas, nas áreas de energia, transportes intermunicipais e
@@ -95,7 +97,7 @@ const GasPage: NextPageWithLayout = () => {
       <p>
         Os DIREITOS e DEVERES do consumidor de energia elétrica estão previstos
         na Resolução da ANEEL n.º 456, que estabelece as disposições atualizadas
-        e consolidadas, relativas à s condições gerais de fornecimento a serem
+        e consolidadas, relativas às condições gerais de fornecimento a serem
         observadas na prestação e utilização do serviço público de energia
         elétrica, tanto pelas concessionárias e permissionárias, quanto pelos
         consumidores.

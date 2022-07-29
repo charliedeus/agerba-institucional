@@ -1,5 +1,5 @@
 interface urlBuilderProps {
-  src?: string
+  src?: any
 }
 
 export const urlBuilder = ({ src }: urlBuilderProps) => {

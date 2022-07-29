@@ -31,7 +31,9 @@ export function Navbar() {
     >
       <div className="px-[14px] w-full h-full flex items-center justify-between laptop:hidden">
         <Link href="/">
-          <img className="w-[90px]" src="/logo-white.png" alt="" />
+          <picture>
+            <img className="w-[90px]" src="/logo-white.png" alt="" />
+          </picture>
         </Link>
 
         <a>
@@ -76,7 +78,9 @@ export function Navbar() {
         <div className="hidden menu">
           <div className="w-full h-[70px] flex items-center justify-between laptop:hidden">
             <Link href="/">
-              <img className="w-[90px]" src="/logo-white.png" alt="" />
+              <picture>
+                <img className="w-[90px]" src="/logo-white.png" alt="" />
+              </picture>
             </Link>
             <a>
               <button
@@ -464,10 +468,12 @@ export function Navbar() {
             className="flex items-center rounded-lg bg-white gap-2"
             target="_blank"
           >
-            <img
-              src="http://www.agerba.ba.gov.br/themes/custom/secom/image/acessoinformacao.png"
-              alt=""
-            />
+            <picture>
+              <img
+                src="http://www.agerba.ba.gov.br/themes/custom/secom/image/acessoinformacao.png"
+                alt=""
+              />
+            </picture>
           </a>
         </Link>
       </div>

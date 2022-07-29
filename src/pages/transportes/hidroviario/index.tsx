@@ -46,11 +46,13 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
 
       <ul role="list" className="flex flex-col gap-2">
         <li className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg">
-          <img
-            className="shrink-0 h-12 w-12 rounded-full"
-            src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
-            alt=""
-          />
+          <picture>
+            <img
+              className="shrink-0 h-12 w-12 rounded-full"
+              src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
+              alt=""
+            />
+          </picture>
           <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
             <span className="font-bold laptop:flex-1 laptop:pl-2">
               Internacional Travessias Ltda
@@ -93,11 +95,13 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
 
       <ul role="list" className="flex flex-col gap-2">
         <li className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg">
-          <img
-            className="shrink-0 h-12 w-12 rounded-full"
-            src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
-            alt=""
-          />
+          <picture>
+            <img
+              className="shrink-0 h-12 w-12 rounded-full"
+              src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
+              alt=""
+            />
+          </picture>
           <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
             <span className="font-bold laptop:flex-1 laptop:pl-2">
               CL Empreendimentos Ltda
@@ -117,11 +121,13 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
           </div>
         </li>
         <li className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg">
-          <img
-            className="shrink-0 h-12 w-12 rounded-full"
-            src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
-            alt=""
-          />
+          <picture>
+            <img
+              className="shrink-0 h-12 w-12 rounded-full"
+              src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
+              alt=""
+            />
+          </picture>
           <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
             <span className="font-bold laptop:flex-1 laptop:pl-2">
               Vera Cruz Transportes e Serviços Marítimos Ltda ME
@@ -152,11 +158,13 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
 
       <ul role="list" className="flex flex-col gap-2">
         <li className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg">
-          <img
-            className="shrink-0 h-12 w-12 rounded-full"
-            src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
-            alt=""
-          />
+          <picture>
+            <img
+              className="shrink-0 h-12 w-12 rounded-full"
+              src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
+              alt=""
+            />
+          </picture>
           <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
             <span className="font-bold laptop:flex-1 laptop:pl-2">
               Francisco das Chagas Jacinto ME
@@ -176,11 +184,13 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
           </div>
         </li>
         <li className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg">
-          <img
-            className="shrink-0 h-12 w-12 rounded-full"
-            src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
-            alt=""
-          />
+          <picture>
+            <img
+              className="shrink-0 h-12 w-12 rounded-full"
+              src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
+              alt=""
+            />
+          </picture>
           <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
             <span className="font-bold laptop:flex-1 laptop:pl-2">
               Biônica Transportes e Turismo Marítimo Regional Ltda.
@@ -200,11 +210,13 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
           </div>
         </li>
         <li className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg">
-          <img
-            className="shrink-0 h-12 w-12 rounded-full"
-            src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
-            alt=""
-          />
+          <picture>
+            <img
+              className="shrink-0 h-12 w-12 rounded-full"
+              src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
+              alt=""
+            />
+          </picture>
           <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
             <span className="font-bold laptop:flex-1 laptop:pl-2">
               Pousada Farol do Morro Ltda. ME

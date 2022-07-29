@@ -32,18 +32,20 @@ const HighwaysPage: NextPageWithLayout = () => {
             key={rodovia?.id}
             className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg"
           >
-            <img
-              className="shrink-0 h-12 w-12 rounded-full"
-              src="https://images.unsplash.com/photo-1566054299976-3eb6f6a44ead?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aGlnaHdheXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=40"
-              alt=""
-            />
+            <picture>
+              <img
+                className="shrink-0 h-12 w-12 rounded-full"
+                src="https://images.unsplash.com/photo-1566054299976-3eb6f6a44ead?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aGlnaHdheXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=40"
+                alt=""
+              />
+            </picture>
             <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
               <span className="font-bold laptop:flex-1 laptop:pl-2">
                 {rodovia?.Nome}
               </span>
               <span className="laptop:w-1/5 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
                 <Phone size={16} weight="light" className="text-gray-500" />{' '}
-                {rodovia?.Concessao[0]?.telefone}
+                {/* {rodovia?.Concessao[0]?.telefone} */}
               </span>
               <span className="laptop:w-1/3 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
                 <EnvelopeSimple
@@ -51,7 +53,7 @@ const HighwaysPage: NextPageWithLayout = () => {
                   weight="light"
                   className="text-gray-500"
                 />{' '}
-                {rodovia?.Concessao[0]?.ouvidoria}
+                {/* {rodovia?.Concessao[0]?.ouvidoria! || null} */}
               </span>
             </div>
           </li>

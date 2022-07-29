@@ -4,8 +4,6 @@ import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 import { useGetCartilhasQuery } from '../../graphql/generated'
 import { CalendarBlank, FileArrowDown, FileDoc } from 'phosphor-react'
-import Link from 'next/link'
-import { urlBuilder } from '../../lib/urlBuilder'
 
 const HornBookPage: NextPageWithLayout = () => {
   const { data } = useGetCartilhasQuery()
@@ -45,17 +43,13 @@ const HornBookPage: NextPageWithLayout = () => {
                 {cartilha?.Ano}
               </span>
 
-              {cartilha?.cartilha?.url && (
-                <Link href={urlBuilder(cartilha?.cartilha?.url)}>
-                  <a className="laptop:w-1/12 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center justify-center gap-2">
-                    <FileArrowDown
-                      size={24}
-                      weight="light"
-                      className="text-gray-900"
-                    />{' '}
-                  </a>
-                </Link>
-              )}
+              <a className="laptop:w-1/12 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center justify-center gap-2">
+                <FileArrowDown
+                  size={24}
+                  weight="light"
+                  className="text-gray-900"
+                />{' '}
+              </a>
             </div>
           </li>
         ))}

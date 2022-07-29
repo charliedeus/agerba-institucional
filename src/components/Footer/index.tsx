@@ -6,7 +6,9 @@ export function Footer() {
       <div className="w-full desktop:max-w-[1280px] flex flex-col desktop:flex-row items-center laptop:items-start justify-between gap-10 text-white">
         <Link href="/">
           <a>
-            <img className="max-w-[10rem]" src="/logo-white.png" alt="" />
+            <picture>
+              <img className="max-w-[10rem]" src="/logo-white.png" alt="" />
+            </picture>
           </a>
         </Link>
         <div>
