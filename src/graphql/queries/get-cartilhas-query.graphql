@@ -1,0 +1,13 @@
+query GetCartilhas {
+  ascomCartilhas {
+    id
+    Ano
+    titulo
+    cartilha {
+      id
+      name
+      alternativeText
+      url
+    }
+  }
+}

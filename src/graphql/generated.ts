@@ -6567,10 +6567,20 @@ export type UpdateUserPayload = {
   user?: Maybe<UsersPermissionsUser>;
 };
 
+export type GetCartilhasQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetCartilhasQuery = { __typename?: 'Query', ascomCartilhas?: Array<{ __typename?: 'AscomCartilhas', id: string, Ano?: string | null, titulo: string, cartilha?: { __typename?: 'UploadFile', id: string, name: string, alternativeText?: string | null, url: string } | null } | null> | null };
+
 export type GetFaqsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetFaqsQuery = { __typename?: 'Query', ascomFaqs?: Array<{ __typename?: 'AscomFaq', id: string, pergunta: string, resposta: string, published_at?: any | null } | null> | null };
+
+export type GetRodoviasConcessionadasQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetRodoviasConcessionadasQuery = { __typename?: 'Query', rodovias?: Array<{ __typename?: 'Rodovias', id: string, Nome: string, Concessao?: Array<{ __typename?: 'ComponentConcessaoConcessao', id: string, Concessionaria: string, telefone?: string | null, site: string, ouvidoria?: string | null } | null> | null } | null> | null };
 
 export type GetTerminaisAeroviariosQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -6588,6 +6598,48 @@ export type GetTerminaisRodoviariosQueryVariables = Exact<{ [key: string]: never
 export type GetTerminaisRodoviariosQuery = { __typename?: 'Query', terminaisRodoviarios?: Array<{ __typename?: 'TerminaisRodoviarios', id: string, terminal?: string | null, telefone?: string | null, email?: string | null, contrato?: { __typename?: 'UploadFile', id: string, name: string } | null } | null> | null };
 
 
+export const GetCartilhasDocument = gql`
+    query GetCartilhas {
+  ascomCartilhas {
+    id
+    Ano
+    titulo
+    cartilha {
+      id
+      name
+      alternativeText
+      url
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetCartilhasQuery__
+ *
+ * To run a query within a React component, call `useGetCartilhasQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCartilhasQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCartilhasQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetCartilhasQuery(baseOptions?: Apollo.QueryHookOptions<GetCartilhasQuery, GetCartilhasQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCartilhasQuery, GetCartilhasQueryVariables>(GetCartilhasDocument, options);
+      }
+export function useGetCartilhasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCartilhasQuery, GetCartilhasQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCartilhasQuery, GetCartilhasQueryVariables>(GetCartilhasDocument, options);
+        }
+export type GetCartilhasQueryHookResult = ReturnType<typeof useGetCartilhasQuery>;
+export type GetCartilhasLazyQueryHookResult = ReturnType<typeof useGetCartilhasLazyQuery>;
+export type GetCartilhasQueryResult = Apollo.QueryResult<GetCartilhasQuery, GetCartilhasQueryVariables>;
 export const GetFaqsDocument = gql`
     query GetFaqs {
   ascomFaqs {
@@ -6625,6 +6677,48 @@ export function useGetFaqsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Ge
 export type GetFaqsQueryHookResult = ReturnType<typeof useGetFaqsQuery>;
 export type GetFaqsLazyQueryHookResult = ReturnType<typeof useGetFaqsLazyQuery>;
 export type GetFaqsQueryResult = Apollo.QueryResult<GetFaqsQuery, GetFaqsQueryVariables>;
+export const GetRodoviasConcessionadasDocument = gql`
+    query GetRodoviasConcessionadas {
+  rodovias {
+    id
+    Nome
+    Concessao {
+      id
+      Concessionaria
+      telefone
+      site
+      ouvidoria
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetRodoviasConcessionadasQuery__
+ *
+ * To run a query within a React component, call `useGetRodoviasConcessionadasQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetRodoviasConcessionadasQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetRodoviasConcessionadasQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetRodoviasConcessionadasQuery(baseOptions?: Apollo.QueryHookOptions<GetRodoviasConcessionadasQuery, GetRodoviasConcessionadasQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetRodoviasConcessionadasQuery, GetRodoviasConcessionadasQueryVariables>(GetRodoviasConcessionadasDocument, options);
+      }
+export function useGetRodoviasConcessionadasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRodoviasConcessionadasQuery, GetRodoviasConcessionadasQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetRodoviasConcessionadasQuery, GetRodoviasConcessionadasQueryVariables>(GetRodoviasConcessionadasDocument, options);
+        }
+export type GetRodoviasConcessionadasQueryHookResult = ReturnType<typeof useGetRodoviasConcessionadasQuery>;
+export type GetRodoviasConcessionadasLazyQueryHookResult = ReturnType<typeof useGetRodoviasConcessionadasLazyQuery>;
+export type GetRodoviasConcessionadasQueryResult = Apollo.QueryResult<GetRodoviasConcessionadasQuery, GetRodoviasConcessionadasQueryVariables>;
 export const GetTerminaisAeroviariosDocument = gql`
     query GetTerminaisAeroviarios {
   terminaisAeroviarios {

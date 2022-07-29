@@ -7,6 +7,41 @@ import { QueryHookOptions, useQuery } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 import type React from 'react';
 import { getApolloClient , ApolloClientContext} from '../lib/withApollo';
+export async function getServerPageGetCartilhas
+    (options: Omit<Apollo.QueryOptions<Types.GetCartilhasQueryVariables>, 'query'>, ctx: ApolloClientContext ){
+        const apolloClient = getApolloClient(ctx);
+        
+        const data = await apolloClient.query<Types.GetCartilhasQuery>({ ...options, query: Operations.GetCartilhasDocument });
+        
+        const apolloState = apolloClient.cache.extract();
+
+        return {
+            props: {
+                apolloState: apolloState,
+                data: data?.data,
+                error: data?.error ?? data?.errors ?? null,
+            },
+        };
+      }
+export const useGetCartilhas = (
+  optionsFunc?: (router: NextRouter)=> QueryHookOptions<Types.GetCartilhasQuery, Types.GetCartilhasQueryVariables>) => {
+  const router = useRouter();
+  const options = optionsFunc ? optionsFunc(router) : {};
+  return useQuery(Operations.GetCartilhasDocument, options);
+};
+export type PageGetCartilhasComp = React.FC<{data?: Types.GetCartilhasQuery, error?: Apollo.ApolloError}>;
+export const withPageGetCartilhas = (optionsFunc?: (router: NextRouter)=> QueryHookOptions<Types.GetCartilhasQuery, Types.GetCartilhasQueryVariables>) => (WrappedComponent:PageGetCartilhasComp) : NextPage  => (props) => {
+                const router = useRouter()
+                const options = optionsFunc ? optionsFunc(router) : {};
+                const {data, error } = useQuery(Operations.GetCartilhasDocument, options)    
+                return <WrappedComponent {...props} data={data} error={error} /> ;
+                   
+            }; 
+export const ssrGetCartilhas = {
+      getServerPage: getServerPageGetCartilhas,
+      withPage: withPageGetCartilhas,
+      usePage: useGetCartilhas,
+    }
 export async function getServerPageGetFaqs
     (options: Omit<Apollo.QueryOptions<Types.GetFaqsQueryVariables>, 'query'>, ctx: ApolloClientContext ){
         const apolloClient = getApolloClient(ctx);
@@ -41,6 +76,41 @@ export const ssrGetFaqs = {
       getServerPage: getServerPageGetFaqs,
       withPage: withPageGetFaqs,
       usePage: useGetFaqs,
+    }
+export async function getServerPageGetRodoviasConcessionadas
+    (options: Omit<Apollo.QueryOptions<Types.GetRodoviasConcessionadasQueryVariables>, 'query'>, ctx: ApolloClientContext ){
+        const apolloClient = getApolloClient(ctx);
+        
+        const data = await apolloClient.query<Types.GetRodoviasConcessionadasQuery>({ ...options, query: Operations.GetRodoviasConcessionadasDocument });
+        
+        const apolloState = apolloClient.cache.extract();
+
+        return {
+            props: {
+                apolloState: apolloState,
+                data: data?.data,
+                error: data?.error ?? data?.errors ?? null,
+            },
+        };
+      }
+export const useGetRodoviasConcessionadas = (
+  optionsFunc?: (router: NextRouter)=> QueryHookOptions<Types.GetRodoviasConcessionadasQuery, Types.GetRodoviasConcessionadasQueryVariables>) => {
+  const router = useRouter();
+  const options = optionsFunc ? optionsFunc(router) : {};
+  return useQuery(Operations.GetRodoviasConcessionadasDocument, options);
+};
+export type PageGetRodoviasConcessionadasComp = React.FC<{data?: Types.GetRodoviasConcessionadasQuery, error?: Apollo.ApolloError}>;
+export const withPageGetRodoviasConcessionadas = (optionsFunc?: (router: NextRouter)=> QueryHookOptions<Types.GetRodoviasConcessionadasQuery, Types.GetRodoviasConcessionadasQueryVariables>) => (WrappedComponent:PageGetRodoviasConcessionadasComp) : NextPage  => (props) => {
+                const router = useRouter()
+                const options = optionsFunc ? optionsFunc(router) : {};
+                const {data, error } = useQuery(Operations.GetRodoviasConcessionadasDocument, options)    
+                return <WrappedComponent {...props} data={data} error={error} /> ;
+                   
+            }; 
+export const ssrGetRodoviasConcessionadas = {
+      getServerPage: getServerPageGetRodoviasConcessionadas,
+      withPage: withPageGetRodoviasConcessionadas,
+      usePage: useGetRodoviasConcessionadas,
     }
 export async function getServerPageGetTerminaisAeroviarios
     (options: Omit<Apollo.QueryOptions<Types.GetTerminaisAeroviariosQueryVariables>, 'query'>, ctx: ApolloClientContext ){

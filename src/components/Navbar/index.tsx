@@ -185,16 +185,6 @@ export function Navbar() {
                   </NextLink>
                 )}
               </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <NextLink
-                    href="/faq"
-                    className={`${active && 'text-gray-900'}`}
-                  >
-                    <span>FAQ</span>
-                  </NextLink>
-                )}
-              </Menu.Item>
             </Menu.Items>
           </Transition>
         </Menu>
@@ -256,10 +246,11 @@ export function Navbar() {
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
-                  <span className="opacity-50 cursor-not-allowed">
-                    Rodovias Concessionadas (em breve)
-                  </span>
+                <NextLink
+                  href="/rodovias"
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>Rodovias Concessionadas</span>
                 </NextLink>
               )}
             </Menu.Item>
@@ -329,10 +320,11 @@ export function Navbar() {
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
-                  <span className="opacity-50 cursor-not-allowed">
-                    Benefícios (em breve)
-                  </span>
+                <NextLink
+                  href="/beneficios"
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>Benefícios</span>
                 </NextLink>
               )}
             </Menu.Item>
@@ -356,19 +348,21 @@ export function Navbar() {
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
-                  <span className="opacity-50 cursor-not-allowed">
-                    Perguntas Frequentes (em breve)
-                  </span>
+                <NextLink
+                  href="/faq"
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>FAQ</span>
                 </NextLink>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
-                  <span className="opacity-50 cursor-not-allowed">
-                    Cartilhas (em breve)
-                  </span>
+                <NextLink
+                  href="/cartilhas"
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>Cartilhas</span>
                 </NextLink>
               )}
             </Menu.Item>
@@ -381,15 +375,23 @@ export function Navbar() {
             <span className="font-normal">Legislações</span>
           </Menu.Button>
           <Menu.Items className="absolute flex flex-col justify-around gap-2 w-max mt-4 py-2 px-6 border border-gray-400 rounded bg-white">
-            <Menu.Item as="div">
-              <span className="font-base text-gray-900 cursor-pointer">
-                Resoluções
-              </span>
+            <Menu.Item>
+              {({ active }) => (
+                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
+                  <span className="opacity-50 cursor-not-allowed">
+                    Resoluções (em breve)
+                  </span>
+                </NextLink>
+              )}
             </Menu.Item>
-            <Menu.Item as="div">
-              <span className="font-base text-gray-900 cursor-pointer">
-                Leis/Decretos
-              </span>
+            <Menu.Item>
+              {({ active }) => (
+                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
+                  <span className="opacity-50 cursor-not-allowed">
+                    Leis/Decretos (em breve)
+                  </span>
+                </NextLink>
+              )}
             </Menu.Item>
           </Menu.Items>
         </Menu>
@@ -400,35 +402,59 @@ export function Navbar() {
             <span className="font-normal">Transparência</span>
           </Menu.Button>
           <Menu.Items className="absolute flex flex-col justify-around gap-2 w-max mt-4 py-2 px-6 border border-gray-400 rounded bg-white">
-            <Menu.Item as="div">
-              <span className="font-base text-gray-900 cursor-pointer">
-                Audiências Públicas
-              </span>
+            <Menu.Item>
+              {({ active }) => (
+                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
+                  <span className="opacity-50 cursor-not-allowed">
+                    Audiências Públicas (em breve)
+                  </span>
+                </NextLink>
+              )}
             </Menu.Item>
-            <Menu.Item as="div">
-              <span className="font-base text-gray-900 cursor-pointer">
-                Consultas Públicas
-              </span>
+            <Menu.Item>
+              {({ active }) => (
+                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
+                  <span className="opacity-50 cursor-not-allowed">
+                    Consultas Públicas (em breve)
+                  </span>
+                </NextLink>
+              )}
             </Menu.Item>
-            <Menu.Item as="div">
-              <span className="font-base text-gray-900 cursor-pointer">
-                Licitações
-              </span>
+            <Menu.Item>
+              {({ active }) => (
+                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
+                  <span className="opacity-50 cursor-not-allowed">
+                    Licitações (em breve)
+                  </span>
+                </NextLink>
+              )}
             </Menu.Item>
-            <Menu.Item as="div">
-              <span className="font-base text-gray-900 cursor-pointer">
-                Atas do Colegiado
-              </span>
+            <Menu.Item>
+              {({ active }) => (
+                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
+                  <span className="opacity-50 cursor-not-allowed">
+                    Atas do Colegiado (em breve)
+                  </span>
+                </NextLink>
+              )}
             </Menu.Item>
-            <Menu.Item as="div">
-              <span className="font-base text-gray-900 cursor-pointer">
-                Atas de Julgamento
-              </span>
+            <Menu.Item>
+              {({ active }) => (
+                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
+                  <span className="opacity-50 cursor-not-allowed">
+                    Atas de Julgamento (em breve)
+                  </span>
+                </NextLink>
+              )}
             </Menu.Item>
-            <Menu.Item as="div">
-              <span className="font-base text-gray-900 cursor-pointer">
-                Transparências COVID
-              </span>
+            <Menu.Item>
+              {({ active }) => (
+                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
+                  <span className="opacity-50 cursor-not-allowed">
+                    Transparências COVID (em breve)
+                  </span>
+                </NextLink>
+              )}
             </Menu.Item>
           </Menu.Items>
         </Menu>

@@ -1,8 +1,10 @@
+import Link from 'next/link'
+
 const groupServices = [
   {
     id: 1,
     title: 'Transportes',
-    url: '/transportes',
+    url: '/#',
     services: [
       { id: 1, title: 'Rodoviário' },
       { id: 2, title: 'Hidroviário' },
@@ -11,7 +13,7 @@ const groupServices = [
   {
     id: 2,
     title: 'Terminais',
-    url: '/terminais',
+    url: '/#',
     services: [
       { id: 1, title: 'Rodoviários' },
       { id: 2, title: 'Aeroviários' },
@@ -52,15 +54,13 @@ export function ServicesPanel() {
             <h3 className="text-base font-bold laptop:group-hover:text-white">
               {service.title}
             </h3>
-
-            <a
-              className="px-4 py-2 bg-[#3F3F95] laptop:group-hover:bg-white bg-opacity-50 rounded-lg"
-              href="#"
-            >
-              <span className="text-sm font-bold leading-tight">
-                Clique aqui
-              </span>
-            </a>
+            <Link href={service.url}>
+              <a className="px-4 py-2 bg-[#3F3F95] laptop:group-hover:bg-white bg-opacity-50 rounded-lg">
+                <span className="text-sm font-bold leading-tight">
+                  Clique aqui
+                </span>
+              </a>
+            </Link>
           </div>
         ))}
       </div>
