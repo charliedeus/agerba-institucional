@@ -4,6 +4,8 @@ import { v4 as uuidv4 } from 'uuid'
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 import { EnvelopeSimple, Phone } from 'phosphor-react'
+import { GetStaticProps } from 'next'
+import { motion } from 'framer-motion'
 
 const structureItems = [
   {
@@ -113,7 +115,24 @@ const structureItems = [
 const StructureOrganizationPage: NextPageWithLayout = () => {
   return (
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
-      <h1 className="font-bold text-[2rem]">Estrutura Organizacional</h1>
+      <motion.h1
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: { scale: 0.8, opacity: 0 },
+          visible: {
+            scale: 1,
+            opacity: 1,
+            transition: {
+              delay: 0.5,
+            },
+          },
+        }}
+        className="font-bold text-[2rem]"
+      >
+        Estrutura Organizacional
+      </motion.h1>
+
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry standard dummy text ever
@@ -134,7 +153,15 @@ const StructureOrganizationPage: NextPageWithLayout = () => {
 
           <div key={section.id} className="flex flex-wrap gap-2">
             {section.members.map((member) => (
-              <li
+              <motion.li
+                whileHover={{
+                  position: 'relative',
+                  zIndex: 1,
+                  scale: [1, 1.1, 1.05],
+                  transition: {
+                    duration: 0.3,
+                  },
+                }}
                 key={member.id}
                 className="list-none w-full laptop:max-w-[25rem]"
               >
@@ -171,7 +198,7 @@ const StructureOrganizationPage: NextPageWithLayout = () => {
                     </p>
                   </div>
                 </div>
-              </li>
+              </motion.li>
             ))}
           </div>
         </>
@@ -185,3 +212,117 @@ StructureOrganizationPage.getLayout = function getLayout(page: ReactElement) {
 }
 
 export default StructureOrganizationPage
+
+export const getStaticProps: GetStaticProps = async () => {
+  const structureItems = [
+    {
+      id: uuidv4(),
+      title: 'Diretoria Executiva',
+      members: [
+        {
+          id: uuidv4(),
+          name: 'Carlos Henrique de Azevedo Martins',
+          occupation: 'Diretor Executivo',
+          phone: '71 3115-4828 / 8615 / 4863 / 8625',
+          email: 'chenrique.martins@agerba.ba.gov.br',
+        },
+        {
+          id: uuidv4(),
+          name: 'Claudia Sousa Carvalho de Santana',
+          occupation: 'Chefe de Gabinete',
+          phone: '71 3115-8631',
+          email: 'claudia.sousa@agerba.ba.gov.br',
+        },
+        {
+          id: uuidv4(),
+          name: 'Joaquim Cesar Campos Guerra',
+          occupation: 'Assessor Chefe',
+          phone: '71 3115-4889',
+          email: 'joaquim.guerra@agerba.ba.gov.br',
+        },
+        {
+          id: uuidv4(),
+          name: 'Mário Simões Ferreira Junior',
+          occupation: 'Coordenador',
+          phone: '71 3115-4841',
+          email: 'mario.junior@agerba.ba.gov.br',
+        },
+        {
+          id: uuidv4(),
+          name: 'Murilo Serafim da Costa',
+          occupation: 'Ouvidor',
+          phone: '71 3115-4702 / 4887',
+          email: 'murilo.costa@agerba.ba.gov.br',
+        },
+        {
+          id: uuidv4(),
+          name: 'Lorena Lima de Jesus Carauna',
+          occupation: 'Assessor de Comunicação',
+          phone: '71 3115-8607',
+          email: 'lorena.jesus@agerba.ba.gov.br',
+        },
+      ],
+    },
+    {
+      id: uuidv4(),
+      title: 'Departamento de Tarifas e Pesquisas Socioeconômicas',
+      members: [
+        {
+          id: uuidv4(),
+          name: 'Tahis Flores Nunes Soares',
+          occupation: 'Diretora Geral',
+          phone: '71 3115-4839',
+          email: 'tahis.soares@agerba.ba.gov.br',
+        },
+        {
+          id: uuidv4(),
+          name: 'Luciano Marcelo Dantas de Souza',
+          occupation: 'Diretor de Tarifas',
+          phone: '71 3115-4805',
+          email: 'lucianomarcelo.souza1@agerba.ba.gov.br',
+        },
+        {
+          id: uuidv4(),
+          name: 'Nilton Roberto Martins Cabral Guimarães',
+          occupation: 'Diretor de Pesquisas Socioeconomicas',
+          phone: '71 3115-4866',
+          email: 'nilton.guimaraes@agerba.ba.gov.br',
+        },
+      ],
+    },
+    {
+      id: uuidv4(),
+      title: 'Departamento de Qualidade dos Serviços',
+      members: [
+        {
+          id: uuidv4(),
+          name: 'Sosthenes José Paes Campos Campos',
+          occupation: 'Diretor Geral',
+          phone: '71 3115-4830',
+          email: 'sosthenes.campos@agerba.ba.gov.br',
+        },
+        {
+          id: uuidv4(),
+          name: 'Eurico Bonfim Isaac da Silva',
+          occupation: 'Diretor de Fiscalização',
+          phone: '71 3115-4861',
+          email: 'eurico.silva@agerba.ba.gov.br',
+        },
+        {
+          id: uuidv4(),
+          name: 'Geraldo Joaquim Telles de Souza',
+          occupation: 'Diretor de Planejamento Operacioanl',
+          phone: '71 3115-4859',
+          email: 'geraldojoaquim.souza@agerba.ba.gov.br',
+        },
+      ],
+    },
+  ]
+
+  return {
+    props: {
+      structureItems,
+    },
+    revalidate: 60 * 60 * 24,
+  }
+}

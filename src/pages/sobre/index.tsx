@@ -1,12 +1,32 @@
 import { ReactElement } from 'react'
+import { motion } from 'framer-motion'
 
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 
 const AboutPage: NextPageWithLayout = () => {
   return (
-    <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
-      <h1 className="font-bold text-[2rem]">Quem somos</h1>
+    <motion.article
+      exit={{ opacity: 0 }}
+      className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed"
+    >
+      <motion.h1
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: { scale: 0.8, opacity: 0 },
+          visible: {
+            scale: 1,
+            opacity: 1,
+            transition: {
+              delay: 0.5,
+            },
+          },
+        }}
+        className="font-bold text-[2rem]"
+      >
+        Quem somos
+      </motion.h1>
 
       <p>
         A AGERBA - Agência Estadual de Regulação de Serviços Públicos de
@@ -85,7 +105,7 @@ const AboutPage: NextPageWithLayout = () => {
           </li>
         </ul>
       </div>
-    </article>
+    </motion.article>
   )
 }
 
