@@ -45,7 +45,7 @@ const HighwaysPage: NextPageWithLayout = () => {
               </span>
               <span className="laptop:w-1/5 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
                 <Phone size={16} weight="light" className="text-gray-500" />{' '}
-                {/* {rodovia?.Concessao[0]?.telefone} */}
+                {rodovia?.Concessao && rodovia?.Concessao[0]?.telefone}
               </span>
               <span className="laptop:w-1/3 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
                 <EnvelopeSimple
@@ -53,7 +53,7 @@ const HighwaysPage: NextPageWithLayout = () => {
                   weight="light"
                   className="text-gray-500"
                 />{' '}
-                {/* {rodovia?.Concessao[0]?.ouvidoria! || null} */}
+                {rodovia?.Concessao && rodovia?.Concessao[0]?.ouvidoria}
               </span>
             </div>
           </li>

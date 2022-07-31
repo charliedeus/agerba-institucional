@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { NextLink } from '../NextLink'
 
 export function Footer() {
   return (
@@ -23,27 +24,105 @@ export function Footer() {
                 <a target="_blank">Carteira Estudantil</a>
               </Link>
             </li>
-            <li>Arquivos</li>
-            <li>Audiências Públicas</li>
-            <li>Consultas Públicas</li>
+            <li>
+              <NextLink href="#" className="text-gray-400">
+                <span className="opacity-75 cursor-not-allowed">
+                  Arquivos (em breve)
+                </span>
+              </NextLink>
+            </li>
+            <li>
+              <NextLink href="#" className="text-gray-400">
+                <span className="opacity-75 cursor-not-allowed">
+                  Audiências Públicas (em breve)
+                </span>
+              </NextLink>
+            </li>
+            <li>
+              <NextLink href="#" className="text-gray-400">
+                <span className="opacity-75 cursor-not-allowed">
+                  Consultas Públicas (em breve)
+                </span>
+              </NextLink>
+            </li>
           </ul>
         </div>
         <div>
           <ul className="flex flex-col gap-4">
-            <li>Consultas Processos - SEI</li>
-            <li>Ouvidoria</li>
-            <li>Contratos e Aquisições - COVID 19</li>
-            <li>Portal de Serviços - STIP</li>
-            <li>Licitações</li>
+            <li>
+              <NextLink href="#" className="text-gray-400">
+                <span className="opacity-75 cursor-not-allowed">
+                  Consultas Processos - SEI (em breve)
+                </span>
+              </NextLink>
+            </li>
+            <li>
+              <NextLink href="#" className="text-gray-400">
+                <span className="opacity-75 cursor-not-allowed">
+                  Ouvidoria (em breve)
+                </span>
+              </NextLink>
+            </li>
+            <li>
+              <NextLink href="#" className="text-gray-400">
+                <span className="opacity-75 cursor-not-allowed">
+                  Contratos e Aquisições - COVID 19 (em breve)
+                </span>
+              </NextLink>
+            </li>
+            <li>
+              <NextLink href="#" className="text-gray-400">
+                <span className="opacity-75 cursor-not-allowed">
+                  Portal de Serviços STIP (em breve)
+                </span>
+              </NextLink>
+            </li>
+            <li>
+              <NextLink href="#" className="text-gray-400">
+                <span className="opacity-75 cursor-not-allowed">
+                  Licitações (em breve)
+                </span>
+              </NextLink>
+            </li>
           </ul>
         </div>
         <div>
           <ul className="flex flex-col gap-4">
-            <li>Hidroviário</li>
-            <li>Terminais</li>
-            <li>Rodoviário</li>
-            <li>Resoluções</li>
-            <li>Taxas</li>
+            <li>
+              <NextLink href="#" className="text-gray-400">
+                <span className="opacity-75 cursor-not-allowed">
+                  Hidroviário (em breve)
+                </span>
+              </NextLink>
+            </li>
+            <li>
+              <NextLink href="#" className="text-gray-400">
+                <span className="opacity-75 cursor-not-allowed">
+                  Terminais (em breve)
+                </span>
+              </NextLink>
+            </li>
+            <li>
+              <NextLink href="#" className="text-gray-400">
+                <span className="opacity-75 cursor-not-allowed">
+                  Rodoviário (em breve)
+                </span>
+              </NextLink>
+            </li>
+            <li>
+              <NextLink href="#" className="text-gray-400">
+                <span className="opacity-75 cursor-not-allowed">
+                  Resoluções (em breve)
+                </span>
+              </NextLink>
+            </li>
+            <li>
+              <NextLink href="#" className="text-gray-400">
+                <span className="opacity-75 cursor-not-allowed">
+                  Transparências COVID (em breve)
+                </span>
+              </NextLink>
+            </li>
           </ul>
         </div>
       </div>
