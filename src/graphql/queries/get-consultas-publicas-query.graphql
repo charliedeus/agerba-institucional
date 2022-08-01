@@ -1,0 +1,9 @@
+query GetConsultasPublicas {
+	consultasPublicas {
+		id
+		Titulo
+		comunica
+		
+		Data
+	}
+}

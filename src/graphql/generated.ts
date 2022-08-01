@@ -6572,6 +6572,11 @@ export type GetCartilhasQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetCartilhasQuery = { __typename?: 'Query', ascomCartilhas?: Array<{ __typename?: 'AscomCartilhas', id: string, Ano?: string | null, titulo: string, cartilha?: { __typename?: 'UploadFile', id: string, name: string, alternativeText?: string | null, url: string } | null } | null> | null };
 
+export type GetConsultasPublicasQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetConsultasPublicasQuery = { __typename?: 'Query', consultasPublicas?: Array<{ __typename?: 'ConsultasPublicas', id: string, Titulo: string, comunica: string, Data: any } | null> | null };
+
 export type GetFaqsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6640,6 +6645,43 @@ export function useGetCartilhasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type GetCartilhasQueryHookResult = ReturnType<typeof useGetCartilhasQuery>;
 export type GetCartilhasLazyQueryHookResult = ReturnType<typeof useGetCartilhasLazyQuery>;
 export type GetCartilhasQueryResult = Apollo.QueryResult<GetCartilhasQuery, GetCartilhasQueryVariables>;
+export const GetConsultasPublicasDocument = gql`
+    query GetConsultasPublicas {
+  consultasPublicas {
+    id
+    Titulo
+    comunica
+    Data
+  }
+}
+    `;
+
+/**
+ * __useGetConsultasPublicasQuery__
+ *
+ * To run a query within a React component, call `useGetConsultasPublicasQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetConsultasPublicasQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetConsultasPublicasQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetConsultasPublicasQuery(baseOptions?: Apollo.QueryHookOptions<GetConsultasPublicasQuery, GetConsultasPublicasQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetConsultasPublicasQuery, GetConsultasPublicasQueryVariables>(GetConsultasPublicasDocument, options);
+      }
+export function useGetConsultasPublicasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetConsultasPublicasQuery, GetConsultasPublicasQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetConsultasPublicasQuery, GetConsultasPublicasQueryVariables>(GetConsultasPublicasDocument, options);
+        }
+export type GetConsultasPublicasQueryHookResult = ReturnType<typeof useGetConsultasPublicasQuery>;
+export type GetConsultasPublicasLazyQueryHookResult = ReturnType<typeof useGetConsultasPublicasLazyQuery>;
+export type GetConsultasPublicasQueryResult = Apollo.QueryResult<GetConsultasPublicasQuery, GetConsultasPublicasQueryVariables>;
 export const GetFaqsDocument = gql`
     query GetFaqs {
   ascomFaqs {

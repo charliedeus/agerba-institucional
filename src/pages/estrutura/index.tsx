@@ -235,7 +235,7 @@ export const getStaticProps: GetStaticProps = async () => {
         },
         {
           id: uuidv4(),
-          name: 'Joaquim Cesar Campos Guerra',
+          name: 'Joaquim César Campos Guerra',
           occupation: 'Assessor Chefe',
           phone: '71 3115-4889',
           email: 'joaquim.guerra@agerba.ba.gov.br',
