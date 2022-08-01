@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { format } from 'date-fns'
+import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import { Disclosure, Transition } from '@headlessui/react'
 
@@ -34,9 +34,13 @@ const FaqPage: NextPageWithLayout = () => {
             <span className="text-primary font-bold text-lg leading-relaxed">
               {faq?.pergunta}
             </span>
+
             <span className="text-xs">
-              Adicionado por <strong>Lorena Jesus</strong> em{' '}
-              {faq.publishedAtFormatted}
+              Adicionado por <strong>ASCOM</strong>{' '}
+              {formatDistanceToNow(new Date(faq.published_at), {
+                addSuffix: true,
+                locale: ptBR,
+              })}
             </span>
           </Disclosure.Button>
           <Transition
