@@ -1,11 +1,11 @@
 import { ReactElement } from 'react'
+import Link from 'next/link'
 
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
-import { useGetConsultasPublicasQuery } from '../../graphql/generated'
 import { BellRinging, Info } from 'phosphor-react'
-import { Disclosure, Transition } from '@headlessui/react'
-import Link from 'next/link'
+
+import { useGetConsultasPublicasQuery } from '../../graphql/generated'
 
 const PublicConsultationsPage: NextPageWithLayout = () => {
   const { data } = useGetConsultasPublicasQuery()
@@ -37,6 +37,32 @@ const PublicConsultationsPage: NextPageWithLayout = () => {
       </p>
 
       <ul role="list" className="flex flex-col gap-2">
+        {orderedList?.map((consulta) => (
+          <li
+            key={consulta?.id}
+            className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg hover:bg-primary hover:cursor-pointer hover:text-white transition-colors duration-100 ease-in-out"
+          >
+            <div className="flex flex-col gap-8 w-full">
+              <div className="flex flex-col laptop:flex-row laptop:w-full gap-2">
+                <Link href={`/consultas-publicas/${consulta?.id}`}>
+                  <a className="flex flex-col flex-1 laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center text-left">
+                    <span className="font-bold laptop:flex-1 flex items-center gap-2">
+                      <BellRinging
+                        size={16}
+                        weight="light"
+                        className="text-gray-500 hover:text-gray-50"
+                      />{' '}
+                      {consulta?.Titulo}
+                    </span>
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      {/* <ul role="list" className="flex flex-col gap-2">
         {orderedList?.map((consulta) => (
           <li
             key={consulta?.id}
@@ -81,7 +107,7 @@ const PublicConsultationsPage: NextPageWithLayout = () => {
             </Disclosure>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </article>
   )
 }
