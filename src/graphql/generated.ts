@@ -6572,6 +6572,13 @@ export type GetCartilhasQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetCartilhasQuery = { __typename?: 'Query', ascomCartilhas?: Array<{ __typename?: 'AscomCartilhas', id: string, Ano?: string | null, titulo: string, cartilha?: { __typename?: 'UploadFile', id: string, name: string, alternativeText?: string | null, url: string } | null } | null> | null };
 
+export type GetConsultaPublicaByIdQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type GetConsultaPublicaByIdQuery = { __typename?: 'Query', consultasPublica?: { __typename?: 'ConsultasPublicas', id: string, Titulo: string, comunica: string, participacao?: string | null, encerramento?: string | null, Data: any, Calendario?: Array<{ __typename?: 'ComponentCalendarCalendario', id: string, descricao: string, inicial: any, final: any } | null> | null, documentos?: Array<{ __typename?: 'UploadFile', id: string, name: string, size: number, url: string } | null> | null } | null };
+
 export type GetConsultasPublicasQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6645,6 +6652,58 @@ export function useGetCartilhasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type GetCartilhasQueryHookResult = ReturnType<typeof useGetCartilhasQuery>;
 export type GetCartilhasLazyQueryHookResult = ReturnType<typeof useGetCartilhasLazyQuery>;
 export type GetCartilhasQueryResult = Apollo.QueryResult<GetCartilhasQuery, GetCartilhasQueryVariables>;
+export const GetConsultaPublicaByIdDocument = gql`
+    query GetConsultaPublicaById($id: ID!) {
+  consultasPublica(id: $id) {
+    id
+    Titulo
+    comunica
+    participacao
+    encerramento
+    Data
+    Calendario {
+      id
+      descricao
+      inicial
+      final
+    }
+    documentos {
+      id
+      name
+      size
+      url
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetConsultaPublicaByIdQuery__
+ *
+ * To run a query within a React component, call `useGetConsultaPublicaByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetConsultaPublicaByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetConsultaPublicaByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetConsultaPublicaByIdQuery(baseOptions: Apollo.QueryHookOptions<GetConsultaPublicaByIdQuery, GetConsultaPublicaByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetConsultaPublicaByIdQuery, GetConsultaPublicaByIdQueryVariables>(GetConsultaPublicaByIdDocument, options);
+      }
+export function useGetConsultaPublicaByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetConsultaPublicaByIdQuery, GetConsultaPublicaByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetConsultaPublicaByIdQuery, GetConsultaPublicaByIdQueryVariables>(GetConsultaPublicaByIdDocument, options);
+        }
+export type GetConsultaPublicaByIdQueryHookResult = ReturnType<typeof useGetConsultaPublicaByIdQuery>;
+export type GetConsultaPublicaByIdLazyQueryHookResult = ReturnType<typeof useGetConsultaPublicaByIdLazyQuery>;
+export type GetConsultaPublicaByIdQueryResult = Apollo.QueryResult<GetConsultaPublicaByIdQuery, GetConsultaPublicaByIdQueryVariables>;
 export const GetConsultasPublicasDocument = gql`
     query GetConsultasPublicas {
   consultasPublicas {

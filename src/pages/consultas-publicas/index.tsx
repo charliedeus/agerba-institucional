@@ -3,10 +3,9 @@ import { ReactElement } from 'react'
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 import { useGetConsultasPublicasQuery } from '../../graphql/generated'
-import { BellRinging, CalendarBlank, Info } from 'phosphor-react'
-import { format } from 'date-fns'
-import ptBR from 'date-fns/locale/pt-BR'
+import { BellRinging, Info } from 'phosphor-react'
 import { Disclosure, Transition } from '@headlessui/react'
+import Link from 'next/link'
 
 const PublicConsultationsPage: NextPageWithLayout = () => {
   const { data } = useGetConsultasPublicasQuery()
@@ -46,17 +45,7 @@ const PublicConsultationsPage: NextPageWithLayout = () => {
             <Disclosure as="div" className="flex flex-col gap-8 w-full">
               <div className="flex flex-col laptop:flex-row laptop:w-full gap-2">
                 <Disclosure.Button className="flex flex-col flex-1 laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center  text-left">
-                  <span className="laptop:w-1/8 flex items-center gap-2">
-                    <CalendarBlank
-                      size={16}
-                      weight="light"
-                      className="text-gray-500"
-                    />{' '}
-                    {format(new Date(consulta?.Data), 'dd/MM', {
-                      locale: ptBR,
-                    })}
-                  </span>
-                  <span className="font-bold laptop:flex-1 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
+                  <span className="font-bold laptop:flex-1 flex items-center gap-2">
                     <BellRinging
                       size={16}
                       weight="light"
@@ -65,12 +54,11 @@ const PublicConsultationsPage: NextPageWithLayout = () => {
                     {consulta?.Titulo}
                   </span>
                 </Disclosure.Button>
-                <button
-                  type="button"
-                  className="font-bold bg-primary w-1/2 laptop:w-auto m-auto rounded-lg p-2 flex items-center justify-center"
-                >
-                  <Info size={16} weight="bold" className="text-white" />{' '}
-                </button>
+                <Link href={`/consultas-publicas/${consulta?.id}`}>
+                  <a className="font-bold bg-primary w-1/2 laptop:w-auto m-auto rounded-lg p-2 flex items-center justify-center">
+                    <Info size={16} weight="bold" className="text-white" />{' '}
+                  </a>
+                </Link>
               </div>
               <Transition
                 enter="transition duration-100 ease-out"
