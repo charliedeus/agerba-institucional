@@ -42,7 +42,7 @@ const PublicConsultationPage: NextPageWithLayout = () => {
         {data?.consultasPublica?.Calendario?.map((evento) => (
           <li
             key={evento?.id}
-            className="px-4 py-6 bg-gray-200 rounded-lg flex flex-col laptop:flex-row  gap-2"
+            className="px-4 py-6 bg-gray-200 rounded-lg flex flex-col laptop:flex-row gap-2"
           >
             <div className="flex items-center gap-2 laptop:w-1/5 laptop:min-w-1/5">
               <CalendarBlank

@@ -6567,6 +6567,11 @@ export type UpdateUserPayload = {
   user?: Maybe<UsersPermissionsUser>;
 };
 
+export type GetAtasDoColegiadoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAtasDoColegiadoQuery = { __typename?: 'Query', atasDeColegiados?: Array<{ __typename?: 'AtasDeColegiado', id: string, Titulo: string, Data: any, descritption?: string | null, published_at?: any | null, documentos?: Array<{ __typename?: 'UploadFile', id: string, name: string, size: number, url: string } | null> | null } | null> | null };
+
 export type GetCartilhasQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6610,6 +6615,50 @@ export type GetTerminaisRodoviariosQueryVariables = Exact<{ [key: string]: never
 export type GetTerminaisRodoviariosQuery = { __typename?: 'Query', terminaisRodoviarios?: Array<{ __typename?: 'TerminaisRodoviarios', id: string, terminal?: string | null, telefone?: string | null, email?: string | null, contrato?: { __typename?: 'UploadFile', id: string, name: string } | null } | null> | null };
 
 
+export const GetAtasDoColegiadoDocument = gql`
+    query GetAtasDoColegiado {
+  atasDeColegiados {
+    id
+    Titulo
+    Data
+    descritption
+    published_at
+    documentos {
+      id
+      name
+      size
+      url
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetAtasDoColegiadoQuery__
+ *
+ * To run a query within a React component, call `useGetAtasDoColegiadoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAtasDoColegiadoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAtasDoColegiadoQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAtasDoColegiadoQuery(baseOptions?: Apollo.QueryHookOptions<GetAtasDoColegiadoQuery, GetAtasDoColegiadoQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAtasDoColegiadoQuery, GetAtasDoColegiadoQueryVariables>(GetAtasDoColegiadoDocument, options);
+      }
+export function useGetAtasDoColegiadoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAtasDoColegiadoQuery, GetAtasDoColegiadoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAtasDoColegiadoQuery, GetAtasDoColegiadoQueryVariables>(GetAtasDoColegiadoDocument, options);
+        }
+export type GetAtasDoColegiadoQueryHookResult = ReturnType<typeof useGetAtasDoColegiadoQuery>;
+export type GetAtasDoColegiadoLazyQueryHookResult = ReturnType<typeof useGetAtasDoColegiadoLazyQuery>;
+export type GetAtasDoColegiadoQueryResult = Apollo.QueryResult<GetAtasDoColegiadoQuery, GetAtasDoColegiadoQueryVariables>;
 export const GetCartilhasDocument = gql`
     query GetCartilhas {
   ascomCartilhas {

@@ -436,10 +436,11 @@ export function Navbar() {
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
-                  <span className="opacity-50 cursor-not-allowed">
-                    Atas do Colegiado (em breve)
-                  </span>
+                <NextLink
+                  href="/atas-do-colegiado"
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>Atas do Colegiado</span>
                 </NextLink>
               )}
             </Menu.Item>
