@@ -76,7 +76,7 @@ const CollegiateMinutesPage: NextPageWithLayout = () => {
                         locale: ptBR,
                       })}
                       , às{' '}
-                      {format(new Date(reuniao?.Data), "HH':'MM", {
+                      {format(new Date(reuniao?.Data), "HH':'mm", {
                         locale: ptBR,
                       })}
                     </span>

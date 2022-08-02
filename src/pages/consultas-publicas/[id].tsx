@@ -1,8 +1,6 @@
 import { ReactElement } from 'react'
 import { useRouter } from 'next/router'
 import { CalendarBlank, File, FileArrowDown } from 'phosphor-react'
-import { format } from 'date-fns'
-import ptBR from 'date-fns/locale/pt-BR'
 
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 import type { NextPageWithLayout } from '../_app'
@@ -51,12 +49,12 @@ const PublicConsultationPage: NextPageWithLayout = () => {
                 className="text-gray-500"
               />
               <span className="font-bold">
-                {format(new Date(evento?.inicial), 'dd/MM/yyyy', {
-                  locale: ptBR,
+                {new Date(evento?.inicial).toLocaleDateString('pt-BR', {
+                  timeZone: 'UTC',
                 })}{' '}
                 {evento?.inicial !== evento?.final &&
-                  `à ${format(new Date(evento?.final), 'dd/MM/yyyy', {
-                    locale: ptBR,
+                  `à ${new Date(evento?.final).toLocaleDateString('pt-BR', {
+                    timeZone: 'UTC',
                   })}`}
               </span>
             </div>
