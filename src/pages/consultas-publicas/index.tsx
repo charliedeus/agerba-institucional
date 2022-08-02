@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
-import { BellRinging, Info } from 'phosphor-react'
+import { BellRinging } from 'phosphor-react'
 
 import { useGetConsultasPublicasQuery } from '../../graphql/generated'
 
