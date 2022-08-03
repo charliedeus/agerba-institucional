@@ -19,12 +19,12 @@ generates:
     documents: './src/graphql/**/*.graphql'
     config:
       documentMode: external
-      importDocumentNodeExternallyFrom: ./graphql
+      importDocumentNodeExternallyFrom: '../generated'
       reactApolloVersion: 3
       withHooks: true
       contextType: 'ApolloClientContext'
       contextTypeRequired: true
-      apolloClientInstanceImport: '../lib/withApollo'
+      apolloClientInstanceImport: '../../lib/withApollo'
     preset: import-types
     presetConfig:
       typesPath: ./graphql

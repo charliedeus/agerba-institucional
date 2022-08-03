@@ -4,18 +4,16 @@ import type { NextPageWithLayout } from './_app'
 
 import { DefaultLayout } from '../layouts/DefaultLayout'
 
-import { SuspendedNews } from '../components/Banners/SuspendedNews'
 import { Transparency } from '../components/Banners/Transparency'
-import { SchoolCard } from '../components/Banners/SchoolCard'
 import { ServicesPanel } from '../components/ServicesPanel'
+import { SuspendedNewsWithImage } from '../components/Banners/SuspendedNewsWithImage'
 
 const Home: NextPageWithLayout = () => {
   return (
     <>
-      <SuspendedNews />
+      <SuspendedNewsWithImage />
       <Transparency />
       <ServicesPanel />
-      <SchoolCard />
     </>
   )
 }
