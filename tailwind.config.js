@@ -12,6 +12,9 @@ module.exports = {
       desktop: '1280px',
     },
     extend: {
+      backgroundImage: {
+        'banner-section': "url('/background-img.jpg')",
+      },
       fontFamily: {
         sans: 'Roboto, sans-serif',
       },

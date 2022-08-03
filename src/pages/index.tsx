@@ -6,12 +6,12 @@ import { DefaultLayout } from '../layouts/DefaultLayout'
 
 import { Transparency } from '../components/Banners/Transparency'
 import { ServicesPanel } from '../components/ServicesPanel'
-import { SuspendedNewsWithImage } from '../components/Banners/SuspendedNewsWithImage'
+import { SuspendedNewes } from '../components/Banners/SuspendedNewes'
 
 const Home: NextPageWithLayout = () => {
   return (
     <>
-      <SuspendedNewsWithImage />
+      <SuspendedNewes />
       <Transparency />
       <ServicesPanel />
     </>
