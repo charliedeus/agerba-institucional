@@ -1,7 +1,3 @@
-import Image from 'next/image'
-
-import backgroundImage from '../../assets/images/background-img.jpg'
-
 export function SuspendedNewes() {
   return (
     <>
