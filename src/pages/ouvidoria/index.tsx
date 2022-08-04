@@ -3,7 +3,6 @@ import { ReactElement } from 'react'
 import { NextPageWithLayout } from '../_app'
 
 import { DefaultLayout } from '../../layouts/DefaultLayout'
-import { EnvelopeSimple, Phone } from 'phosphor-react'
 
 const OuvidoriaPage: NextPageWithLayout = () => {
   return (
