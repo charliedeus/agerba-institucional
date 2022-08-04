@@ -7,6 +7,15 @@
     --nav-height: 6.25rem;
   }
 
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   html {
     @apply text-gray-900;
     font-family: 'Roboto', sans-serif;
