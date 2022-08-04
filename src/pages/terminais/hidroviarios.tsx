@@ -50,12 +50,16 @@ const PortsPage: NextPageWithLayout = () => {
                 {terminal?.telefone}
               </span>
               <span className="laptop:w-1/3 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
-                <EnvelopeSimple
-                  size={16}
-                  weight="light"
-                  className="text-gray-500"
-                />{' '}
-                {terminal?.email}
+                {terminal?.email && (
+                  <>
+                    <EnvelopeSimple
+                      size={16}
+                      weight="light"
+                      className="text-gray-500"
+                    />{' '}
+                    {terminal?.email}
+                  </>
+                )}
               </span>
             </div>
           </li>
