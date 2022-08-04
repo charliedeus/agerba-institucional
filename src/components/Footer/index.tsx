@@ -39,10 +39,8 @@ export function Footer() {
               </NextLink>
             </li>
             <li>
-              <NextLink href="#" className="text-gray-400">
-                <span className="opacity-75 cursor-not-allowed">
-                  Consultas Públicas (em breve)
-                </span>
+              <NextLink href="/consultas-publicas">
+                <span className="text-white">Consultas Públicas</span>
               </NextLink>
             </li>
           </ul>
@@ -50,17 +48,15 @@ export function Footer() {
         <div>
           <ul className="flex flex-col gap-4">
             <li>
-              <NextLink href="#" className="text-gray-400">
-                <span className="opacity-75 cursor-not-allowed">
-                  Consultas Processos - SEI (em breve)
-                </span>
-              </NextLink>
+              <Link href="http://www.portalseibahia.saeb.ba.gov.br/">
+                <a target="_blank" className="text-white">
+                  Consultas Processos
+                </a>
+              </Link>
             </li>
             <li>
-              <NextLink href="#" className="text-gray-400">
-                <span className="opacity-75 cursor-not-allowed">
-                  Ouvidoria (em breve)
-                </span>
+              <NextLink href="/ouvidoria">
+                <span className="text-white">Ouvidoria</span>
               </NextLink>
             </li>
             <li>
@@ -71,55 +67,16 @@ export function Footer() {
               </NextLink>
             </li>
             <li>
-              <NextLink href="#" className="text-gray-400">
-                <span className="opacity-75 cursor-not-allowed">
-                  Portal de Serviços STIP (em breve)
-                </span>
-              </NextLink>
+              <Link href="http://agerba.stipweb.com.br">
+                <a target="_blank" className="text-white">
+                  Portal de Serviços STIP
+                </a>
+              </Link>
             </li>
             <li>
               <NextLink href="#" className="text-gray-400">
                 <span className="opacity-75 cursor-not-allowed">
                   Licitações (em breve)
-                </span>
-              </NextLink>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="flex flex-col gap-4">
-            <li>
-              <NextLink href="#" className="text-gray-400">
-                <span className="opacity-75 cursor-not-allowed">
-                  Hidroviário (em breve)
-                </span>
-              </NextLink>
-            </li>
-            <li>
-              <NextLink href="#" className="text-gray-400">
-                <span className="opacity-75 cursor-not-allowed">
-                  Terminais (em breve)
-                </span>
-              </NextLink>
-            </li>
-            <li>
-              <NextLink href="#" className="text-gray-400">
-                <span className="opacity-75 cursor-not-allowed">
-                  Rodoviário (em breve)
-                </span>
-              </NextLink>
-            </li>
-            <li>
-              <NextLink href="#" className="text-gray-400">
-                <span className="opacity-75 cursor-not-allowed">
-                  Resoluções (em breve)
-                </span>
-              </NextLink>
-            </li>
-            <li>
-              <NextLink href="#" className="text-gray-400">
-                <span className="opacity-75 cursor-not-allowed">
-                  Transparências COVID (em breve)
                 </span>
               </NextLink>
             </li>
