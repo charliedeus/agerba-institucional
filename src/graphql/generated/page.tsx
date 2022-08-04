@@ -182,6 +182,41 @@ export const ssrGetFaqs = {
   withPage: withPageGetFaqs,
   usePage: useGetFaqs,
 }
+export async function getServerPageGetResolucoes
+  (options: Omit<Apollo.QueryOptions<Types.GetResolucoesQueryVariables>, 'query'>, ctx: ApolloClientContext) {
+  const apolloClient = getApolloClient(ctx);
+
+  const data = await apolloClient.query<Types.GetResolucoesQuery>({ ...options, query: Operations.GetResolucoesDocument });
+
+  const apolloState = apolloClient.cache.extract();
+
+  return {
+    props: {
+      apolloState: apolloState,
+      data: data?.data,
+      error: data?.error ?? data?.errors ?? null,
+    },
+  };
+}
+export const useGetResolucoes = (
+  optionsFunc?: (router: NextRouter) => QueryHookOptions<Types.GetResolucoesQuery, Types.GetResolucoesQueryVariables>) => {
+  const router = useRouter();
+  const options = optionsFunc ? optionsFunc(router) : {};
+  return useQuery(Operations.GetResolucoesDocument, options);
+};
+export type PageGetResolucoesComp = React.FC<{ data?: Types.GetResolucoesQuery, error?: Apollo.ApolloError }>;
+export const withPageGetResolucoes = (optionsFunc?: (router: NextRouter) => QueryHookOptions<Types.GetResolucoesQuery, Types.GetResolucoesQueryVariables>) => (WrappedComponent: PageGetResolucoesComp): NextPage => (props) => {
+  const router = useRouter()
+  const options = optionsFunc ? optionsFunc(router) : {};
+  const { data, error } = useQuery(Operations.GetResolucoesDocument, options)
+  return <WrappedComponent {...props} data={data} error={error} />;
+
+};
+export const ssrGetResolucoes = {
+  getServerPage: getServerPageGetResolucoes,
+  withPage: withPageGetResolucoes,
+  usePage: useGetResolucoes,
+}
 export async function getServerPageGetRodoviasConcessionadas
   (options: Omit<Apollo.QueryOptions<Types.GetRodoviasConcessionadasQueryVariables>, 'query'>, ctx: ApolloClientContext) {
   const apolloClient = getApolloClient(ctx);

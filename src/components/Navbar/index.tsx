@@ -381,10 +381,11 @@ export function Navbar() {
           <Menu.Items className="absolute flex flex-col justify-around gap-2 w-max mt-4 py-2 px-6 border border-gray-400 rounded bg-white">
             <Menu.Item>
               {({ active }) => (
-                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
-                  <span className="opacity-50 cursor-not-allowed">
-                    Resoluções (em breve)
-                  </span>
+                <NextLink
+                  href="/resolucoes"
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>Resoluções</span>
                 </NextLink>
               )}
             </Menu.Item>

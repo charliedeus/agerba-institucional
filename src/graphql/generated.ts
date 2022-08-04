@@ -6594,6 +6594,11 @@ export type GetFaqsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetFaqsQuery = { __typename?: 'Query', ascomFaqs?: Array<{ __typename?: 'AscomFaq', id: string, pergunta: string, resposta: string, published_at?: any | null } | null> | null };
 
+export type GetResolucoesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetResolucoesQuery = { __typename?: 'Query', resolucoes?: Array<{ __typename?: 'Resolucoes', id: string, Titulo: string, ementa: string, data: any, tipos_de_resolucoe?: { __typename?: 'TiposDeResolucoes', id: string, tipo: string } | null, tag?: Array<{ __typename?: 'ComponentTagsTags', id: string, Tag?: string | null } | null> | null, Documents?: Array<{ __typename?: 'UploadFile', id: string, name: string, url: string, hash: string } | null> | null } | null> | null };
+
 export type GetRodoviasConcessionadasQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6827,6 +6832,57 @@ export function useGetFaqsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Ge
 export type GetFaqsQueryHookResult = ReturnType<typeof useGetFaqsQuery>;
 export type GetFaqsLazyQueryHookResult = ReturnType<typeof useGetFaqsLazyQuery>;
 export type GetFaqsQueryResult = Apollo.QueryResult<GetFaqsQuery, GetFaqsQueryVariables>;
+export const GetResolucoesDocument = gql`
+    query GetResolucoes {
+  resolucoes {
+    id
+    Titulo
+    ementa
+    data
+    tipos_de_resolucoe {
+      id
+      tipo
+    }
+    tag {
+      id
+      Tag
+    }
+    Documents {
+      id
+      name
+      url
+      hash
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetResolucoesQuery__
+ *
+ * To run a query within a React component, call `useGetResolucoesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetResolucoesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetResolucoesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetResolucoesQuery(baseOptions?: Apollo.QueryHookOptions<GetResolucoesQuery, GetResolucoesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetResolucoesQuery, GetResolucoesQueryVariables>(GetResolucoesDocument, options);
+      }
+export function useGetResolucoesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetResolucoesQuery, GetResolucoesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetResolucoesQuery, GetResolucoesQueryVariables>(GetResolucoesDocument, options);
+        }
+export type GetResolucoesQueryHookResult = ReturnType<typeof useGetResolucoesQuery>;
+export type GetResolucoesLazyQueryHookResult = ReturnType<typeof useGetResolucoesLazyQuery>;
+export type GetResolucoesQueryResult = Apollo.QueryResult<GetResolucoesQuery, GetResolucoesQueryVariables>;
 export const GetRodoviasConcessionadasDocument = gql`
     query GetRodoviasConcessionadas {
   rodovias {

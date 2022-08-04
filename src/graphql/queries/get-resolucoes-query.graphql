@@ -1,0 +1,25 @@
+query GetResolucoes {
+	resolucoes {
+		id
+		Titulo
+		ementa
+		data
+		
+		tipos_de_resolucoe {
+			id
+			tipo
+		}
+		
+		tag {
+			id
+			Tag
+		}
+		
+		Documents {
+			id
+			name
+			url
+			hash
+		}
+	}
+}
