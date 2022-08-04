@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export function ServicosPage() {
+export default function ServicosPage() {
   return (
     <>
       <h1>Services Page</h1>
