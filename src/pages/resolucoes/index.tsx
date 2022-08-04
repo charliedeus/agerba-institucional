@@ -2,7 +2,7 @@ import { ReactElement } from 'react'
 
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
-import { CalendarBlank, File, FilePdf, Info } from 'phosphor-react'
+import { CalendarBlank, File } from 'phosphor-react'
 
 import { useGetResolucoesQuery } from '../../graphql/generated'
 
