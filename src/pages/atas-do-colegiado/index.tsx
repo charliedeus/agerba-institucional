@@ -10,10 +10,9 @@ import ptBR from 'date-fns/locale/pt-BR'
 import { format } from 'date-fns'
 import Link from 'next/link'
 import { urlBuilder } from '../../lib/urlBuilder'
-import { Loader } from '../../components/Loader'
 
 const CollegiateMinutesPage: NextPageWithLayout = () => {
-  const { data, loading } = useGetAtasDoColegiadoQuery()
+  const { data } = useGetAtasDoColegiadoQuery()
 
   const orderedList = data?.atasDeColegiados?.slice().sort(function (a, b) {
     if (a?.Data < b?.Data) {
@@ -28,8 +27,6 @@ const CollegiateMinutesPage: NextPageWithLayout = () => {
 
   return (
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
-      {loading && <Loader />}
-
       <motion.h1
         initial="hidden"
         animate="visible"
