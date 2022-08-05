@@ -27,6 +27,7 @@ const OuvidoriaPage: NextPageWithLayout = () => {
         </p>
         <picture className="rounded-lg overflow-hidden flex object-cover blur-[1px]">
           <img
+            className="object-cover object-center"
             src="https://images.unsplash.com/photo-1560264418-c4445382edbc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=60"
             alt=""
           />
@@ -53,7 +54,7 @@ const OuvidoriaPage: NextPageWithLayout = () => {
       <div className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg">
         <picture>
           <img
-            className="shrink-0 h-12 w-12 rounded-full"
+            className="shrink-0 h-12 w-12 rounded-full object-cover object-center"
             src="https://images.unsplash.com/photo-1560264418-c4445382edbc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=60"
             alt=""
           />

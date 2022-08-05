@@ -48,7 +48,7 @@ const ResolutionsPage: NextPageWithLayout = () => {
                     <File size={16} weight="light" className="text-gray-500" />
                     <span className="font-bold uppercase">{item?.Titulo}</span>
                   </span>
-                  <span className="text-xs leading-relaxed text-gray-400">
+                  <span className="text-xs leading-relaxed text-gray-400 text-left">
                     {item?.tipos_de_resolucoe?.tipo}
                   </span>
                 </div>

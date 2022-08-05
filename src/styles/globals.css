@@ -74,4 +74,16 @@
     transition: transform 300ms;
     transform: translateY(0);
   }
+
+  #backToTopButton {
+  @apply fixed bottom-[1rem] right-[1rem] opacity-0;
+  visibility: hidden;
+  transform: translateY(100%);
+  transition: 200ms;
+  }
+
+  #backToTopButton.show {
+  @apply visible opacity-100 border-2 rounded-[50%];
+  transform: translateY(0);
+}
 }

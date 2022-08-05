@@ -1,9 +1,9 @@
 import { ReactElement } from 'react'
 import Link from 'next/link'
+import { BellRinging } from 'phosphor-react'
 
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
-import { BellRinging } from 'phosphor-react'
 
 import { useGetConsultasPublicasQuery } from '../../graphql/generated'
 
