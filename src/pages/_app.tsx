@@ -56,7 +56,7 @@ export default function MyApp({
         >
           <Component {...pageProps} />
 
-          <a href="#" id="backToTopButton">
+          <a href="#" id="backToTopButton" className="laptop:hidden">
             <svg
               width="40"
               height="40"
