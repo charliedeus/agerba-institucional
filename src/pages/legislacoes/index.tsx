@@ -3,7 +3,7 @@ import { v4 as uuidV4 } from 'uuid'
 
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
-import { Bookmark, CalendarBlank, File, FileArrowDown } from 'phosphor-react'
+import { Bookmark, File, FileArrowDown } from 'phosphor-react'
 
 import { useGetResolucoesQuery } from '../../graphql/generated'
 import Link from 'next/link'
