@@ -3,7 +3,7 @@ import { ReactElement } from 'react'
 import { NextPageWithLayout } from '../_app'
 
 import { DefaultLayout } from '../../layouts/DefaultLayout'
-import { Phone } from 'phosphor-react'
+import { EnvelopeSimple, Phone } from 'phosphor-react'
 import Link from 'next/link'
 
 const OuvidoriaPage: NextPageWithLayout = () => {
@@ -67,7 +67,11 @@ const OuvidoriaPage: NextPageWithLayout = () => {
             071 0080
           </span>
           <span className="laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
-            <Phone size={16} weight="light" className="text-gray-500" />{' '}
+            <EnvelopeSimple
+              size={16}
+              weight="light"
+              className="text-gray-500"
+            />{' '}
             <Link href="http://www.agerba.ba.gov.br/ouvidoria-agerba">
               <a target="_blank" className="text-blue-800 hover:underline">
                 http://www.agerba.ba.gov.br/ouvidoria-agerba

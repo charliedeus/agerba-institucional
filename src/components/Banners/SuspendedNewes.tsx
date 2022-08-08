@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 export function SuspendedNewes() {
   return (
     <>
-      <section className="w-full desktop:max-w-[1280px] h-[calc(100vh-70px)] m-auto tablet:h-[calc(100vh-170px)] p-[14px] transition-transform duration-75 ease-in-out">
+      {/* <section className="w-full desktop:max-w-[1280px] h-[calc(100vh-70px)] m-auto tablet:h-[calc(100vh-170px)] p-[14px] transition-transform duration-75 ease-in-out">
         <div className="w-full h-full rounded-lg bg-gray-900 overflow-hidden bg-[url('https://images.unsplash.com/photo-1532939163844-547f958e91b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=60')] bg-cover bg-center bg-no-repeat">
           <div className="w-full h-full top-0 left-0 p-[.875rem]">
             <motion.div
@@ -24,7 +24,7 @@ export function SuspendedNewes() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="w-full desktop:max-w-[1280px] h-[calc(100vh-70px)] m-auto tablet:h-[calc(100vh-170px)] p-[14px] transition-transform duration-75 ease-in-out">
         <div className="w-full h-full rounded-lg bg-gray-900 overflow-hidden bg-[url('https://images.unsplash.com/photo-1532939163844-547f958e91b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=60')] bg-cover bg-center bg-no-repeat">
