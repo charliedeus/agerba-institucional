@@ -4,6 +4,7 @@ import { NextPageWithLayout } from '../_app'
 
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 import { Phone } from 'phosphor-react'
+import Link from 'next/link'
 
 const OuvidoriaPage: NextPageWithLayout = () => {
   return (
@@ -36,9 +37,9 @@ const OuvidoriaPage: NextPageWithLayout = () => {
 
       <p>
         Os canais oficiais de acesso à Ouvidoria são o telefone 0800-071-0080 e
-        o site http://www.agerba.ba.gov.br/ouvidoria. São através desses que os
-        usuários do serviço podem expressar seus anseios e críticas, os quais
-        serão encaminhados à sede desta Autarquia para que servidores
+        o site http://www.agerba.ba.gov.br/ouvidoria-agerba. São através desses
+        que os usuários do serviço podem expressar seus anseios e críticas, os
+        quais serão encaminhados à sede desta Autarquia para que servidores
         competentes possam dar prosseguimento à demanda e garantir aos cidadãos,
         sempre, respostas efetivas aos seus registros.
       </p>
@@ -64,6 +65,14 @@ const OuvidoriaPage: NextPageWithLayout = () => {
           <span className="laptop:w-1/5 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
             <Phone size={16} weight="light" className="text-gray-500" /> 0800
             071 0080
+          </span>
+          <span className="laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
+            <Phone size={16} weight="light" className="text-gray-500" />{' '}
+            <Link href="http://www.agerba.ba.gov.br/ouvidoria-agerba">
+              <a target="_blank" className="text-blue-800 hover:underline">
+                http://www.agerba.ba.gov.br/ouvidoria-agerba
+              </a>
+            </Link>
           </span>
         </div>
       </div>
