@@ -79,9 +79,14 @@ const BidsPage: NextPageWithLayout = () => {
                 <span>
                   <TextT size={16} weight="light" className="text-gray-500" />
                 </span>
-                <span className="text-gray-500 text-sm">
-                  {licitacao?.SubTitulo}
-                </span>
+                {licitacao?.SubTitulo && (
+                  <div
+                    className="text-gray-500 text-sm"
+                    dangerouslySetInnerHTML={{
+                      __html: licitacao?.SubTitulo,
+                    }}
+                  />
+                )}
               </div>
               <div className="flex flex-1 gap-2">
                 <span>
@@ -91,9 +96,14 @@ const BidsPage: NextPageWithLayout = () => {
                     className="text-gray-500"
                   />
                 </span>
-                <span className="text-gray-500 text-sm">
-                  {licitacao?.Local}
-                </span>
+                {licitacao?.Local && (
+                  <div
+                    className="text-gray-500 text-sm"
+                    dangerouslySetInnerHTML={{
+                      __html: licitacao?.Local,
+                    }}
+                  />
+                )}
               </div>
             </div>
 
