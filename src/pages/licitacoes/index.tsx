@@ -23,19 +23,33 @@ const BidsPage: NextPageWithLayout = () => {
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
       <h1 className="font-bold text-[2rem]">Licitações</h1>
 
-      <div className="flex flex-col gap-6 laptop:flex-row">
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-        </p>
-      </div>
+      <p>
+        A Comissão Permanente de Licitações – CPL, no uso de suas atribuições,
+        diante da pandemia do Novo Coronavírus - COVID-19, decretada pela
+        Organização Mundial da Saúde, no dia 11 de março de 2020 e em
+        conformidade com o decreto Estadual nº19549/2020, de 18/03/2020, o qual
+        declarou situação de emergência em território baiano, cumulado com o
+        quanto disposto na{' '}
+        <a
+          download
+          target="_blank"
+          href="http://www.agerba.ba.gov.br/sites/default/files/2020-05/in_saeb_n_0162020_1.pdf"
+          rel="noreferrer"
+          className="font-bold text-primary hover:underline"
+        >
+          Instrução Normativa SAEB Nº 016/2020
+        </a>
+        , informa que as licitações abaixo seguirão seu rito por
+        videoconferência.
+      </p>
+
+      <p>
+        A plataforma que será utilizada para a realização dos procedimentos
+        licitatórios por videoconferência é o Microsoft Teams. Uma chave de
+        acesso para a sala, será disponibilizada na coluna LINK da tabela
+        abaixo. Cada licitação ocorrerá em uma sala com DATA e HORA. A sala será
+        aberta 30 minutos antes da hora marcada na tabela abaixo.
+      </p>
 
       <ul role="list" className="flex flex-col gap-2">
         {data?.licitacoes?.map((licitacao) => (
