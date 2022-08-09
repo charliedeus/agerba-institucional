@@ -25,11 +25,9 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <NextLink href="#" className="text-gray-400">
-                <span className="opacity-75 cursor-not-allowed">
-                  Arquivos (em breve)
-                </span>
-              </NextLink>
+              <Link href="/licitacoes">
+                <a>Licitações</a>
+              </Link>
             </li>
             <li>
               <NextLink href="#" className="text-gray-400">
@@ -74,10 +72,8 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <NextLink href="#" className="text-gray-400">
-                <span className="opacity-75 cursor-not-allowed">
-                  Licitações (em breve)
-                </span>
+              <NextLink href="/licitacoes">
+                <span className="text-white">Licitações</span>
               </NextLink>
             </li>
           </ul>

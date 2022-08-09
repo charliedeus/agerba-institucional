@@ -1,0 +1,19 @@
+query GetLicitacoes {
+	licitacoes (sort: "dataHora:desc") {
+		id
+		dataHora
+		Title
+		SubTitulo
+		Description
+		Local
+		Tipo
+		
+		Documentos {
+			id
+			name
+			alternativeText
+			caption
+			url
+		}
+	}
+}

@@ -217,25 +217,6 @@ const LegislationPage: NextPageWithLayout = () => {
     ...decretosPublicados,
   ]
 
-  // const todasAsResolucoes = Object.assign({
-  //   id: uuidV4(),
-  //   type: 'Resoluções',
-  //   publications: [...resolucoesPublicadas],
-  // })
-
-  console.log(legislacoesPublicadas)
-
-  // const orderedList = data?.atasDeColegiados?.slice().sort(function (a, b) {
-  //   if (a?.Data < b?.Data) {
-  //     return 1
-  //   }
-  //   if (a?.Data > b?.Data) {
-  //     return -1
-  //   }
-
-  //   return 0
-  // })
-
   return (
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
       <h1 className="font-bold text-[2rem]">Legislações</h1>
@@ -305,7 +286,7 @@ const LegislationPage: NextPageWithLayout = () => {
                         <a
                           download
                           target="_blank"
-                          className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] hover:border hover:border-primary group"
+                          className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
                         >
                           <FileArrowDown
                             size={24}
@@ -320,7 +301,7 @@ const LegislationPage: NextPageWithLayout = () => {
                     ) : (
                       <button
                         disabled
-                        className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] hover:border hover:border-primary group disabled:cursor-not-allowed disabled:bg-gray-400"
+                        className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px]  group disabled:cursor-not-allowed disabled:bg-gray-400"
                       >
                         <FileArrowDown
                           size={24}

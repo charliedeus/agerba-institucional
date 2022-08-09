@@ -56,15 +56,15 @@ const companiesServicesGroup = [
   {
     id: uuidv4(),
     title: 'Licitações',
-    url: '/#',
+    url: '/licitacoes',
     imageUrl:
       'https://images.unsplash.com/photo-1626287935075-3275d2d9025e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=60',
     services: [],
   },
   {
     id: uuidv4(),
-    title: 'Resoluções',
-    url: '/resolucoes',
+    title: 'Legislações',
+    url: '/legislacoes',
     imageUrl:
       'https://images.unsplash.com/photo-1423592707957-3b212afa6733?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=60',
     services: [],
@@ -84,7 +84,7 @@ export function ServicesPanel() {
       >
         {citizenServicesGroup.map((service) => (
           <Link key={service.id} href={service.url}>
-            <a className="">
+            <a className="shadow-xl">
               <div
                 className="w-[225px] min-w-[225px] h-full flex flex-col justify-end p-6 rounded-lg snap-always snap-center overflow-hidden bg-cover bg-no-repeat shadow-md group"
                 style={{

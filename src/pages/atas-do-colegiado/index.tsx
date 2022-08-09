@@ -60,7 +60,7 @@ const CollegiateMinutesPage: NextPageWithLayout = () => {
         {orderedList?.map((reuniao) => (
           <li
             key={reuniao?.id}
-            className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg hover:bg-primary hover:text-white group transition-colors duration-100 ease-in-out"
+            className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg hover:bg-primary hover:text-white group transition-colors duration-100 ease-in-out  hover:border hover:border-secondary"
           >
             <div className="flex flex-col gap-8 w-full">
               <div className="flex flex-col laptop:flex-row laptop:w-full gap-2">

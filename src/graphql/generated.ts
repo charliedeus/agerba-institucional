@@ -6594,6 +6594,11 @@ export type GetFaqsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetFaqsQuery = { __typename?: 'Query', ascomFaqs?: Array<{ __typename?: 'AscomFaq', id: string, pergunta: string, resposta: string, published_at?: any | null } | null> | null };
 
+export type GetLicitacoesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetLicitacoesQuery = { __typename?: 'Query', licitacoes?: Array<{ __typename?: 'Licitacoes', id: string, dataHora?: any | null, Title: string, SubTitulo?: string | null, Description: string, Local?: string | null, Tipo: Enum_Licitacoes_Tipo, Documentos?: Array<{ __typename?: 'UploadFile', id: string, name: string, alternativeText?: string | null, caption?: string | null, url: string } | null> | null } | null> | null };
+
 export type GetResolucoesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6832,6 +6837,53 @@ export function useGetFaqsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Ge
 export type GetFaqsQueryHookResult = ReturnType<typeof useGetFaqsQuery>;
 export type GetFaqsLazyQueryHookResult = ReturnType<typeof useGetFaqsLazyQuery>;
 export type GetFaqsQueryResult = Apollo.QueryResult<GetFaqsQuery, GetFaqsQueryVariables>;
+export const GetLicitacoesDocument = gql`
+    query GetLicitacoes {
+  licitacoes(sort: "dataHora:desc") {
+    id
+    dataHora
+    Title
+    SubTitulo
+    Description
+    Local
+    Tipo
+    Documentos {
+      id
+      name
+      alternativeText
+      caption
+      url
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetLicitacoesQuery__
+ *
+ * To run a query within a React component, call `useGetLicitacoesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetLicitacoesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetLicitacoesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetLicitacoesQuery(baseOptions?: Apollo.QueryHookOptions<GetLicitacoesQuery, GetLicitacoesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetLicitacoesQuery, GetLicitacoesQueryVariables>(GetLicitacoesDocument, options);
+      }
+export function useGetLicitacoesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLicitacoesQuery, GetLicitacoesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetLicitacoesQuery, GetLicitacoesQueryVariables>(GetLicitacoesDocument, options);
+        }
+export type GetLicitacoesQueryHookResult = ReturnType<typeof useGetLicitacoesQuery>;
+export type GetLicitacoesLazyQueryHookResult = ReturnType<typeof useGetLicitacoesLazyQuery>;
+export type GetLicitacoesQueryResult = Apollo.QueryResult<GetLicitacoesQuery, GetLicitacoesQueryVariables>;
 export const GetResolucoesDocument = gql`
     query GetResolucoes {
   resolucoes {

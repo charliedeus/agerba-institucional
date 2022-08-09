@@ -4,7 +4,7 @@ export function NextLink(props: any) {
   const { href, children, ...rest } = props
 
   return (
-    <Link href={href}>
+    <Link href={href} passHref>
       <a {...rest} className="text-gray-900">
         {children}
       </a>

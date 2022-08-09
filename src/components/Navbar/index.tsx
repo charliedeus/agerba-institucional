@@ -136,8 +136,8 @@ export function Navbar() {
           </a>
         </Link>
 
-        <Menu as="div" className="relative">
-          <Menu.Button className="flex items-center gap-2">
+        <Menu as="div" className="relative h-full">
+          <Menu.Button className="h-full flex items-center gap-2">
             <Bank size={20} weight="light" />
             <span className="font-normal">Institucional</span>
           </Menu.Button>
@@ -407,10 +407,11 @@ export function Navbar() {
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
-                  <span className="opacity-50 cursor-not-allowed">
-                    Licitações (em breve)
-                  </span>
+                <NextLink
+                  href="/licitacoes"
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>Licitações</span>
                 </NextLink>
               )}
             </Menu.Item>
