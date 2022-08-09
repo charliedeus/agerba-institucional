@@ -1,0 +1,20 @@
+query GetLicitacoesFuturas ($data_atual: String!) {
+	licitacoes (where: { dataHora_gte: $data_atual }, publicationState: LIVE, sort: "dataHora:desc") {
+		id
+		dataHora
+		Title
+		SubTitulo
+		Description
+		Local
+		Tipo
+		published_at
+		
+		Documentos {
+			id
+			name
+			alternativeText
+			caption
+			url
+		}
+	}
+}

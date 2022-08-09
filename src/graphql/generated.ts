@@ -6594,6 +6594,13 @@ export type GetFaqsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetFaqsQuery = { __typename?: 'Query', ascomFaqs?: Array<{ __typename?: 'AscomFaq', id: string, pergunta: string, resposta: string, published_at?: any | null } | null> | null };
 
+export type GetLicitacoesFuturasQueryVariables = Exact<{
+  data_atual: Scalars['String'];
+}>;
+
+
+export type GetLicitacoesFuturasQuery = { __typename?: 'Query', licitacoes?: Array<{ __typename?: 'Licitacoes', id: string, dataHora?: any | null, Title: string, SubTitulo?: string | null, Description: string, Local?: string | null, Tipo: Enum_Licitacoes_Tipo, published_at?: any | null, Documentos?: Array<{ __typename?: 'UploadFile', id: string, name: string, alternativeText?: string | null, caption?: string | null, url: string } | null> | null } | null> | null };
+
 export type GetLicitacoesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6837,6 +6844,59 @@ export function useGetFaqsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Ge
 export type GetFaqsQueryHookResult = ReturnType<typeof useGetFaqsQuery>;
 export type GetFaqsLazyQueryHookResult = ReturnType<typeof useGetFaqsLazyQuery>;
 export type GetFaqsQueryResult = Apollo.QueryResult<GetFaqsQuery, GetFaqsQueryVariables>;
+export const GetLicitacoesFuturasDocument = gql`
+    query GetLicitacoesFuturas($data_atual: String!) {
+  licitacoes(
+    where: {dataHora_gte: $data_atual}
+    publicationState: LIVE
+    sort: "dataHora:desc"
+  ) {
+    id
+    dataHora
+    Title
+    SubTitulo
+    Description
+    Local
+    Tipo
+    published_at
+    Documentos {
+      id
+      name
+      alternativeText
+      caption
+      url
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetLicitacoesFuturasQuery__
+ *
+ * To run a query within a React component, call `useGetLicitacoesFuturasQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetLicitacoesFuturasQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetLicitacoesFuturasQuery({
+ *   variables: {
+ *      data_atual: // value for 'data_atual'
+ *   },
+ * });
+ */
+export function useGetLicitacoesFuturasQuery(baseOptions: Apollo.QueryHookOptions<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>(GetLicitacoesFuturasDocument, options);
+      }
+export function useGetLicitacoesFuturasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>(GetLicitacoesFuturasDocument, options);
+        }
+export type GetLicitacoesFuturasQueryHookResult = ReturnType<typeof useGetLicitacoesFuturasQuery>;
+export type GetLicitacoesFuturasLazyQueryHookResult = ReturnType<typeof useGetLicitacoesFuturasLazyQuery>;
+export type GetLicitacoesFuturasQueryResult = Apollo.QueryResult<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>;
 export const GetLicitacoesDocument = gql`
     query GetLicitacoes {
   licitacoes(publicationState: LIVE, sort: "dataHora:desc") {

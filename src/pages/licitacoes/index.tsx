@@ -1,9 +1,9 @@
-import { ReactElement } from 'react'
+import { ReactElement, useState } from 'react'
 
 import { NextPageWithLayout } from '../_app'
 
 import { DefaultLayout } from '../../layouts/DefaultLayout'
-import { useGetLicitacoesQuery } from '../../graphql/generated'
+import { useGetLicitacoesFuturasQuery } from '../../graphql/generated'
 import {
   CalendarBlank,
   File,
@@ -17,7 +17,13 @@ import Link from 'next/link'
 import { urlBuilder } from '../../lib/urlBuilder'
 
 const BidsPage: NextPageWithLayout = () => {
-  const { data } = useGetLicitacoesQuery()
+  const [today] = useState(new Date().toISOString())
+
+  const { data } = useGetLicitacoesFuturasQuery({
+    variables: {
+      data_atual: today,
+    },
+  })
 
   return (
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
