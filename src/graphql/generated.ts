@@ -6839,7 +6839,7 @@ export type GetFaqsLazyQueryHookResult = ReturnType<typeof useGetFaqsLazyQuery>;
 export type GetFaqsQueryResult = Apollo.QueryResult<GetFaqsQuery, GetFaqsQueryVariables>;
 export const GetLicitacoesDocument = gql`
     query GetLicitacoes {
-  licitacoes(sort: "dataHora:desc") {
+  licitacoes(publicationState: LIVE, sort: "dataHora:desc") {
     id
     dataHora
     Title

@@ -1,5 +1,5 @@
 query GetLicitacoes {
-	licitacoes (sort: "dataHora:desc") {
+	licitacoes (publicationState: LIVE, sort: "dataHora:desc") {
 		id
 		dataHora
 		Title
