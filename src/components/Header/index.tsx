@@ -15,7 +15,7 @@ export function Header() {
         <div className="hidden laptop:inline">
           <div className="social-links w-[12.5rem] h-full flex items-center justify-end gap-4">
             <Link href="https://www.instagram.com/seinfraba">
-              <a>
+              <a className="py-2 border-2 border-transparent hover:border-b-primary">
                 <svg
                   width="24"
                   height="24"
@@ -49,12 +49,12 @@ export function Header() {
             </Link>
 
             <Link href="https://www.facebook.com/seinfra.ba">
-              <a>
+              <a className="py-2 border-2 border-transparent hover:border-b-primary">
                 <svg
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
-                  fill="none"
+                  fill="#ffff"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
