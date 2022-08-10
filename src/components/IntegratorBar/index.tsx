@@ -41,7 +41,9 @@ export function IntegratorBar() {
         {menuItems.map((item) => (
           <li key={item.id}>
             <Link href={`${item.url}`}>
-              <a target={'_blank'}>{item.title}</a>
+              <a target={'_blank'} className="hover:underline">
+                {item.title}
+              </a>
             </Link>
           </li>
         ))}

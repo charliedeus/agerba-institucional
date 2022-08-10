@@ -1,0 +1,9 @@
+query GetAudienciasPublicas {
+	audienciasPublicas (publicationState: LIVE, sort: "Data:desc") {
+		id
+		Titulo
+		comunica
+		
+		Data
+	}
+}

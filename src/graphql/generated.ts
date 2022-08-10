@@ -6577,6 +6577,18 @@ export type GetAtasDoColegiadoQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetAtasDoColegiadoQuery = { __typename?: 'Query', atasDeColegiados?: Array<{ __typename?: 'AtasDeColegiado', id: string, Titulo: string, Data: any, descritption?: string | null, published_at?: any | null, documentos?: Array<{ __typename?: 'UploadFile', id: string, name: string, size: number, url: string } | null> | null } | null> | null };
 
+export type GetAudienciaPublicaByIdQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type GetAudienciaPublicaByIdQuery = { __typename?: 'Query', audienciasPublica?: { __typename?: 'AudienciasPublicas', id: string, Titulo: string, comunica?: string | null, participacao: string, encerramento: string, Data: any, Calendario?: Array<{ __typename?: 'ComponentCalendarCalendario', id: string, descricao: string, inicial: any, final: any } | null> | null, documentos?: Array<{ __typename?: 'UploadFile', id: string, name: string, size: number, url: string } | null> | null } | null };
+
+export type GetAudienciasPublicasQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAudienciasPublicasQuery = { __typename?: 'Query', audienciasPublicas?: Array<{ __typename?: 'AudienciasPublicas', id: string, Titulo: string, comunica?: string | null, Data: any } | null> | null };
+
 export type GetCartilhasQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6724,6 +6736,95 @@ export function useGetAtasDoColegiadoLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type GetAtasDoColegiadoQueryHookResult = ReturnType<typeof useGetAtasDoColegiadoQuery>;
 export type GetAtasDoColegiadoLazyQueryHookResult = ReturnType<typeof useGetAtasDoColegiadoLazyQuery>;
 export type GetAtasDoColegiadoQueryResult = Apollo.QueryResult<GetAtasDoColegiadoQuery, GetAtasDoColegiadoQueryVariables>;
+export const GetAudienciaPublicaByIdDocument = gql`
+    query GetAudienciaPublicaById($id: ID!) {
+  audienciasPublica(id: $id) {
+    id
+    Titulo
+    comunica
+    participacao
+    encerramento
+    Data
+    Calendario {
+      id
+      descricao
+      inicial
+      final
+    }
+    documentos {
+      id
+      name
+      size
+      url
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetAudienciaPublicaByIdQuery__
+ *
+ * To run a query within a React component, call `useGetAudienciaPublicaByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAudienciaPublicaByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAudienciaPublicaByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetAudienciaPublicaByIdQuery(baseOptions: Apollo.QueryHookOptions<GetAudienciaPublicaByIdQuery, GetAudienciaPublicaByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAudienciaPublicaByIdQuery, GetAudienciaPublicaByIdQueryVariables>(GetAudienciaPublicaByIdDocument, options);
+      }
+export function useGetAudienciaPublicaByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAudienciaPublicaByIdQuery, GetAudienciaPublicaByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAudienciaPublicaByIdQuery, GetAudienciaPublicaByIdQueryVariables>(GetAudienciaPublicaByIdDocument, options);
+        }
+export type GetAudienciaPublicaByIdQueryHookResult = ReturnType<typeof useGetAudienciaPublicaByIdQuery>;
+export type GetAudienciaPublicaByIdLazyQueryHookResult = ReturnType<typeof useGetAudienciaPublicaByIdLazyQuery>;
+export type GetAudienciaPublicaByIdQueryResult = Apollo.QueryResult<GetAudienciaPublicaByIdQuery, GetAudienciaPublicaByIdQueryVariables>;
+export const GetAudienciasPublicasDocument = gql`
+    query GetAudienciasPublicas {
+  audienciasPublicas(publicationState: LIVE, sort: "Data:desc") {
+    id
+    Titulo
+    comunica
+    Data
+  }
+}
+    `;
+
+/**
+ * __useGetAudienciasPublicasQuery__
+ *
+ * To run a query within a React component, call `useGetAudienciasPublicasQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAudienciasPublicasQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAudienciasPublicasQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAudienciasPublicasQuery(baseOptions?: Apollo.QueryHookOptions<GetAudienciasPublicasQuery, GetAudienciasPublicasQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAudienciasPublicasQuery, GetAudienciasPublicasQueryVariables>(GetAudienciasPublicasDocument, options);
+      }
+export function useGetAudienciasPublicasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAudienciasPublicasQuery, GetAudienciasPublicasQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAudienciasPublicasQuery, GetAudienciasPublicasQueryVariables>(GetAudienciasPublicasDocument, options);
+        }
+export type GetAudienciasPublicasQueryHookResult = ReturnType<typeof useGetAudienciasPublicasQuery>;
+export type GetAudienciasPublicasLazyQueryHookResult = ReturnType<typeof useGetAudienciasPublicasLazyQuery>;
+export type GetAudienciasPublicasQueryResult = Apollo.QueryResult<GetAudienciasPublicasQuery, GetAudienciasPublicasQueryVariables>;
 export const GetCartilhasDocument = gql`
     query GetCartilhas {
   ascomCartilhas {

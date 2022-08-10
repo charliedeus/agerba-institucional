@@ -1,0 +1,24 @@
+query GetAudienciaPublicaById ($id: ID!) {
+	audienciasPublica(id: $id) {
+		id
+		Titulo
+		comunica
+		participacao
+		encerramento
+		Data
+		
+		Calendario {
+			id
+			descricao
+			inicial
+			final
+		}
+		
+		documentos {
+			id
+			name
+			size
+			url
+		}
+	}
+}
