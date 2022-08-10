@@ -6567,6 +6567,11 @@ export type UpdateUserPayload = {
   user?: Maybe<UsersPermissionsUser>;
 };
 
+export type GetAtasDeJulgamentoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAtasDeJulgamentoQuery = { __typename?: 'Query', atasDeJulgamentos?: Array<{ __typename?: 'AtasDeJulgamento', id: string, Titulo: string, Description?: string | null, Data?: any | null, Documentos?: Array<{ __typename?: 'UploadFile', id: string, name: string, alternativeText?: string | null, url: string } | null> | null } | null> | null };
+
 export type GetAtasDoColegiadoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6632,6 +6637,49 @@ export type GetTerminaisRodoviariosQueryVariables = Exact<{ [key: string]: never
 export type GetTerminaisRodoviariosQuery = { __typename?: 'Query', terminaisRodoviarios?: Array<{ __typename?: 'TerminaisRodoviarios', id: string, terminal?: string | null, telefone?: string | null, email?: string | null, contrato?: { __typename?: 'UploadFile', id: string, name: string } | null } | null> | null };
 
 
+export const GetAtasDeJulgamentoDocument = gql`
+    query GetAtasDeJulgamento {
+  atasDeJulgamentos(publicationState: LIVE, sort: "Data:desc") {
+    id
+    Titulo
+    Description
+    Data
+    Documentos {
+      id
+      name
+      alternativeText
+      url
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetAtasDeJulgamentoQuery__
+ *
+ * To run a query within a React component, call `useGetAtasDeJulgamentoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAtasDeJulgamentoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAtasDeJulgamentoQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAtasDeJulgamentoQuery(baseOptions?: Apollo.QueryHookOptions<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>(GetAtasDeJulgamentoDocument, options);
+      }
+export function useGetAtasDeJulgamentoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>(GetAtasDeJulgamentoDocument, options);
+        }
+export type GetAtasDeJulgamentoQueryHookResult = ReturnType<typeof useGetAtasDeJulgamentoQuery>;
+export type GetAtasDeJulgamentoLazyQueryHookResult = ReturnType<typeof useGetAtasDeJulgamentoLazyQuery>;
+export type GetAtasDeJulgamentoQueryResult = Apollo.QueryResult<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>;
 export const GetAtasDoColegiadoDocument = gql`
     query GetAtasDoColegiado {
   atasDeColegiados {

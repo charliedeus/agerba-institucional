@@ -75,7 +75,7 @@ export function ServicesPanel() {
   return (
     <section className="w-full max-w-[1280px] h-full p-[14px] laptop:py-16 m-auto">
       <h3 className="font-bold text-base laptop:text-2xl laptop:pb-8 uppercase">
-        SERVIÇOS AO CIDADÃO
+        SERVIÇOS / CIDADÃO
       </h3>
 
       <div
