@@ -36,7 +36,7 @@ export function IntegratorBar() {
   ]
 
   return (
-    <div className="absolute top-[-30px] w-full mx-auto h-[3rem] hidden desktop:inline-block">
+    <div className="absolute top-[-33px] w-full mx-auto h-[3rem] hidden desktop:inline-block">
       <ul className="flex items-end justify-center gap-4 w-2/3 h-full mx-auto pb-1 rounded-full overflow-hidden text-white text-xs bg-primary">
         {menuItems.map((item) => (
           <li key={item.id}>
