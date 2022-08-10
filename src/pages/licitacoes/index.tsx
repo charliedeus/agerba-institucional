@@ -57,111 +57,124 @@ const BidsPage: NextPageWithLayout = () => {
         aberta 30 minutos antes da hora marcada na tabela abaixo.
       </p>
 
-      <ul role="list" className="flex flex-col gap-2">
-        {data?.licitacoes?.map((licitacao) => (
-          <li
-            key={licitacao?.id}
-            className="flex flex-col gap-4 bg-gray-200 px-4 py-6 rounded-lg transition-colors duration-100 ease-in-out border hover:border-secondary box-border"
-          >
-            <div className="flex flex-col laptop:flex-row gap-4">
-              <div className="flex items-center gap-2 w-full laptop:w-1/6 laptop:max-w-1/6">
-                <span>
-                  <CalendarBlank
-                    size={16}
-                    weight="light"
-                    className="text-gray-500"
-                  />
-                </span>
-                <span className="font-bold">
-                  {format(new Date(licitacao?.dataHora), 'dd/MM/yyyy', {
-                    locale: ptBR,
-                  })}
-                  , às{' '}
-                  {format(new Date(licitacao?.dataHora), "HH':'mm", {
-                    locale: ptBR,
-                  })}
-                </span>
+      {data?.licitacoes ? (
+        <div className="flex flex-col gap-4 flex-1 items-center">
+          <h1 className="font-bold text-lg">
+            Não há registros a serem exibidos.
+          </h1>
+          <Link href="/" passHref>
+            <a className="px-4 py-2 bg-secondary rounded-md text-white text-sm hover:bg-opacity-90">
+              <span>Voltar à Página Principal</span>
+            </a>
+          </Link>
+        </div>
+      ) : (
+        <ul role="list" className="flex flex-col gap-2">
+          {data?.licitacoes?.map((licitacao) => (
+            <li
+              key={licitacao?.id}
+              className="flex flex-col gap-4 bg-gray-200 px-4 py-6 rounded-lg transition-colors duration-100 ease-in-out border hover:border-secondary box-border"
+            >
+              <div className="flex flex-col laptop:flex-row gap-4">
+                <div className="flex items-center gap-2 w-full laptop:w-1/6 laptop:max-w-1/6">
+                  <span>
+                    <CalendarBlank
+                      size={16}
+                      weight="light"
+                      className="text-gray-500"
+                    />
+                  </span>
+                  <span className="font-bold">
+                    {format(new Date(licitacao?.dataHora), 'dd/MM/yyyy', {
+                      locale: ptBR,
+                    })}
+                    , às{' '}
+                    {format(new Date(licitacao?.dataHora), "HH':'mm", {
+                      locale: ptBR,
+                    })}
+                  </span>
+                </div>
+                <div className="flex flex-1 items-center gap-2 w-full">
+                  <span>
+                    <File size={16} weight="light" className="text-gray-500" />
+                  </span>
+                  <span className="font-bold">{licitacao?.Title}</span>
+                </div>
+                <div>
+                  <span className="text-xs text-white shadow-lg bg-secondary p-2 rounded-lg">
+                    {licitacao?.Tipo}
+                  </span>
+                </div>
               </div>
-              <div className="flex flex-1 items-center gap-2 w-full">
-                <span>
-                  <File size={16} weight="light" className="text-gray-500" />
-                </span>
-                <span className="font-bold">{licitacao?.Title}</span>
+              <div className="flex flex-col laptop:flex-row gap-4">
+                <div className="flex laptop:w-2/3 laptop:min-w-2/3 gap-2">
+                  <span>
+                    <TextT size={16} weight="light" className="text-gray-500" />
+                  </span>
+                  {licitacao?.SubTitulo && (
+                    <div
+                      className="text-gray-500 text-sm"
+                      dangerouslySetInnerHTML={{
+                        __html: licitacao?.SubTitulo,
+                      }}
+                    />
+                  )}
+                </div>
+                <div className="flex flex-1 gap-2">
+                  <span>
+                    <MapPinLine
+                      size={16}
+                      weight="light"
+                      className="text-gray-500"
+                    />
+                  </span>
+                  {licitacao?.Local && (
+                    <div
+                      className="text-gray-500 text-sm"
+                      dangerouslySetInnerHTML={{
+                        __html: licitacao?.Local,
+                      }}
+                    />
+                  )}
+                </div>
               </div>
-              <div>
-                <span className="text-xs text-white shadow-lg bg-secondary p-2 rounded-lg">
-                  {licitacao?.Tipo}
-                </span>
-              </div>
-            </div>
-            <div className="flex flex-col laptop:flex-row gap-4">
-              <div className="flex laptop:w-2/3 laptop:min-w-2/3 gap-2">
-                <span>
-                  <TextT size={16} weight="light" className="text-gray-500" />
-                </span>
-                {licitacao?.SubTitulo && (
-                  <div
-                    className="text-gray-500 text-sm"
-                    dangerouslySetInnerHTML={{
-                      __html: licitacao?.SubTitulo,
-                    }}
-                  />
-                )}
-              </div>
-              <div className="flex flex-1 gap-2">
-                <span>
-                  <MapPinLine
-                    size={16}
-                    weight="light"
-                    className="text-gray-500"
-                  />
-                </span>
-                {licitacao?.Local && (
-                  <div
-                    className="text-gray-500 text-sm"
-                    dangerouslySetInnerHTML={{
-                      __html: licitacao?.Local,
-                    }}
-                  />
-                )}
-              </div>
-            </div>
 
-            {licitacao?.Documentos && licitacao.Documentos.length > 0 && (
-              <>
-                <div className="w-full h-[2px] bg-gray-300" />
-                {licitacao?.Documentos?.map((documento) => (
-                  <div
-                    key={documento?.id}
-                    className="flex flex-col laptop:flex-row gap-4"
-                  >
-                    <div className="flex flex-1 items-center justify-start gap-2">
-                      <span>
-                        <FileArrowDown
-                          size={16}
-                          weight="light"
-                          className="text-gray-500"
-                        />
-                      </span>
-                      <Link href={urlBuilder(documento?.url)}>
-                        <a
-                          download
-                          target="_blank"
-                          className="hover:font-bold hover:underline"
-                        >
-                          <span className="text-sm text-primary">
-                            {documento?.name}
-                          </span>
-                        </a>
-                      </Link>
+              {licitacao?.Documentos && licitacao.Documentos.length > 0 && (
+                <>
+                  <div className="w-full h-[2px] bg-gray-300" />
+                  {licitacao?.Documentos?.map((documento) => (
+                    <div
+                      key={documento?.id}
+                      className="flex flex-col laptop:flex-row gap-4"
+                    >
+                      <div className="flex flex-1 items-center justify-start gap-2">
+                        <span>
+                          <FileArrowDown
+                            size={16}
+                            weight="light"
+                            className="text-gray-500"
+                          />
+                        </span>
+                        <Link href={urlBuilder(documento?.url)}>
+                          <a
+                            download
+                            target="_blank"
+                            className="hover:font-bold hover:underline"
+                          >
+                            <span className="text-sm text-primary">
+                              {documento?.name}
+                            </span>
+                          </a>
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
+                  ))}
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
     </article>
   )
 }

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { IntegratorBar } from '../IntegratorBar'
 import { LogoDefault } from '../LogoDefault'
 
 export function Header() {
@@ -68,6 +69,8 @@ export function Header() {
             </Link>
           </div>
         </div>
+
+        <IntegratorBar />
       </div>
     </header>
   )
