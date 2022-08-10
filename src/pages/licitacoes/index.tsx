@@ -57,18 +57,7 @@ const BidsPage: NextPageWithLayout = () => {
         aberta 30 minutos antes da hora marcada na tabela abaixo.
       </p>
 
-      {data?.licitacoes ? (
-        <div className="flex flex-col gap-4 flex-1 items-center">
-          <h1 className="font-bold text-lg">
-            Não há registros a serem exibidos.
-          </h1>
-          <Link href="/" passHref>
-            <a className="px-4 py-2 bg-secondary rounded-md text-white text-sm hover:bg-opacity-90">
-              <span>Voltar à Página Principal</span>
-            </a>
-          </Link>
-        </div>
-      ) : (
+      {data?.licitacoes && data.licitacoes.length > 0 ? (
         <ul role="list" className="flex flex-col gap-2">
           {data?.licitacoes?.map((licitacao) => (
             <li
@@ -174,6 +163,17 @@ const BidsPage: NextPageWithLayout = () => {
             </li>
           ))}
         </ul>
+      ) : (
+        <div className="flex flex-col gap-4 flex-1 items-center">
+          <h1 className="font-bold text-lg">
+            Não há registros a serem exibidos.
+          </h1>
+          <Link href="/" passHref>
+            <a className="px-4 py-2 bg-secondary rounded-md text-white text-sm hover:bg-opacity-90">
+              <span>Voltar à Página Principal</span>
+            </a>
+          </Link>
+        </div>
       )}
     </article>
   )
