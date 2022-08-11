@@ -36,7 +36,7 @@ const PortsPage: NextPageWithLayout = () => {
           >
             <picture>
               <img
-                className="shrink-0 h-12 w-12 rounded-full"
+                className="shrink-0 h-12 w-12 object-cover object-center rounded-full"
                 src="https://images.unsplash.com/photo-1524592714635-d77511a4834d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=40"
                 alt=""
               />
