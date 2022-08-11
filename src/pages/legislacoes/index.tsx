@@ -282,7 +282,7 @@ const LegislationPage: NextPageWithLayout = () => {
                   </Disclosure.Button>
                   <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2 text">
                     {publicacao.documentUrl ? (
-                      <Link href={urlBuilder(publicacao.documentUrl)}>
+                      <Link href={urlBuilder(publicacao.documentUrl)} passHref>
                         <a
                           download
                           target="_blank"
