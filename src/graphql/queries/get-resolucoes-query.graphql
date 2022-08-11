@@ -1,5 +1,5 @@
 query GetResolucoes {
-	resolucoes {
+	resolucoes (publicationState: LIVE, sort: "data:desc") {
 		id
 		Titulo
 		ementa

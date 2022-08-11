@@ -7095,7 +7095,7 @@ export type GetLicitacoesLazyQueryHookResult = ReturnType<typeof useGetLicitacoe
 export type GetLicitacoesQueryResult = Apollo.QueryResult<GetLicitacoesQuery, GetLicitacoesQueryVariables>;
 export const GetResolucoesDocument = gql`
     query GetResolucoes {
-  resolucoes {
+  resolucoes(publicationState: LIVE, sort: "data:desc") {
     id
     Titulo
     ementa
