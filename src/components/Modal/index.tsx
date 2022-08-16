@@ -47,6 +47,14 @@ const news = [
     imageUrl:
       'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=60',
   },
+  {
+    id: uuidV4(),
+    category: 'Notícias Urgentes!!!',
+    title:
+      'Concessionários: baixem aqui os arquivos sobre Obrigatoriedade do Uso de Máscara nos transportes públicos intermunicipais',
+    imageUrl:
+      'https://images.unsplash.com/photo-1584707824245-f67bad2c62d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=60',
+  },
 ]
 
 export function Modal() {
@@ -123,7 +131,7 @@ export function Modal() {
           </picture>
           <div className="absolute w-full h-full top-0 left-0 bg-black/50" />
 
-          <header className="absolute top-0 left-0 w-full h-full flex flex-col p-6 laptop:p-20 justify-end gap-6 uppercase text-white">
+          <header className="absolute top-0 left-0 w-full h-full flex flex-col p-6 laptop:p-20 laptop:pb-10 justify-end gap-6 uppercase text-white">
             <h1 className="laptop:text-lg">{news[newIndex].category}</h1>
             <p className="font-bold text-lg laptop:text-3xl laptop:leading-relaxed laptop:w-2/3">
               {news[newIndex].title}
