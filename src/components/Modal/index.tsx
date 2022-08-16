@@ -69,10 +69,7 @@ export function Modal() {
       className="absolute w-full min-w-full h-full min-h-full left-0 top-0 bg-black/70 backdrop-blur-[3px] flex items-center justify-center p-[14px]"
     >
       <AnimatePresence initial={false} custom={direction}>
-        <div
-          className="relative w-full h-full laptop:h-[70%] laptop:w-[70%] laptop:min-h-[70%] laptop:min-w-[70%] bg-white rounded-lg overflow-hidden p-6 shadow-black/[.04] flex"
-          onClick={() => handleToggleModal()}
-        >
+        <div className="relative w-full h-full laptop:h-[70%] laptop:w-[70%] laptop:min-h-[70%] laptop:min-w-[70%] bg-white rounded-lg overflow-hidden p-6 shadow-black/[.04] flex">
           <div className="absolute top-0 left-0 w-full h-full flex justify-between z-10">
             <button
               type="button"
@@ -84,7 +81,7 @@ export function Modal() {
             <button
               type="button"
               className="absolute top-0 right-0 p-4 text-white z-20"
-              onClick={() => handleToggleModal()}
+              onClick={handleToggleModal}
             >
               <X size={24} />
             </button>
