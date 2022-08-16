@@ -129,9 +129,13 @@ export function Modal() {
               {news[newIndex].title}
             </p>
             <footer className="w-full flex items-center justify-center gap-2">
-              <Circle size={16} weight="fill" />
-              <Circle size={12} />
-              <Circle size={12} />
+              {news.map((item, index) =>
+                index === newIndex ? (
+                  <Circle key={index} size={16} weight="fill" />
+                ) : (
+                  <Circle key={index} size={12} />
+                ),
+              )}
             </footer>
           </header>
         </div>
