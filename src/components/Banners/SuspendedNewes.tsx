@@ -35,7 +35,7 @@ export function SuspendedNewes() {
                 scale: 0.5,
               }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.75 }}
               className="w-full h-full flex flex-col laptop:w-1/2 justify-end gap-4 p-[.875rem] rounded-lg text-white laptop:text-right laptop:pb-24"
             >
               <h1 className="text-base laptop:text-2xl">COMUNICADO</h1>

@@ -6,9 +6,14 @@ import { useGetCartilhasQuery } from '../../graphql/generated'
 import { CalendarBlank, FileArrowDown, FileDoc } from 'phosphor-react'
 import Link from 'next/link'
 import { urlBuilder } from '../../lib/urlBuilder'
+import LoadingPage from '../../components/LoadingPage'
 
 const HornBookPage: NextPageWithLayout = () => {
-  const { data } = useGetCartilhasQuery()
+  const { data, loading } = useGetCartilhasQuery()
+
+  if (loading) {
+    return <LoadingPage />
+  }
 
   return (
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
@@ -26,7 +31,7 @@ const HornBookPage: NextPageWithLayout = () => {
       </p>
 
       <ul role="list" className="flex flex-col gap-2">
-        {data?.ascomCartilhas?.map((cartilha) => (
+        {data?.titles?.data.map((cartilha) => (
           <li
             key={cartilha?.id}
             className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg"
@@ -34,7 +39,7 @@ const HornBookPage: NextPageWithLayout = () => {
             <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
               <span className="font-bold laptop:flex-1 flex items-center gap-2">
                 <FileDoc size={16} weight="light" className="text-gray-500" />{' '}
-                {cartilha?.titulo}
+                {cartilha?.attributes?.title}
               </span>
               <span className="laptop:w-1/5 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
                 <CalendarBlank
@@ -42,11 +47,15 @@ const HornBookPage: NextPageWithLayout = () => {
                   weight="light"
                   className="text-gray-500"
                 />{' '}
-                {cartilha?.Ano}
+                {cartilha?.attributes?.year}
               </span>
 
-              {cartilha?.cartilha?.url && (
-                <Link href={urlBuilder(cartilha?.cartilha?.url)}>
+              {cartilha.attributes?.file.data?.attributes && (
+                <Link
+                  href={urlBuilder(
+                    cartilha.attributes?.file.data?.attributes.url,
+                  )}
+                >
                   <a
                     className="laptop:w-1/12 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center justify-center gap-2"
                     download

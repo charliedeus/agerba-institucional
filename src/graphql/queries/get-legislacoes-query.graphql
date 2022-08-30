@@ -1,0 +1,26 @@
+query GetLegislacoes {
+  legislations (publicationState: LIVE, sort: "publication_date:DESC") {
+    data {
+      id
+      attributes {
+        title
+        menu
+        slug
+        type
+        publication_date
+        
+        file {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}

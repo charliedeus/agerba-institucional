@@ -83,7 +83,7 @@
   }
 
   #backToTopButton.show {
-  @apply visible opacity-100 border-2 rounded-[50%];
-  transform: translateY(0);
-}
+    @apply visible opacity-100 border-2 rounded-[50%];
+    transform: translateY(0);
+  }
 }

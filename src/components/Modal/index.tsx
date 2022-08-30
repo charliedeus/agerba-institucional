@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { v4 as uuidV4 } from 'uuid'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowCircleLeft, ArrowCircleRight, Circle, X } from 'phosphor-react'
 import { wrap } from 'popmotion'
+import { urlBuilder } from '../../lib/urlBuilder'
+import classNames from 'classnames'
 
 const variants = {
   enter: (direction: number) => {
@@ -30,37 +31,20 @@ const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity
 }
 
-const news = [
-  {
-    id: uuidV4(),
-    category: 'Notícias Urgentes!!!',
-    title:
-      'Governo determina exigência de comprovante de vacinação para uso do transporte intermunicipal na Bahia',
-    imageUrl:
-      'https://images.unsplash.com/photo-1625179205943-f0b1d8d5f184?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=60',
-  },
-  {
-    id: uuidV4(),
-    category: 'Notícias Urgentes!!!',
-    title:
-      'Novo sistema de solicitação de cadastro da AGERBA é realizado através do STIP',
-    imageUrl:
-      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=60',
-  },
-  {
-    id: uuidV4(),
-    category: 'Notícias Urgentes!!!',
-    title:
-      'Concessionários: baixem aqui os arquivos sobre Obrigatoriedade do Uso de Máscara nos transportes públicos intermunicipais',
-    imageUrl:
-      'https://images.unsplash.com/photo-1584707824245-f67bad2c62d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=60',
-  },
-]
+interface NoticiaProps {
+  id?: string
+  title?: string
+  imageUrl?: string
+}
 
-export function Modal() {
+interface ModalProps {
+  noticias: NoticiaProps[]
+}
+
+export function Modal({ noticias }: ModalProps) {
   const [[page, direction], setPage] = useState([0, 0])
 
-  const newIndex = wrap(0, news.length, page)
+  const newIndex = wrap(0, noticias.length, page)
 
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection])
@@ -81,7 +65,12 @@ export function Modal() {
           <div className="absolute top-0 left-0 w-full h-full flex justify-between z-10">
             <button
               type="button"
-              className="w-fit h-full z-10 flex items-center px-2"
+              className={classNames(
+                'w-fit h-full z-10 flex items-center px-2',
+                {
+                  hidden: noticias.length <= 1,
+                },
+              )}
               onClick={() => paginate(-1)}
             >
               <ArrowCircleLeft size={32} weight="fill" color="white" />
@@ -95,7 +84,12 @@ export function Modal() {
             </button>
             <button
               type="button"
-              className="w-fit h-full z-10 flex items-center px-2"
+              className={classNames(
+                'w-fit h-full z-10 flex items-center px-2',
+                {
+                  hidden: noticias.length <= 1,
+                },
+              )}
               onClick={() => paginate(1)}
             >
               <ArrowCircleRight size={32} weight="fill" color="white" />
@@ -105,7 +99,7 @@ export function Modal() {
             <motion.img
               className="flex w-full h-full object-cover object-center"
               key={page}
-              src={news[newIndex].imageUrl}
+              src={urlBuilder(noticias[newIndex]?.imageUrl)}
               custom={direction}
               variants={variants}
               initial="enter"
@@ -131,13 +125,14 @@ export function Modal() {
           </picture>
           <div className="absolute w-full h-full top-0 left-0 bg-black/50" />
 
-          <header className="absolute top-0 left-0 w-full h-full flex flex-col p-6 laptop:p-20 laptop:pb-10 justify-end gap-6 uppercase text-white">
-            <h1 className="laptop:text-lg">{news[newIndex].category}</h1>
-            <p className="font-bold text-lg laptop:text-3xl laptop:leading-relaxed laptop:w-2/3">
-              {news[newIndex].title}
+          <header className="absolute top-0 left-0 w-full h-full flex flex-col p-6 laptop:p-20 laptop:pb-10 justify-end gap-6 text-white">
+            <h1 className="laptop:text-lg">Notícias Urgentes!!!</h1>
+            <p className="font-bold text-lg uppercase laptop:text-3xl laptop:leading-relaxed laptop:w-2/3">
+              {noticias[newIndex]?.title}
             </p>
+
             <footer className="w-full flex items-center justify-center gap-2">
-              {news.map((item, index) =>
+              {noticias.map((item, index) =>
                 index === newIndex ? (
                   <Circle key={index} size={16} weight="fill" />
                 ) : (

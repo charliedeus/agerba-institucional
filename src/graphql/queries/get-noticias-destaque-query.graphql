@@ -1,0 +1,36 @@
+query GetNoticiasDestaque {
+  noticias (publicationState: LIVE, filters: { highlight: { eq: true } }) {
+    data {
+      id
+      attributes {
+        cover {
+          data {
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+
+        title
+        subtitle
+        content
+        newtype
+				highlight
+				deadline
+        
+        gallery {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        } 
+      }
+    }
+  }
+}

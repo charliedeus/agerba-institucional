@@ -1,9 +1,19 @@
 query GetConsultasPublicas {
-	consultasPublicas {
-		id
-		Titulo
-		comunica
-		
-		Data
-	}
+  eventosPublicos (publicationState: LIVE, sort: "date:desc" , filters: { event_type: { eq: "Consulta Pública"}}) {
+    data {
+      id
+      attributes {
+        title
+        notify
+        event_type
+        date
+        
+        calendar {
+          title
+          starts_in
+          finish_in
+        }
+      }
+    }
+  }
 }

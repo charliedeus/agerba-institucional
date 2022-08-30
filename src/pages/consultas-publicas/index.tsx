@@ -1,24 +1,30 @@
+/* eslint-disable prettier/prettier */
 import { ReactElement } from 'react'
 import Link from 'next/link'
-import { BellRinging } from 'phosphor-react'
+import { File, Bookmark, CalendarBlank } from 'phosphor-react'
 
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 
 import { useGetConsultasPublicasQuery } from '../../graphql/generated'
+import { motion } from 'framer-motion'
+import { Disclosure, Transition } from '@headlessui/react'
 
 const PublicConsultationsPage: NextPageWithLayout = () => {
   const { data } = useGetConsultasPublicasQuery()
 
-  const orderedList = data?.consultasPublicas?.slice().sort(function (a, b) {
-    if (a?.Data < b?.Data) {
-      return 1
+  const publicConsultations = data?.eventosPublicos?.data.map((evento) => {
+    return {
+      ...evento,
+      formattedTitle: `Consulta Pública ${evento.attributes?.title
+        }/${new Date(evento.attributes?.date).toLocaleDateString(
+          'pt-BR',
+          {
+            year: 'numeric',
+            timeZone: 'UTC',
+          },
+        )}`,
     }
-    if (a?.Data > b?.Data) {
-      return -1
-    }
-
-    return 0
   })
 
   return (
@@ -36,79 +42,92 @@ const PublicConsultationsPage: NextPageWithLayout = () => {
         of Lorem Ipsum.
       </p>
 
-      <ul role="list" className="flex flex-col gap-2">
-        {orderedList?.map((consulta) => (
-          <li
-            key={consulta?.id}
-            className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg hover:bg-primary hover:cursor-pointer hover:text-white border-2 border-transparent hover:border-secondary transition-colors duration-100 ease-in-out"
-          >
-            <div className="flex flex-col gap-8 w-full">
-              <div className="flex flex-col laptop:flex-row laptop:w-full gap-2">
-                <Link href={`/consultas-publicas/${consulta?.id}`}>
-                  <a className="flex flex-col flex-1 laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center text-left">
-                    <span className="font-bold laptop:flex-1 flex items-center gap-2">
-                      <BellRinging
+      <motion.div
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ type: 'spring', stiffness: 100 }}
+        className="transition-all duration-100 ease-in-out"
+      >
+        <ul role="list" className="flex flex-col gap-2">
+          {publicConsultations?.map((consulta) => (
+            <li
+              key={consulta.id}
+              className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg transition-colors duration-100 ease-in-out border hover:border-secondary"
+            >
+              <Disclosure as="div" className="flex flex-col gap-8 w-full">
+                <div className="flex flex-col laptop:flex-row laptop:w-full gap-2">
+                  <Disclosure.Button className="flex flex-col gap-4 flex-1 laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center text-left">
+                    <span className="font-bold flex-1 flex items-center gap-2">
+                      <File
                         size={16}
                         weight="light"
-                        className="text-gray-500 hover:text-gray-50"
+                        className="text-gray-500"
                       />{' '}
-                      {consulta?.Titulo}
+                      {consulta.formattedTitle}
                     </span>
-                  </a>
-                </Link>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
+                    <span className="flex laptop:border-l-2 laptop:border-primary laptop:pl-2 items-center gap-2">
+                      <Bookmark
+                        size={16}
+                        weight="light"
+                        className="text-gray-500"
+                      />
+                      <span className="font-normal text-xs text-gray-500">
+                        Consulta Pública
+                      </span>
+                    </span>
+                    <span className="laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
+                      <CalendarBlank
+                        size={16}
+                        weight="light"
+                        className="text-gray-500"
+                      />
+                      <span className="font-bold">
+                        {new Date(
+                          consulta.attributes?.date,
+                        ).toLocaleDateString('pt-BR', {
+                          timeZone: 'UTC',
+                        })}
+                      </span>
+                    </span>
+                  </Disclosure.Button>
+                  <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2">
+                    <Link
+                      href={`/consultas-publicas/${consulta.id}`}
+                    >
+                      <a
+                        className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] hover:border hover:border-primary group border border-transparent"
+                      >
+                        <span className="font-normal text-sm group-hover:text-primary">
+                          Leia mais...
+                        </span>
+                      </a>
+                    </Link>
+                  </div>
+                </div>
+                <Transition
+                  enter="transition duration-100 ease-out"
+                  enterFrom="transform scale-95 opacity-0"
+                  enterTo="transform scale-100 opacity-100"
+                  leave="transition duration-75 ease-out"
+                  leaveFrom="transform scale-100 opacity-100"
+                  leaveTo="transform scale-95 opacity-0"
+                >
+                  {consulta.attributes?.notify && (
+                    <Disclosure.Panel
+                      as="div"
+                      className="text-gray-500 text-sm text-left mt-[-1rem] bg-gray-200 p-4 rounded-b-lg line-clamp-4"
+                    >
+                      <p>{`[...] ${consulta.attributes.notify.replace(/(<([^>]+)>)/gi, "")} [...]`}</p>
+                    </Disclosure.Panel>
+                  )}
+                </Transition>
+              </Disclosure>
 
-      {/* <ul role="list" className="flex flex-col gap-2">
-        {orderedList?.map((consulta) => (
-          <li
-            key={consulta?.id}
-            className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg"
-          >
-            <Disclosure as="div" className="flex flex-col gap-8 w-full">
-              <div className="flex flex-col laptop:flex-row laptop:w-full gap-2">
-                <Disclosure.Button className="flex flex-col flex-1 laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center  text-left">
-                  <span className="font-bold laptop:flex-1 flex items-center gap-2">
-                    <BellRinging
-                      size={16}
-                      weight="light"
-                      className="text-gray-500"
-                    />{' '}
-                    {consulta?.Titulo}
-                  </span>
-                </Disclosure.Button>
-                <Link href={`/consultas-publicas/${consulta?.id}`}>
-                  <a className="font-bold bg-primary w-1/2 laptop:w-auto m-auto rounded-lg p-2 flex items-center justify-center">
-                    <Info size={16} weight="bold" className="text-white" />{' '}
-                  </a>
-                </Link>
-              </div>
-              <Transition
-                enter="transition duration-100 ease-out"
-                enterFrom="transform scale-95 opacity-0"
-                enterTo="transform scale-100 opacity-100"
-                leave="transition duration-75 ease-out"
-                leaveFrom="transform scale-100 opacity-100"
-                leaveTo="transform scale-95 opacity-0"
-              >
-                {consulta?.comunica && (
-                  <Disclosure.Panel
-                    as="div"
-                    className="text-gray-500 text-sm text-left mt-[-1rem] bg-gray-200 p-4 rounded-b-lg"
-                    dangerouslySetInnerHTML={{
-                      __html: consulta?.comunica,
-                    }}
-                  ></Disclosure.Panel>
-                )}
-              </Transition>
-            </Disclosure>
-          </li>
-        ))}
-      </ul> */}
-    </article>
+            </li>
+          ))}
+        </ul>
+      </motion.div>
+    </article >
   )
 }
 

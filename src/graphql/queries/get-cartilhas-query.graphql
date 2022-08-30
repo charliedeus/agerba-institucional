@@ -1,13 +1,22 @@
 query GetCartilhas {
-  ascomCartilhas {
-    id
-    Ano
-    titulo
-    cartilha {
-      id
-      name
-      alternativeText
-      url
+  titles {
+    data {
+      id 
+      attributes {
+        title
+				slug
+				year
+				
+				file {
+					data {
+						id
+						attributes {
+							name
+							url
+						}
+					}
+				}
+      }
     }
   }
 }

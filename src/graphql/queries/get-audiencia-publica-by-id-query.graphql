@@ -1,24 +1,33 @@
 query GetAudienciaPublicaById ($id: ID!) {
-	audienciasPublica(id: $id) {
-		id
-		Titulo
-		comunica
-		participacao
-		encerramento
-		Data
-		
-		Calendario {
-			id
-			descricao
-			inicial
-			final
-		}
-		
-		documentos {
-			id
-			name
-			size
-			url
-		}
-	}
+  eventoPublico (id: $id) {
+    data {
+      id
+      attributes {
+        title
+        event_type
+        notify
+        date
+        
+        calendar {
+          id
+          title
+          starts_in
+          finish_in
+        }
+        
+        place
+        
+        Documentos {
+          name
+          file {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
