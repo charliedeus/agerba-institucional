@@ -3,12 +3,10 @@ import { ReactElement } from 'react'
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 
-import { EnvelopeSimple, Phone } from 'phosphor-react'
-
-import { useGetRodoviasConcessionadasQuery } from '../../graphql/generated'
+// import { useGetRodoviasConcessionadasQuery } from '../../graphql/generated'
 
 const HighwaysPage: NextPageWithLayout = () => {
-  const { data } = useGetRodoviasConcessionadasQuery()
+  // const { data } = useGetRodoviasConcessionadasQuery()
 
   return (
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
@@ -26,7 +24,7 @@ const HighwaysPage: NextPageWithLayout = () => {
         São as <span className="font-bold">Rodovias Concessionadas</span>:
       </p>
 
-      <ul role="list" className="flex flex-col gap-2">
+      {/* <ul role="list" className="flex flex-col gap-2">
         {data?.rodovias?.map((rodovia) => (
           <li
             key={rodovia?.id}
@@ -58,7 +56,7 @@ const HighwaysPage: NextPageWithLayout = () => {
             </div>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </article>
   )
 }

@@ -7,7 +7,7 @@ import { DefaultLayout } from '../layouts/DefaultLayout'
 import { SuspendedNewes } from '../components/Banners/SuspendedNewes'
 import { Transparency } from '../components/Banners/Transparency'
 import { ServicesPanel } from '../components/ServicesPanel'
-import { Modal } from '../components/Modal'
+// import { Modal } from '../components/Modal'
 import { useGetNoticiasDestaqueQuery } from '../graphql/generated'
 
 const Home: NextPageWithLayout = () => {
@@ -23,13 +23,13 @@ const Home: NextPageWithLayout = () => {
       }),
   )
 
-  const formattedNoticias = noticias?.map((noticia) => {
-    return {
-      id: noticia.id,
-      title: noticia.attributes?.title,
-      imageUrl: noticia.attributes?.cover.data?.attributes?.url,
-    }
-  })
+  // const formattedNoticias = noticias?.map((noticia) => {
+  //   return {
+  //     id: noticia.id,
+  //     title: noticia.attributes?.title,
+  //     imageUrl: noticia.attributes?.cover.data?.attributes?.url,
+  //   }
+  // })
 
   useEffect(() => {
     if (noticias?.length! > 0) {
@@ -45,7 +45,7 @@ const Home: NextPageWithLayout = () => {
       <Transparency />
       <ServicesPanel />
 
-      {formattedNoticias?.length! > 0 && <Modal noticias={formattedNoticias} />}
+      {/* {formattedNoticias?.length! > 0 && <Modal noticias={formattedNoticias} />} */}
     </>
   )
 }
