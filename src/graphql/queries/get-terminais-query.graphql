@@ -1,0 +1,24 @@
+query GetTerminais {
+  terminais (publicationState: LIVE, filters: { active: { eq: true } } ) {
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        active
+        
+        document {
+          data {
+            id
+            attributes {
+              name
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}

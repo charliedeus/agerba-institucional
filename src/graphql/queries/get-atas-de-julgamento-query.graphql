@@ -1,0 +1,28 @@
+query GetAtasDeJulgamento ($limit: Int!, $start: Int) {
+   judgmentNotes (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, sort: "judgment_date:DESC") {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        title
+        description
+        judgment_date
+        
+        document {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}

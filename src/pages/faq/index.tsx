@@ -5,16 +5,16 @@ import { Disclosure, Transition } from '@headlessui/react'
 
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
-import { useGetFaqsQuery } from '../../graphql/generated'
+import { useGetFaQsQuery } from '../../graphql/generated'
 
 const FaqPage: NextPageWithLayout = () => {
-  const { data } = useGetFaqsQuery()
+  const { data } = useGetFaQsQuery()
 
-  const formattedFaqs = data?.ascomFaqs?.map((faq) => {
+  const formattedFaqs = data?.faqs?.data.map((faq) => {
     return {
       ...faq,
       publishedAtFormatted: format(
-        new Date(faq?.published_at),
+        new Date(faq.attributes?.updatedAt),
         "EEEE' • 'dd' de 'MMMM' de 'yyyy'",
         {
           locale: ptBR,
@@ -22,6 +22,8 @@ const FaqPage: NextPageWithLayout = () => {
       ),
     }
   })
+
+  console.log(formattedFaqs)
 
   return (
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
@@ -32,12 +34,12 @@ const FaqPage: NextPageWithLayout = () => {
         <Disclosure key={faq?.id}>
           <Disclosure.Button className="p-2 flex flex-col text-left">
             <span className="text-primary font-bold text-lg leading-relaxed">
-              {faq?.pergunta}
+              {faq.attributes?.question}
             </span>
 
             <span className="text-xs">
               Adicionado por <strong>ASCOM</strong>{' '}
-              {formatDistanceToNow(new Date(faq.published_at), {
+              {formatDistanceToNow(new Date(faq.attributes?.updatedAt), {
                 addSuffix: true,
                 locale: ptBR,
               })}
@@ -52,7 +54,7 @@ const FaqPage: NextPageWithLayout = () => {
             leaveTo="transform scale-95 opacity-0"
           >
             <Disclosure.Panel className="text-gray-500 text-sm bg-gray-200 p-4">
-              {faq?.resposta}
+              {faq?.attributes?.answer}
             </Disclosure.Panel>
           </Transition>
         </Disclosure>
@@ -66,28 +68,3 @@ FaqPage.getLayout = function getLayout(page: ReactElement) {
 }
 
 export default FaqPage
-
-// export const getServerSideProps: GetServerSideProps = async (ctx) => {
-//   const data = await getServerPageGetFaqs({}, ctx)
-
-//   const formattedFaqs = data?.props.data.ascomFaqs?.map((faq: any) => {
-//     return {
-//       ...faq,
-//       publishedAtFormatted: format(
-//         new Date(faq?.published_at),
-//         "EEEE' • 'dd' de 'MMMM' de 'yyyy'",
-//         {
-//           locale: ptBR,
-//         },
-//       ),
-//     }
-//   })
-
-//   return {
-//     props: {
-//       data: formattedFaqs,
-//     },
-//   }
-// }
-
-// export default withApollo(ssrGetFaqs.withPage()(FaqPage))

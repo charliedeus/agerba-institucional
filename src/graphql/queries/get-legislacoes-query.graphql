@@ -1,5 +1,13 @@
-query GetLegislacoes {
-  legislations (publicationState: LIVE, sort: "publication_date:DESC") {
+query GetLegislacoes ($limit: Int!, $start: Int!) {
+  legislations (pagination: { limit: $limit, start: $start}, publicationState: LIVE, sort: "publication_date:DESC") {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
     data {
       id
       attributes {

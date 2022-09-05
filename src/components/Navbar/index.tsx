@@ -110,6 +110,11 @@ export function Navbar() {
               </Link>
             </li>
             <li>
+              <Link href="/terminais">
+                <a onClick={handleCloseMenu}>Terminais</a>
+              </Link>
+            </li>
+            <li>
               <Link href="/terminais/rodoviarios">
                 <a onClick={handleCloseMenu}>Terminais Rodoviários</a>
               </Link>
@@ -221,30 +226,10 @@ export function Navbar() {
             <Menu.Item>
               {({ active }) => (
                 <NextLink
-                  href="/terminais/rodoviarios"
+                  href="/terminais"
                   className={`${active && 'text-gray-900'}`}
                 >
-                  <span>Terminais Rodoviários</span>
-                </NextLink>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <NextLink
-                  href="/terminais/hidroviarios"
-                  className={`${active && 'text-gray-900'}`}
-                >
-                  <span>Terminais Hidroviários</span>
-                </NextLink>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <NextLink
-                  href="/terminais/aeroviarios"
-                  className={`${active && 'text-gray-900'}`}
-                >
-                  <span>Terminais Aeroviários</span>
+                  <span>Terminais</span>
                 </NextLink>
               )}
             </Menu.Item>

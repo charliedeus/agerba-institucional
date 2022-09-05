@@ -9,13 +9,20 @@ import { urlBuilder } from '../../lib/urlBuilder'
 import { Disclosure, Transition } from '@headlessui/react'
 import { useGetLegislacoesQuery } from '../../graphql/generated'
 import { motion } from 'framer-motion'
+import { Pagination } from '../../components/Pagination'
 
 const tabItems = ['Resoluções', 'Leis', 'Decretos']
 
 const LegislationPage: NextPageWithLayout = () => {
+  const [page, setPage] = useState(1)
   const [isSelectedTab, setIsSelectedTab] = useState(0)
 
-  const { data } = useGetLegislacoesQuery()
+  const { data } = useGetLegislacoesQuery({
+    variables: {
+      limit: 5,
+      start: (page - 1) * 5,
+    },
+  })
 
   return (
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
@@ -57,7 +64,7 @@ const LegislationPage: NextPageWithLayout = () => {
                 return (
                   <li
                     key={legislation.id}
-                    className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg transition-colors duration-100 ease-in-out border hover:border-secondary box-border"
+                    className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg transition-colors duration-100 ease-in-out border border-transparent hover:border-secondary box-border"
                   >
                     <Disclosure as="div" className="flex flex-col gap-8 w-full">
                       <div className="flex flex-col laptop:flex-row laptop:w-full gap-2">
@@ -70,7 +77,7 @@ const LegislationPage: NextPageWithLayout = () => {
                             />{' '}
                             {legislation.attributes.title}
                           </span>
-                          <span className="flex flex-1 laptop:border-l-2 laptop:border-primary laptop:pl-2 items-center gap-2">
+                          <span className="flex laptop:border-l-2 laptop:border-primary laptop:pl-2 items-center gap-2">
                             <Bookmark
                               size={16}
                               weight="light"
@@ -106,7 +113,7 @@ const LegislationPage: NextPageWithLayout = () => {
                               <a
                                 download
                                 target="_blank"
-                                className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] hover:border hover:border-primary group"
+                                className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
                               >
                                 <FileArrowDown
                                   size={24}
@@ -159,6 +166,17 @@ const LegislationPage: NextPageWithLayout = () => {
               }
               return null
             })}
+            <Pagination
+              totalCountRegisters={Number(
+                data?.legislations?.meta.pagination.total,
+              )}
+              currentPage={page}
+              totalPages={Number(data?.legislations?.meta.pagination.pageCount)}
+              onPageChange={setPage}
+              registersPerPage={Number(
+                data?.legislations?.meta.pagination.pageSize,
+              )}
+            />
           </ul>
         )}
 
@@ -169,7 +187,7 @@ const LegislationPage: NextPageWithLayout = () => {
                 return (
                   <li
                     key={legislation.id}
-                    className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg transition-colors duration-100 ease-in-out border hover:border-secondary box-border"
+                    className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg transition-colors duration-100 ease-in-out border border-transparent hover:border-secondary"
                   >
                     <Disclosure as="div" className="flex flex-col gap-8 w-full">
                       <div className="flex flex-col laptop:flex-row laptop:w-full gap-2">
@@ -218,7 +236,7 @@ const LegislationPage: NextPageWithLayout = () => {
                               <a
                                 download
                                 target="_blank"
-                                className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] hover:border hover:border-primary group"
+                                className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
                               >
                                 <FileArrowDown
                                   size={24}
@@ -233,7 +251,7 @@ const LegislationPage: NextPageWithLayout = () => {
                           ) : (
                             <button
                               disabled
-                              className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] hover:border hover:border-primary group disabled:cursor-not-allowed disabled:bg-gray-400"
+                              className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border hover:border-primary group disabled:cursor-not-allowed disabled:bg-gray-400"
                             >
                               <FileArrowDown
                                 size={24}
@@ -281,7 +299,7 @@ const LegislationPage: NextPageWithLayout = () => {
                 return (
                   <li
                     key={legislation.id}
-                    className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg transition-colors duration-100 ease-in-out border hover:border-secondary box-border"
+                    className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg transition-colors duration-100 ease-in-out border border-transparent hover:border-secondary box-border"
                   >
                     <Disclosure as="div" className="flex flex-col gap-8 w-full">
                       <div className="flex flex-col laptop:flex-row laptop:w-full gap-2">
@@ -330,7 +348,7 @@ const LegislationPage: NextPageWithLayout = () => {
                               <a
                                 download
                                 target="_blank"
-                                className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] hover:border hover:border-primary group"
+                                className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
                               >
                                 <FileArrowDown
                                   size={24}

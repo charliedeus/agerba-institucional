@@ -160,9 +160,20 @@ export enum Enum_Legislation_Type {
   Resolucoes = 'Resolucoes'
 }
 
+export enum Enum_Licitacao_Type {
+  Online = 'Online',
+  Presencial = 'Presencial'
+}
+
 export enum Enum_Noticia_Newtype {
   Noticias = 'Noticias',
   NoticiasUrgentes = 'Noticias_Urgentes'
+}
+
+export enum Enum_Terminal_Type {
+  Aeroviario = 'Aeroviario',
+  Hidroviario = 'Hidroviario',
+  Rodoviario = 'Rodoviario'
 }
 
 export type EventoPublico = {
@@ -238,6 +249,50 @@ export type EventoPublicoInput = {
   title?: InputMaybe<Scalars['String']>;
 };
 
+export type Faq = {
+  __typename?: 'Faq';
+  answer: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  question?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type FaqEntity = {
+  __typename?: 'FaqEntity';
+  attributes?: Maybe<Faq>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type FaqEntityResponse = {
+  __typename?: 'FaqEntityResponse';
+  data?: Maybe<FaqEntity>;
+};
+
+export type FaqEntityResponseCollection = {
+  __typename?: 'FaqEntityResponseCollection';
+  data: Array<FaqEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type FaqFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<FaqFiltersInput>>>;
+  answer?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<FaqFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<FaqFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  question?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type FaqInput = {
+  answer?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  question?: InputMaybe<Scalars['String']>;
+};
+
 export type FileInfoInput = {
   alternativeText?: InputMaybe<Scalars['String']>;
   caption?: InputMaybe<Scalars['String']>;
@@ -268,7 +323,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = ComponentArquivosArquivos | ComponentCalendarCalendar | ComponentEventEvent | EventoPublico | I18NLocale | Legislation | Log | Noticia | QuadroTarifario | Title | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentArquivosArquivos | ComponentCalendarCalendar | ComponentEventEvent | EventoPublico | Faq | I18NLocale | JudgmentNote | Legislation | Licitacao | Log | MeetingNote | Noticia | QuadroTarifario | Terminal | Title | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -378,6 +433,55 @@ export type JsonFilterInput = {
   startsWith?: InputMaybe<Scalars['JSON']>;
 };
 
+export type JudgmentNote = {
+  __typename?: 'JudgmentNote';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  document: UploadFileEntityResponse;
+  judgment_date: Scalars['DateTime'];
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type JudgmentNoteEntity = {
+  __typename?: 'JudgmentNoteEntity';
+  attributes?: Maybe<JudgmentNote>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type JudgmentNoteEntityResponse = {
+  __typename?: 'JudgmentNoteEntityResponse';
+  data?: Maybe<JudgmentNoteEntity>;
+};
+
+export type JudgmentNoteEntityResponseCollection = {
+  __typename?: 'JudgmentNoteEntityResponseCollection';
+  data: Array<JudgmentNoteEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type JudgmentNoteFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<JudgmentNoteFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  judgment_date?: InputMaybe<DateTimeFilterInput>;
+  not?: InputMaybe<JudgmentNoteFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<JudgmentNoteFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type JudgmentNoteInput = {
+  description?: InputMaybe<Scalars['String']>;
+  document?: InputMaybe<Scalars['ID']>;
+  judgment_date?: InputMaybe<Scalars['DateTime']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
 export type Legislation = {
   __typename?: 'Legislation';
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -433,6 +537,72 @@ export type LegislationInput = {
   type?: InputMaybe<Enum_Legislation_Type>;
 };
 
+export type Licitacao = {
+  __typename?: 'Licitacao';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
+  description: Scalars['String'];
+  documents?: Maybe<Array<Maybe<ComponentArquivosArquivos>>>;
+  place: Scalars['String'];
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  subtitle: Scalars['String'];
+  title: Scalars['String'];
+  type?: Maybe<Enum_Licitacao_Type>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type LicitacaoDocumentsArgs = {
+  filters?: InputMaybe<ComponentArquivosArquivosFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type LicitacaoEntity = {
+  __typename?: 'LicitacaoEntity';
+  attributes?: Maybe<Licitacao>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type LicitacaoEntityResponse = {
+  __typename?: 'LicitacaoEntityResponse';
+  data?: Maybe<LicitacaoEntity>;
+};
+
+export type LicitacaoEntityResponseCollection = {
+  __typename?: 'LicitacaoEntityResponseCollection';
+  data: Array<LicitacaoEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type LicitacaoFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<LicitacaoFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  date?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  documents?: InputMaybe<ComponentArquivosArquivosFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<LicitacaoFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<LicitacaoFiltersInput>>>;
+  place?: InputMaybe<StringFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  subtitle?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  type?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type LicitacaoInput = {
+  date?: InputMaybe<Scalars['DateTime']>;
+  description?: InputMaybe<Scalars['String']>;
+  documents?: InputMaybe<Array<InputMaybe<ComponentArquivosArquivosInput>>>;
+  place?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  subtitle?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Enum_Licitacao_Type>;
+};
+
 export type Log = {
   __typename?: 'Log';
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -480,15 +650,69 @@ export type LogInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
+export type MeetingNote = {
+  __typename?: 'MeetingNote';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  document: UploadFileEntityResponse;
+  meeting_date: Scalars['DateTime'];
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type MeetingNoteEntity = {
+  __typename?: 'MeetingNoteEntity';
+  attributes?: Maybe<MeetingNote>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type MeetingNoteEntityResponse = {
+  __typename?: 'MeetingNoteEntityResponse';
+  data?: Maybe<MeetingNoteEntity>;
+};
+
+export type MeetingNoteEntityResponseCollection = {
+  __typename?: 'MeetingNoteEntityResponseCollection';
+  data: Array<MeetingNoteEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type MeetingNoteFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<MeetingNoteFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  meeting_date?: InputMaybe<DateTimeFilterInput>;
+  not?: InputMaybe<MeetingNoteFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<MeetingNoteFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type MeetingNoteInput = {
+  description?: InputMaybe<Scalars['String']>;
+  document?: InputMaybe<Scalars['ID']>;
+  meeting_date?: InputMaybe<Scalars['DateTime']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createEventoPublico?: Maybe<EventoPublicoEntityResponse>;
+  createFaq?: Maybe<FaqEntityResponse>;
+  createJudgmentNote?: Maybe<JudgmentNoteEntityResponse>;
   createLegislation?: Maybe<LegislationEntityResponse>;
+  createLicitacao?: Maybe<LicitacaoEntityResponse>;
   createLog?: Maybe<LogEntityResponse>;
+  createMeetingNote?: Maybe<MeetingNoteEntityResponse>;
   createNoticia?: Maybe<NoticiaEntityResponse>;
   createQuadroTarifario?: Maybe<QuadroTarifarioEntityResponse>;
+  createTerminal?: Maybe<TerminalEntityResponse>;
   createTitle?: Maybe<TitleEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -497,10 +721,15 @@ export type Mutation = {
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteEventoPublico?: Maybe<EventoPublicoEntityResponse>;
+  deleteFaq?: Maybe<FaqEntityResponse>;
+  deleteJudgmentNote?: Maybe<JudgmentNoteEntityResponse>;
   deleteLegislation?: Maybe<LegislationEntityResponse>;
+  deleteLicitacao?: Maybe<LicitacaoEntityResponse>;
   deleteLog?: Maybe<LogEntityResponse>;
+  deleteMeetingNote?: Maybe<MeetingNoteEntityResponse>;
   deleteNoticia?: Maybe<NoticiaEntityResponse>;
   deleteQuadroTarifario?: Maybe<QuadroTarifarioEntityResponse>;
+  deleteTerminal?: Maybe<TerminalEntityResponse>;
   deleteTitle?: Maybe<TitleEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -520,11 +749,16 @@ export type Mutation = {
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateEventoPublico?: Maybe<EventoPublicoEntityResponse>;
+  updateFaq?: Maybe<FaqEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
+  updateJudgmentNote?: Maybe<JudgmentNoteEntityResponse>;
   updateLegislation?: Maybe<LegislationEntityResponse>;
+  updateLicitacao?: Maybe<LicitacaoEntityResponse>;
   updateLog?: Maybe<LogEntityResponse>;
+  updateMeetingNote?: Maybe<MeetingNoteEntityResponse>;
   updateNoticia?: Maybe<NoticiaEntityResponse>;
   updateQuadroTarifario?: Maybe<QuadroTarifarioEntityResponse>;
+  updateTerminal?: Maybe<TerminalEntityResponse>;
   updateTitle?: Maybe<TitleEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -548,13 +782,33 @@ export type MutationCreateEventoPublicoArgs = {
 };
 
 
+export type MutationCreateFaqArgs = {
+  data: FaqInput;
+};
+
+
+export type MutationCreateJudgmentNoteArgs = {
+  data: JudgmentNoteInput;
+};
+
+
 export type MutationCreateLegislationArgs = {
   data: LegislationInput;
 };
 
 
+export type MutationCreateLicitacaoArgs = {
+  data: LicitacaoInput;
+};
+
+
 export type MutationCreateLogArgs = {
   data: LogInput;
+};
+
+
+export type MutationCreateMeetingNoteArgs = {
+  data: MeetingNoteInput;
 };
 
 
@@ -565,6 +819,11 @@ export type MutationCreateNoticiaArgs = {
 
 export type MutationCreateQuadroTarifarioArgs = {
   data: QuadroTarifarioInput;
+};
+
+
+export type MutationCreateTerminalArgs = {
+  data: TerminalInput;
 };
 
 
@@ -598,12 +857,32 @@ export type MutationDeleteEventoPublicoArgs = {
 };
 
 
+export type MutationDeleteFaqArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteJudgmentNoteArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type MutationDeleteLegislationArgs = {
   id: Scalars['ID'];
 };
 
 
+export type MutationDeleteLicitacaoArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type MutationDeleteLogArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteMeetingNoteArgs = {
   id: Scalars['ID'];
 };
 
@@ -614,6 +893,11 @@ export type MutationDeleteNoticiaArgs = {
 
 
 export type MutationDeleteQuadroTarifarioArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteTerminalArgs = {
   id: Scalars['ID'];
 };
 
@@ -689,9 +973,21 @@ export type MutationUpdateEventoPublicoArgs = {
 };
 
 
+export type MutationUpdateFaqArgs = {
+  data: FaqInput;
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID'];
   info?: InputMaybe<FileInfoInput>;
+};
+
+
+export type MutationUpdateJudgmentNoteArgs = {
+  data: JudgmentNoteInput;
+  id: Scalars['ID'];
 };
 
 
@@ -701,8 +997,20 @@ export type MutationUpdateLegislationArgs = {
 };
 
 
+export type MutationUpdateLicitacaoArgs = {
+  data: LicitacaoInput;
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdateLogArgs = {
   data: LogInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateMeetingNoteArgs = {
+  data: MeetingNoteInput;
   id: Scalars['ID'];
 };
 
@@ -715,6 +1023,12 @@ export type MutationUpdateNoticiaArgs = {
 
 export type MutationUpdateQuadroTarifarioArgs = {
   data: QuadroTarifarioInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateTerminalArgs = {
+  data: TerminalInput;
   id: Scalars['ID'];
 };
 
@@ -892,17 +1206,27 @@ export type Query = {
   __typename?: 'Query';
   eventoPublico?: Maybe<EventoPublicoEntityResponse>;
   eventosPublicos?: Maybe<EventoPublicoEntityResponseCollection>;
+  faq?: Maybe<FaqEntityResponse>;
+  faqs?: Maybe<FaqEntityResponseCollection>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
+  judgmentNote?: Maybe<JudgmentNoteEntityResponse>;
+  judgmentNotes?: Maybe<JudgmentNoteEntityResponseCollection>;
   legislation?: Maybe<LegislationEntityResponse>;
   legislations?: Maybe<LegislationEntityResponseCollection>;
+  licitacao?: Maybe<LicitacaoEntityResponse>;
+  licitacaos?: Maybe<LicitacaoEntityResponseCollection>;
   log?: Maybe<LogEntityResponse>;
   logs?: Maybe<LogEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
+  meetingNote?: Maybe<MeetingNoteEntityResponse>;
+  meetingNotes?: Maybe<MeetingNoteEntityResponseCollection>;
   noticia?: Maybe<NoticiaEntityResponse>;
   noticias?: Maybe<NoticiaEntityResponseCollection>;
   quadroTarifario?: Maybe<QuadroTarifarioEntityResponse>;
   quadroTarifarios?: Maybe<QuadroTarifarioEntityResponseCollection>;
+  terminais?: Maybe<TerminalEntityResponseCollection>;
+  terminal?: Maybe<TerminalEntityResponse>;
   title?: Maybe<TitleEntityResponse>;
   titles?: Maybe<TitleEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
@@ -929,6 +1253,19 @@ export type QueryEventosPublicosArgs = {
 };
 
 
+export type QueryFaqArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryFaqsArgs = {
+  filters?: InputMaybe<FaqFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
 export type QueryI18NLocaleArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -937,6 +1274,19 @@ export type QueryI18NLocaleArgs = {
 export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryJudgmentNoteArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryJudgmentNotesArgs = {
+  filters?: InputMaybe<JudgmentNoteFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -954,6 +1304,19 @@ export type QueryLegislationsArgs = {
 };
 
 
+export type QueryLicitacaoArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryLicitacaosArgs = {
+  filters?: InputMaybe<LicitacaoFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
 export type QueryLogArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -961,6 +1324,19 @@ export type QueryLogArgs = {
 
 export type QueryLogsArgs = {
   filters?: InputMaybe<LogFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryMeetingNoteArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryMeetingNotesArgs = {
+  filters?: InputMaybe<MeetingNoteFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -990,6 +1366,19 @@ export type QueryQuadroTarifariosArgs = {
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryTerminaisArgs = {
+  filters?: InputMaybe<TerminalFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryTerminalArgs = {
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
@@ -1080,6 +1469,61 @@ export type StringFilterInput = {
   null?: InputMaybe<Scalars['Boolean']>;
   or?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   startsWith?: InputMaybe<Scalars['String']>;
+};
+
+export type Terminal = {
+  __typename?: 'Terminal';
+  active: Scalars['Boolean'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  document?: Maybe<UploadFileEntityResponse>;
+  email?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  phone?: Maybe<Scalars['String']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  type: Enum_Terminal_Type;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type TerminalEntity = {
+  __typename?: 'TerminalEntity';
+  attributes?: Maybe<Terminal>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type TerminalEntityResponse = {
+  __typename?: 'TerminalEntityResponse';
+  data?: Maybe<TerminalEntity>;
+};
+
+export type TerminalEntityResponseCollection = {
+  __typename?: 'TerminalEntityResponseCollection';
+  data: Array<TerminalEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type TerminalFiltersInput = {
+  active?: InputMaybe<BooleanFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<TerminalFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  email?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<TerminalFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<TerminalFiltersInput>>>;
+  phone?: InputMaybe<StringFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  type?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type TerminalInput = {
+  active?: InputMaybe<Scalars['Boolean']>;
+  document?: InputMaybe<Scalars['ID']>;
+  email?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  phone?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  type?: InputMaybe<Enum_Terminal_Type>;
 };
 
 export type Title = {
@@ -1504,6 +1948,22 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
+export type GetAtasDeJulgamentoQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  start?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type GetAtasDeJulgamentoQuery = { __typename?: 'Query', judgmentNotes?: { __typename?: 'JudgmentNoteEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'JudgmentNoteEntity', id?: string | null, attributes?: { __typename?: 'JudgmentNote', title: string, description?: string | null, judgment_date: any, document: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } } | null }> } | null };
+
+export type GetAtasDeReuniaoQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  start?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type GetAtasDeReuniaoQuery = { __typename?: 'Query', meetingNotes?: { __typename?: 'MeetingNoteEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'MeetingNoteEntity', id?: string | null, attributes?: { __typename?: 'MeetingNote', title: string, description?: string | null, meeting_date: any, document: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } } | null }> } | null };
+
 export type GetAudienciaPublicaByIdQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
@@ -1526,17 +1986,161 @@ export type GetConsultasPublicasQueryVariables = Exact<{ [key: string]: never; }
 
 export type GetConsultasPublicasQuery = { __typename?: 'Query', eventosPublicos?: { __typename?: 'EventoPublicoEntityResponseCollection', data: Array<{ __typename?: 'EventoPublicoEntity', id?: string | null, attributes?: { __typename?: 'EventoPublico', title: string, notify?: string | null, event_type: Enum_Eventopublico_Event_Type, date: any, calendar?: Array<{ __typename?: 'ComponentEventEvent', title: Enum_Componenteventevent_Title, starts_in?: any | null, finish_in?: any | null } | null> | null } | null }> } | null };
 
-export type GetLegislacoesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetFaQsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLegislacoesQuery = { __typename?: 'Query', legislations?: { __typename?: 'LegislationEntityResponseCollection', data: Array<{ __typename?: 'LegislationEntity', id?: string | null, attributes?: { __typename?: 'Legislation', title: string, menu: string, slug: string, type: Enum_Legislation_Type, publication_date: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null }> } | null };
+export type GetFaQsQuery = { __typename?: 'Query', faqs?: { __typename?: 'FaqEntityResponseCollection', data: Array<{ __typename?: 'FaqEntity', id?: string | null, attributes?: { __typename?: 'Faq', question?: string | null, answer: string, updatedAt?: any | null } | null }> } | null };
+
+export type GetLegislacoesQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  start: Scalars['Int'];
+}>;
+
+
+export type GetLegislacoesQuery = { __typename?: 'Query', legislations?: { __typename?: 'LegislationEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'LegislationEntity', id?: string | null, attributes?: { __typename?: 'Legislation', title: string, menu: string, slug: string, type: Enum_Legislation_Type, publication_date: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null }> } | null };
+
+export type GetLicitacoesFuturasQueryVariables = Exact<{
+  data_atual: Scalars['DateTime'];
+}>;
+
+
+export type GetLicitacoesFuturasQuery = { __typename?: 'Query', licitacaos?: { __typename?: 'LicitacaoEntityResponseCollection', data: Array<{ __typename?: 'LicitacaoEntity', id?: string | null, attributes?: { __typename?: 'Licitacao', type?: Enum_Licitacao_Type | null, title: string, subtitle: string, date?: any | null, description: string, place: string, documents?: Array<{ __typename?: 'ComponentArquivosArquivos', id: string, name: string, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null } } | null> | null } | null }> } | null };
 
 export type GetNoticiasDestaqueQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetNoticiasDestaqueQuery = { __typename?: 'Query', noticias?: { __typename?: 'NoticiaEntityResponseCollection', data: Array<{ __typename?: 'NoticiaEntity', id?: string | null, attributes?: { __typename?: 'Noticia', title: string, subtitle: string, content: string, newtype: Enum_Noticia_Newtype, highlight: boolean, deadline?: any | null, cover: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null }, gallery?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null }> } | null } | null }> } | null };
 
+export type GetTerminaisQueryVariables = Exact<{ [key: string]: never; }>;
 
+
+export type GetTerminaisQuery = { __typename?: 'Query', terminais?: { __typename?: 'TerminalEntityResponseCollection', data: Array<{ __typename?: 'TerminalEntity', id?: string | null, attributes?: { __typename?: 'Terminal', name: string, phone?: string | null, email?: string | null, type: Enum_Terminal_Type, active: boolean, document?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, url: string } | null } | null } | null } | null }> } | null };
+
+
+export const GetAtasDeJulgamentoDocument = gql`
+    query GetAtasDeJulgamento($limit: Int!, $start: Int) {
+  judgmentNotes(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "judgment_date:DESC"
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        title
+        description
+        judgment_date
+        document {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetAtasDeJulgamentoQuery__
+ *
+ * To run a query within a React component, call `useGetAtasDeJulgamentoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAtasDeJulgamentoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAtasDeJulgamentoQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
+ *   },
+ * });
+ */
+export function useGetAtasDeJulgamentoQuery(baseOptions: Apollo.QueryHookOptions<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>(GetAtasDeJulgamentoDocument, options);
+      }
+export function useGetAtasDeJulgamentoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>(GetAtasDeJulgamentoDocument, options);
+        }
+export type GetAtasDeJulgamentoQueryHookResult = ReturnType<typeof useGetAtasDeJulgamentoQuery>;
+export type GetAtasDeJulgamentoLazyQueryHookResult = ReturnType<typeof useGetAtasDeJulgamentoLazyQuery>;
+export type GetAtasDeJulgamentoQueryResult = Apollo.QueryResult<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>;
+export const GetAtasDeReuniaoDocument = gql`
+    query GetAtasDeReuniao($limit: Int!, $start: Int) {
+  meetingNotes(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "meeting_date:DESC"
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        title
+        description
+        meeting_date
+        document {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetAtasDeReuniaoQuery__
+ *
+ * To run a query within a React component, call `useGetAtasDeReuniaoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAtasDeReuniaoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAtasDeReuniaoQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
+ *   },
+ * });
+ */
+export function useGetAtasDeReuniaoQuery(baseOptions: Apollo.QueryHookOptions<GetAtasDeReuniaoQuery, GetAtasDeReuniaoQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAtasDeReuniaoQuery, GetAtasDeReuniaoQueryVariables>(GetAtasDeReuniaoDocument, options);
+      }
+export function useGetAtasDeReuniaoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAtasDeReuniaoQuery, GetAtasDeReuniaoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAtasDeReuniaoQuery, GetAtasDeReuniaoQueryVariables>(GetAtasDeReuniaoDocument, options);
+        }
+export type GetAtasDeReuniaoQueryHookResult = ReturnType<typeof useGetAtasDeReuniaoQuery>;
+export type GetAtasDeReuniaoLazyQueryHookResult = ReturnType<typeof useGetAtasDeReuniaoLazyQuery>;
+export type GetAtasDeReuniaoQueryResult = Apollo.QueryResult<GetAtasDeReuniaoQuery, GetAtasDeReuniaoQueryVariables>;
 export const GetAudienciaPublicaByIdDocument = gql`
     query GetAudienciaPublicaById($id: ID!) {
   eventoPublico(id: $id) {
@@ -1749,9 +2353,62 @@ export function useGetConsultasPublicasLazyQuery(baseOptions?: Apollo.LazyQueryH
 export type GetConsultasPublicasQueryHookResult = ReturnType<typeof useGetConsultasPublicasQuery>;
 export type GetConsultasPublicasLazyQueryHookResult = ReturnType<typeof useGetConsultasPublicasLazyQuery>;
 export type GetConsultasPublicasQueryResult = Apollo.QueryResult<GetConsultasPublicasQuery, GetConsultasPublicasQueryVariables>;
+export const GetFaQsDocument = gql`
+    query GetFAQs {
+  faqs(publicationState: LIVE) {
+    data {
+      id
+      attributes {
+        question
+        answer
+        updatedAt
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetFaQsQuery__
+ *
+ * To run a query within a React component, call `useGetFaQsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetFaQsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetFaQsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetFaQsQuery(baseOptions?: Apollo.QueryHookOptions<GetFaQsQuery, GetFaQsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetFaQsQuery, GetFaQsQueryVariables>(GetFaQsDocument, options);
+      }
+export function useGetFaQsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFaQsQuery, GetFaQsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetFaQsQuery, GetFaQsQueryVariables>(GetFaQsDocument, options);
+        }
+export type GetFaQsQueryHookResult = ReturnType<typeof useGetFaQsQuery>;
+export type GetFaQsLazyQueryHookResult = ReturnType<typeof useGetFaQsLazyQuery>;
+export type GetFaQsQueryResult = Apollo.QueryResult<GetFaQsQuery, GetFaQsQueryVariables>;
 export const GetLegislacoesDocument = gql`
-    query GetLegislacoes {
-  legislations(publicationState: LIVE, sort: "publication_date:DESC") {
+    query GetLegislacoes($limit: Int!, $start: Int!) {
+  legislations(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "publication_date:DESC"
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
     data {
       id
       attributes {
@@ -1788,10 +2445,12 @@ export const GetLegislacoesDocument = gql`
  * @example
  * const { data, loading, error } = useGetLegislacoesQuery({
  *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
  *   },
  * });
  */
-export function useGetLegislacoesQuery(baseOptions?: Apollo.QueryHookOptions<GetLegislacoesQuery, GetLegislacoesQueryVariables>) {
+export function useGetLegislacoesQuery(baseOptions: Apollo.QueryHookOptions<GetLegislacoesQuery, GetLegislacoesQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<GetLegislacoesQuery, GetLegislacoesQueryVariables>(GetLegislacoesDocument, options);
       }
@@ -1802,6 +2461,66 @@ export function useGetLegislacoesLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
 export type GetLegislacoesQueryHookResult = ReturnType<typeof useGetLegislacoesQuery>;
 export type GetLegislacoesLazyQueryHookResult = ReturnType<typeof useGetLegislacoesLazyQuery>;
 export type GetLegislacoesQueryResult = Apollo.QueryResult<GetLegislacoesQuery, GetLegislacoesQueryVariables>;
+export const GetLicitacoesFuturasDocument = gql`
+    query GetLicitacoesFuturas($data_atual: DateTime!) {
+  licitacaos(
+    filters: {date: {gte: $data_atual}}
+    publicationState: LIVE
+    sort: "date:desc"
+  ) {
+    data {
+      id
+      attributes {
+        type
+        title
+        subtitle
+        date
+        description
+        place
+        documents {
+          id
+          name
+          file {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetLicitacoesFuturasQuery__
+ *
+ * To run a query within a React component, call `useGetLicitacoesFuturasQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetLicitacoesFuturasQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetLicitacoesFuturasQuery({
+ *   variables: {
+ *      data_atual: // value for 'data_atual'
+ *   },
+ * });
+ */
+export function useGetLicitacoesFuturasQuery(baseOptions: Apollo.QueryHookOptions<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>(GetLicitacoesFuturasDocument, options);
+      }
+export function useGetLicitacoesFuturasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>(GetLicitacoesFuturasDocument, options);
+        }
+export type GetLicitacoesFuturasQueryHookResult = ReturnType<typeof useGetLicitacoesFuturasQuery>;
+export type GetLicitacoesFuturasLazyQueryHookResult = ReturnType<typeof useGetLicitacoesFuturasLazyQuery>;
+export type GetLicitacoesFuturasQueryResult = Apollo.QueryResult<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>;
 export const GetNoticiasDestaqueDocument = gql`
     query GetNoticiasDestaque {
   noticias(publicationState: LIVE, filters: {highlight: {eq: true}}) {
@@ -1865,3 +2584,55 @@ export function useGetNoticiasDestaqueLazyQuery(baseOptions?: Apollo.LazyQueryHo
 export type GetNoticiasDestaqueQueryHookResult = ReturnType<typeof useGetNoticiasDestaqueQuery>;
 export type GetNoticiasDestaqueLazyQueryHookResult = ReturnType<typeof useGetNoticiasDestaqueLazyQuery>;
 export type GetNoticiasDestaqueQueryResult = Apollo.QueryResult<GetNoticiasDestaqueQuery, GetNoticiasDestaqueQueryVariables>;
+export const GetTerminaisDocument = gql`
+    query GetTerminais {
+  terminais(publicationState: LIVE, filters: {active: {eq: true}}) {
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        active
+        document {
+          data {
+            id
+            attributes {
+              name
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetTerminaisQuery__
+ *
+ * To run a query within a React component, call `useGetTerminaisQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTerminaisQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetTerminaisQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetTerminaisQuery(baseOptions?: Apollo.QueryHookOptions<GetTerminaisQuery, GetTerminaisQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetTerminaisQuery, GetTerminaisQueryVariables>(GetTerminaisDocument, options);
+      }
+export function useGetTerminaisLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTerminaisQuery, GetTerminaisQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetTerminaisQuery, GetTerminaisQueryVariables>(GetTerminaisDocument, options);
+        }
+export type GetTerminaisQueryHookResult = ReturnType<typeof useGetTerminaisQuery>;
+export type GetTerminaisLazyQueryHookResult = ReturnType<typeof useGetTerminaisLazyQuery>;
+export type GetTerminaisQueryResult = Apollo.QueryResult<GetTerminaisQuery, GetTerminaisQueryVariables>;

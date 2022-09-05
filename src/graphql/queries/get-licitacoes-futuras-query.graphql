@@ -1,0 +1,28 @@
+query GetLicitacoesFuturas ($data_atual: DateTime!) {
+  licitacaos (filters: { date: { gte: $data_atual } }, publicationState: LIVE, sort: "date:desc") {
+    data {
+      id
+      attributes {
+        type
+        title
+        subtitle
+        date
+        description
+        place
+        
+        documents {
+          id
+          name
+          
+          file {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

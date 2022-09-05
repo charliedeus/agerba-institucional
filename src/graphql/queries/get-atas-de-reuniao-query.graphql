@@ -1,0 +1,28 @@
+query GetAtasDeReuniao ($limit: Int!, $start: Int) {
+   meetingNotes (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, sort: "meeting_date:DESC") {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        title
+        description
+        meeting_date
+        
+        document {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -117,7 +117,7 @@ const PublicHearingsPage: NextPageWithLayout = () => {
                       as="div"
                       className="text-gray-500 text-sm text-left mt-[-1rem] bg-gray-200 p-4 rounded-b-lg line-clamp-4"
                     >
-                      <p>{audiencia.attributes.notify.replace(/(<([^>]+)>)/gi, "")}</p>
+                      <p>{`[...] ${audiencia.attributes.notify.replace(/(<([^>]+)>)/gi, "")} [...]`}</p>
                     </Disclosure.Panel>
                   )}
                 </Transition>

@@ -1,0 +1,12 @@
+query GetFAQs {
+  faqs (publicationState: LIVE) {
+    data {
+      id
+      attributes {
+        question
+        answer
+        updatedAt
+      }
+    }
+  }
+}

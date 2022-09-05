@@ -57,9 +57,9 @@ const BidsPage: NextPageWithLayout = () => {
         aberta 30 minutos antes da hora marcada na tabela abaixo.
       </p>
 
-      {data?.licitacoes && data.licitacoes.length > 0 ? (
+      {data?.licitacaos?.data && data.licitacaos.data.length > 0 ? (
         <ul role="list" className="flex flex-col gap-2">
-          {data?.licitacoes?.map((licitacao) => (
+          {data.licitacaos.data.map((licitacao) => (
             <li
               key={licitacao?.id}
               className="flex flex-col gap-4 bg-gray-200 px-4 py-6 rounded-lg transition-colors duration-100 ease-in-out border hover:border-secondary box-border"
@@ -74,11 +74,15 @@ const BidsPage: NextPageWithLayout = () => {
                     />
                   </span>
                   <span className="font-bold">
-                    {format(new Date(licitacao?.dataHora), 'dd/MM/yyyy', {
-                      locale: ptBR,
-                    })}
+                    {format(
+                      new Date(licitacao?.attributes?.date),
+                      'dd/MM/yyyy',
+                      {
+                        locale: ptBR,
+                      },
+                    )}
                     , às{' '}
-                    {format(new Date(licitacao?.dataHora), "HH':'mm", {
+                    {format(new Date(licitacao?.attributes?.date), "HH':'mm", {
                       locale: ptBR,
                     })}
                   </span>
@@ -87,11 +91,13 @@ const BidsPage: NextPageWithLayout = () => {
                   <span>
                     <File size={16} weight="light" className="text-gray-500" />
                   </span>
-                  <span className="font-bold">{licitacao?.Title}</span>
+                  <span className="font-bold">
+                    {licitacao?.attributes?.title}
+                  </span>
                 </div>
                 <div>
                   <span className="text-xs text-white shadow-lg bg-secondary p-2 rounded-lg">
-                    {licitacao?.Tipo}
+                    {licitacao?.attributes?.type}
                   </span>
                 </div>
               </div>
@@ -100,11 +106,11 @@ const BidsPage: NextPageWithLayout = () => {
                   <span>
                     <TextT size={16} weight="light" className="text-gray-500" />
                   </span>
-                  {licitacao?.SubTitulo && (
+                  {licitacao?.attributes?.subtitle && (
                     <div
                       className="text-gray-500 text-sm"
                       dangerouslySetInnerHTML={{
-                        __html: licitacao?.SubTitulo,
+                        __html: licitacao?.attributes.subtitle,
                       }}
                     />
                   )}
@@ -117,49 +123,54 @@ const BidsPage: NextPageWithLayout = () => {
                       className="text-gray-500"
                     />
                   </span>
-                  {licitacao?.Local && (
+                  {licitacao?.attributes?.place && (
                     <div
                       className="text-gray-500 text-sm"
                       dangerouslySetInnerHTML={{
-                        __html: licitacao?.Local,
+                        __html: licitacao?.attributes.place,
                       }}
                     />
                   )}
                 </div>
               </div>
 
-              {licitacao?.Documentos && licitacao.Documentos.length > 0 && (
-                <>
-                  <div className="w-full h-[2px] bg-gray-300" />
-                  {licitacao?.Documentos?.map((documento) => (
-                    <div
-                      key={documento?.id}
-                      className="flex flex-col laptop:flex-row gap-4"
-                    >
-                      <div className="flex flex-1 items-center justify-start gap-2">
-                        <span>
-                          <FileArrowDown
-                            size={16}
-                            weight="light"
-                            className="text-gray-500"
-                          />
-                        </span>
-                        <Link href={urlBuilder(documento?.url)}>
-                          <a
-                            download
-                            target="_blank"
-                            className="hover:font-bold hover:underline"
+              {licitacao?.attributes?.documents &&
+                licitacao.attributes.documents.length > 0 && (
+                  <>
+                    <div className="w-full h-[2px] bg-gray-300" />
+                    {licitacao?.attributes.documents.map((documento) => (
+                      <div
+                        key={documento?.id}
+                        className="flex flex-col laptop:flex-row gap-4"
+                      >
+                        <div className="flex flex-1 items-center justify-start gap-2">
+                          <span>
+                            <FileArrowDown
+                              size={16}
+                              weight="light"
+                              className="text-gray-500"
+                            />
+                          </span>
+                          <Link
+                            href={urlBuilder(
+                              documento?.file.data?.attributes?.url,
+                            )}
                           >
-                            <span className="text-sm text-primary">
-                              {documento?.name}
-                            </span>
-                          </a>
-                        </Link>
+                            <a
+                              download
+                              target="_blank"
+                              className="hover:font-bold hover:underline"
+                            >
+                              <span className="text-sm text-primary">
+                                {documento?.name}
+                              </span>
+                            </a>
+                          </Link>
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </>
-              )}
+                    ))}
+                  </>
+                )}
             </li>
           ))}
         </ul>
