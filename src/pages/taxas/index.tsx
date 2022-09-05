@@ -41,12 +41,15 @@ const RevenuePage: NextPageWithLayout = () => {
       >
         {data?.revenueGroups?.data.map((group) => (
           <>
-            <h1
-              key={group.id}
-              className="font-bold text-lg border-gray-700 border-l-4 pl-4 py-4 my-8"
-            >
-              {group.attributes?.title}
-            </h1>
+            {group.attributes?.revenue_services?.data &&
+              group.attributes?.revenue_services?.data.length > 0 && (
+                <h1
+                  key={group.id}
+                  className="font-bold text-lg border-gray-700 border-l-4 pl-4 py-4 my-8"
+                >
+                  {group.attributes?.title}
+                </h1>
+              )}
 
             <ul role="list" className="flex flex-col gap-2">
               {group.attributes?.revenue_services?.data.map((service) => (
