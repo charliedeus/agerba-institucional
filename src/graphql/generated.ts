@@ -323,7 +323,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = ComponentArquivosArquivos | ComponentCalendarCalendar | ComponentEventEvent | EventoPublico | Faq | I18NLocale | JudgmentNote | Legislation | Licitacao | Log | MeetingNote | Noticia | QuadroTarifario | Terminal | Title | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentArquivosArquivos | ComponentCalendarCalendar | ComponentEventEvent | EventoPublico | Faq | I18NLocale | JudgmentNote | Legislation | Licitacao | Log | MeetingNote | Noticia | QuadroTarifario | RevenueGroup | RevenueService | Terminal | Title | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -712,6 +712,8 @@ export type Mutation = {
   createMeetingNote?: Maybe<MeetingNoteEntityResponse>;
   createNoticia?: Maybe<NoticiaEntityResponse>;
   createQuadroTarifario?: Maybe<QuadroTarifarioEntityResponse>;
+  createRevenueGroup?: Maybe<RevenueGroupEntityResponse>;
+  createRevenueService?: Maybe<RevenueServiceEntityResponse>;
   createTerminal?: Maybe<TerminalEntityResponse>;
   createTitle?: Maybe<TitleEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
@@ -729,6 +731,8 @@ export type Mutation = {
   deleteMeetingNote?: Maybe<MeetingNoteEntityResponse>;
   deleteNoticia?: Maybe<NoticiaEntityResponse>;
   deleteQuadroTarifario?: Maybe<QuadroTarifarioEntityResponse>;
+  deleteRevenueGroup?: Maybe<RevenueGroupEntityResponse>;
+  deleteRevenueService?: Maybe<RevenueServiceEntityResponse>;
   deleteTerminal?: Maybe<TerminalEntityResponse>;
   deleteTitle?: Maybe<TitleEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
@@ -758,6 +762,8 @@ export type Mutation = {
   updateMeetingNote?: Maybe<MeetingNoteEntityResponse>;
   updateNoticia?: Maybe<NoticiaEntityResponse>;
   updateQuadroTarifario?: Maybe<QuadroTarifarioEntityResponse>;
+  updateRevenueGroup?: Maybe<RevenueGroupEntityResponse>;
+  updateRevenueService?: Maybe<RevenueServiceEntityResponse>;
   updateTerminal?: Maybe<TerminalEntityResponse>;
   updateTitle?: Maybe<TitleEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
@@ -819,6 +825,16 @@ export type MutationCreateNoticiaArgs = {
 
 export type MutationCreateQuadroTarifarioArgs = {
   data: QuadroTarifarioInput;
+};
+
+
+export type MutationCreateRevenueGroupArgs = {
+  data: RevenueGroupInput;
+};
+
+
+export type MutationCreateRevenueServiceArgs = {
+  data: RevenueServiceInput;
 };
 
 
@@ -893,6 +909,16 @@ export type MutationDeleteNoticiaArgs = {
 
 
 export type MutationDeleteQuadroTarifarioArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteRevenueGroupArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteRevenueServiceArgs = {
   id: Scalars['ID'];
 };
 
@@ -1023,6 +1049,18 @@ export type MutationUpdateNoticiaArgs = {
 
 export type MutationUpdateQuadroTarifarioArgs = {
   data: QuadroTarifarioInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateRevenueGroupArgs = {
+  data: RevenueGroupInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateRevenueServiceArgs = {
+  data: RevenueServiceInput;
   id: Scalars['ID'];
 };
 
@@ -1225,6 +1263,10 @@ export type Query = {
   noticias?: Maybe<NoticiaEntityResponseCollection>;
   quadroTarifario?: Maybe<QuadroTarifarioEntityResponse>;
   quadroTarifarios?: Maybe<QuadroTarifarioEntityResponseCollection>;
+  revenueGroup?: Maybe<RevenueGroupEntityResponse>;
+  revenueGroups?: Maybe<RevenueGroupEntityResponseCollection>;
+  revenueService?: Maybe<RevenueServiceEntityResponse>;
+  revenueServices?: Maybe<RevenueServiceEntityResponseCollection>;
   terminais?: Maybe<TerminalEntityResponseCollection>;
   terminal?: Maybe<TerminalEntityResponse>;
   title?: Maybe<TitleEntityResponse>;
@@ -1369,6 +1411,32 @@ export type QueryQuadroTarifariosArgs = {
 };
 
 
+export type QueryRevenueGroupArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryRevenueGroupsArgs = {
+  filters?: InputMaybe<RevenueGroupFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryRevenueServiceArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryRevenueServicesArgs = {
+  filters?: InputMaybe<RevenueServiceFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
 export type QueryTerminaisArgs = {
   filters?: InputMaybe<TerminalFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
@@ -1445,6 +1513,116 @@ export type QueryUsersPermissionsUsersArgs = {
 export type ResponseCollectionMeta = {
   __typename?: 'ResponseCollectionMeta';
   pagination: Pagination;
+};
+
+export type RevenueGroup = {
+  __typename?: 'RevenueGroup';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  revenue_services?: Maybe<RevenueServiceRelationResponseCollection>;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type RevenueGroupRevenue_ServicesArgs = {
+  filters?: InputMaybe<RevenueServiceFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type RevenueGroupEntity = {
+  __typename?: 'RevenueGroupEntity';
+  attributes?: Maybe<RevenueGroup>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type RevenueGroupEntityResponse = {
+  __typename?: 'RevenueGroupEntityResponse';
+  data?: Maybe<RevenueGroupEntity>;
+};
+
+export type RevenueGroupEntityResponseCollection = {
+  __typename?: 'RevenueGroupEntityResponseCollection';
+  data: Array<RevenueGroupEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type RevenueGroupFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<RevenueGroupFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<RevenueGroupFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<RevenueGroupFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  revenue_services?: InputMaybe<RevenueServiceFiltersInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type RevenueGroupInput = {
+  description?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  revenue_services?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type RevenueService = {
+  __typename?: 'RevenueService';
+  cost: Scalars['Float'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  receitas_grupo?: Maybe<RevenueGroupEntityResponse>;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type RevenueServiceEntity = {
+  __typename?: 'RevenueServiceEntity';
+  attributes?: Maybe<RevenueService>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type RevenueServiceEntityResponse = {
+  __typename?: 'RevenueServiceEntityResponse';
+  data?: Maybe<RevenueServiceEntity>;
+};
+
+export type RevenueServiceEntityResponseCollection = {
+  __typename?: 'RevenueServiceEntityResponseCollection';
+  data: Array<RevenueServiceEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type RevenueServiceFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<RevenueServiceFiltersInput>>>;
+  cost?: InputMaybe<FloatFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<RevenueServiceFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<RevenueServiceFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  receitas_grupo?: InputMaybe<RevenueGroupFiltersInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type RevenueServiceInput = {
+  cost?: InputMaybe<Scalars['Float']>;
+  description?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  receitas_grupo?: InputMaybe<Scalars['ID']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type RevenueServiceRelationResponseCollection = {
+  __typename?: 'RevenueServiceRelationResponseCollection';
+  data: Array<RevenueServiceEntity>;
 };
 
 export type StringFilterInput = {
@@ -1991,6 +2169,14 @@ export type GetFaQsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetFaQsQuery = { __typename?: 'Query', faqs?: { __typename?: 'FaqEntityResponseCollection', data: Array<{ __typename?: 'FaqEntity', id?: string | null, attributes?: { __typename?: 'Faq', question?: string | null, answer: string, updatedAt?: any | null } | null }> } | null };
 
+export type GetGruposEServicosQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  start?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type GetGruposEServicosQuery = { __typename?: 'Query', revenueGroups?: { __typename?: 'RevenueGroupEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'RevenueGroupEntity', id?: string | null, attributes?: { __typename?: 'RevenueGroup', title: string, revenue_services?: { __typename?: 'RevenueServiceRelationResponseCollection', data: Array<{ __typename?: 'RevenueServiceEntity', id?: string | null, attributes?: { __typename?: 'RevenueService', title: string, description?: string | null, cost: number } | null }> } | null } | null }> } | null };
+
 export type GetLegislacoesQueryVariables = Exact<{
   limit: Scalars['Int'];
   start: Scalars['Int'];
@@ -2394,6 +2580,68 @@ export function useGetFaQsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Ge
 export type GetFaQsQueryHookResult = ReturnType<typeof useGetFaQsQuery>;
 export type GetFaQsLazyQueryHookResult = ReturnType<typeof useGetFaQsLazyQuery>;
 export type GetFaQsQueryResult = Apollo.QueryResult<GetFaQsQuery, GetFaQsQueryVariables>;
+export const GetGruposEServicosDocument = gql`
+    query GetGruposEServicos($limit: Int!, $start: Int) {
+  revenueGroups(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        title
+        revenue_services {
+          data {
+            id
+            attributes {
+              title
+              description
+              cost
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetGruposEServicosQuery__
+ *
+ * To run a query within a React component, call `useGetGruposEServicosQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetGruposEServicosQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetGruposEServicosQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
+ *   },
+ * });
+ */
+export function useGetGruposEServicosQuery(baseOptions: Apollo.QueryHookOptions<GetGruposEServicosQuery, GetGruposEServicosQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetGruposEServicosQuery, GetGruposEServicosQueryVariables>(GetGruposEServicosDocument, options);
+      }
+export function useGetGruposEServicosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetGruposEServicosQuery, GetGruposEServicosQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetGruposEServicosQuery, GetGruposEServicosQueryVariables>(GetGruposEServicosDocument, options);
+        }
+export type GetGruposEServicosQueryHookResult = ReturnType<typeof useGetGruposEServicosQuery>;
+export type GetGruposEServicosLazyQueryHookResult = ReturnType<typeof useGetGruposEServicosLazyQuery>;
+export type GetGruposEServicosQueryResult = Apollo.QueryResult<GetGruposEServicosQuery, GetGruposEServicosQueryVariables>;
 export const GetLegislacoesDocument = gql`
     query GetLegislacoes($limit: Int!, $start: Int!) {
   legislations(

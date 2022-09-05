@@ -356,6 +356,16 @@ export function Navbar() {
                 </NextLink>
               )}
             </Menu.Item>
+            <Menu.Item>
+              {({ active }) => (
+                <NextLink
+                  href="/taxas"
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>Taxas de Serviços</span>
+                </NextLink>
+              )}
+            </Menu.Item>
           </Menu.Items>
         </Menu>
 

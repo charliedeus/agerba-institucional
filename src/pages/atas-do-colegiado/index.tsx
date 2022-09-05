@@ -103,7 +103,7 @@ const CollegiateMinutesPage: NextPageWithLayout = () => {
                         className="text-gray-500"
                       />
                       <span className="font-normal text-xs text-gray-500">
-                        Atas de Julgamento
+                        Atas de Colegiado
                       </span>
                     </span>
                   </Disclosure.Button>

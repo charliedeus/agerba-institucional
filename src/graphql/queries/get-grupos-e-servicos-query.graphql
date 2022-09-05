@@ -1,0 +1,29 @@
+query GetGruposEServicos ($limit: Int!, $start: Int) {
+   revenueGroups (pagination: { limit: $limit, start: $start, }, publicationState: LIVE) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        title
+        
+        revenue_services {
+          data {
+            id
+            attributes {
+              title
+              description
+              cost
+            }
+          }
+        }
+      }
+    }
+  }
+}
