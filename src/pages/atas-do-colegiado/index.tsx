@@ -168,17 +168,20 @@ const CollegiateMinutesPage: NextPageWithLayout = () => {
             </li>
           )
         })}
-        <Pagination
-          totalCountRegisters={Number(
-            data?.meetingNotes?.meta.pagination.total,
+        {data?.meetingNotes?.meta?.pagination &&
+          data?.meetingNotes?.meta?.pagination.total > 0 && (
+            <Pagination
+              totalCountRegisters={Number(
+                data?.meetingNotes?.meta.pagination.total,
+              )}
+              currentPage={page}
+              totalPages={Number(data?.meetingNotes?.meta.pagination.pageCount)}
+              onPageChange={setPage}
+              registersPerPage={Number(
+                data?.meetingNotes?.meta.pagination.pageSize,
+              )}
+            />
           )}
-          currentPage={page}
-          totalPages={Number(data?.meetingNotes?.meta.pagination.pageCount)}
-          onPageChange={setPage}
-          registersPerPage={Number(
-            data?.meetingNotes?.meta.pagination.pageSize,
-          )}
-        />
       </ul>
     </article>
   )

@@ -166,17 +166,22 @@ const LegislationPage: NextPageWithLayout = () => {
               }
               return null
             })}
-            <Pagination
-              totalCountRegisters={Number(
-                data?.legislations?.meta.pagination.total,
+            {data?.legislations?.meta?.pagination &&
+              data?.legislations?.meta?.pagination.total > 0 && (
+                <Pagination
+                  totalCountRegisters={Number(
+                    data?.legislations?.meta.pagination.total,
+                  )}
+                  currentPage={page}
+                  totalPages={Number(
+                    data?.legislations?.meta.pagination.pageCount,
+                  )}
+                  onPageChange={setPage}
+                  registersPerPage={Number(
+                    data?.legislations?.meta.pagination.pageSize,
+                  )}
+                />
               )}
-              currentPage={page}
-              totalPages={Number(data?.legislations?.meta.pagination.pageCount)}
-              onPageChange={setPage}
-              registersPerPage={Number(
-                data?.legislations?.meta.pagination.pageSize,
-              )}
-            />
           </ul>
         )}
 

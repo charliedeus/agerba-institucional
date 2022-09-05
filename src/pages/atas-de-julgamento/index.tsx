@@ -168,68 +168,23 @@ const CollegiateMinutesPage: NextPageWithLayout = () => {
             </li>
           )
         })}
-        <Pagination
-          totalCountRegisters={Number(
-            data?.judgmentNotes?.meta.pagination.total,
+        {data?.judgmentNotes?.meta?.pagination &&
+          data?.judgmentNotes?.meta?.pagination.total > 0 && (
+            <Pagination
+              totalCountRegisters={Number(
+                data?.judgmentNotes?.meta.pagination.total,
+              )}
+              currentPage={page}
+              totalPages={Number(
+                data?.judgmentNotes?.meta.pagination.pageCount,
+              )}
+              onPageChange={setPage}
+              registersPerPage={Number(
+                data?.judgmentNotes?.meta.pagination.pageSize,
+              )}
+            />
           )}
-          currentPage={page}
-          totalPages={Number(data?.judgmentNotes?.meta.pagination.pageCount)}
-          onPageChange={setPage}
-          registersPerPage={Number(
-            data?.judgmentNotes?.meta.pagination.pageSize,
-          )}
-        />
       </ul>
-
-      {/* <ul role="list" className="flex flex-col gap-2">
-        {data?.atasDeJulgamentos?.map((ata) => (
-          <li
-            key={ata?.id}
-            className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg hover:bg-primary hover:text-white group transition-colors duration-100 ease-in-out border-2 border-transparent hover:border-secondary"
-          >
-            <div className="flex flex-col gap-8 w-full">
-              <div className="flex flex-col laptop:flex-row laptop:w-full gap-2">
-                <div className="flex flex-col flex-1 laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center text-left">
-                  <span className="flex items-center gap-2 laptop:w-1/6">
-                    <CalendarBlank
-                      size={16}
-                      weight="light"
-                      className="text-gray-500"
-                    />
-                    <span className="font-bold ">
-                      {format(new Date(ata?.Data), 'dd/MM/yyyy', {
-                        locale: ptBR,
-                      })}
-                      , às{' '}
-                      {format(new Date(ata?.Data), "HH':'mm", {
-                        locale: ptBR,
-                      })}
-                    </span>
-                  </span>
-                  <span className="font-bold laptop:border-l-2 laptop:border-primary laptop:hover:border-white laptop:pl-2 flex-1 group-hover:border-white">
-                    {ata?.Titulo.toUpperCase()}
-                  </span>
-                  {ata?.Documentos && (
-                    <Link href={urlBuilder(ata?.Documentos[0]?.url)}>
-                      <a
-                        download
-                        target="_blank"
-                        className="laptop:w-1/12 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center justify-center gap-2 group group-hover:border-white"
-                      >
-                        <FileArrowDown
-                          size={24}
-                          weight="light"
-                          className="text-gray-900 group-hover:text-white"
-                        />
-                      </a>
-                    </Link>
-                  )}
-                </div>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul> */}
     </article>
   )
 }
