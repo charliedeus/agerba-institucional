@@ -2,14 +2,14 @@ import { ReactElement, useState } from 'react'
 
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
-import { Bookmark, File, Money } from 'phosphor-react'
+import { File, Money } from 'phosphor-react'
 
 import { Disclosure, Transition } from '@headlessui/react'
 import { useGetGruposEServicosQuery } from '../../graphql/generated'
 import { motion } from 'framer-motion'
 
 const RevenuePage: NextPageWithLayout = () => {
-  const [page, setPage] = useState(1)
+  const [page] = useState(1)
 
   const { data } = useGetGruposEServicosQuery({
     variables: {
