@@ -2197,10 +2197,13 @@ export type GetNoticiasDestaqueQueryVariables = Exact<{ [key: string]: never; }>
 
 export type GetNoticiasDestaqueQuery = { __typename?: 'Query', noticias?: { __typename?: 'NoticiaEntityResponseCollection', data: Array<{ __typename?: 'NoticiaEntity', id?: string | null, attributes?: { __typename?: 'Noticia', title: string, subtitle: string, content: string, newtype: Enum_Noticia_Newtype, highlight: boolean, deadline?: any | null, cover: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null }, gallery?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null }> } | null } | null }> } | null };
 
-export type GetTerminaisQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetTerminaisQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  start?: InputMaybe<Scalars['Int']>;
+}>;
 
 
-export type GetTerminaisQuery = { __typename?: 'Query', terminais?: { __typename?: 'TerminalEntityResponseCollection', data: Array<{ __typename?: 'TerminalEntity', id?: string | null, attributes?: { __typename?: 'Terminal', name: string, phone?: string | null, email?: string | null, type: Enum_Terminal_Type, active: boolean, document?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, url: string } | null } | null } | null } | null }> } | null };
+export type GetTerminaisQuery = { __typename?: 'Query', rodoviario?: { __typename?: 'TerminalEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TerminalEntity', id?: string | null, attributes?: { __typename?: 'Terminal', name: string, phone?: string | null, email?: string | null, type: Enum_Terminal_Type, active: boolean, document?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, url: string } | null } | null } | null } | null }> } | null, hidroviario?: { __typename?: 'TerminalEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TerminalEntity', id?: string | null, attributes?: { __typename?: 'Terminal', name: string, phone?: string | null, email?: string | null, type: Enum_Terminal_Type, active: boolean, document?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, url: string } | null } | null } | null } | null }> } | null, aeroviario?: { __typename?: 'TerminalEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TerminalEntity', id?: string | null, attributes?: { __typename?: 'Terminal', name: string, phone?: string | null, email?: string | null, type: Enum_Terminal_Type, active: boolean, document?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, url: string } | null } | null } | null } | null }> } | null };
 
 
 export const GetAtasDeJulgamentoDocument = gql`
@@ -2904,8 +2907,86 @@ export type GetNoticiasDestaqueQueryHookResult = ReturnType<typeof useGetNoticia
 export type GetNoticiasDestaqueLazyQueryHookResult = ReturnType<typeof useGetNoticiasDestaqueLazyQuery>;
 export type GetNoticiasDestaqueQueryResult = Apollo.QueryResult<GetNoticiasDestaqueQuery, GetNoticiasDestaqueQueryVariables>;
 export const GetTerminaisDocument = gql`
-    query GetTerminais {
-  terminais(publicationState: LIVE, filters: {active: {eq: true}}) {
+    query GetTerminais($limit: Int!, $start: Int) {
+  rodoviario: terminais(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {active: {eq: true}, type: {eq: "Rodoviário"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        active
+        document {
+          data {
+            id
+            attributes {
+              name
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+  hidroviario: terminais(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {active: {eq: true}, type: {eq: "Hidroviário"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        active
+        document {
+          data {
+            id
+            attributes {
+              name
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+  aeroviario: terminais(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {active: {eq: true}, type: {eq: "Aeroviário"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
     data {
       id
       attributes {
@@ -2941,10 +3022,12 @@ export const GetTerminaisDocument = gql`
  * @example
  * const { data, loading, error } = useGetTerminaisQuery({
  *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
  *   },
  * });
  */
-export function useGetTerminaisQuery(baseOptions?: Apollo.QueryHookOptions<GetTerminaisQuery, GetTerminaisQueryVariables>) {
+export function useGetTerminaisQuery(baseOptions: Apollo.QueryHookOptions<GetTerminaisQuery, GetTerminaisQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<GetTerminaisQuery, GetTerminaisQueryVariables>(GetTerminaisDocument, options);
       }

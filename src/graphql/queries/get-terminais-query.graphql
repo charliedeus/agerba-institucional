@@ -1,5 +1,75 @@
-query GetTerminais {
-  terminais (publicationState: LIVE, filters: { active: { eq: true } } ) {
+query GetTerminais ($limit: Int!, $start: Int) {
+  rodoviario: terminais (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { active: { eq: true }, type: { eq: "Rodoviário" }} ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        active
+        
+        document {
+          data {
+            id
+            attributes {
+              name
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  hidroviario: terminais (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { active: { eq: true }, type: { eq: "Hidroviário" }} ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        active
+        
+        document {
+          data {
+            id
+            attributes {
+              name
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  aeroviario: terminais (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { active: { eq: true }, type: { eq: "Aeroviário" }} ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
     data {
       id
       attributes {

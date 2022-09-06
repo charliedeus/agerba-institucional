@@ -9,23 +9,20 @@ import { Disclosure } from '@headlessui/react'
 import { useGetTerminaisQuery } from '../../graphql/generated'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { Pagination } from '../../components/Pagination'
 
 const tabItems = ['Rodoviários', 'Hidroviários', 'Aeroviários']
 
 const TerminalsPage: NextPageWithLayout = () => {
+  const [page, setPage] = useState(1)
   const [isSelectedTab, setIsSelectedTab] = useState(0)
 
-  const { data } = useGetTerminaisQuery()
-
-  const busTerminals = data?.terminais?.data.filter(
-    (terminal) => terminal.attributes?.type === 'Rodoviario',
-  )
-  const waterwayTerminals = data?.terminais?.data.filter(
-    (terminal) => terminal.attributes?.type === 'Hidroviario',
-  )
-  const airTerminals = data?.terminais?.data.filter(
-    (terminal) => terminal.attributes?.type === 'Aeroviario',
-  )
+  const { data } = useGetTerminaisQuery({
+    variables: {
+      limit: 5,
+      start: (page - 1) * 5,
+    },
+  })
 
   return (
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
@@ -62,7 +59,7 @@ const TerminalsPage: NextPageWithLayout = () => {
       >
         {isSelectedTab === 0 && (
           <ul role="list" className="flex flex-col gap-2">
-            {busTerminals?.map((terminal) => {
+            {data?.rodoviario?.data?.map((terminal) => {
               if (terminal.attributes?.type === 'Rodoviario') {
                 return (
                   <li
@@ -125,7 +122,7 @@ const TerminalsPage: NextPageWithLayout = () => {
                               <a
                                 download
                                 target="_blank"
-                                className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] hover:border hover:border-primary group"
+                                className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
                               >
                                 <FileArrowDown
                                   size={24}
@@ -140,7 +137,7 @@ const TerminalsPage: NextPageWithLayout = () => {
                           ) : (
                             <button
                               disabled
-                              className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] hover:border hover:border-primary group disabled:cursor-not-allowed disabled:bg-gray-400"
+                              className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] group disabled:cursor-not-allowed disabled:bg-gray-400"
                             >
                               <FileArrowDown
                                 size={24}
@@ -217,12 +214,28 @@ const TerminalsPage: NextPageWithLayout = () => {
               }
               return null
             })}
+            {data?.rodoviario?.meta?.pagination &&
+              data?.rodoviario?.meta?.pagination.total > 0 && (
+                <Pagination
+                  totalCountRegisters={Number(
+                    data?.rodoviario?.meta.pagination.total,
+                  )}
+                  currentPage={page}
+                  totalPages={Number(
+                    data?.rodoviario?.meta.pagination.pageCount,
+                  )}
+                  onPageChange={setPage}
+                  registersPerPage={Number(
+                    data?.rodoviario?.meta.pagination.pageSize,
+                  )}
+                />
+              )}
           </ul>
         )}
 
         {isSelectedTab === 1 && (
           <ul role="list" className="flex flex-col gap-2">
-            {waterwayTerminals?.map((terminal) => {
+            {data?.hidroviario?.data?.map((terminal) => {
               if (terminal.attributes?.type === 'Hidroviario') {
                 return (
                   <li
@@ -285,7 +298,7 @@ const TerminalsPage: NextPageWithLayout = () => {
                               <a
                                 download
                                 target="_blank"
-                                className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] hover:border hover:border-primary group"
+                                className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
                               >
                                 <FileArrowDown
                                   size={24}
@@ -300,7 +313,7 @@ const TerminalsPage: NextPageWithLayout = () => {
                           ) : (
                             <button
                               disabled
-                              className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] hover:border hover:border-primary group disabled:cursor-not-allowed disabled:bg-gray-400"
+                              className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] group disabled:cursor-not-allowed disabled:bg-gray-400"
                             >
                               <FileArrowDown
                                 size={24}
@@ -377,12 +390,28 @@ const TerminalsPage: NextPageWithLayout = () => {
               }
               return null
             })}
+            {data?.hidroviario?.meta?.pagination &&
+              data?.hidroviario?.meta?.pagination.total > 0 && (
+                <Pagination
+                  totalCountRegisters={Number(
+                    data?.hidroviario?.meta.pagination.total,
+                  )}
+                  currentPage={page}
+                  totalPages={Number(
+                    data?.hidroviario?.meta.pagination.pageCount,
+                  )}
+                  onPageChange={setPage}
+                  registersPerPage={Number(
+                    data?.hidroviario?.meta.pagination.pageSize,
+                  )}
+                />
+              )}
           </ul>
         )}
 
         {isSelectedTab === 2 && (
           <ul role="list" className="flex flex-col gap-2">
-            {airTerminals?.map((terminal) => {
+            {data?.aeroviario?.data?.map((terminal) => {
               if (terminal.attributes?.type === 'Aeroviario') {
                 return (
                   <li
@@ -445,7 +474,7 @@ const TerminalsPage: NextPageWithLayout = () => {
                               <a
                                 download
                                 target="_blank"
-                                className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] hover:border hover:border-primary group"
+                                className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
                               >
                                 <FileArrowDown
                                   size={24}
@@ -460,7 +489,7 @@ const TerminalsPage: NextPageWithLayout = () => {
                           ) : (
                             <button
                               disabled
-                              className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] hover:border hover:border-primary group disabled:cursor-not-allowed disabled:bg-gray-400"
+                              className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px]  group disabled:cursor-not-allowed disabled:bg-gray-400"
                             >
                               <FileArrowDown
                                 size={24}
@@ -537,6 +566,22 @@ const TerminalsPage: NextPageWithLayout = () => {
               }
               return null
             })}
+            {data?.aeroviario?.meta?.pagination &&
+              data?.aeroviario?.meta?.pagination.total > 0 && (
+                <Pagination
+                  totalCountRegisters={Number(
+                    data?.aeroviario?.meta.pagination.total,
+                  )}
+                  currentPage={page}
+                  totalPages={Number(
+                    data?.aeroviario?.meta.pagination.pageCount,
+                  )}
+                  onPageChange={setPage}
+                  registersPerPage={Number(
+                    data?.aeroviario?.meta.pagination.pageSize,
+                  )}
+                />
+              )}
           </ul>
         )}
 
