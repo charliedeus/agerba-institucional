@@ -10,7 +10,7 @@ const nextConfig = withPWA({
     runtimeCaching,
   },
   output: 'standalone',
-  exportTrailingSlash: true,
+  trailingSlash: true,
 })
 
 module.exports = nextConfig
