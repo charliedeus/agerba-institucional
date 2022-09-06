@@ -1,6 +1,7 @@
 import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
+import NextNProgress from 'nextjs-progressbar'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import '../styles/globals.css'
@@ -54,6 +55,7 @@ export default function MyApp({
             },
           }}
         >
+          <NextNProgress color="#3F3F95" height={8} />
           <Component {...pageProps} />
 
           <a href="#" id="backToTopButton" className="laptop:hidden">

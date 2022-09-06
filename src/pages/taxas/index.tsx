@@ -45,7 +45,7 @@ const RevenuePage: NextPageWithLayout = () => {
               group.attributes?.revenue_services?.data.length > 0 && (
                 <h1
                   key={group.id}
-                  className="font-bold text-lg border-gray-700 border-l-4 pl-4 py-4 my-8"
+                  className="font-bold text-lg border-gray-700 border-l-4 pl-4 py-4 my-4"
                 >
                   {group.attributes?.title}
                 </h1>
@@ -74,7 +74,7 @@ const RevenuePage: NextPageWithLayout = () => {
                             weight="light"
                             className="text-gray-500"
                           />
-                          <span className="font-bold text-gray-900">
+                          <span className="font-bold text-gray-900 w-full text-end">
                             {service.attributes?.cost}
                           </span>
                         </span>
