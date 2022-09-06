@@ -44,7 +44,7 @@ export function Pagination({
   return (
     <div className="flex items-center justify-between flex-col laptop:flex-row">
       <div className="flex items-center gap-2">
-        <strong>{(currentPage * registersPerPage + 1) - registersPerPage}</strong> - <strong>{(currentPage * registersPerPage) > totalCountRegisters ? totalCountRegisters : (currentPage * registersPerPage)}</strong> de <strong>{totalCountRegisters}</strong> <span>registros</span>
+        <strong>{(currentPage * registersPerPage + 1) - registersPerPage}</strong> - <strong>{(currentPage * registersPerPage) > totalCountRegisters ? totalCountRegisters : (currentPage * registersPerPage)}</strong> de <strong>{totalCountRegisters}</strong> {totalCountRegisters > 1 ? <span>registros.</span> : <span>registro.</span>}
       </div>
       <div className="flex gap-2 justify-end ">
         {currentPage > (1 + siblingsCount) && (
@@ -73,6 +73,6 @@ export function Pagination({
           </>
         )}
       </div>
-    </div>
+    </div >
   )
 }

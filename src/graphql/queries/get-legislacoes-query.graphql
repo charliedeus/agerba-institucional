@@ -1,5 +1,71 @@
 query GetLegislacoes ($limit: Int!, $start: Int!) {
-  legislations (pagination: { limit: $limit, start: $start}, publicationState: LIVE, sort: "publication_date:DESC") {
+  resolutions: legislations (pagination: { limit: $limit, start: $start}, filters: { type: { eq: "Resoluções"} }, publicationState: LIVE, sort: "publication_date:DESC") {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        title
+        menu
+        slug
+        type
+        publication_date
+        
+        file {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  laws: legislations (pagination: { limit: $limit, start: $start}, filters: { type: { eq: "Leis"} }, publicationState: LIVE, sort: "publication_date:DESC") {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        title
+        menu
+        slug
+        type
+        publication_date
+        
+        file {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  decrees: legislations (pagination: { limit: $limit, start: $start}, filters: { type: { eq: "Decretos"} }, publicationState: LIVE, sort: "publication_date:DESC") {
     meta {
       pagination {
         total

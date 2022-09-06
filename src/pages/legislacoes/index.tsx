@@ -59,7 +59,7 @@ const LegislationPage: NextPageWithLayout = () => {
       >
         {isSelectedTab === 0 && (
           <ul role="list" className="flex flex-col gap-2">
-            {data?.legislations?.data.map((legislation) => {
+            {data?.resolutions?.data.map((legislation) => {
               if (legislation.attributes?.type === 'Resolucoes') {
                 return (
                   <li
@@ -166,19 +166,19 @@ const LegislationPage: NextPageWithLayout = () => {
               }
               return null
             })}
-            {data?.legislations?.meta?.pagination &&
-              data?.legislations?.meta?.pagination.total > 0 && (
+            {data?.resolutions?.meta?.pagination &&
+              data?.resolutions?.meta?.pagination.total > 0 && (
                 <Pagination
                   totalCountRegisters={Number(
-                    data?.legislations?.meta.pagination.total,
+                    data?.resolutions?.meta.pagination.total,
                   )}
                   currentPage={page}
                   totalPages={Number(
-                    data?.legislations?.meta.pagination.pageCount,
+                    data?.resolutions?.meta.pagination.pageCount,
                   )}
                   onPageChange={setPage}
                   registersPerPage={Number(
-                    data?.legislations?.meta.pagination.pageSize,
+                    data?.resolutions?.meta.pagination.pageSize,
                   )}
                 />
               )}
@@ -187,7 +187,7 @@ const LegislationPage: NextPageWithLayout = () => {
 
         {isSelectedTab === 1 && (
           <ul role="list" className="flex flex-col gap-2">
-            {data?.legislations?.data.map((legislation) => {
+            {data?.laws?.data.map((legislation) => {
               if (legislation.attributes?.type === 'Leis') {
                 return (
                   <li
@@ -294,12 +294,26 @@ const LegislationPage: NextPageWithLayout = () => {
               }
               return null
             })}
+            {data?.laws?.meta?.pagination &&
+              data?.laws?.meta?.pagination.total > 0 && (
+                <Pagination
+                  totalCountRegisters={Number(
+                    data?.laws?.meta.pagination.total,
+                  )}
+                  currentPage={page}
+                  totalPages={Number(data?.laws?.meta.pagination.pageCount)}
+                  onPageChange={setPage}
+                  registersPerPage={Number(
+                    data?.laws?.meta.pagination.pageSize,
+                  )}
+                />
+              )}
           </ul>
         )}
 
         {isSelectedTab === 2 && (
           <ul role="list" className="flex flex-col gap-2">
-            {data?.legislations?.data.map((legislation) => {
+            {data?.decrees?.data.map((legislation) => {
               if (legislation.attributes?.type === 'Decretos') {
                 return (
                   <li
@@ -406,6 +420,20 @@ const LegislationPage: NextPageWithLayout = () => {
               }
               return null
             })}
+            {data?.decrees?.meta?.pagination &&
+              data?.decrees?.meta?.pagination.total > 0 && (
+                <Pagination
+                  totalCountRegisters={Number(
+                    data?.decrees?.meta.pagination.total,
+                  )}
+                  currentPage={page}
+                  totalPages={Number(data?.decrees?.meta.pagination.pageCount)}
+                  onPageChange={setPage}
+                  registersPerPage={Number(
+                    data?.decrees?.meta.pagination.pageSize,
+                  )}
+                />
+              )}
           </ul>
         )}
       </motion.div>

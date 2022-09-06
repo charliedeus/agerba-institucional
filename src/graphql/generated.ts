@@ -2183,7 +2183,7 @@ export type GetLegislacoesQueryVariables = Exact<{
 }>;
 
 
-export type GetLegislacoesQuery = { __typename?: 'Query', legislations?: { __typename?: 'LegislationEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'LegislationEntity', id?: string | null, attributes?: { __typename?: 'Legislation', title: string, menu: string, slug: string, type: Enum_Legislation_Type, publication_date: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null }> } | null };
+export type GetLegislacoesQuery = { __typename?: 'Query', resolutions?: { __typename?: 'LegislationEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'LegislationEntity', id?: string | null, attributes?: { __typename?: 'Legislation', title: string, menu: string, slug: string, type: Enum_Legislation_Type, publication_date: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null }> } | null, laws?: { __typename?: 'LegislationEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'LegislationEntity', id?: string | null, attributes?: { __typename?: 'Legislation', title: string, menu: string, slug: string, type: Enum_Legislation_Type, publication_date: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null }> } | null, decrees?: { __typename?: 'LegislationEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'LegislationEntity', id?: string | null, attributes?: { __typename?: 'Legislation', title: string, menu: string, slug: string, type: Enum_Legislation_Type, publication_date: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null }> } | null };
 
 export type GetLicitacoesFuturasQueryVariables = Exact<{
   data_atual: Scalars['DateTime'];
@@ -2644,8 +2644,79 @@ export type GetGruposEServicosLazyQueryHookResult = ReturnType<typeof useGetGrup
 export type GetGruposEServicosQueryResult = Apollo.QueryResult<GetGruposEServicosQuery, GetGruposEServicosQueryVariables>;
 export const GetLegislacoesDocument = gql`
     query GetLegislacoes($limit: Int!, $start: Int!) {
-  legislations(
+  resolutions: legislations(
     pagination: {limit: $limit, start: $start}
+    filters: {type: {eq: "Resoluções"}}
+    publicationState: LIVE
+    sort: "publication_date:DESC"
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        title
+        menu
+        slug
+        type
+        publication_date
+        file {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+  laws: legislations(
+    pagination: {limit: $limit, start: $start}
+    filters: {type: {eq: "Leis"}}
+    publicationState: LIVE
+    sort: "publication_date:DESC"
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        title
+        menu
+        slug
+        type
+        publication_date
+        file {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+  decrees: legislations(
+    pagination: {limit: $limit, start: $start}
+    filters: {type: {eq: "Decretos"}}
     publicationState: LIVE
     sort: "publication_date:DESC"
   ) {
