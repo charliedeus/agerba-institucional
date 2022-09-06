@@ -75,7 +75,10 @@ const RevenuePage: NextPageWithLayout = () => {
                             className="text-gray-500"
                           />
                           <span className="font-bold text-gray-900 w-full text-end">
-                            {service.attributes?.cost}
+                            {service.attributes?.cost.toLocaleString('pt-BR', {
+                              style: 'currency',
+                              currency: 'BRL',
+                            })}
                           </span>
                         </span>
                       </Disclosure.Button>
