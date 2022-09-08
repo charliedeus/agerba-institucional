@@ -1,0 +1,106 @@
+query GetTransportesHidroviarios ($limit: Int!, $start: Int) {
+  ferryBoat: waterwayTransports (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { type: { eq: "Ferry Boat" }} ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        address
+        
+        documents {
+          id
+          name
+          file {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  lanchas: waterwayTransports (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { type: { eq: "Lanchas" }} ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        address
+        
+        documents {
+          id
+          name
+          file {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  catamara: waterwayTransports (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { type: { eq: "Catamarã" }} ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        address
+        
+        documents {
+          id
+          name
+          file {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

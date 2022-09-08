@@ -176,6 +176,12 @@ export enum Enum_Terminal_Type {
   Rodoviario = 'Rodoviario'
 }
 
+export enum Enum_Waterwaytransport_Type {
+  Catamara = 'Catamara',
+  FerryBoat = 'Ferry_Boat',
+  Lanchas = 'Lanchas'
+}
+
 export type EventoPublico = {
   __typename?: 'EventoPublico';
   Documentos?: Maybe<Array<Maybe<ComponentArquivosArquivos>>>;
@@ -323,7 +329,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = ComponentArquivosArquivos | ComponentCalendarCalendar | ComponentEventEvent | EventoPublico | Faq | I18NLocale | JudgmentNote | Legislation | Licitacao | Log | MeetingNote | Noticia | QuadroTarifario | RevenueGroup | RevenueService | Terminal | Title | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentArquivosArquivos | ComponentCalendarCalendar | ComponentEventEvent | EventoPublico | Faq | I18NLocale | JudgmentNote | Legislation | Licitacao | Log | MeetingNote | Noticia | QuadroTarifario | RevenueGroup | RevenueService | Terminal | Title | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | WaterwayTransport;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -722,6 +728,7 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  createWaterwayTransport?: Maybe<WaterwayTransportEntityResponse>;
   deleteEventoPublico?: Maybe<EventoPublicoEntityResponse>;
   deleteFaq?: Maybe<FaqEntityResponse>;
   deleteJudgmentNote?: Maybe<JudgmentNoteEntityResponse>;
@@ -741,6 +748,7 @@ export type Mutation = {
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
   /** Delete an existing user */
   deleteUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteWaterwayTransport?: Maybe<WaterwayTransportEntityResponse>;
   /** Confirm an email users email address */
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>;
   /** Request a reset password token */
@@ -772,6 +780,7 @@ export type Mutation = {
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
   /** Update an existing user */
   updateUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  updateWaterwayTransport?: Maybe<WaterwayTransportEntityResponse>;
   upload: UploadFileEntityResponse;
 };
 
@@ -868,6 +877,11 @@ export type MutationCreateUsersPermissionsUserArgs = {
 };
 
 
+export type MutationCreateWaterwayTransportArgs = {
+  data: WaterwayTransportInput;
+};
+
+
 export type MutationDeleteEventoPublicoArgs = {
   id: Scalars['ID'];
 };
@@ -949,6 +963,11 @@ export type MutationDeleteUsersPermissionsRoleArgs = {
 
 
 export type MutationDeleteUsersPermissionsUserArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteWaterwayTransportArgs = {
   id: Scalars['ID'];
 };
 
@@ -1097,6 +1116,12 @@ export type MutationUpdateUsersPermissionsRoleArgs = {
 
 export type MutationUpdateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateWaterwayTransportArgs = {
+  data: WaterwayTransportInput;
   id: Scalars['ID'];
 };
 
@@ -1279,6 +1304,8 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+  waterwayTransport?: Maybe<WaterwayTransportEntityResponse>;
+  waterwayTransports?: Maybe<WaterwayTransportEntityResponseCollection>;
 };
 
 
@@ -1507,6 +1534,19 @@ export type QueryUsersPermissionsUserArgs = {
 export type QueryUsersPermissionsUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryWaterwayTransportArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryWaterwayTransportsArgs = {
+  filters?: InputMaybe<WaterwayTransportFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -2126,6 +2166,69 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
+export type WaterwayTransport = {
+  __typename?: 'WaterwayTransport';
+  address?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  documents?: Maybe<Array<Maybe<ComponentArquivosArquivos>>>;
+  email?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  phone?: Maybe<Scalars['String']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  type?: Maybe<Enum_Waterwaytransport_Type>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type WaterwayTransportDocumentsArgs = {
+  filters?: InputMaybe<ComponentArquivosArquivosFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type WaterwayTransportEntity = {
+  __typename?: 'WaterwayTransportEntity';
+  attributes?: Maybe<WaterwayTransport>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type WaterwayTransportEntityResponse = {
+  __typename?: 'WaterwayTransportEntityResponse';
+  data?: Maybe<WaterwayTransportEntity>;
+};
+
+export type WaterwayTransportEntityResponseCollection = {
+  __typename?: 'WaterwayTransportEntityResponseCollection';
+  data: Array<WaterwayTransportEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type WaterwayTransportFiltersInput = {
+  address?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<WaterwayTransportFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  documents?: InputMaybe<ComponentArquivosArquivosFiltersInput>;
+  email?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<WaterwayTransportFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<WaterwayTransportFiltersInput>>>;
+  phone?: InputMaybe<StringFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  type?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type WaterwayTransportInput = {
+  address?: InputMaybe<Scalars['String']>;
+  documents?: InputMaybe<Array<InputMaybe<ComponentArquivosArquivosInput>>>;
+  email?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  phone?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  type?: InputMaybe<Enum_Waterwaytransport_Type>;
+};
+
 export type GetAtasDeJulgamentoQueryVariables = Exact<{
   limit: Scalars['Int'];
   start?: InputMaybe<Scalars['Int']>;
@@ -2204,6 +2307,14 @@ export type GetTerminaisQueryVariables = Exact<{
 
 
 export type GetTerminaisQuery = { __typename?: 'Query', rodoviario?: { __typename?: 'TerminalEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TerminalEntity', id?: string | null, attributes?: { __typename?: 'Terminal', name: string, phone?: string | null, email?: string | null, type: Enum_Terminal_Type, active: boolean, document?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, url: string } | null } | null } | null } | null }> } | null, hidroviario?: { __typename?: 'TerminalEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TerminalEntity', id?: string | null, attributes?: { __typename?: 'Terminal', name: string, phone?: string | null, email?: string | null, type: Enum_Terminal_Type, active: boolean, document?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, url: string } | null } | null } | null } | null }> } | null, aeroviario?: { __typename?: 'TerminalEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TerminalEntity', id?: string | null, attributes?: { __typename?: 'Terminal', name: string, phone?: string | null, email?: string | null, type: Enum_Terminal_Type, active: boolean, document?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, url: string } | null } | null } | null } | null }> } | null };
+
+export type GetTransportesHidroviariosQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  start?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type GetTransportesHidroviariosQuery = { __typename?: 'Query', ferryBoat?: { __typename?: 'WaterwayTransportEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'WaterwayTransportEntity', id?: string | null, attributes?: { __typename?: 'WaterwayTransport', name: string, phone?: string | null, email?: string | null, type?: Enum_Waterwaytransport_Type | null, address?: string | null, documents?: Array<{ __typename?: 'ComponentArquivosArquivos', id: string, name: string, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null> | null } | null }> } | null, lanchas?: { __typename?: 'WaterwayTransportEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'WaterwayTransportEntity', id?: string | null, attributes?: { __typename?: 'WaterwayTransport', name: string, phone?: string | null, email?: string | null, type?: Enum_Waterwaytransport_Type | null, address?: string | null, documents?: Array<{ __typename?: 'ComponentArquivosArquivos', id: string, name: string, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null> | null } | null }> } | null, catamara?: { __typename?: 'WaterwayTransportEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'WaterwayTransportEntity', id?: string | null, attributes?: { __typename?: 'WaterwayTransport', name: string, phone?: string | null, email?: string | null, type?: Enum_Waterwaytransport_Type | null, address?: string | null, documents?: Array<{ __typename?: 'ComponentArquivosArquivos', id: string, name: string, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null> | null } | null }> } | null };
 
 
 export const GetAtasDeJulgamentoDocument = gql`
@@ -3038,3 +3149,147 @@ export function useGetTerminaisLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type GetTerminaisQueryHookResult = ReturnType<typeof useGetTerminaisQuery>;
 export type GetTerminaisLazyQueryHookResult = ReturnType<typeof useGetTerminaisLazyQuery>;
 export type GetTerminaisQueryResult = Apollo.QueryResult<GetTerminaisQuery, GetTerminaisQueryVariables>;
+export const GetTransportesHidroviariosDocument = gql`
+    query GetTransportesHidroviarios($limit: Int!, $start: Int) {
+  ferryBoat: waterwayTransports(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {type: {eq: "Ferry Boat"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        address
+        documents {
+          id
+          name
+          file {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  lanchas: waterwayTransports(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {type: {eq: "Lanchas"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        address
+        documents {
+          id
+          name
+          file {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  catamara: waterwayTransports(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {type: {eq: "Catamarã"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        address
+        documents {
+          id
+          name
+          file {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetTransportesHidroviariosQuery__
+ *
+ * To run a query within a React component, call `useGetTransportesHidroviariosQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTransportesHidroviariosQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetTransportesHidroviariosQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
+ *   },
+ * });
+ */
+export function useGetTransportesHidroviariosQuery(baseOptions: Apollo.QueryHookOptions<GetTransportesHidroviariosQuery, GetTransportesHidroviariosQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetTransportesHidroviariosQuery, GetTransportesHidroviariosQueryVariables>(GetTransportesHidroviariosDocument, options);
+      }
+export function useGetTransportesHidroviariosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTransportesHidroviariosQuery, GetTransportesHidroviariosQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetTransportesHidroviariosQuery, GetTransportesHidroviariosQueryVariables>(GetTransportesHidroviariosDocument, options);
+        }
+export type GetTransportesHidroviariosQueryHookResult = ReturnType<typeof useGetTransportesHidroviariosQuery>;
+export type GetTransportesHidroviariosLazyQueryHookResult = ReturnType<typeof useGetTransportesHidroviariosLazyQuery>;
+export type GetTransportesHidroviariosQueryResult = Apollo.QueryResult<GetTransportesHidroviariosQuery, GetTransportesHidroviariosQueryVariables>;

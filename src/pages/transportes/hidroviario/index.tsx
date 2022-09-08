@@ -1,9 +1,24 @@
-import { EnvelopeSimple, Phone } from 'phosphor-react'
-import { ReactElement } from 'react'
+import { Disclosure, Transition } from '@headlessui/react'
+import Link from 'next/link'
+import { EnvelopeSimple, FileArrowDown, Phone, File } from 'phosphor-react'
+import { ReactElement, useState } from 'react'
+import { useGetTransportesHidroviariosQuery } from '../../../graphql/generated'
 import { DefaultLayout } from '../../../layouts/DefaultLayout'
+import { urlBuilder } from '../../../lib/urlBuilder'
 import { NextPageWithLayout } from '../../_app'
 
 const WaterwayTransportPage: NextPageWithLayout = () => {
+  const [page] = useState(1)
+
+  const { data } = useGetTransportesHidroviariosQuery({
+    variables: {
+      limit: 5,
+      start: (page - 1) * 5,
+    },
+  })
+
+  console.log(data)
+
   return (
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
       <h1 className="font-bold text-[2rem]">Transporte Hidroviário</h1>
@@ -21,7 +36,7 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
         coordenados, controlados, concedidos, permitidos, regulados e
         fiscalizados pela Agência Estadual de Regulação de Serviços Públicos de
         Energia, Transportes e Comunicações da Bahia - AGERBA, autarquia sob
-        regime especial, vinculada à Secretaria de Infraestrutura - SEINFRA.
+        regim e especial, vinculada à Secretaria de Infraestrutura - SEINFRA.
       </p>
 
       <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
@@ -45,32 +60,117 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
       </p>
 
       <ul role="list" className="flex flex-col gap-2">
-        <li className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg">
-          <picture>
-            <img
-              className="shrink-0 h-12 w-12 rounded-full"
-              src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
-              alt=""
-            />
-          </picture>
-          <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
-            <span className="font-bold laptop:flex-1 laptop:pl-2">
-              Internacional Travessias Ltda
-            </span>
-            <span className="laptop:w-1/5 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
-              <Phone size={16} weight="light" className="text-gray-500" /> (71)
-              3103 2050
-            </span>
-            <span className="laptop:w-1/3 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
-              <EnvelopeSimple
-                size={16}
-                weight="light"
-                className="text-gray-500"
-              />{' '}
-              demandas@internacionaltravessias.com.br
-            </span>
-          </div>
-        </li>
+        {data?.ferryBoat?.data.map((item) => (
+          <li
+            key={item.id}
+            className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg"
+          >
+            <Disclosure as="div" className="flex flex-col gap-8 w-full">
+              <div className="flex flex-col laptop:flex-row laptop:w-full gap-2">
+                <Disclosure.Button className="flex flex-col gap-4 flex-1 laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center text-left">
+                  <picture>
+                    <img
+                      className="shrink-0 h-12 w-12 rounded-full"
+                      src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
+                      alt=""
+                    />
+                  </picture>
+                  <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
+                    <span className="font-bold laptop:flex-1 laptop:pl-2">
+                      {item.attributes?.name}
+                    </span>
+                    <span className="laptop:w-1/5 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
+                      <Phone
+                        size={16}
+                        weight="light"
+                        className="text-gray-500"
+                      />{' '}
+                      (71) 3014 4086
+                    </span>
+                    <span className="laptop:w-1/3 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
+                      <EnvelopeSimple
+                        size={16}
+                        weight="light"
+                        className="text-gray-500"
+                      />{' '}
+                      {item.attributes?.email}
+                    </span>
+                  </div>
+                </Disclosure.Button>
+              </div>
+              {item.attributes?.address && (
+                <Transition
+                  enter="transition duration-100 ease-out"
+                  enterFrom="transform scale-95 opacity-0"
+                  enterTo="transform scale-100 opacity-100"
+                  leave="transition duration-75 ease-out"
+                  leaveFrom="transform scale-100 opacity-100"
+                  leaveTo="transform scale-95 opacity-0"
+                >
+                  <Disclosure.Panel
+                    as="div"
+                    className="text-gray-500 text-sm text-left mt-[-1rem] bg-gray-200 p-4 rounded-b-lg line-clamp-4"
+                    dangerouslySetInnerHTML={{
+                      __html: item.attributes?.address,
+                    }}
+                  />
+
+                  <Disclosure.Panel
+                    as="div"
+                    className="text-gray-500 text-sm text-left mt-[-1rem] bg-gray-200 p-4 rounded-b-lg line-clamp-4"
+                  >
+                    <h1 className="text-md font-bold text-gray-900 pb-4">
+                      Documentos relacionados:
+                    </h1>
+
+                    <ul
+                      role="list"
+                      className="flex flex-col gap-2 pt-2 border border-primary rounded-lg p-4"
+                    >
+                      {item.attributes.documents?.map((document) => (
+                        <li
+                          key={document?.id}
+                          className="flex items-center justify-between laptop:flex-row gap-2 bg-gray-200 px-4 py-2 rounded-lg transition-colors duration-100 ease-in-out border border-transparent hover:border-secondary box-border"
+                        >
+                          <div className="flex items-center gap-2">
+                            <File
+                              size={16}
+                              weight="light"
+                              className="text-gray-500"
+                            />
+                            <span className="font-bold text-md text-gray-900">
+                              {document?.name}
+                            </span>
+                          </div>
+                          <Link
+                            href={urlBuilder(
+                              document?.file.data?.attributes?.url,
+                            )}
+                          >
+                            <a
+                              download
+                              target="_blank"
+                              className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
+                            >
+                              <FileArrowDown
+                                size={24}
+                                weight="light"
+                                className="text-white group-hover:text-primary"
+                              />
+                              <span className="font-normal text-sm group-hover:text-primary">
+                                Baixar
+                              </span>
+                            </a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </Disclosure.Panel>
+                </Transition>
+              )}
+            </Disclosure>
+          </li>
+        ))}
       </ul>
 
       <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
@@ -94,58 +194,117 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
       </p>
 
       <ul role="list" className="flex flex-col gap-2">
-        <li className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg">
-          <picture>
-            <img
-              className="shrink-0 h-12 w-12 rounded-full"
-              src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
-              alt=""
-            />
-          </picture>
-          <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
-            <span className="font-bold laptop:flex-1 laptop:pl-2">
-              CL Empreendimentos Ltda
-            </span>
-            <span className="laptop:w-1/5 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
-              <Phone size={16} weight="light" className="text-gray-500" /> (71)
-              3014 4086
-            </span>
-            <span className="laptop:w-1/3 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
-              <EnvelopeSimple
-                size={16}
-                weight="light"
-                className="text-gray-500"
-              />{' '}
-              clempreendimentos@hotmail.com
-            </span>
-          </div>
-        </li>
-        <li className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg">
-          <picture>
-            <img
-              className="shrink-0 h-12 w-12 rounded-full"
-              src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
-              alt=""
-            />
-          </picture>
-          <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
-            <span className="font-bold laptop:flex-1 laptop:pl-2">
-              Vera Cruz Transportes e Serviços Marítimos Ltda ME
-            </span>
-            <span className="laptop:w-1/5 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
-              <Phone size={16} weight="light" className="text-gray-500" /> (71)
-              3633 1248
-            </span>
-            <span className="laptop:w-1/3 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
-              <EnvelopeSimple
-                size={16}
-                weight="light"
-                className="text-gray-500"
-              />{' '}
-              contatovctm@gmail.com
-            </span>
-          </div>
-        </li>
+        {data?.lanchas?.data.map((item) => (
+          <li
+            key={item.id}
+            className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg"
+          >
+            <Disclosure as="div" className="flex flex-col gap-8 w-full">
+              <div className="flex flex-col laptop:flex-row laptop:w-full gap-2">
+                <Disclosure.Button className="flex flex-col gap-4 flex-1 laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center text-left">
+                  <picture>
+                    <img
+                      className="shrink-0 h-12 w-12 rounded-full"
+                      src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
+                      alt=""
+                    />
+                  </picture>
+                  <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
+                    <span className="font-bold laptop:flex-1 laptop:pl-2">
+                      {item.attributes?.name}
+                    </span>
+                    <span className="laptop:w-1/5 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
+                      <Phone
+                        size={16}
+                        weight="light"
+                        className="text-gray-500"
+                      />{' '}
+                      (71) 3014 4086
+                    </span>
+                    <span className="laptop:w-1/3 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
+                      <EnvelopeSimple
+                        size={16}
+                        weight="light"
+                        className="text-gray-500"
+                      />{' '}
+                      {item.attributes?.email}
+                    </span>
+                  </div>
+                </Disclosure.Button>
+              </div>
+              {item.attributes?.address && (
+                <Transition
+                  enter="transition duration-100 ease-out"
+                  enterFrom="transform scale-95 opacity-0"
+                  enterTo="transform scale-100 opacity-100"
+                  leave="transition duration-75 ease-out"
+                  leaveFrom="transform scale-100 opacity-100"
+                  leaveTo="transform scale-95 opacity-0"
+                >
+                  <Disclosure.Panel
+                    as="div"
+                    className="text-gray-500 text-sm text-left mt-[-1rem] bg-gray-200 p-4 rounded-b-lg line-clamp-4"
+                    dangerouslySetInnerHTML={{
+                      __html: item.attributes?.address,
+                    }}
+                  />
+
+                  <Disclosure.Panel
+                    as="div"
+                    className="text-gray-500 text-sm text-left mt-[-1rem] bg-gray-200 p-4 rounded-b-lg line-clamp-4"
+                  >
+                    <h1 className="text-md font-bold text-gray-900 pb-4">
+                      Documentos relacionados:
+                    </h1>
+
+                    <ul
+                      role="list"
+                      className="flex flex-col gap-2 pt-2 border border-primary rounded-lg p-4"
+                    >
+                      {item.attributes.documents?.map((document) => (
+                        <li
+                          key={document?.id}
+                          className="flex items-center justify-between laptop:flex-row gap-2 bg-gray-200 px-4 py-2 rounded-lg transition-colors duration-100 ease-in-out border border-transparent hover:border-secondary box-border"
+                        >
+                          <div className="flex items-center gap-2">
+                            <File
+                              size={16}
+                              weight="light"
+                              className="text-gray-500"
+                            />
+                            <span className="font-bold text-md text-gray-900">
+                              {document?.name}
+                            </span>
+                          </div>
+                          <Link
+                            href={urlBuilder(
+                              document?.file.data?.attributes?.url,
+                            )}
+                          >
+                            <a
+                              download
+                              target="_blank"
+                              className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
+                            >
+                              <FileArrowDown
+                                size={24}
+                                weight="light"
+                                className="text-white group-hover:text-primary"
+                              />
+                              <span className="font-normal text-sm group-hover:text-primary">
+                                Baixar
+                              </span>
+                            </a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </Disclosure.Panel>
+                </Transition>
+              )}
+            </Disclosure>
+          </li>
+        ))}
       </ul>
 
       <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
@@ -157,84 +316,117 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
       </p>
 
       <ul role="list" className="flex flex-col gap-2">
-        <li className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg">
-          <picture>
-            <img
-              className="shrink-0 h-12 w-12 rounded-full"
-              src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
-              alt=""
-            />
-          </picture>
-          <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
-            <span className="font-bold laptop:flex-1 laptop:pl-2">
-              Francisco das Chagas Jacinto ME
-            </span>
-            <span className="laptop:w-1/5 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
-              <Phone size={16} weight="light" className="text-gray-500" /> (71)
-              3326-7158
-            </span>
-            <span className="laptop:w-1/3 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
-              <EnvelopeSimple
-                size={16}
-                weight="light"
-                className="text-gray-500"
-              />{' '}
-              franciscocjacinto@gmail.com
-            </span>
-          </div>
-        </li>
-        <li className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg">
-          <picture>
-            <img
-              className="shrink-0 h-12 w-12 rounded-full"
-              src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
-              alt=""
-            />
-          </picture>
-          <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
-            <span className="font-bold laptop:flex-1 laptop:pl-2">
-              Biônica Transportes e Turismo Marítimo Regional Ltda.
-            </span>
-            <span className="laptop:w-1/5 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
-              <Phone size={16} weight="light" className="text-gray-500" /> (75)
-              3641-3327
-            </span>
-            <span className="laptop:w-1/3 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
-              <EnvelopeSimple
-                size={16}
-                weight="light"
-                className="text-gray-500"
-              />{' '}
-              contato@biotur.com.br
-            </span>
-          </div>
-        </li>
-        <li className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg">
-          <picture>
-            <img
-              className="shrink-0 h-12 w-12 rounded-full"
-              src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
-              alt=""
-            />
-          </picture>
-          <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
-            <span className="font-bold laptop:flex-1 laptop:pl-2">
-              Pousada Farol do Morro Ltda. ME
-            </span>
-            <span className="laptop:w-1/5 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
-              <Phone size={16} weight="light" className="text-gray-500" /> (71)
-              3014-6657
-            </span>
-            <span className="laptop:w-1/3 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
-              <EnvelopeSimple
-                size={16}
-                weight="light"
-                className="text-gray-500"
-              />{' '}
-              contato@faroldomorrocatamara.com
-            </span>
-          </div>
-        </li>
+        {data?.catamara?.data.map((item) => (
+          <li
+            key={item.id}
+            className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg"
+          >
+            <Disclosure as="div" className="flex flex-col gap-8 w-full">
+              <div className="flex flex-col laptop:flex-row laptop:w-full gap-2">
+                <Disclosure.Button className="flex flex-col gap-4 flex-1 laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center text-left">
+                  <picture>
+                    <img
+                      className="shrink-0 h-12 w-12 rounded-full"
+                      src="https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJvYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=40"
+                      alt=""
+                    />
+                  </picture>
+                  <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
+                    <span className="font-bold laptop:flex-1 laptop:pl-2">
+                      {item.attributes?.name}
+                    </span>
+                    <span className="laptop:w-1/5 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
+                      <Phone
+                        size={16}
+                        weight="light"
+                        className="text-gray-500"
+                      />{' '}
+                      (71) 3014 4086
+                    </span>
+                    <span className="laptop:w-1/3 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
+                      <EnvelopeSimple
+                        size={16}
+                        weight="light"
+                        className="text-gray-500"
+                      />{' '}
+                      {item.attributes?.email}
+                    </span>
+                  </div>
+                </Disclosure.Button>
+              </div>
+              {item.attributes?.address && (
+                <Transition
+                  enter="transition duration-100 ease-out"
+                  enterFrom="transform scale-95 opacity-0"
+                  enterTo="transform scale-100 opacity-100"
+                  leave="transition duration-75 ease-out"
+                  leaveFrom="transform scale-100 opacity-100"
+                  leaveTo="transform scale-95 opacity-0"
+                >
+                  <Disclosure.Panel
+                    as="div"
+                    className="text-gray-500 text-sm text-left mt-[-1rem] bg-gray-200 p-4 rounded-b-lg line-clamp-4"
+                    dangerouslySetInnerHTML={{
+                      __html: item.attributes?.address,
+                    }}
+                  />
+
+                  <Disclosure.Panel
+                    as="div"
+                    className="text-gray-500 text-sm text-left mt-[-1rem] bg-gray-200 p-4 rounded-b-lg line-clamp-4"
+                  >
+                    <h1 className="text-md font-bold text-gray-900 pb-4">
+                      Documentos relacionados:
+                    </h1>
+
+                    <ul
+                      role="list"
+                      className="flex flex-col gap-2 pt-2 border border-primary rounded-lg p-4"
+                    >
+                      {item.attributes.documents?.map((document) => (
+                        <li
+                          key={document?.id}
+                          className="flex items-center justify-between laptop:flex-row gap-2 bg-gray-200 px-4 py-2 rounded-lg transition-colors duration-100 ease-in-out border border-transparent hover:border-secondary box-border"
+                        >
+                          <div className="flex items-center gap-2">
+                            <File
+                              size={16}
+                              weight="light"
+                              className="text-gray-500"
+                            />
+                            <span className="font-bold text-md text-gray-900">
+                              {document?.name}
+                            </span>
+                          </div>
+                          <Link
+                            href={urlBuilder(
+                              document?.file.data?.attributes?.url,
+                            )}
+                          >
+                            <a
+                              download
+                              target="_blank"
+                              className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
+                            >
+                              <FileArrowDown
+                                size={24}
+                                weight="light"
+                                className="text-white group-hover:text-primary"
+                              />
+                              <span className="font-normal text-sm group-hover:text-primary">
+                                Baixar
+                              </span>
+                            </a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </Disclosure.Panel>
+                </Transition>
+              )}
+            </Disclosure>
+          </li>
+        ))}
       </ul>
     </article>
   )
