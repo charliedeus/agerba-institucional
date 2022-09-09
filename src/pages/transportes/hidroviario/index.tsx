@@ -17,8 +17,6 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
     },
   })
 
-  console.log(data)
-
   return (
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
       <h1 className="font-bold text-[2rem]">Transporte Hidroviário</h1>

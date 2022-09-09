@@ -10,6 +10,7 @@ import { Disclosure, Transition } from '@headlessui/react'
 import { useGetLegislacoesQuery } from '../../graphql/generated'
 import { motion } from 'framer-motion'
 import { Pagination } from '../../components/Pagination'
+import classNames from 'classnames'
 
 const tabItems = ['Resoluções', 'Leis', 'Decretos']
 
@@ -39,12 +40,17 @@ const LegislationPage: NextPageWithLayout = () => {
         of Lorem Ipsum.
       </p>
 
-      <ul className="w-full h-full flex flex-wrap gap-8 text-gray-900 text-[1.25rem] font-bold">
+      <ul className="w-full h-full flex flex-col laptop:grid laptop:grid-cols-3 gap-4 text-gray-900 text-[1.25rem] font-bold">
         {tabItems.map((tabItem, index) => (
           <li
             key={index}
             onClick={() => setIsSelectedTab(index)}
-            className="bg-gray-200 px-4 py-2 rounded-lg hover:bg-primary hover:text-white cursor-pointer transition-colors duration-75 ease-in-out"
+            className={classNames(
+              'bg-gray-200 px-4 py-2 rounded-lg hover:bg-primary hover:text-white cursor-pointer transition-colors duration-75 ease-in-out',
+              {
+                'bg-primary text-white': isSelectedTab === index,
+              },
+            )}
           >
             {tabItem}
           </li>
