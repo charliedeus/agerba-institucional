@@ -1,0 +1,94 @@
+query GetTarifasDeTransportes ($limit: Int!, $start: Int) {
+  intermunicipal: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { transportType: { eq: "Intermunicipal" } } ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        entityType
+        transportType
+        
+        files (sort: "starts_in:desc") {
+          starts_in
+          file {
+            data {
+              attributes {
+                name
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  complementar: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { transportType: { eq: "Complementar" } } ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        entityType
+        transportType
+        
+        files (sort: "starts_in:desc") {
+          starts_in
+          file {
+            data {
+              attributes {
+                name
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  metropolitanoESemiUrbano: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { transportType: { eq: "Metropolitano e Semi-Urbano" } } ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        entityType
+        transportType
+        
+        files (sort: "starts_in:desc") {
+          starts_in
+          file {
+            data {
+              attributes {
+                name
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

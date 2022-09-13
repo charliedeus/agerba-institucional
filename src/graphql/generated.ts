@@ -71,6 +71,26 @@ export type ComponentCalendarCalendar = {
   title: Scalars['String'];
 };
 
+export type ComponentDocumentoVigenciaDocumentoVigencia = {
+  __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia';
+  file: UploadFileEntityResponse;
+  id: Scalars['ID'];
+  starts_in: Scalars['Date'];
+};
+
+export type ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>>>;
+  not?: InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>>>;
+  starts_in?: InputMaybe<DateFilterInput>;
+};
+
+export type ComponentDocumentoVigenciaDocumentoVigenciaInput = {
+  file?: InputMaybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
+  starts_in?: InputMaybe<Scalars['Date']>;
+};
+
 export type ComponentEventEvent = {
   __typename?: 'ComponentEventEvent';
   finish_in?: Maybe<Scalars['DateTime']>;
@@ -93,6 +113,36 @@ export type ComponentEventEventInput = {
   id?: InputMaybe<Scalars['ID']>;
   starts_in?: InputMaybe<Scalars['DateTime']>;
   title?: InputMaybe<Enum_Componenteventevent_Title>;
+};
+
+export type ComponentStudentsStudentResources = {
+  __typename?: 'ComponentStudentsStudentResources';
+  approved: Scalars['Boolean'];
+  endsAt: Scalars['Date'];
+  id: Scalars['ID'];
+  resources?: Maybe<UploadFileRelationResponseCollection>;
+};
+
+
+export type ComponentStudentsStudentResourcesResourcesArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentStudentsStudentResourcesFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentStudentsStudentResourcesFiltersInput>>>;
+  approved?: InputMaybe<BooleanFilterInput>;
+  endsAt?: InputMaybe<DateFilterInput>;
+  not?: InputMaybe<ComponentStudentsStudentResourcesFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentStudentsStudentResourcesFiltersInput>>>;
+};
+
+export type ComponentStudentsStudentResourcesInput = {
+  approved?: InputMaybe<Scalars['Boolean']>;
+  endsAt?: InputMaybe<Scalars['Date']>;
+  id?: InputMaybe<Scalars['ID']>;
+  resources?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
 };
 
 export type DateFilterInput = {
@@ -174,6 +224,17 @@ export enum Enum_Terminal_Type {
   Aeroviario = 'Aeroviario',
   Hidroviario = 'Hidroviario',
   Rodoviario = 'Rodoviario'
+}
+
+export enum Enum_Transportfee_Entitytype {
+  Empresa = 'Empresa',
+  Polo = 'Polo'
+}
+
+export enum Enum_Transportfee_Transporttype {
+  Complementar = 'Complementar',
+  Intermunicipal = 'Intermunicipal',
+  MetropolitanoESemiUrbano = 'Metropolitano_e_Semi_Urbano'
 }
 
 export enum Enum_Waterwaytransport_Type {
@@ -329,7 +390,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = ComponentArquivosArquivos | ComponentCalendarCalendar | ComponentEventEvent | EventoPublico | Faq | I18NLocale | JudgmentNote | Legislation | Licitacao | Log | MeetingNote | Noticia | QuadroTarifario | RevenueGroup | RevenueService | Terminal | Title | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | WaterwayTransport;
+export type GenericMorph = ComponentArquivosArquivos | ComponentCalendarCalendar | ComponentDocumentoVigenciaDocumentoVigencia | ComponentEventEvent | ComponentStudentsStudentResources | EventoPublico | Faq | I18NLocale | JudgmentNote | Legislation | Licitacao | Log | MeetingNote | Noticia | QuadroTarifario | RevenueGroup | RevenueService | School | StudentId | Terminal | Title | TransportFee | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | WaterwayTransport;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -720,8 +781,11 @@ export type Mutation = {
   createQuadroTarifario?: Maybe<QuadroTarifarioEntityResponse>;
   createRevenueGroup?: Maybe<RevenueGroupEntityResponse>;
   createRevenueService?: Maybe<RevenueServiceEntityResponse>;
+  createSchool?: Maybe<SchoolEntityResponse>;
+  createStudentId?: Maybe<StudentIdEntityResponse>;
   createTerminal?: Maybe<TerminalEntityResponse>;
   createTitle?: Maybe<TitleEntityResponse>;
+  createTransportFee?: Maybe<TransportFeeEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Create a new role */
@@ -740,8 +804,11 @@ export type Mutation = {
   deleteQuadroTarifario?: Maybe<QuadroTarifarioEntityResponse>;
   deleteRevenueGroup?: Maybe<RevenueGroupEntityResponse>;
   deleteRevenueService?: Maybe<RevenueServiceEntityResponse>;
+  deleteSchool?: Maybe<SchoolEntityResponse>;
+  deleteStudentId?: Maybe<StudentIdEntityResponse>;
   deleteTerminal?: Maybe<TerminalEntityResponse>;
   deleteTitle?: Maybe<TitleEntityResponse>;
+  deleteTransportFee?: Maybe<TransportFeeEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
@@ -772,8 +839,11 @@ export type Mutation = {
   updateQuadroTarifario?: Maybe<QuadroTarifarioEntityResponse>;
   updateRevenueGroup?: Maybe<RevenueGroupEntityResponse>;
   updateRevenueService?: Maybe<RevenueServiceEntityResponse>;
+  updateSchool?: Maybe<SchoolEntityResponse>;
+  updateStudentId?: Maybe<StudentIdEntityResponse>;
   updateTerminal?: Maybe<TerminalEntityResponse>;
   updateTitle?: Maybe<TitleEntityResponse>;
+  updateTransportFee?: Maybe<TransportFeeEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Update an existing role */
@@ -847,6 +917,16 @@ export type MutationCreateRevenueServiceArgs = {
 };
 
 
+export type MutationCreateSchoolArgs = {
+  data: SchoolInput;
+};
+
+
+export type MutationCreateStudentIdArgs = {
+  data: StudentIdInput;
+};
+
+
 export type MutationCreateTerminalArgs = {
   data: TerminalInput;
 };
@@ -854,6 +934,11 @@ export type MutationCreateTerminalArgs = {
 
 export type MutationCreateTitleArgs = {
   data: TitleInput;
+};
+
+
+export type MutationCreateTransportFeeArgs = {
+  data: TransportFeeInput;
 };
 
 
@@ -937,12 +1022,27 @@ export type MutationDeleteRevenueServiceArgs = {
 };
 
 
+export type MutationDeleteSchoolArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteStudentIdArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type MutationDeleteTerminalArgs = {
   id: Scalars['ID'];
 };
 
 
 export type MutationDeleteTitleArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteTransportFeeArgs = {
   id: Scalars['ID'];
 };
 
@@ -1084,6 +1184,18 @@ export type MutationUpdateRevenueServiceArgs = {
 };
 
 
+export type MutationUpdateSchoolArgs = {
+  data: SchoolInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateStudentIdArgs = {
+  data: StudentIdInput;
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdateTerminalArgs = {
   data: TerminalInput;
   id: Scalars['ID'];
@@ -1092,6 +1204,12 @@ export type MutationUpdateTerminalArgs = {
 
 export type MutationUpdateTitleArgs = {
   data: TitleInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateTransportFeeArgs = {
+  data: TransportFeeInput;
   id: Scalars['ID'];
 };
 
@@ -1292,10 +1410,16 @@ export type Query = {
   revenueGroups?: Maybe<RevenueGroupEntityResponseCollection>;
   revenueService?: Maybe<RevenueServiceEntityResponse>;
   revenueServices?: Maybe<RevenueServiceEntityResponseCollection>;
+  school?: Maybe<SchoolEntityResponse>;
+  schools?: Maybe<SchoolEntityResponseCollection>;
+  studentId?: Maybe<StudentIdEntityResponse>;
+  studentIds?: Maybe<StudentIdEntityResponseCollection>;
   terminais?: Maybe<TerminalEntityResponseCollection>;
   terminal?: Maybe<TerminalEntityResponse>;
   title?: Maybe<TitleEntityResponse>;
   titles?: Maybe<TitleEntityResponseCollection>;
+  transportFee?: Maybe<TransportFeeEntityResponse>;
+  transportFees?: Maybe<TransportFeeEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   uploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -1464,6 +1588,32 @@ export type QueryRevenueServicesArgs = {
 };
 
 
+export type QuerySchoolArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QuerySchoolsArgs = {
+  filters?: InputMaybe<SchoolFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryStudentIdArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryStudentIdsArgs = {
+  filters?: InputMaybe<StudentIdFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
 export type QueryTerminaisArgs = {
   filters?: InputMaybe<TerminalFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
@@ -1484,6 +1634,19 @@ export type QueryTitleArgs = {
 
 export type QueryTitlesArgs = {
   filters?: InputMaybe<TitleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryTransportFeeArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryTransportFeesArgs = {
+  filters?: InputMaybe<TransportFeeFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -1665,6 +1828,53 @@ export type RevenueServiceRelationResponseCollection = {
   data: Array<RevenueServiceEntity>;
 };
 
+export type School = {
+  __typename?: 'School';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  document: Scalars['String'];
+  name: Scalars['String'];
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  slug?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type SchoolEntity = {
+  __typename?: 'SchoolEntity';
+  attributes?: Maybe<School>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type SchoolEntityResponse = {
+  __typename?: 'SchoolEntityResponse';
+  data?: Maybe<SchoolEntity>;
+};
+
+export type SchoolEntityResponseCollection = {
+  __typename?: 'SchoolEntityResponseCollection';
+  data: Array<SchoolEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type SchoolFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<SchoolFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  document?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<SchoolFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<SchoolFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type SchoolInput = {
+  document?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  slug?: InputMaybe<Scalars['String']>;
+};
+
 export type StringFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -1687,6 +1897,68 @@ export type StringFilterInput = {
   null?: InputMaybe<Scalars['Boolean']>;
   or?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   startsWith?: InputMaybe<Scalars['String']>;
+};
+
+export type StudentId = {
+  __typename?: 'StudentId';
+  avatar?: Maybe<UploadFileEntityResponse>;
+  bio?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  document: Scalars['String'];
+  name: Scalars['String'];
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  resources?: Maybe<Array<Maybe<ComponentStudentsStudentResources>>>;
+  slug?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type StudentIdResourcesArgs = {
+  filters?: InputMaybe<ComponentStudentsStudentResourcesFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type StudentIdEntity = {
+  __typename?: 'StudentIdEntity';
+  attributes?: Maybe<StudentId>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type StudentIdEntityResponse = {
+  __typename?: 'StudentIdEntityResponse';
+  data?: Maybe<StudentIdEntity>;
+};
+
+export type StudentIdEntityResponseCollection = {
+  __typename?: 'StudentIdEntityResponseCollection';
+  data: Array<StudentIdEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type StudentIdFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<StudentIdFiltersInput>>>;
+  bio?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  document?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<StudentIdFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<StudentIdFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  resources?: InputMaybe<ComponentStudentsStudentResourcesFiltersInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type StudentIdInput = {
+  avatar?: InputMaybe<Scalars['ID']>;
+  bio?: InputMaybe<Scalars['String']>;
+  document?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  resources?: InputMaybe<Array<InputMaybe<ComponentStudentsStudentResourcesInput>>>;
+  slug?: InputMaybe<Scalars['String']>;
 };
 
 export type Terminal = {
@@ -1791,6 +2063,63 @@ export type TitleInput = {
   slug?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
   year?: InputMaybe<Scalars['Int']>;
+};
+
+export type TransportFee = {
+  __typename?: 'TransportFee';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  entityType?: Maybe<Enum_Transportfee_Entitytype>;
+  files?: Maybe<Array<Maybe<ComponentDocumentoVigenciaDocumentoVigencia>>>;
+  name: Scalars['String'];
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  transportType?: Maybe<Enum_Transportfee_Transporttype>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type TransportFeeFilesArgs = {
+  filters?: InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type TransportFeeEntity = {
+  __typename?: 'TransportFeeEntity';
+  attributes?: Maybe<TransportFee>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type TransportFeeEntityResponse = {
+  __typename?: 'TransportFeeEntityResponse';
+  data?: Maybe<TransportFeeEntity>;
+};
+
+export type TransportFeeEntityResponseCollection = {
+  __typename?: 'TransportFeeEntityResponseCollection';
+  data: Array<TransportFeeEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type TransportFeeFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<TransportFeeFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  entityType?: InputMaybe<StringFilterInput>;
+  files?: InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<TransportFeeFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<TransportFeeFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  transportType?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type TransportFeeInput = {
+  entityType?: InputMaybe<Enum_Transportfee_Entitytype>;
+  files?: InputMaybe<Array<InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaInput>>>;
+  name?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  transportType?: InputMaybe<Enum_Transportfee_Transporttype>;
 };
 
 export type UploadFile = {
@@ -2299,6 +2628,21 @@ export type GetNoticiasDestaqueQueryVariables = Exact<{ [key: string]: never; }>
 
 
 export type GetNoticiasDestaqueQuery = { __typename?: 'Query', noticias?: { __typename?: 'NoticiaEntityResponseCollection', data: Array<{ __typename?: 'NoticiaEntity', id?: string | null, attributes?: { __typename?: 'Noticia', title: string, subtitle: string, content: string, newtype: Enum_Noticia_Newtype, highlight: boolean, deadline?: any | null, cover: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null }, gallery?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null }> } | null } | null }> } | null };
+
+export type GetStudentBySlugQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type GetStudentBySlugQuery = { __typename?: 'Query', studentIds?: { __typename?: 'StudentIdEntityResponseCollection', data: Array<{ __typename?: 'StudentIdEntity', id?: string | null, attributes?: { __typename?: 'StudentId', name: string, document: string, slug?: string | null, bio?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } | null, resources?: Array<{ __typename?: 'ComponentStudentsStudentResources', id: string, endsAt: any, approved: boolean } | null> | null } | null }> } | null };
+
+export type GetTarifasDeTransportesQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  start?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type GetTarifasDeTransportesQuery = { __typename?: 'Query', intermunicipal?: { __typename?: 'TransportFeeEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TransportFeeEntity', id?: string | null, attributes?: { __typename?: 'TransportFee', name: string, entityType?: Enum_Transportfee_Entitytype | null, transportType?: Enum_Transportfee_Transporttype | null, files?: Array<{ __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia', starts_in: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, url: string } | null } | null } } | null> | null } | null }> } | null, complementar?: { __typename?: 'TransportFeeEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TransportFeeEntity', id?: string | null, attributes?: { __typename?: 'TransportFee', name: string, entityType?: Enum_Transportfee_Entitytype | null, transportType?: Enum_Transportfee_Transporttype | null, files?: Array<{ __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia', starts_in: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, url: string } | null } | null } } | null> | null } | null }> } | null, metropolitanoESemiUrbano?: { __typename?: 'TransportFeeEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TransportFeeEntity', id?: string | null, attributes?: { __typename?: 'TransportFee', name: string, entityType?: Enum_Transportfee_Entitytype | null, transportType?: Enum_Transportfee_Transporttype | null, files?: Array<{ __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia', starts_in: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, url: string } | null } | null } } | null> | null } | null }> } | null };
 
 export type GetTerminaisQueryVariables = Exact<{
   limit: Scalars['Int'];
@@ -3017,6 +3361,199 @@ export function useGetNoticiasDestaqueLazyQuery(baseOptions?: Apollo.LazyQueryHo
 export type GetNoticiasDestaqueQueryHookResult = ReturnType<typeof useGetNoticiasDestaqueQuery>;
 export type GetNoticiasDestaqueLazyQueryHookResult = ReturnType<typeof useGetNoticiasDestaqueLazyQuery>;
 export type GetNoticiasDestaqueQueryResult = Apollo.QueryResult<GetNoticiasDestaqueQuery, GetNoticiasDestaqueQueryVariables>;
+export const GetStudentBySlugDocument = gql`
+    query GetStudentBySlug($slug: String!) {
+  studentIds(publicationState: LIVE, filters: {slug: {eq: $slug}}) {
+    data {
+      id
+      attributes {
+        name
+        document
+        slug
+        bio
+        avatar {
+          data {
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+        resources(
+          sort: "endsAt:desc"
+          pagination: {limit: 1}
+          filters: {approved: {eq: true}}
+        ) {
+          id
+          endsAt
+          approved
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetStudentBySlugQuery__
+ *
+ * To run a query within a React component, call `useGetStudentBySlugQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetStudentBySlugQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetStudentBySlugQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useGetStudentBySlugQuery(baseOptions: Apollo.QueryHookOptions<GetStudentBySlugQuery, GetStudentBySlugQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetStudentBySlugQuery, GetStudentBySlugQueryVariables>(GetStudentBySlugDocument, options);
+      }
+export function useGetStudentBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetStudentBySlugQuery, GetStudentBySlugQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetStudentBySlugQuery, GetStudentBySlugQueryVariables>(GetStudentBySlugDocument, options);
+        }
+export type GetStudentBySlugQueryHookResult = ReturnType<typeof useGetStudentBySlugQuery>;
+export type GetStudentBySlugLazyQueryHookResult = ReturnType<typeof useGetStudentBySlugLazyQuery>;
+export type GetStudentBySlugQueryResult = Apollo.QueryResult<GetStudentBySlugQuery, GetStudentBySlugQueryVariables>;
+export const GetTarifasDeTransportesDocument = gql`
+    query GetTarifasDeTransportes($limit: Int!, $start: Int) {
+  intermunicipal: transportFees(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {transportType: {eq: "Intermunicipal"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        entityType
+        transportType
+        files(sort: "starts_in:desc") {
+          starts_in
+          file {
+            data {
+              attributes {
+                name
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  complementar: transportFees(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {transportType: {eq: "Complementar"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        entityType
+        transportType
+        files(sort: "starts_in:desc") {
+          starts_in
+          file {
+            data {
+              attributes {
+                name
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  metropolitanoESemiUrbano: transportFees(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {transportType: {eq: "Metropolitano e Semi-Urbano"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        entityType
+        transportType
+        files(sort: "starts_in:desc") {
+          starts_in
+          file {
+            data {
+              attributes {
+                name
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetTarifasDeTransportesQuery__
+ *
+ * To run a query within a React component, call `useGetTarifasDeTransportesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTarifasDeTransportesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetTarifasDeTransportesQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
+ *   },
+ * });
+ */
+export function useGetTarifasDeTransportesQuery(baseOptions: Apollo.QueryHookOptions<GetTarifasDeTransportesQuery, GetTarifasDeTransportesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetTarifasDeTransportesQuery, GetTarifasDeTransportesQueryVariables>(GetTarifasDeTransportesDocument, options);
+      }
+export function useGetTarifasDeTransportesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTarifasDeTransportesQuery, GetTarifasDeTransportesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetTarifasDeTransportesQuery, GetTarifasDeTransportesQueryVariables>(GetTarifasDeTransportesDocument, options);
+        }
+export type GetTarifasDeTransportesQueryHookResult = ReturnType<typeof useGetTarifasDeTransportesQuery>;
+export type GetTarifasDeTransportesLazyQueryHookResult = ReturnType<typeof useGetTarifasDeTransportesLazyQuery>;
+export type GetTarifasDeTransportesQueryResult = Apollo.QueryResult<GetTarifasDeTransportesQuery, GetTarifasDeTransportesQueryVariables>;
 export const GetTerminaisDocument = gql`
     query GetTerminais($limit: Int!, $start: Int) {
   rodoviario: terminais(

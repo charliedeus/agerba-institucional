@@ -1,0 +1,30 @@
+query GetStudentBySlug ($slug: String!) {
+  studentIds (publicationState: LIVE, filters: { slug: { eq: $slug }}) {
+    data {
+      id
+      
+      attributes {
+        name
+        document
+        slug
+        bio
+        
+        avatar {
+          data {
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+        
+        resources (sort: "endsAt:desc", pagination: { limit: 1 }, filters: { approved: { eq: true } } ) {
+          id
+          endsAt
+          approved
+        }
+      }
+    }
+  }
+}
