@@ -11,6 +11,7 @@ import { DefaultLayout } from '../../layouts/DefaultLayout'
 import { Pagination } from '../../components/Pagination'
 import { useGetTarifasDeTransportesQuery } from '../../graphql/generated'
 import { urlBuilder } from '../../lib/urlBuilder'
+import { GetStaticPaths } from 'next'
 
 const tabItems = [
   'Intermunicipal',
@@ -609,3 +610,10 @@ TariffsPage.getLayout = function getLayout(page: ReactElement) {
 }
 
 export default TariffsPage
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  }
+}
