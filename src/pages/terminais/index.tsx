@@ -308,7 +308,7 @@ const TerminalsPage: NextPageWithLayout = () => {
                               <a
                                 download
                                 target="_blank"
-                                className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
+                                className="group relative flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
                               >
                                 <FileArrowDown
                                   size={24}
@@ -317,6 +317,9 @@ const TerminalsPage: NextPageWithLayout = () => {
                                 />
                                 <span className="font-normal text-sm group-hover:text-primary">
                                   Baixar
+                                  <span className="absolute hidden group-hover:flex -left-11 -top-4 -translate-y-full w-48 px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
+                                    Clique para baixar contrato
+                                  </span>
                                 </span>
                               </a>
                             </Link>
@@ -484,7 +487,7 @@ const TerminalsPage: NextPageWithLayout = () => {
                               <a
                                 download
                                 target="_blank"
-                                className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
+                                className="group relative flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
                               >
                                 <FileArrowDown
                                   size={24}
@@ -493,6 +496,9 @@ const TerminalsPage: NextPageWithLayout = () => {
                                 />
                                 <span className="font-normal text-sm group-hover:text-primary">
                                   Baixar
+                                  <span className="absolute hidden group-hover:flex -left-11 -top-4 -translate-y-full w-48 px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
+                                    Clique para baixar contrato
+                                  </span>
                                 </span>
                               </a>
                             </Link>
