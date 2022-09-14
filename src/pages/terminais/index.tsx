@@ -10,6 +10,7 @@ import { useGetTerminaisQuery } from '../../graphql/generated'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Pagination } from '../../components/Pagination'
+import classNames from 'classnames'
 
 const tabItems = ['Rodoviários', 'Hidroviários', 'Aeroviários']
 
@@ -27,6 +28,7 @@ const TerminalsPage: NextPageWithLayout = () => {
   return (
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
       <h1 className="font-bold text-[2rem]">Terminais</h1>
+
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry standard dummy text ever
@@ -39,12 +41,17 @@ const TerminalsPage: NextPageWithLayout = () => {
         of Lorem Ipsum.
       </p>
 
-      <ul className="w-full h-full flex flex-wrap justify-between gap-2 text-gray-900 text-[1.25rem] font-bold">
+      <ul className="w-full h-full flex flex-col laptop:grid laptop:grid-cols-3 gap-4 text-gray-900 text-[1.25rem] font-bold">
         {tabItems.map((tabItem, index) => (
           <li
             key={index}
             onClick={() => setIsSelectedTab(index)}
-            className="bg-gray-200 w-full laptop:w-1/4 px-4 py-2 rounded-lg hover:bg-primary hover:text-white cursor-pointer transition-colors duration-75 ease-in-out"
+            className={classNames(
+              'bg-gray-200 px-4 py-2 rounded-lg hover:bg-primary hover:text-white cursor-pointer transition-colors duration-75 ease-in-out',
+              {
+                'bg-primary text-white': isSelectedTab === index,
+              },
+            )}
           >
             {tabItem}
           </li>
@@ -122,7 +129,7 @@ const TerminalsPage: NextPageWithLayout = () => {
                               <a
                                 download
                                 target="_blank"
-                                className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
+                                className="group relative flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
                               >
                                 <FileArrowDown
                                   size={24}
@@ -131,6 +138,9 @@ const TerminalsPage: NextPageWithLayout = () => {
                                 />
                                 <span className="font-normal text-sm group-hover:text-primary">
                                   Baixar
+                                  <span className="absolute hidden group-hover:flex -left-11 -top-4 -translate-y-full w-48 px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
+                                    Clique para baixar contrato
+                                  </span>
                                 </span>
                               </a>
                             </Link>
