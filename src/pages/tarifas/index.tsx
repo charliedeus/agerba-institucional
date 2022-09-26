@@ -387,7 +387,7 @@ const TariffsPage: NextPageWithLayout = () => {
                   ?.tarifasRodoviarioIntermunicipal?.meta?.pagination &&
                   tarifasTransporteRodoviarioData
                     ?.tarifasRodoviarioIntermunicipal?.meta?.pagination.total >
-                  0 && (
+                    0 && (
                     <Pagination
                       totalCountRegisters={Number(
                         tarifasTransporteRodoviarioData
