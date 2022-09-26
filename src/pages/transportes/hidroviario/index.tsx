@@ -128,7 +128,7 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
                       {item.attributes.documents?.map((document) => (
                         <li
                           key={document?.id}
-                          className="flex items-center justify-between laptop:flex-row gap-2 bg-gray-200 px-4 py-2 rounded-lg transition-colors duration-100 ease-in-out border border-transparent hover:border-secondary box-border"
+                          className="flex items-center justify-between laptop:flex-row gap-2 bg-gray-200 px-4 py-2 rounded-lg transition-colors duration-100 ease-in-out border border-transparent hover:bg-gray-300 box-border"
                         >
                           <div className="flex items-center gap-2">
                             <File
@@ -262,7 +262,7 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
                       {item.attributes.documents?.map((document) => (
                         <li
                           key={document?.id}
-                          className="flex items-center justify-between laptop:flex-row gap-2 bg-gray-200 px-4 py-2 rounded-lg transition-colors duration-100 ease-in-out border border-transparent hover:border-secondary box-border"
+                          className="flex items-center justify-between laptop:flex-row gap-2 bg-gray-200 px-4 py-2 rounded-lg transition-colors duration-100 ease-in-out border border-transparent hover:bg-gray-300 box-border"
                         >
                           <div className="flex items-center gap-2">
                             <File
@@ -384,7 +384,7 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
                       {item.attributes.documents?.map((document) => (
                         <li
                           key={document?.id}
-                          className="flex items-center justify-between laptop:flex-row gap-2 bg-gray-200 px-4 py-2 rounded-lg transition-colors duration-100 ease-in-out border border-transparent hover:border-secondary box-border"
+                          className="flex items-center justify-between laptop:flex-row gap-2 bg-gray-200 px-4 py-2 rounded-lg transition-colors duration-100 ease-in-out border border-transparent hover:bg-gray-300 box-border"
                         >
                           <div className="flex items-center gap-2">
                             <File
