@@ -1,0 +1,36 @@
+query GetTUTEs ($limit: Int!, $start: Int) {
+  tarifasTerminaisTUTE: terminalsUsageFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      
+      attributes {
+        type
+        
+        document (sort: "starts_in:desc") {
+          id
+          starts_in
+          
+          file {
+            data {
+              id
+              
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

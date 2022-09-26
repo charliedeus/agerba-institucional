@@ -16,6 +16,7 @@ export type Scalars = {
   Date: any;
   DateTime: any;
   JSON: any;
+  QuadroTarifarioResourcesDynamicZoneInput: any;
   Upload: any;
 };
 
@@ -43,6 +44,55 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type City = {
+  __typename?: 'City';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  initial: Scalars['String'];
+  name: Scalars['String'];
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type CityEntity = {
+  __typename?: 'CityEntity';
+  attributes?: Maybe<City>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type CityEntityResponse = {
+  __typename?: 'CityEntityResponse';
+  data?: Maybe<CityEntity>;
+};
+
+export type CityEntityResponseCollection = {
+  __typename?: 'CityEntityResponseCollection';
+  data: Array<CityEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type CityFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<CityFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  initial?: InputMaybe<StringFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<CityFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<CityFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type CityInput = {
+  initial?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type CityRelationResponseCollection = {
+  __typename?: 'CityRelationResponseCollection';
+  data: Array<CityEntity>;
+};
+
 export type ComponentArquivosArquivos = {
   __typename?: 'ComponentArquivosArquivos';
   file: UploadFileEntityResponse;
@@ -68,6 +118,13 @@ export type ComponentCalendarCalendar = {
   finish_in?: Maybe<Scalars['DateTime']>;
   id: Scalars['ID'];
   starts_in: Scalars['DateTime'];
+  title: Scalars['String'];
+};
+
+export type ComponentClassClasses = {
+  __typename?: 'ComponentClassClasses';
+  document?: Maybe<ComponentDocumentoVigenciaDocumentoVigencia>;
+  id: Scalars['ID'];
   title: Scalars['String'];
 };
 
@@ -115,6 +172,20 @@ export type ComponentEventEventInput = {
   title?: InputMaybe<Enum_Componenteventevent_Title>;
 };
 
+export type ComponentMunicipiosMunicipios = {
+  __typename?: 'ComponentMunicipiosMunicipios';
+  id: Scalars['ID'];
+  municipios?: Maybe<CityRelationResponseCollection>;
+};
+
+
+export type ComponentMunicipiosMunicipiosMunicipiosArgs = {
+  filters?: InputMaybe<CityFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
 export type ComponentStudentsStudentResources = {
   __typename?: 'ComponentStudentsStudentResources';
   approved: Scalars['Boolean'];
@@ -143,6 +214,61 @@ export type ComponentStudentsStudentResourcesInput = {
   endsAt?: InputMaybe<Scalars['Date']>;
   id?: InputMaybe<Scalars['ID']>;
   resources?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+};
+
+export type ComponentTarifasFerryBoat = {
+  __typename?: 'ComponentTarifasFerryBoat';
+  document?: Maybe<Array<Maybe<ComponentDocumentoVigenciaDocumentoVigencia>>>;
+  id: Scalars['ID'];
+};
+
+
+export type ComponentTarifasFerryBoatDocumentArgs = {
+  filters?: InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentTarifasTarifasTransporteRodoviario = {
+  __typename?: 'ComponentTarifasTarifasTransporteRodoviario';
+  document?: Maybe<Array<Maybe<ComponentDocumentoVigenciaDocumentoVigencia>>>;
+  id: Scalars['ID'];
+  type?: Maybe<Enum_Componenttarifastarifastransporterodoviario_Type>;
+};
+
+
+export type ComponentTarifasTarifasTransporteRodoviarioDocumentArgs = {
+  filters?: InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentTarifasTransporteHidroviario = {
+  __typename?: 'ComponentTarifasTransporteHidroviario';
+  document?: Maybe<Array<Maybe<ComponentDocumentoVigenciaDocumentoVigencia>>>;
+  id: Scalars['ID'];
+  type?: Maybe<Enum_Componenttarifastransportehidroviario_Type>;
+};
+
+
+export type ComponentTarifasTransporteHidroviarioDocumentArgs = {
+  filters?: InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentTarifasTute = {
+  __typename?: 'ComponentTarifasTute';
+  document?: Maybe<Array<Maybe<ComponentDocumentoVigenciaDocumentoVigencia>>>;
+  id: Scalars['ID'];
+  type?: Maybe<Enum_Componenttarifastute_Type>;
+};
+
+
+export type ComponentTarifasTuteDocumentArgs = {
+  filters?: InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type DateFilterInput = {
@@ -199,6 +325,24 @@ export enum Enum_Componenteventevent_Title {
   RecebimentoDeContribuicoes = 'Recebimento_de_Contribuicoes'
 }
 
+export enum Enum_Componenttarifastarifastransporterodoviario_Type {
+  Complementar = 'Complementar',
+  Intermunicipal = 'Intermunicipal',
+  MetropolitanoESemiurbano = 'Metropolitano_e_Semiurbano'
+}
+
+export enum Enum_Componenttarifastransportehidroviario_Type {
+  Catamara = 'Catamara',
+  Ferryboat = 'Ferryboat',
+  Lanchas = 'Lanchas'
+}
+
+export enum Enum_Componenttarifastute_Type {
+  Aeroviario = 'Aeroviario',
+  Hidroviario = 'Hidroviario',
+  Rodoviario = 'Rodoviario'
+}
+
 export enum Enum_Eventopublico_Event_Type {
   AudienciaPublica = 'Audiencia_Publica',
   ConsultaPublica = 'Consulta_Publica'
@@ -220,6 +364,16 @@ export enum Enum_Noticia_Newtype {
   NoticiasUrgentes = 'Noticias_Urgentes'
 }
 
+export enum Enum_Quadrotarifario_Entitytype {
+  Empresa = 'Empresa',
+  Polo = 'Polo'
+}
+
+export enum Enum_Terminalsusagefee_Type {
+  Hidroviario = 'Hidroviario',
+  Rodoviario = 'Rodoviario'
+}
+
 export enum Enum_Terminal_Type {
   Aeroviario = 'Aeroviario',
   Hidroviario = 'Hidroviario',
@@ -234,7 +388,13 @@ export enum Enum_Transportfee_Entitytype {
 export enum Enum_Transportfee_Transporttype {
   Complementar = 'Complementar',
   Intermunicipal = 'Intermunicipal',
-  MetropolitanoESemiUrbano = 'Metropolitano_e_Semi_Urbano'
+  MetropolitanoESemiurbano = 'Metropolitano_e_Semiurbano'
+}
+
+export enum Enum_Waterwaytransporttariff_Entitytype {
+  Catamara = 'Catamara',
+  FerryBoat = 'FerryBoat',
+  Lanchas = 'Lanchas'
 }
 
 export enum Enum_Waterwaytransport_Type {
@@ -242,6 +402,12 @@ export enum Enum_Waterwaytransport_Type {
   FerryBoat = 'Ferry_Boat',
   Lanchas = 'Lanchas'
 }
+
+export type Error = {
+  __typename?: 'Error';
+  code: Scalars['String'];
+  message?: Maybe<Scalars['String']>;
+};
 
 export type EventoPublico = {
   __typename?: 'EventoPublico';
@@ -390,7 +556,58 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = ComponentArquivosArquivos | ComponentCalendarCalendar | ComponentDocumentoVigenciaDocumentoVigencia | ComponentEventEvent | ComponentStudentsStudentResources | EventoPublico | Faq | I18NLocale | JudgmentNote | Legislation | Licitacao | Log | MeetingNote | Noticia | QuadroTarifario | RevenueGroup | RevenueService | School | StudentId | Terminal | Title | TransportFee | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | WaterwayTransport;
+export type GasTariff = {
+  __typename?: 'GasTariff';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  document?: Maybe<Array<Maybe<ComponentDocumentoVigenciaDocumentoVigencia>>>;
+  name?: Maybe<Scalars['String']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type GasTariffDocumentArgs = {
+  filters?: InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type GasTariffEntity = {
+  __typename?: 'GasTariffEntity';
+  attributes?: Maybe<GasTariff>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type GasTariffEntityResponse = {
+  __typename?: 'GasTariffEntityResponse';
+  data?: Maybe<GasTariffEntity>;
+};
+
+export type GasTariffEntityResponseCollection = {
+  __typename?: 'GasTariffEntityResponseCollection';
+  data: Array<GasTariffEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type GasTariffFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<GasTariffFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  document?: InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<GasTariffFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<GasTariffFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type GasTariffInput = {
+  document?: InputMaybe<Array<InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaInput>>>;
+  name?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type GenericMorph = City | ComponentArquivosArquivos | ComponentCalendarCalendar | ComponentClassClasses | ComponentDocumentoVigenciaDocumentoVigencia | ComponentEventEvent | ComponentMunicipiosMunicipios | ComponentStudentsStudentResources | ComponentTarifasFerryBoat | ComponentTarifasTarifasTransporteRodoviario | ComponentTarifasTransporteHidroviario | ComponentTarifasTute | EventoPublico | Faq | GasTariff | I18NLocale | JudgmentNote | Legislation | Licitacao | Log | MeetingNote | Noticia | QuadroTarifario | RevenueGroup | RevenueService | School | StudentId | Terminal | TerminalsUsageFee | Title | TollRoadTariff | TransportFee | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | WaterwayTransport | WaterwayTransportTariff;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -770,8 +987,10 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
+  createCity?: Maybe<CityEntityResponse>;
   createEventoPublico?: Maybe<EventoPublicoEntityResponse>;
   createFaq?: Maybe<FaqEntityResponse>;
+  createGasTariff?: Maybe<GasTariffEntityResponse>;
   createJudgmentNote?: Maybe<JudgmentNoteEntityResponse>;
   createLegislation?: Maybe<LegislationEntityResponse>;
   createLicitacao?: Maybe<LicitacaoEntityResponse>;
@@ -784,7 +1003,9 @@ export type Mutation = {
   createSchool?: Maybe<SchoolEntityResponse>;
   createStudentId?: Maybe<StudentIdEntityResponse>;
   createTerminal?: Maybe<TerminalEntityResponse>;
+  createTerminalsUsageFee?: Maybe<TerminalsUsageFeeEntityResponse>;
   createTitle?: Maybe<TitleEntityResponse>;
+  createTollRoadTariff?: Maybe<TollRoadTariffEntityResponse>;
   createTransportFee?: Maybe<TransportFeeEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -793,8 +1014,11 @@ export type Mutation = {
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   createWaterwayTransport?: Maybe<WaterwayTransportEntityResponse>;
+  createWaterwayTransportTariff?: Maybe<WaterwayTransportTariffEntityResponse>;
+  deleteCity?: Maybe<CityEntityResponse>;
   deleteEventoPublico?: Maybe<EventoPublicoEntityResponse>;
   deleteFaq?: Maybe<FaqEntityResponse>;
+  deleteGasTariff?: Maybe<GasTariffEntityResponse>;
   deleteJudgmentNote?: Maybe<JudgmentNoteEntityResponse>;
   deleteLegislation?: Maybe<LegislationEntityResponse>;
   deleteLicitacao?: Maybe<LicitacaoEntityResponse>;
@@ -807,7 +1031,9 @@ export type Mutation = {
   deleteSchool?: Maybe<SchoolEntityResponse>;
   deleteStudentId?: Maybe<StudentIdEntityResponse>;
   deleteTerminal?: Maybe<TerminalEntityResponse>;
+  deleteTerminalsUsageFee?: Maybe<TerminalsUsageFeeEntityResponse>;
   deleteTitle?: Maybe<TitleEntityResponse>;
+  deleteTollRoadTariff?: Maybe<TollRoadTariffEntityResponse>;
   deleteTransportFee?: Maybe<TransportFeeEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -816,6 +1042,7 @@ export type Mutation = {
   /** Delete an existing user */
   deleteUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteWaterwayTransport?: Maybe<WaterwayTransportEntityResponse>;
+  deleteWaterwayTransportTariff?: Maybe<WaterwayTransportTariffEntityResponse>;
   /** Confirm an email users email address */
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>;
   /** Request a reset password token */
@@ -827,9 +1054,11 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateCity?: Maybe<CityEntityResponse>;
   updateEventoPublico?: Maybe<EventoPublicoEntityResponse>;
   updateFaq?: Maybe<FaqEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
+  updateGasTariff?: Maybe<GasTariffEntityResponse>;
   updateJudgmentNote?: Maybe<JudgmentNoteEntityResponse>;
   updateLegislation?: Maybe<LegislationEntityResponse>;
   updateLicitacao?: Maybe<LicitacaoEntityResponse>;
@@ -842,7 +1071,9 @@ export type Mutation = {
   updateSchool?: Maybe<SchoolEntityResponse>;
   updateStudentId?: Maybe<StudentIdEntityResponse>;
   updateTerminal?: Maybe<TerminalEntityResponse>;
+  updateTerminalsUsageFee?: Maybe<TerminalsUsageFeeEntityResponse>;
   updateTitle?: Maybe<TitleEntityResponse>;
+  updateTollRoadTariff?: Maybe<TollRoadTariffEntityResponse>;
   updateTransportFee?: Maybe<TransportFeeEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -851,6 +1082,7 @@ export type Mutation = {
   /** Update an existing user */
   updateUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   updateWaterwayTransport?: Maybe<WaterwayTransportEntityResponse>;
+  updateWaterwayTransportTariff?: Maybe<WaterwayTransportTariffEntityResponse>;
   upload: UploadFileEntityResponse;
 };
 
@@ -862,6 +1094,11 @@ export type MutationChangePasswordArgs = {
 };
 
 
+export type MutationCreateCityArgs = {
+  data: CityInput;
+};
+
+
 export type MutationCreateEventoPublicoArgs = {
   data: EventoPublicoInput;
 };
@@ -869,6 +1106,11 @@ export type MutationCreateEventoPublicoArgs = {
 
 export type MutationCreateFaqArgs = {
   data: FaqInput;
+};
+
+
+export type MutationCreateGasTariffArgs = {
+  data: GasTariffInput;
 };
 
 
@@ -932,8 +1174,18 @@ export type MutationCreateTerminalArgs = {
 };
 
 
+export type MutationCreateTerminalsUsageFeeArgs = {
+  data: TerminalsUsageFeeInput;
+};
+
+
 export type MutationCreateTitleArgs = {
   data: TitleInput;
+};
+
+
+export type MutationCreateTollRoadTariffArgs = {
+  data: TollRoadTariffInput;
 };
 
 
@@ -967,12 +1219,27 @@ export type MutationCreateWaterwayTransportArgs = {
 };
 
 
+export type MutationCreateWaterwayTransportTariffArgs = {
+  data: WaterwayTransportTariffInput;
+};
+
+
+export type MutationDeleteCityArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type MutationDeleteEventoPublicoArgs = {
   id: Scalars['ID'];
 };
 
 
 export type MutationDeleteFaqArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteGasTariffArgs = {
   id: Scalars['ID'];
 };
 
@@ -1037,7 +1304,17 @@ export type MutationDeleteTerminalArgs = {
 };
 
 
+export type MutationDeleteTerminalsUsageFeeArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type MutationDeleteTitleArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteTollRoadTariffArgs = {
   id: Scalars['ID'];
 };
 
@@ -1068,6 +1345,11 @@ export type MutationDeleteUsersPermissionsUserArgs = {
 
 
 export type MutationDeleteWaterwayTransportArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteWaterwayTransportTariffArgs = {
   id: Scalars['ID'];
 };
 
@@ -1112,6 +1394,12 @@ export type MutationResetPasswordArgs = {
 };
 
 
+export type MutationUpdateCityArgs = {
+  data: CityInput;
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdateEventoPublicoArgs = {
   data: EventoPublicoInput;
   id: Scalars['ID'];
@@ -1127,6 +1415,12 @@ export type MutationUpdateFaqArgs = {
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID'];
   info?: InputMaybe<FileInfoInput>;
+};
+
+
+export type MutationUpdateGasTariffArgs = {
+  data: GasTariffInput;
+  id: Scalars['ID'];
 };
 
 
@@ -1202,8 +1496,20 @@ export type MutationUpdateTerminalArgs = {
 };
 
 
+export type MutationUpdateTerminalsUsageFeeArgs = {
+  data: TerminalsUsageFeeInput;
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdateTitleArgs = {
   data: TitleInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateTollRoadTariffArgs = {
+  data: TollRoadTariffInput;
   id: Scalars['ID'];
 };
 
@@ -1240,6 +1546,12 @@ export type MutationUpdateUsersPermissionsUserArgs = {
 
 export type MutationUpdateWaterwayTransportArgs = {
   data: WaterwayTransportInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateWaterwayTransportTariffArgs = {
+  data: WaterwayTransportTariffInput;
   id: Scalars['ID'];
 };
 
@@ -1342,9 +1654,11 @@ export enum PublicationState {
 export type QuadroTarifario = {
   __typename?: 'QuadroTarifario';
   createdAt?: Maybe<Scalars['DateTime']>;
+  entityType: Enum_Quadrotarifario_Entitytype;
+  name: Scalars['String'];
   publishedAt?: Maybe<Scalars['DateTime']>;
+  resources?: Maybe<Array<Maybe<QuadroTarifarioResourcesDynamicZone>>>;
   slug: Scalars['String'];
-  title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -1368,27 +1682,36 @@ export type QuadroTarifarioEntityResponseCollection = {
 export type QuadroTarifarioFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<QuadroTarifarioFiltersInput>>>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  entityType?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<QuadroTarifarioFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<QuadroTarifarioFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
-  title?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type QuadroTarifarioInput = {
+  entityType?: InputMaybe<Enum_Quadrotarifario_Entitytype>;
+  name?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
+  resources?: InputMaybe<Array<Scalars['QuadroTarifarioResourcesDynamicZoneInput']>>;
   slug?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
 };
+
+export type QuadroTarifarioResourcesDynamicZone = ComponentTarifasTarifasTransporteRodoviario | ComponentTarifasTransporteHidroviario | ComponentTarifasTute | Error;
 
 export type Query = {
   __typename?: 'Query';
+  cities?: Maybe<CityEntityResponseCollection>;
+  city?: Maybe<CityEntityResponse>;
   eventoPublico?: Maybe<EventoPublicoEntityResponse>;
   eventosPublicos?: Maybe<EventoPublicoEntityResponseCollection>;
   faq?: Maybe<FaqEntityResponse>;
   faqs?: Maybe<FaqEntityResponseCollection>;
+  gasTariff?: Maybe<GasTariffEntityResponse>;
+  gasTariffs?: Maybe<GasTariffEntityResponseCollection>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   judgmentNote?: Maybe<JudgmentNoteEntityResponse>;
@@ -1416,8 +1739,12 @@ export type Query = {
   studentIds?: Maybe<StudentIdEntityResponseCollection>;
   terminais?: Maybe<TerminalEntityResponseCollection>;
   terminal?: Maybe<TerminalEntityResponse>;
+  terminalsUsageFee?: Maybe<TerminalsUsageFeeEntityResponse>;
+  terminalsUsageFees?: Maybe<TerminalsUsageFeeEntityResponseCollection>;
   title?: Maybe<TitleEntityResponse>;
   titles?: Maybe<TitleEntityResponseCollection>;
+  tollRoadTariff?: Maybe<TollRoadTariffEntityResponse>;
+  tollRoadTariffs?: Maybe<TollRoadTariffEntityResponseCollection>;
   transportFee?: Maybe<TransportFeeEntityResponse>;
   transportFees?: Maybe<TransportFeeEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
@@ -1429,7 +1756,22 @@ export type Query = {
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
   waterwayTransport?: Maybe<WaterwayTransportEntityResponse>;
+  waterwayTransportTariff?: Maybe<WaterwayTransportTariffEntityResponse>;
+  waterwayTransportTariffs?: Maybe<WaterwayTransportTariffEntityResponseCollection>;
   waterwayTransports?: Maybe<WaterwayTransportEntityResponseCollection>;
+};
+
+
+export type QueryCitiesArgs = {
+  filters?: InputMaybe<CityFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryCityArgs = {
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
@@ -1453,6 +1795,19 @@ export type QueryFaqArgs = {
 
 export type QueryFaqsArgs = {
   filters?: InputMaybe<FaqFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryGasTariffArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryGasTariffsArgs = {
+  filters?: InputMaybe<GasTariffFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -1627,6 +1982,19 @@ export type QueryTerminalArgs = {
 };
 
 
+export type QueryTerminalsUsageFeeArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryTerminalsUsageFeesArgs = {
+  filters?: InputMaybe<TerminalsUsageFeeFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
 export type QueryTitleArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -1634,6 +2002,19 @@ export type QueryTitleArgs = {
 
 export type QueryTitlesArgs = {
   filters?: InputMaybe<TitleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryTollRoadTariffArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryTollRoadTariffsArgs = {
+  filters?: InputMaybe<TollRoadTariffFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -1703,6 +2084,19 @@ export type QueryUsersPermissionsUsersArgs = {
 
 export type QueryWaterwayTransportArgs = {
   id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryWaterwayTransportTariffArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryWaterwayTransportTariffsArgs = {
+  filters?: InputMaybe<WaterwayTransportTariffFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -2016,6 +2410,57 @@ export type TerminalInput = {
   type?: InputMaybe<Enum_Terminal_Type>;
 };
 
+export type TerminalsUsageFee = {
+  __typename?: 'TerminalsUsageFee';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  document?: Maybe<Array<Maybe<ComponentDocumentoVigenciaDocumentoVigencia>>>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  type?: Maybe<Enum_Terminalsusagefee_Type>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type TerminalsUsageFeeDocumentArgs = {
+  filters?: InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type TerminalsUsageFeeEntity = {
+  __typename?: 'TerminalsUsageFeeEntity';
+  attributes?: Maybe<TerminalsUsageFee>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type TerminalsUsageFeeEntityResponse = {
+  __typename?: 'TerminalsUsageFeeEntityResponse';
+  data?: Maybe<TerminalsUsageFeeEntity>;
+};
+
+export type TerminalsUsageFeeEntityResponseCollection = {
+  __typename?: 'TerminalsUsageFeeEntityResponseCollection';
+  data: Array<TerminalsUsageFeeEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type TerminalsUsageFeeFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<TerminalsUsageFeeFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  document?: InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<TerminalsUsageFeeFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<TerminalsUsageFeeFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  type?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type TerminalsUsageFeeInput = {
+  document?: InputMaybe<Array<InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaInput>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  type?: InputMaybe<Enum_Terminalsusagefee_Type>;
+};
+
 export type Title = {
   __typename?: 'Title';
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -2063,6 +2508,57 @@ export type TitleInput = {
   slug?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
   year?: InputMaybe<Scalars['Int']>;
+};
+
+export type TollRoadTariff = {
+  __typename?: 'TollRoadTariff';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  document?: Maybe<Array<Maybe<ComponentDocumentoVigenciaDocumentoVigencia>>>;
+  name: Scalars['String'];
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type TollRoadTariffDocumentArgs = {
+  filters?: InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type TollRoadTariffEntity = {
+  __typename?: 'TollRoadTariffEntity';
+  attributes?: Maybe<TollRoadTariff>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type TollRoadTariffEntityResponse = {
+  __typename?: 'TollRoadTariffEntityResponse';
+  data?: Maybe<TollRoadTariffEntity>;
+};
+
+export type TollRoadTariffEntityResponseCollection = {
+  __typename?: 'TollRoadTariffEntityResponseCollection';
+  data: Array<TollRoadTariffEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type TollRoadTariffFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<TollRoadTariffFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  document?: InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<TollRoadTariffFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<TollRoadTariffFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type TollRoadTariffInput = {
+  document?: InputMaybe<Array<InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaInput>>>;
+  name?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type TransportFee = {
@@ -2558,6 +3054,57 @@ export type WaterwayTransportInput = {
   type?: InputMaybe<Enum_Waterwaytransport_Type>;
 };
 
+export type WaterwayTransportTariff = {
+  __typename?: 'WaterwayTransportTariff';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  entityType: Enum_Waterwaytransporttariff_Entitytype;
+  files?: Maybe<Array<Maybe<ComponentDocumentoVigenciaDocumentoVigencia>>>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type WaterwayTransportTariffFilesArgs = {
+  filters?: InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type WaterwayTransportTariffEntity = {
+  __typename?: 'WaterwayTransportTariffEntity';
+  attributes?: Maybe<WaterwayTransportTariff>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type WaterwayTransportTariffEntityResponse = {
+  __typename?: 'WaterwayTransportTariffEntityResponse';
+  data?: Maybe<WaterwayTransportTariffEntity>;
+};
+
+export type WaterwayTransportTariffEntityResponseCollection = {
+  __typename?: 'WaterwayTransportTariffEntityResponseCollection';
+  data: Array<WaterwayTransportTariffEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type WaterwayTransportTariffFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<WaterwayTransportTariffFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  entityType?: InputMaybe<StringFilterInput>;
+  files?: InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<WaterwayTransportTariffFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<WaterwayTransportTariffFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type WaterwayTransportTariffInput = {
+  entityType?: InputMaybe<Enum_Waterwaytransporttariff_Entitytype>;
+  files?: InputMaybe<Array<InputMaybe<ComponentDocumentoVigenciaDocumentoVigenciaInput>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
 export type GetAtasDeJulgamentoQueryVariables = Exact<{
   limit: Scalars['Int'];
   start?: InputMaybe<Scalars['Int']>;
@@ -2636,13 +3183,45 @@ export type GetStudentBySlugQueryVariables = Exact<{
 
 export type GetStudentBySlugQuery = { __typename?: 'Query', studentIds?: { __typename?: 'StudentIdEntityResponseCollection', data: Array<{ __typename?: 'StudentIdEntity', id?: string | null, attributes?: { __typename?: 'StudentId', name: string, document: string, slug?: string | null, bio?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } | null, resources?: Array<{ __typename?: 'ComponentStudentsStudentResources', id: string, endsAt: any, approved: boolean } | null> | null } | null }> } | null };
 
-export type GetTarifasDeTransportesQueryVariables = Exact<{
+export type GetTarifasDeTransportesHidroviariosQueryVariables = Exact<{
   limit: Scalars['Int'];
   start?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type GetTarifasDeTransportesQuery = { __typename?: 'Query', intermunicipal?: { __typename?: 'TransportFeeEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TransportFeeEntity', id?: string | null, attributes?: { __typename?: 'TransportFee', name: string, entityType?: Enum_Transportfee_Entitytype | null, transportType?: Enum_Transportfee_Transporttype | null, files?: Array<{ __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia', starts_in: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, url: string } | null } | null } } | null> | null } | null }> } | null, complementar?: { __typename?: 'TransportFeeEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TransportFeeEntity', id?: string | null, attributes?: { __typename?: 'TransportFee', name: string, entityType?: Enum_Transportfee_Entitytype | null, transportType?: Enum_Transportfee_Transporttype | null, files?: Array<{ __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia', starts_in: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, url: string } | null } | null } } | null> | null } | null }> } | null, metropolitanoESemiUrbano?: { __typename?: 'TransportFeeEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TransportFeeEntity', id?: string | null, attributes?: { __typename?: 'TransportFee', name: string, entityType?: Enum_Transportfee_Entitytype | null, transportType?: Enum_Transportfee_Transporttype | null, files?: Array<{ __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia', starts_in: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, url: string } | null } | null } } | null> | null } | null }> } | null };
+export type GetTarifasDeTransportesHidroviariosQuery = { __typename?: 'Query', tarifasHidroviarioFerryBoat?: { __typename?: 'WaterwayTransportTariffEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'WaterwayTransportTariffEntity', id?: string | null, attributes?: { __typename?: 'WaterwayTransportTariff', entityType: Enum_Waterwaytransporttariff_Entitytype, files?: Array<{ __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia', id: string, starts_in: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null> | null } | null }> } | null, tarifasHidroviarioCatamara?: { __typename?: 'WaterwayTransportTariffEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'WaterwayTransportTariffEntity', id?: string | null, attributes?: { __typename?: 'WaterwayTransportTariff', entityType: Enum_Waterwaytransporttariff_Entitytype, files?: Array<{ __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia', id: string, starts_in: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null> | null } | null }> } | null, tarifasHidroviarioLanchas?: { __typename?: 'WaterwayTransportTariffEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'WaterwayTransportTariffEntity', id?: string | null, attributes?: { __typename?: 'WaterwayTransportTariff', entityType: Enum_Waterwaytransporttariff_Entitytype, files?: Array<{ __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia', id: string, starts_in: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null> | null } | null }> } | null };
+
+export type GetTarifasDeTransportesRodoviariosQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  start?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type GetTarifasDeTransportesRodoviariosQuery = { __typename?: 'Query', tarifasRodoviarioIntermunicipal?: { __typename?: 'TransportFeeEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TransportFeeEntity', id?: string | null, attributes?: { __typename?: 'TransportFee', name: string, entityType?: Enum_Transportfee_Entitytype | null, transportType?: Enum_Transportfee_Transporttype | null, files?: Array<{ __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia', id: string, starts_in: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null> | null } | null }> } | null, tarifasRodoviarioMetropolitanoSemiurbano?: { __typename?: 'TransportFeeEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TransportFeeEntity', id?: string | null, attributes?: { __typename?: 'TransportFee', name: string, entityType?: Enum_Transportfee_Entitytype | null, transportType?: Enum_Transportfee_Transporttype | null, files?: Array<{ __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia', id: string, starts_in: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null> | null } | null }> } | null, tarifasRodoviarioMetropolitanoComplementar?: { __typename?: 'TransportFeeEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TransportFeeEntity', id?: string | null, attributes?: { __typename?: 'TransportFee', name: string, entityType?: Enum_Transportfee_Entitytype | null, transportType?: Enum_Transportfee_Transporttype | null, files?: Array<{ __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia', id: string, starts_in: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null> | null } | null }> } | null };
+
+export type GetTutEsQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  start?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type GetTutEsQuery = { __typename?: 'Query', tarifasTerminaisTUTE?: { __typename?: 'TerminalsUsageFeeEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TerminalsUsageFeeEntity', id?: string | null, attributes?: { __typename?: 'TerminalsUsageFee', type?: Enum_Terminalsusagefee_Type | null, document?: Array<{ __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia', id: string, starts_in: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null> | null } | null }> } | null };
+
+export type GetTarifasGasQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  start?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type GetTarifasGasQuery = { __typename?: 'Query', tarifasGas?: { __typename?: 'GasTariffEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'GasTariffEntity', id?: string | null, attributes?: { __typename?: 'GasTariff', name?: string | null, document?: Array<{ __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia', id: string, starts_in: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null> | null } | null }> } | null };
+
+export type GetRodoviasPedagiadasQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  start?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type GetRodoviasPedagiadasQuery = { __typename?: 'Query', tarifasRodoviasPedagiadas?: { __typename?: 'TollRoadTariffEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, page: number, pageSize: number } }, data: Array<{ __typename?: 'TollRoadTariffEntity', id?: string | null, attributes?: { __typename?: 'TollRoadTariff', name: string, document?: Array<{ __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia', id: string, starts_in: any, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, url: string } | null } | null } } | null> | null } | null }> } | null };
 
 export type GetTerminaisQueryVariables = Exact<{
   limit: Scalars['Int'];
@@ -3422,9 +4001,144 @@ export function useGetStudentBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type GetStudentBySlugQueryHookResult = ReturnType<typeof useGetStudentBySlugQuery>;
 export type GetStudentBySlugLazyQueryHookResult = ReturnType<typeof useGetStudentBySlugLazyQuery>;
 export type GetStudentBySlugQueryResult = Apollo.QueryResult<GetStudentBySlugQuery, GetStudentBySlugQueryVariables>;
-export const GetTarifasDeTransportesDocument = gql`
-    query GetTarifasDeTransportes($limit: Int!, $start: Int) {
-  intermunicipal: transportFees(
+export const GetTarifasDeTransportesHidroviariosDocument = gql`
+    query GetTarifasDeTransportesHidroviarios($limit: Int!, $start: Int) {
+  tarifasHidroviarioFerryBoat: waterwayTransportTariffs(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {entityType: {eq: "FerryBoat"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        entityType
+        files {
+          id
+          starts_in
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  tarifasHidroviarioCatamara: waterwayTransportTariffs(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {entityType: {eq: "Catamarã"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        entityType
+        files {
+          id
+          starts_in
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  tarifasHidroviarioLanchas: waterwayTransportTariffs(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {entityType: {eq: "Lanchas"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        entityType
+        files {
+          id
+          starts_in
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetTarifasDeTransportesHidroviariosQuery__
+ *
+ * To run a query within a React component, call `useGetTarifasDeTransportesHidroviariosQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTarifasDeTransportesHidroviariosQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetTarifasDeTransportesHidroviariosQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
+ *   },
+ * });
+ */
+export function useGetTarifasDeTransportesHidroviariosQuery(baseOptions: Apollo.QueryHookOptions<GetTarifasDeTransportesHidroviariosQuery, GetTarifasDeTransportesHidroviariosQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetTarifasDeTransportesHidroviariosQuery, GetTarifasDeTransportesHidroviariosQueryVariables>(GetTarifasDeTransportesHidroviariosDocument, options);
+      }
+export function useGetTarifasDeTransportesHidroviariosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTarifasDeTransportesHidroviariosQuery, GetTarifasDeTransportesHidroviariosQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetTarifasDeTransportesHidroviariosQuery, GetTarifasDeTransportesHidroviariosQueryVariables>(GetTarifasDeTransportesHidroviariosDocument, options);
+        }
+export type GetTarifasDeTransportesHidroviariosQueryHookResult = ReturnType<typeof useGetTarifasDeTransportesHidroviariosQuery>;
+export type GetTarifasDeTransportesHidroviariosLazyQueryHookResult = ReturnType<typeof useGetTarifasDeTransportesHidroviariosLazyQuery>;
+export type GetTarifasDeTransportesHidroviariosQueryResult = Apollo.QueryResult<GetTarifasDeTransportesHidroviariosQuery, GetTarifasDeTransportesHidroviariosQueryVariables>;
+export const GetTarifasDeTransportesRodoviariosDocument = gql`
+    query GetTarifasDeTransportesRodoviarios($limit: Int!, $start: Int) {
+  tarifasRodoviarioIntermunicipal: transportFees(
     pagination: {limit: $limit, start: $start}
     publicationState: LIVE
     filters: {transportType: {eq: "Intermunicipal"}}
@@ -3443,12 +4157,15 @@ export const GetTarifasDeTransportesDocument = gql`
         name
         entityType
         transportType
-        files(sort: "starts_in:desc") {
+        files {
+          id
           starts_in
           file {
             data {
+              id
               attributes {
                 name
+                alternativeText
                 url
               }
             }
@@ -3457,7 +4174,43 @@ export const GetTarifasDeTransportesDocument = gql`
       }
     }
   }
-  complementar: transportFees(
+  tarifasRodoviarioMetropolitanoSemiurbano: transportFees(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {transportType: {eq: "Metropolitano e Semiurbano"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        entityType
+        transportType
+        files {
+          id
+          starts_in
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  tarifasRodoviarioMetropolitanoComplementar: transportFees(
     pagination: {limit: $limit, start: $start}
     publicationState: LIVE
     filters: {transportType: {eq: "Complementar"}}
@@ -3476,12 +4229,15 @@ export const GetTarifasDeTransportesDocument = gql`
         name
         entityType
         transportType
-        files(sort: "starts_in:desc") {
+        files {
+          id
           starts_in
           file {
             data {
+              id
               attributes {
                 name
+                alternativeText
                 url
               }
             }
@@ -3490,10 +4246,109 @@ export const GetTarifasDeTransportesDocument = gql`
       }
     }
   }
-  metropolitanoESemiUrbano: transportFees(
+}
+    `;
+
+/**
+ * __useGetTarifasDeTransportesRodoviariosQuery__
+ *
+ * To run a query within a React component, call `useGetTarifasDeTransportesRodoviariosQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTarifasDeTransportesRodoviariosQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetTarifasDeTransportesRodoviariosQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
+ *   },
+ * });
+ */
+export function useGetTarifasDeTransportesRodoviariosQuery(baseOptions: Apollo.QueryHookOptions<GetTarifasDeTransportesRodoviariosQuery, GetTarifasDeTransportesRodoviariosQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetTarifasDeTransportesRodoviariosQuery, GetTarifasDeTransportesRodoviariosQueryVariables>(GetTarifasDeTransportesRodoviariosDocument, options);
+      }
+export function useGetTarifasDeTransportesRodoviariosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTarifasDeTransportesRodoviariosQuery, GetTarifasDeTransportesRodoviariosQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetTarifasDeTransportesRodoviariosQuery, GetTarifasDeTransportesRodoviariosQueryVariables>(GetTarifasDeTransportesRodoviariosDocument, options);
+        }
+export type GetTarifasDeTransportesRodoviariosQueryHookResult = ReturnType<typeof useGetTarifasDeTransportesRodoviariosQuery>;
+export type GetTarifasDeTransportesRodoviariosLazyQueryHookResult = ReturnType<typeof useGetTarifasDeTransportesRodoviariosLazyQuery>;
+export type GetTarifasDeTransportesRodoviariosQueryResult = Apollo.QueryResult<GetTarifasDeTransportesRodoviariosQuery, GetTarifasDeTransportesRodoviariosQueryVariables>;
+export const GetTutEsDocument = gql`
+    query GetTUTEs($limit: Int!, $start: Int) {
+  tarifasTerminaisTUTE: terminalsUsageFees(
     pagination: {limit: $limit, start: $start}
     publicationState: LIVE
-    filters: {transportType: {eq: "Metropolitano e Semi-Urbano"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        type
+        document(sort: "starts_in:desc") {
+          id
+          starts_in
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetTutEsQuery__
+ *
+ * To run a query within a React component, call `useGetTutEsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTutEsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetTutEsQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
+ *   },
+ * });
+ */
+export function useGetTutEsQuery(baseOptions: Apollo.QueryHookOptions<GetTutEsQuery, GetTutEsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetTutEsQuery, GetTutEsQueryVariables>(GetTutEsDocument, options);
+      }
+export function useGetTutEsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTutEsQuery, GetTutEsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetTutEsQuery, GetTutEsQueryVariables>(GetTutEsDocument, options);
+        }
+export type GetTutEsQueryHookResult = ReturnType<typeof useGetTutEsQuery>;
+export type GetTutEsLazyQueryHookResult = ReturnType<typeof useGetTutEsLazyQuery>;
+export type GetTutEsQueryResult = Apollo.QueryResult<GetTutEsQuery, GetTutEsQueryVariables>;
+export const GetTarifasGasDocument = gql`
+    query GetTarifasGas($limit: Int!, $start: Int) {
+  tarifasGas: gasTariffs(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "name:asc"
   ) {
     meta {
       pagination {
@@ -3507,14 +4362,15 @@ export const GetTarifasDeTransportesDocument = gql`
       id
       attributes {
         name
-        entityType
-        transportType
-        files(sort: "starts_in:desc") {
+        document(sort: "starts_in:DESC") {
+          id
           starts_in
           file {
             data {
+              id
               attributes {
                 name
+                alternativeText
                 url
               }
             }
@@ -3527,33 +4383,100 @@ export const GetTarifasDeTransportesDocument = gql`
     `;
 
 /**
- * __useGetTarifasDeTransportesQuery__
+ * __useGetTarifasGasQuery__
  *
- * To run a query within a React component, call `useGetTarifasDeTransportesQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetTarifasDeTransportesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetTarifasGasQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTarifasGasQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetTarifasDeTransportesQuery({
+ * const { data, loading, error } = useGetTarifasGasQuery({
  *   variables: {
  *      limit: // value for 'limit'
  *      start: // value for 'start'
  *   },
  * });
  */
-export function useGetTarifasDeTransportesQuery(baseOptions: Apollo.QueryHookOptions<GetTarifasDeTransportesQuery, GetTarifasDeTransportesQueryVariables>) {
+export function useGetTarifasGasQuery(baseOptions: Apollo.QueryHookOptions<GetTarifasGasQuery, GetTarifasGasQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetTarifasDeTransportesQuery, GetTarifasDeTransportesQueryVariables>(GetTarifasDeTransportesDocument, options);
+        return Apollo.useQuery<GetTarifasGasQuery, GetTarifasGasQueryVariables>(GetTarifasGasDocument, options);
       }
-export function useGetTarifasDeTransportesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTarifasDeTransportesQuery, GetTarifasDeTransportesQueryVariables>) {
+export function useGetTarifasGasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTarifasGasQuery, GetTarifasGasQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetTarifasDeTransportesQuery, GetTarifasDeTransportesQueryVariables>(GetTarifasDeTransportesDocument, options);
+          return Apollo.useLazyQuery<GetTarifasGasQuery, GetTarifasGasQueryVariables>(GetTarifasGasDocument, options);
         }
-export type GetTarifasDeTransportesQueryHookResult = ReturnType<typeof useGetTarifasDeTransportesQuery>;
-export type GetTarifasDeTransportesLazyQueryHookResult = ReturnType<typeof useGetTarifasDeTransportesLazyQuery>;
-export type GetTarifasDeTransportesQueryResult = Apollo.QueryResult<GetTarifasDeTransportesQuery, GetTarifasDeTransportesQueryVariables>;
+export type GetTarifasGasQueryHookResult = ReturnType<typeof useGetTarifasGasQuery>;
+export type GetTarifasGasLazyQueryHookResult = ReturnType<typeof useGetTarifasGasLazyQuery>;
+export type GetTarifasGasQueryResult = Apollo.QueryResult<GetTarifasGasQuery, GetTarifasGasQueryVariables>;
+export const GetRodoviasPedagiadasDocument = gql`
+    query GetRodoviasPedagiadas($limit: Int!, $start: Int) {
+  tarifasRodoviasPedagiadas: tollRoadTariffs(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "name:asc"
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        document(sort: "starts_in:DESC") {
+          id
+          starts_in
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetRodoviasPedagiadasQuery__
+ *
+ * To run a query within a React component, call `useGetRodoviasPedagiadasQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetRodoviasPedagiadasQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetRodoviasPedagiadasQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
+ *   },
+ * });
+ */
+export function useGetRodoviasPedagiadasQuery(baseOptions: Apollo.QueryHookOptions<GetRodoviasPedagiadasQuery, GetRodoviasPedagiadasQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetRodoviasPedagiadasQuery, GetRodoviasPedagiadasQueryVariables>(GetRodoviasPedagiadasDocument, options);
+      }
+export function useGetRodoviasPedagiadasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRodoviasPedagiadasQuery, GetRodoviasPedagiadasQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetRodoviasPedagiadasQuery, GetRodoviasPedagiadasQueryVariables>(GetRodoviasPedagiadasDocument, options);
+        }
+export type GetRodoviasPedagiadasQueryHookResult = ReturnType<typeof useGetRodoviasPedagiadasQuery>;
+export type GetRodoviasPedagiadasLazyQueryHookResult = ReturnType<typeof useGetRodoviasPedagiadasLazyQuery>;
+export type GetRodoviasPedagiadasQueryResult = Apollo.QueryResult<GetRodoviasPedagiadasQuery, GetRodoviasPedagiadasQueryVariables>;
 export const GetTerminaisDocument = gql`
     query GetTerminais($limit: Int!, $start: Int) {
   rodoviario: terminais(

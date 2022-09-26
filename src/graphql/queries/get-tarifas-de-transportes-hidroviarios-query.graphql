@@ -1,5 +1,5 @@
-query GetTarifasDeTransportes ($limit: Int!, $start: Int) {
-  intermunicipal: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { transportType: { eq: "Intermunicipal" } } ) {
+query GetTarifasDeTransportesHidroviarios ($limit: Int!, $start: Int) {
+  tarifasHidroviarioFerryBoat: waterwayTransportTariffs (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { entityType: { eq: "FerryBoat" } } ) {
     meta {
       pagination {
         total
@@ -11,16 +11,18 @@ query GetTarifasDeTransportes ($limit: Int!, $start: Int) {
     data {
       id
       attributes {
-        name
         entityType
-        transportType
         
-        files (sort: "starts_in:desc") {
+        files {
+          id
           starts_in
+          
           file {
             data {
+              id
               attributes {
                 name
+                alternativeText
                 url
               }
             }
@@ -29,8 +31,7 @@ query GetTarifasDeTransportes ($limit: Int!, $start: Int) {
       }
     }
   }
-  
-  complementar: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { transportType: { eq: "Complementar" } } ) {
+  tarifasHidroviarioCatamara: waterwayTransportTariffs (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { entityType: { eq: "Catamarã" } } ) {
     meta {
       pagination {
         total
@@ -42,16 +43,18 @@ query GetTarifasDeTransportes ($limit: Int!, $start: Int) {
     data {
       id
       attributes {
-        name
         entityType
-        transportType
         
-        files (sort: "starts_in:desc") {
+        files {
+          id
           starts_in
+          
           file {
             data {
+              id
               attributes {
                 name
+                alternativeText
                 url
               }
             }
@@ -60,8 +63,7 @@ query GetTarifasDeTransportes ($limit: Int!, $start: Int) {
       }
     }
   }
-  
-  metropolitanoESemiUrbano: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { transportType: { eq: "Metropolitano e Semi-Urbano" } } ) {
+  tarifasHidroviarioLanchas: waterwayTransportTariffs (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { entityType: { eq: "Lanchas" } } ) {
     meta {
       pagination {
         total
@@ -73,16 +75,18 @@ query GetTarifasDeTransportes ($limit: Int!, $start: Int) {
     data {
       id
       attributes {
-        name
         entityType
-        transportType
         
-        files (sort: "starts_in:desc") {
+        files {
+          id
           starts_in
+          
           file {
             data {
+              id
               attributes {
                 name
+                alternativeText
                 url
               }
             }

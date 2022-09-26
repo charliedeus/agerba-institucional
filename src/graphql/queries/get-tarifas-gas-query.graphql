@@ -1,0 +1,36 @@
+query GetTarifasGas ($limit: Int!, $start: Int) {
+  tarifasGas: gasTariffs (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, sort: "name:asc" ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      
+      attributes {
+        name
+        
+        document (sort: "starts_in:DESC") {
+          id
+          starts_in
+          
+          file {
+            data {
+              id
+              
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

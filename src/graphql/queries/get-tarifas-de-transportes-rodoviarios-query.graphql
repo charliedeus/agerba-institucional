@@ -1,0 +1,106 @@
+query GetTarifasDeTransportesRodoviarios ($limit: Int!, $start: Int) {
+  tarifasRodoviarioIntermunicipal: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { transportType: { eq: "Intermunicipal" } } ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+    	attributes {
+        name
+        entityType
+        transportType
+        
+        files {
+          id
+          starts_in
+          
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  tarifasRodoviarioMetropolitanoSemiurbano: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { transportType: { eq: "Metropolitano e Semiurbano" } } ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+    	attributes {
+        name
+        entityType
+        transportType
+        
+        files {
+          id
+          starts_in
+          
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  tarifasRodoviarioMetropolitanoComplementar: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { transportType: { eq: "Complementar" } } ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+    	attributes {
+        name
+        entityType
+        transportType
+        
+        files {
+          id
+          starts_in
+          
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
