@@ -4020,7 +4020,7 @@ export const GetTarifasDeTransportesHidroviariosDocument = gql`
       id
       attributes {
         entityType
-        files {
+        files(sort: "starts_in:DESC") {
           id
           starts_in
           file {
@@ -4054,7 +4054,7 @@ export const GetTarifasDeTransportesHidroviariosDocument = gql`
       id
       attributes {
         entityType
-        files {
+        files(sort: "starts_in:DESC") {
           id
           starts_in
           file {
@@ -4088,7 +4088,7 @@ export const GetTarifasDeTransportesHidroviariosDocument = gql`
       id
       attributes {
         entityType
-        files {
+        files(sort: "starts_in:DESC") {
           id
           starts_in
           file {

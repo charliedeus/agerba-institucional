@@ -13,7 +13,7 @@ query GetTarifasDeTransportesHidroviarios ($limit: Int!, $start: Int) {
       attributes {
         entityType
         
-        files {
+        files (sort: "starts_in:DESC") {
           id
           starts_in
           
@@ -45,7 +45,7 @@ query GetTarifasDeTransportesHidroviarios ($limit: Int!, $start: Int) {
       attributes {
         entityType
         
-        files {
+        files (sort: "starts_in:DESC") {
           id
           starts_in
           
@@ -77,7 +77,7 @@ query GetTarifasDeTransportesHidroviarios ($limit: Int!, $start: Int) {
       attributes {
         entityType
         
-        files {
+        files (sort: "starts_in:DESC") {
           id
           starts_in
           
