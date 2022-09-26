@@ -15,7 +15,7 @@ query GetTarifasDeTransportesRodoviarios ($limit: Int!, $start: Int) {
         entityType
         transportType
         
-        files {
+        files (sort: "starts_in:DESC") {
           id
           starts_in
           
