@@ -82,30 +82,10 @@ const TariffsPage: NextPageWithLayout = () => {
         {
           id: 2,
           title: 'Metropolitano',
-          companies: {
-            meta: {
-              ...tarifasTransporteRodoviarioData
-                ?.tarifasRodoviarioMetropolitanoSemiurbano?.meta,
-            },
-            data: {
-              ...tarifasTransporteRodoviarioData
-                ?.tarifasRodoviarioMetropolitanoSemiurbano?.data,
-            },
-          },
         },
         {
           id: 3,
           title: 'Semiurbano',
-          companies: {
-            meta: {
-              ...tarifasTransporteRodoviarioData
-                ?.tarifasRodoviarioMetropolitanoSemiurbano?.meta,
-            },
-            data: {
-              ...tarifasTransporteRodoviarioData
-                ?.tarifasRodoviarioMetropolitanoSemiurbano?.data,
-            },
-          },
         },
         {
           id: 4,
@@ -401,7 +381,7 @@ const TariffsPage: NextPageWithLayout = () => {
                   ?.tarifasRodoviarioIntermunicipal?.meta?.pagination &&
                   tarifasTransporteRodoviarioData
                     ?.tarifasRodoviarioIntermunicipal?.meta?.pagination.total >
-                    0 && (
+                  0 && (
                     <Pagination
                       totalCountRegisters={Number(
                         tarifasTransporteRodoviarioData
@@ -604,7 +584,7 @@ const TariffsPage: NextPageWithLayout = () => {
                   ?.meta?.pagination &&
                   tarifasTransporteRodoviarioData
                     ?.tarifasRodoviarioMetropolitano?.meta?.pagination.total >
-                    0 && (
+                  0 && (
                     <Pagination
                       totalCountRegisters={Number(
                         tarifasTransporteRodoviarioData
