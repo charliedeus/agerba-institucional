@@ -1,4 +1,5 @@
 import { ReactElement, useState } from 'react'
+import classNames from 'classnames'
 
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
@@ -10,7 +11,6 @@ import { useGetTerminaisQuery } from '../../graphql/generated'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Pagination } from '../../components/Pagination'
-import classNames from 'classnames'
 
 const tabItems = ['Rodoviários', 'Hidroviários', 'Aeroviários']
 
