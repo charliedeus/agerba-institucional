@@ -34,7 +34,7 @@ query GetTarifasDeTransportesRodoviarios ($limit: Int!, $start: Int) {
     }
   }
   
-  tarifasRodoviarioMetropolitanoSemiurbano: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { transportType: { eq: "Metropolitano e Semiurbano" } } ) {
+  tarifasRodoviarioMetropolitano: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { transportType: { eq: "Metropolitano" } } ) {
     meta {
       pagination {
         total
@@ -50,7 +50,42 @@ query GetTarifasDeTransportesRodoviarios ($limit: Int!, $start: Int) {
         entityType
         transportType
         
-        files {
+        files (sort: "starts_in:DESC") {
+          id
+          starts_in
+          
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  tarifasRodoviarioSemiurbano: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { transportType: { eq: "Semiurbano" } } ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+    	attributes {
+        name
+        entityType
+        transportType
+        
+        files (sort: "starts_in:DESC") {
           id
           starts_in
           

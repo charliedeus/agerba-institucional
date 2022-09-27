@@ -81,7 +81,7 @@ const TariffsPage: NextPageWithLayout = () => {
         },
         {
           id: 2,
-          title: 'Metropolitano e Semiurbano',
+          title: 'Metropolitano',
           companies: {
             meta: {
               ...tarifasTransporteRodoviarioData
@@ -95,6 +95,20 @@ const TariffsPage: NextPageWithLayout = () => {
         },
         {
           id: 3,
+          title: 'Semiurbano',
+          companies: {
+            meta: {
+              ...tarifasTransporteRodoviarioData
+                ?.tarifasRodoviarioMetropolitanoSemiurbano?.meta,
+            },
+            data: {
+              ...tarifasTransporteRodoviarioData
+                ?.tarifasRodoviarioMetropolitanoSemiurbano?.data,
+            },
+          },
+        },
+        {
+          id: 4,
           title: 'Complementar',
           companies: {
             meta: {
@@ -192,7 +206,7 @@ const TariffsPage: NextPageWithLayout = () => {
 
       {isTariffType === 0 && (
         <>
-          <ul className="w-full h-full flex flex-col laptop:grid laptop:grid-cols-3 gap-4 text-gray-900 text-[1.25rem] font-bold">
+          <ul className="w-full h-full flex flex-col laptop:grid laptop:grid-cols-4 gap-4 text-gray-900 text-[1.25rem] font-bold">
             {tabTarifas[isTariffType]?.categories?.map((tabItem, index) => (
               <li
                 key={tabItem.id}
@@ -420,7 +434,7 @@ const TariffsPage: NextPageWithLayout = () => {
               className="transition-all duration-100 ease-in-out"
             >
               <ul role="list" className="flex flex-col gap-2">
-                {tarifasTransporteRodoviarioData?.tarifasRodoviarioMetropolitanoSemiurbano?.data.map(
+                {tarifasTransporteRodoviarioData?.tarifasRodoviarioMetropolitano?.data.map(
                   (transportItem) => {
                     return (
                       <li
@@ -586,29 +600,28 @@ const TariffsPage: NextPageWithLayout = () => {
                     )
                   },
                 )}
-                {tarifasTransporteRodoviarioData
-                  ?.tarifasRodoviarioMetropolitanoSemiurbano?.meta
-                  ?.pagination &&
+                {tarifasTransporteRodoviarioData?.tarifasRodoviarioMetropolitano
+                  ?.meta?.pagination &&
                   tarifasTransporteRodoviarioData
-                    ?.tarifasRodoviarioMetropolitanoSemiurbano?.meta?.pagination
-                    .total > 0 && (
+                    ?.tarifasRodoviarioMetropolitano?.meta?.pagination.total >
+                    0 && (
                     <Pagination
                       totalCountRegisters={Number(
                         tarifasTransporteRodoviarioData
-                          ?.tarifasRodoviarioMetropolitanoSemiurbano?.meta
-                          .pagination.total,
+                          ?.tarifasRodoviarioMetropolitano?.meta.pagination
+                          .total,
                       )}
                       currentPage={page}
                       totalPages={Number(
                         tarifasTransporteRodoviarioData
-                          ?.tarifasRodoviarioMetropolitanoSemiurbano?.meta
-                          .pagination.pageCount,
+                          ?.tarifasRodoviarioMetropolitano?.meta.pagination
+                          .pageCount,
                       )}
                       onPageChange={setPage}
                       registersPerPage={Number(
                         tarifasTransporteRodoviarioData
-                          ?.tarifasRodoviarioMetropolitanoSemiurbano?.meta
-                          .pagination.pageSize,
+                          ?.tarifasRodoviarioMetropolitano?.meta.pagination
+                          .pageSize,
                       )}
                     />
                   )}
@@ -617,6 +630,207 @@ const TariffsPage: NextPageWithLayout = () => {
           )}
 
           {isSelectedTab === 2 && (
+            <motion.div
+              initial={{ x: -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ type: 'spring', stiffness: 100 }}
+              className="transition-all duration-100 ease-in-out"
+            >
+              <ul role="list" className="flex flex-col gap-2">
+                {tarifasTransporteRodoviarioData?.tarifasRodoviarioSemiurbano?.data.map(
+                  (transportItem) => {
+                    return (
+                      <li
+                        key={transportItem.id}
+                        className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg transition-colors duration-100 ease-in-out border border-transparent hover:border-secondary box-border"
+                      >
+                        <Disclosure
+                          as="div"
+                          className="flex flex-col gap-8 w-full"
+                        >
+                          <div className="flex flex-col laptop:flex-row laptop:w-full gap-2">
+                            <Disclosure.Button className="flex flex-col gap-4 flex-1 laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center text-left">
+                              <span className="font-bold flex-1 flex items-center gap-2">
+                                <File
+                                  size={16}
+                                  weight="light"
+                                  className="text-gray-500"
+                                />{' '}
+                                {transportItem.attributes?.name}
+                              </span>
+                              <span className="flex laptop:border-l-2 laptop:border-primary laptop:pl-2 items-center gap-2">
+                                <Bookmark
+                                  size={16}
+                                  weight="light"
+                                  className="text-gray-500"
+                                />
+                                <span className="font-normal text-xs text-gray-500">
+                                  {transportItem?.attributes?.transportType}
+                                </span>
+                              </span>
+                              <span className="laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
+                                <CalendarBlank
+                                  size={16}
+                                  weight="light"
+                                  className="text-gray-500"
+                                />
+                                {transportItem.attributes?.files && (
+                                  <span className="font-bold">
+                                    <span>Registro atual vigente desde: </span>
+                                    {new Date(
+                                      transportItem.attributes?.files[0]?.starts_in,
+                                    ).toLocaleDateString('pt-BR', {
+                                      timeZone: 'UTC',
+                                    })}
+                                  </span>
+                                )}
+                              </span>
+                            </Disclosure.Button>
+                            <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2 text">
+                              {transportItem.attributes?.files ? (
+                                <Link
+                                  href={urlBuilder(
+                                    transportItem.attributes.files[0]?.file.data
+                                      ?.attributes?.url,
+                                  )}
+                                >
+                                  <a
+                                    download
+                                    target="_blank"
+                                    className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
+                                  >
+                                    <FileArrowDown
+                                      size={24}
+                                      weight="light"
+                                      className="text-white group-hover:text-primary"
+                                    />
+                                    <span className="font-normal text-sm group-hover:text-primary">
+                                      Baixar
+                                    </span>
+                                  </a>
+                                </Link>
+                              ) : (
+                                <button
+                                  disabled
+                                  className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] hover:border hover:border-primary group disabled:cursor-not-allowed disabled:bg-gray-400"
+                                >
+                                  <FileArrowDown
+                                    size={24}
+                                    weight="light"
+                                    className="text-white group-hover:text-primary group-disabled:text-gray-600"
+                                  />
+                                  <span className="font-normal text-sm group-hover:text-primary group-disabled:text-gray-600">
+                                    Baixar
+                                  </span>
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                          <Transition
+                            enter="transition duration-100 ease-out"
+                            enterFrom="transform scale-95 opacity-0"
+                            enterTo="transform scale-100 opacity-100"
+                            leave="transition duration-75 ease-out"
+                            leaveFrom="transform scale-100 opacity-100"
+                            leaveTo="transform scale-95 opacity-0"
+                          >
+                            {transportItem.attributes?.files && (
+                              <Disclosure.Panel
+                                as="div"
+                                className="text-gray-500 text-sm text-left mt-[-1rem] bg-gray-200 rounded-b-lg"
+                              >
+                                <h1 className="text-md font-bold text-gray-900 pb-4">
+                                  Todas as tabelas publicadas:
+                                </h1>
+
+                                <ul
+                                  role="list"
+                                  className="flex flex-col gap-2 rounded-lg"
+                                >
+                                  {transportItem.attributes.files.map(
+                                    (document) => (
+                                      <li
+                                        key={
+                                          document?.file.data?.attributes?.url
+                                        }
+                                        className="flex items-center justify-between laptop:flex-row gap-2 bg-gray-200 p-2 rounded-lg transition-colors duration-100 ease-in-out border border-transparent box-border hover:bg-gray-300"
+                                      >
+                                        <div className="flex items-center gap-2">
+                                          <File
+                                            size={16}
+                                            weight="light"
+                                            className="text-gray-500"
+                                          />
+                                          <span className="font-bold text-md text-gray-900">
+                                            <span>Vigente desde: </span>
+                                            {new Date(
+                                              document?.starts_in,
+                                            ).toLocaleDateString('pt-BR', {
+                                              timeZone: 'UTC',
+                                            })}
+                                          </span>
+                                        </div>
+                                        <Link
+                                          href={urlBuilder(
+                                            document?.file.data?.attributes
+                                              ?.url,
+                                          )}
+                                        >
+                                          <a
+                                            download
+                                            target="_blank"
+                                            className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
+                                          >
+                                            <FileArrowDown
+                                              size={24}
+                                              weight="light"
+                                              className="text-white group-hover:text-primary"
+                                            />
+                                            <span className="font-normal text-sm group-hover:text-primary">
+                                              Baixar
+                                            </span>
+                                          </a>
+                                        </Link>
+                                      </li>
+                                    ),
+                                  )}
+                                </ul>
+                              </Disclosure.Panel>
+                            )}
+                          </Transition>
+                        </Disclosure>
+                      </li>
+                    )
+                  },
+                )}
+                {tarifasTransporteRodoviarioData?.tarifasRodoviarioSemiurbano
+                  ?.meta?.pagination &&
+                  tarifasTransporteRodoviarioData?.tarifasRodoviarioSemiurbano
+                    ?.meta?.pagination.total > 0 && (
+                    <Pagination
+                      totalCountRegisters={Number(
+                        tarifasTransporteRodoviarioData
+                          ?.tarifasRodoviarioSemiurbano?.meta.pagination.total,
+                      )}
+                      currentPage={page}
+                      totalPages={Number(
+                        tarifasTransporteRodoviarioData
+                          ?.tarifasRodoviarioSemiurbano?.meta.pagination
+                          .pageCount,
+                      )}
+                      onPageChange={setPage}
+                      registersPerPage={Number(
+                        tarifasTransporteRodoviarioData
+                          ?.tarifasRodoviarioSemiurbano?.meta.pagination
+                          .pageSize,
+                      )}
+                    />
+                  )}
+              </ul>
+            </motion.div>
+          )}
+
+          {isSelectedTab === 3 && (
             <motion.div
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}

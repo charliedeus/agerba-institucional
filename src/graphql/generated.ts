@@ -1,5 +1,5 @@
-/* eslint-disable no-use-before-define */
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-use-before-define */
 import { gql } from '@apollo/client'
 import * as Apollo from '@apollo/client'
 export type Maybe<T> = T | null
@@ -398,7 +398,8 @@ export enum Enum_Transportfee_Entitytype {
 export enum Enum_Transportfee_Transporttype {
   Complementar = 'Complementar',
   Intermunicipal = 'Intermunicipal',
-  MetropolitanoESemiurbano = 'Metropolitano_e_Semiurbano',
+  Metropolitano = 'Metropolitano',
+  Semiurbano = 'Semiurbano',
 }
 
 export enum Enum_Waterwaytransporttariff_Entitytype {
@@ -3700,7 +3701,48 @@ export type GetTarifasDeTransportesRodoviariosQuery = {
       } | null
     }>
   } | null
-  tarifasRodoviarioMetropolitanoSemiurbano?: {
+  tarifasRodoviarioMetropolitano?: {
+    __typename?: 'TransportFeeEntityResponseCollection'
+    meta: {
+      __typename?: 'ResponseCollectionMeta'
+      pagination: {
+        __typename?: 'Pagination'
+        total: number
+        pageCount: number
+        page: number
+        pageSize: number
+      }
+    }
+    data: Array<{
+      __typename?: 'TransportFeeEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'TransportFee'
+        name: string
+        entityType?: Enum_Transportfee_Entitytype | null
+        transportType?: Enum_Transportfee_Transporttype | null
+        files?: Array<{
+          __typename?: 'ComponentDocumentoVigenciaDocumentoVigencia'
+          id: string
+          starts_in: any
+          file: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                name: string
+                alternativeText?: string | null
+                url: string
+              } | null
+            } | null
+          }
+        } | null> | null
+      } | null
+    }>
+  } | null
+  tarifasRodoviarioSemiurbano?: {
     __typename?: 'TransportFeeEntityResponseCollection'
     meta: {
       __typename?: 'ResponseCollectionMeta'
@@ -5409,10 +5451,10 @@ export const GetTarifasDeTransportesRodoviariosDocument = gql`
         }
       }
     }
-    tarifasRodoviarioMetropolitanoSemiurbano: transportFees(
+    tarifasRodoviarioMetropolitano: transportFees(
       pagination: { limit: $limit, start: $start }
       publicationState: LIVE
-      filters: { transportType: { eq: "Metropolitano e Semiurbano" } }
+      filters: { transportType: { eq: "Metropolitano" } }
     ) {
       meta {
         pagination {
@@ -5428,7 +5470,43 @@ export const GetTarifasDeTransportesRodoviariosDocument = gql`
           name
           entityType
           transportType
-          files {
+          files(sort: "starts_in:DESC") {
+            id
+            starts_in
+            file {
+              data {
+                id
+                attributes {
+                  name
+                  alternativeText
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    tarifasRodoviarioSemiurbano: transportFees(
+      pagination: { limit: $limit, start: $start }
+      publicationState: LIVE
+      filters: { transportType: { eq: "Semiurbano" } }
+    ) {
+      meta {
+        pagination {
+          total
+          pageCount
+          page
+          pageSize
+        }
+      }
+      data {
+        id
+        attributes {
+          name
+          entityType
+          transportType
+          files(sort: "starts_in:DESC") {
             id
             starts_in
             file {
