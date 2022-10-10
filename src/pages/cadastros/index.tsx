@@ -156,8 +156,9 @@ const RegistrationsPage: NextPageWithLayout = () => {
 
               {data.departments?.data[0]?.attributes?.sections[isSelectQuestion]
                 ?.documents &&
-                data.departments?.data[0].attributes?.sections[isSelectQuestion]
-                  ?.documents?.length > 0 && (
+                data!.departments!.data[0]!.attributes!.sections[
+                  isSelectQuestion
+                ]!.documents!.length > 0 && (
                   <>
                     <h1 className="text-md font-bold text-gray-900 -mb-10">
                       Arquivos de apoio:
