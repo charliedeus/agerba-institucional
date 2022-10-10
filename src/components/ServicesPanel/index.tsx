@@ -69,6 +69,14 @@ const companiesServicesGroup = [
       'https://images.unsplash.com/photo-1423592707957-3b212afa6733?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=60',
     services: [],
   },
+  {
+    id: uuidv4(),
+    title: 'Cadastro de Empresas',
+    url: '/cadastros',
+    imageUrl:
+      'https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8ZG9jdW1lbnR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+    services: [],
+  },
 ]
 
 export function ServicesPanel() {
