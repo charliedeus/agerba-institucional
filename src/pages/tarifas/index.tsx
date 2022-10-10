@@ -18,6 +18,65 @@ import {
   useGetTutEsQuery,
 } from '../../graphql/generated'
 
+const tabTarifas = [
+  {
+    id: 1,
+    title: 'Transporte Rodoviário',
+    categories: [
+      {
+        id: 1,
+        title: 'Intermunicipal',
+      },
+      {
+        id: 2,
+        title: 'Metropolitano',
+      },
+      {
+        id: 3,
+        title: 'Semiurbano',
+      },
+      {
+        id: 4,
+        title: 'Complementar',
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: 'Transporte Hidroviário',
+    categories: [
+      {
+        id: 1,
+        title: 'FerryBoat',
+      },
+      {
+        id: 2,
+        title: 'Catamarã',
+      },
+      {
+        id: 3,
+        title: 'Lanchas',
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: 'Tarifa de Utilização de Terminal',
+    categories: [
+      {
+        id: 1,
+        title: 'Rodoviário',
+      },
+      {
+        id: 2,
+        title: 'Hidroviário',
+      },
+    ],
+  },
+  { id: 4, title: 'Rodovias Pedagiadas' },
+  { id: 5, title: 'Gás' },
+]
+
 const TariffsPage: NextPageWithLayout = () => {
   const [page, setPage] = useState(1)
   const [isTariffType, setIsTariffType] = useState(0)
@@ -59,88 +118,6 @@ const TariffsPage: NextPageWithLayout = () => {
       start: (page - 1) * 5,
     },
   })
-
-  const tabTarifas = [
-    {
-      id: 1,
-      title: 'Transporte Rodoviário',
-      categories: [
-        {
-          id: 1,
-          title: 'Intermunicipal',
-          companies: {
-            meta: {
-              ...tarifasTransporteRodoviarioData
-                ?.tarifasRodoviarioIntermunicipal?.meta,
-            },
-            data: {
-              ...tarifasTransporteRodoviarioData
-                ?.tarifasRodoviarioIntermunicipal?.data,
-            },
-          },
-        },
-        {
-          id: 2,
-          title: 'Metropolitano',
-        },
-        {
-          id: 3,
-          title: 'Semiurbano',
-        },
-        {
-          id: 4,
-          title: 'Complementar',
-          companies: {
-            meta: {
-              ...tarifasTransporteRodoviarioData
-                ?.tarifasRodoviarioMetropolitanoComplementar?.meta,
-            },
-            data: {
-              ...tarifasTransporteRodoviarioData
-                ?.tarifasRodoviarioMetropolitanoComplementar?.data,
-            },
-          },
-        },
-      ],
-    },
-    {
-      id: 2,
-      title: 'Transporte Hidroviário',
-      categories: [
-        {
-          id: 1,
-          title: 'FerryBoat',
-          ...tarifasTransporteHidroviarioData?.tarifasHidroviarioFerryBoat,
-        },
-        {
-          id: 2,
-          title: 'Catamarã',
-          ...tarifasTransporteHidroviarioData?.tarifasHidroviarioCatamara,
-        },
-        {
-          id: 3,
-          title: 'Lanchas',
-          ...tarifasTransporteHidroviarioData?.tarifasHidroviarioLanchas,
-        },
-      ],
-    },
-    {
-      id: 3,
-      title: 'Tarifa de Utilização de Terminal',
-      categories: [
-        {
-          id: 1,
-          title: 'Rodoviário',
-        },
-        {
-          id: 2,
-          title: 'Hidroviário',
-        },
-      ],
-    },
-    { id: 4, title: 'Rodovias Pedagiadas' },
-    { id: 5, title: 'Gás' },
-  ]
 
   function handleSelectedTariffType(tariffyType: any) {
     setIsTariffType(tariffyType)
@@ -818,7 +795,7 @@ const TariffsPage: NextPageWithLayout = () => {
               className="transition-all duration-100 ease-in-out"
             >
               <ul role="list" className="flex flex-col gap-2">
-                {tarifasTransporteRodoviarioData?.tarifasRodoviarioMetropolitanoComplementar?.data.map(
+                {tarifasTransporteRodoviarioData?.tarifasRodoviarioComplementar?.data.map(
                   (transportItem) => {
                     return (
                       <li
@@ -984,29 +961,27 @@ const TariffsPage: NextPageWithLayout = () => {
                     )
                   },
                 )}
-                {tarifasTransporteRodoviarioData
-                  ?.tarifasRodoviarioMetropolitanoComplementar?.meta
-                  ?.pagination &&
-                  tarifasTransporteRodoviarioData
-                    ?.tarifasRodoviarioMetropolitanoComplementar?.meta
-                    ?.pagination.total > 0 && (
+                {tarifasTransporteRodoviarioData?.tarifasRodoviarioComplementar
+                  ?.meta?.pagination &&
+                  tarifasTransporteRodoviarioData?.tarifasRodoviarioComplementar
+                    ?.meta?.pagination.total > 0 && (
                     <Pagination
                       totalCountRegisters={Number(
                         tarifasTransporteRodoviarioData
-                          ?.tarifasRodoviarioMetropolitanoComplementar?.meta
-                          .pagination.total,
+                          ?.tarifasRodoviarioComplementar?.meta.pagination
+                          .total,
                       )}
                       currentPage={page}
                       totalPages={Number(
                         tarifasTransporteRodoviarioData
-                          ?.tarifasRodoviarioMetropolitanoComplementar?.meta
-                          .pagination.pageCount,
+                          ?.tarifasRodoviarioComplementar?.meta.pagination
+                          .pageCount,
                       )}
                       onPageChange={setPage}
                       registersPerPage={Number(
                         tarifasTransporteRodoviarioData
-                          ?.tarifasRodoviarioMetropolitanoComplementar?.meta
-                          .pagination.pageSize,
+                          ?.tarifasRodoviarioComplementar?.meta.pagination
+                          .pageSize,
                       )}
                     />
                   )}

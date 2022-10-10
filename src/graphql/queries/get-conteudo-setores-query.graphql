@@ -1,0 +1,54 @@
+# Write your query or mutation here
+query GetConteudoSetor ($limit: Int!, $start: Int, $type: String) {
+  departments (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { type:{ eq: $type } } ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        type
+        sections {
+          id
+          question 
+          
+          answers {
+            id
+            title
+            subtitle
+            cover {
+              data {
+                id
+                attributes {
+                  name
+                  alternativeText
+                  url
+                }
+              }
+            }
+            content
+          } 
+          
+          documents {
+            name
+            file {
+              data {
+                id
+                attributes {
+                  name
+                  alternativeText
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

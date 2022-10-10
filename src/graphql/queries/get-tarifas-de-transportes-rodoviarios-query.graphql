@@ -1,5 +1,5 @@
 query GetTarifasDeTransportesRodoviarios ($limit: Int!, $start: Int) {
-  tarifasRodoviarioIntermunicipal: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { transportType: { eq: "Intermunicipal" } } ) {
+  tarifasRodoviarioIntermunicipal: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, sort: "name:asc", filters: { transportType: { eq: "Intermunicipal" } } ) {
     meta {
       pagination {
         total
@@ -34,7 +34,7 @@ query GetTarifasDeTransportesRodoviarios ($limit: Int!, $start: Int) {
     }
   }
   
-  tarifasRodoviarioMetropolitano: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { transportType: { eq: "Metropolitano" } } ) {
+  tarifasRodoviarioMetropolitano: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, sort: "name:asc", filters: { transportType: { eq: "Metropolitano" } } ) {
     meta {
       pagination {
         total
@@ -69,7 +69,7 @@ query GetTarifasDeTransportesRodoviarios ($limit: Int!, $start: Int) {
     }
   }
   
-  tarifasRodoviarioSemiurbano: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { transportType: { eq: "Semiurbano" } } ) {
+  tarifasRodoviarioSemiurbano: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, sort: "name:asc", filters: { transportType: { eq: "Semiurbano" } } ) {
     meta {
       pagination {
         total
@@ -104,7 +104,7 @@ query GetTarifasDeTransportesRodoviarios ($limit: Int!, $start: Int) {
     }
   }
   
-  tarifasRodoviarioMetropolitanoComplementar: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, filters: { transportType: { eq: "Complementar" } } ) {
+  tarifasRodoviarioComplementar: transportFees (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, sort: "name:asc", filters: { transportType: { eq: "Complementar" } } ) {
     meta {
       pagination {
         total

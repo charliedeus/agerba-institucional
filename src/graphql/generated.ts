@@ -197,6 +197,78 @@ export type ComponentMunicipiosMunicipiosMunicipiosArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
 
+export type ComponentPerguntasERespostasPAndR = {
+  __typename?: 'ComponentPerguntasERespostasPAndR'
+  answers?: Maybe<Array<Maybe<ComponentSectionsToContentSections>>>
+  documents?: Maybe<Array<Maybe<ComponentArquivosArquivos>>>
+  id: Scalars['ID']
+  question: Scalars['String']
+}
+
+export type ComponentPerguntasERespostasPAndRAnswersArgs = {
+  filters?: InputMaybe<ComponentSectionsToContentSectionsFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type ComponentPerguntasERespostasPAndRDocumentsArgs = {
+  filters?: InputMaybe<ComponentArquivosArquivosFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type ComponentPerguntasERespostasPAndRFiltersInput = {
+  and?: InputMaybe<
+    Array<InputMaybe<ComponentPerguntasERespostasPAndRFiltersInput>>
+  >
+  answers?: InputMaybe<ComponentSectionsToContentSectionsFiltersInput>
+  documents?: InputMaybe<ComponentArquivosArquivosFiltersInput>
+  not?: InputMaybe<ComponentPerguntasERespostasPAndRFiltersInput>
+  or?: InputMaybe<
+    Array<InputMaybe<ComponentPerguntasERespostasPAndRFiltersInput>>
+  >
+  question?: InputMaybe<StringFilterInput>
+}
+
+export type ComponentPerguntasERespostasPAndRInput = {
+  answers?: InputMaybe<
+    Array<InputMaybe<ComponentSectionsToContentSectionsInput>>
+  >
+  documents?: InputMaybe<Array<InputMaybe<ComponentArquivosArquivosInput>>>
+  id?: InputMaybe<Scalars['ID']>
+  question?: InputMaybe<Scalars['String']>
+}
+
+export type ComponentSectionsToContentSections = {
+  __typename?: 'ComponentSectionsToContentSections'
+  content: Scalars['String']
+  cover?: Maybe<UploadFileEntityResponse>
+  id: Scalars['ID']
+  subtitle?: Maybe<Scalars['String']>
+  title: Scalars['String']
+}
+
+export type ComponentSectionsToContentSectionsFiltersInput = {
+  and?: InputMaybe<
+    Array<InputMaybe<ComponentSectionsToContentSectionsFiltersInput>>
+  >
+  content?: InputMaybe<StringFilterInput>
+  not?: InputMaybe<ComponentSectionsToContentSectionsFiltersInput>
+  or?: InputMaybe<
+    Array<InputMaybe<ComponentSectionsToContentSectionsFiltersInput>>
+  >
+  subtitle?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+}
+
+export type ComponentSectionsToContentSectionsInput = {
+  content?: InputMaybe<Scalars['String']>
+  cover?: InputMaybe<Scalars['ID']>
+  id?: InputMaybe<Scalars['ID']>
+  subtitle?: InputMaybe<Scalars['String']>
+  title?: InputMaybe<Scalars['String']>
+}
+
 export type ComponentStudentsStudentResources = {
   __typename?: 'ComponentStudentsStudentResources'
   approved: Scalars['Boolean']
@@ -329,6 +401,58 @@ export type DateTimeFilterInput = {
   startsWith?: InputMaybe<Scalars['DateTime']>
 }
 
+export type Department = {
+  __typename?: 'Department'
+  createdAt?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  sections?: Maybe<Array<Maybe<ComponentPerguntasERespostasPAndR>>>
+  type?: Maybe<Enum_Department_Type>
+  updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type DepartmentSectionsArgs = {
+  filters?: InputMaybe<ComponentPerguntasERespostasPAndRFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type DepartmentEntity = {
+  __typename?: 'DepartmentEntity'
+  attributes?: Maybe<Department>
+  id?: Maybe<Scalars['ID']>
+}
+
+export type DepartmentEntityResponse = {
+  __typename?: 'DepartmentEntityResponse'
+  data?: Maybe<DepartmentEntity>
+}
+
+export type DepartmentEntityResponseCollection = {
+  __typename?: 'DepartmentEntityResponseCollection'
+  data: Array<DepartmentEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type DepartmentFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<DepartmentFiltersInput>>>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  not?: InputMaybe<DepartmentFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<DepartmentFiltersInput>>>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  sections?: InputMaybe<ComponentPerguntasERespostasPAndRFiltersInput>
+  type?: InputMaybe<StringFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type DepartmentInput = {
+  publishedAt?: InputMaybe<Scalars['DateTime']>
+  sections?: InputMaybe<
+    Array<InputMaybe<ComponentPerguntasERespostasPAndRInput>>
+  >
+  type?: InputMaybe<Enum_Department_Type>
+}
+
 export enum Enum_Componenteventevent_Title {
   AudienciaPublica = 'Audiencia_Publica',
   PublicacaoDoAviso = 'Publicacao_do_Aviso',
@@ -351,6 +475,13 @@ export enum Enum_Componenttarifastute_Type {
   Aeroviario = 'Aeroviario',
   Hidroviario = 'Hidroviario',
   Rodoviario = 'Rodoviario',
+}
+
+export enum Enum_Department_Type {
+  Cadastros = 'Cadastros',
+  Licencas = 'Licencas',
+  Linhas = 'Linhas',
+  VeiculosEVistorias = 'Veiculos_e_Vistorias',
 }
 
 export enum Enum_Eventopublico_Event_Type {
@@ -625,11 +756,14 @@ export type GenericMorph =
   | ComponentDocumentoVigenciaDocumentoVigencia
   | ComponentEventEvent
   | ComponentMunicipiosMunicipios
+  | ComponentPerguntasERespostasPAndR
+  | ComponentSectionsToContentSections
   | ComponentStudentsStudentResources
   | ComponentTarifasFerryBoat
   | ComponentTarifasTarifasTransporteRodoviario
   | ComponentTarifasTransporteHidroviario
   | ComponentTarifasTute
+  | Department
   | EventoPublico
   | Faq
   | GasTariff
@@ -1036,6 +1170,7 @@ export type Mutation = {
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>
   createCity?: Maybe<CityEntityResponse>
+  createDepartment?: Maybe<DepartmentEntityResponse>
   createEventoPublico?: Maybe<EventoPublicoEntityResponse>
   createFaq?: Maybe<FaqEntityResponse>
   createGasTariff?: Maybe<GasTariffEntityResponse>
@@ -1064,6 +1199,7 @@ export type Mutation = {
   createWaterwayTransport?: Maybe<WaterwayTransportEntityResponse>
   createWaterwayTransportTariff?: Maybe<WaterwayTransportTariffEntityResponse>
   deleteCity?: Maybe<CityEntityResponse>
+  deleteDepartment?: Maybe<DepartmentEntityResponse>
   deleteEventoPublico?: Maybe<EventoPublicoEntityResponse>
   deleteFaq?: Maybe<FaqEntityResponse>
   deleteGasTariff?: Maybe<GasTariffEntityResponse>
@@ -1103,6 +1239,7 @@ export type Mutation = {
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>
   updateCity?: Maybe<CityEntityResponse>
+  updateDepartment?: Maybe<DepartmentEntityResponse>
   updateEventoPublico?: Maybe<EventoPublicoEntityResponse>
   updateFaq?: Maybe<FaqEntityResponse>
   updateFileInfo: UploadFileEntityResponse
@@ -1142,6 +1279,10 @@ export type MutationChangePasswordArgs = {
 
 export type MutationCreateCityArgs = {
   data: CityInput
+}
+
+export type MutationCreateDepartmentArgs = {
+  data: DepartmentInput
 }
 
 export type MutationCreateEventoPublicoArgs = {
@@ -1245,6 +1386,10 @@ export type MutationCreateWaterwayTransportTariffArgs = {
 }
 
 export type MutationDeleteCityArgs = {
+  id: Scalars['ID']
+}
+
+export type MutationDeleteDepartmentArgs = {
   id: Scalars['ID']
 }
 
@@ -1383,6 +1528,11 @@ export type MutationResetPasswordArgs = {
 
 export type MutationUpdateCityArgs = {
   data: CityInput
+  id: Scalars['ID']
+}
+
+export type MutationUpdateDepartmentArgs = {
+  data: DepartmentInput
   id: Scalars['ID']
 }
 
@@ -1671,6 +1821,8 @@ export type Query = {
   __typename?: 'Query'
   cities?: Maybe<CityEntityResponseCollection>
   city?: Maybe<CityEntityResponse>
+  department?: Maybe<DepartmentEntityResponse>
+  departments?: Maybe<DepartmentEntityResponseCollection>
   eventoPublico?: Maybe<EventoPublicoEntityResponse>
   eventosPublicos?: Maybe<EventoPublicoEntityResponseCollection>
   faq?: Maybe<FaqEntityResponse>
@@ -1735,6 +1887,17 @@ export type QueryCitiesArgs = {
 
 export type QueryCityArgs = {
   id?: InputMaybe<Scalars['ID']>
+}
+
+export type QueryDepartmentArgs = {
+  id?: InputMaybe<Scalars['ID']>
+}
+
+export type QueryDepartmentsArgs = {
+  filters?: InputMaybe<DepartmentFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
 
 export type QueryEventoPublicoArgs = {
@@ -3219,6 +3382,79 @@ export type GetConsultasPublicasQuery = {
   } | null
 }
 
+export type GetConteudoSetorQueryVariables = Exact<{
+  limit: Scalars['Int']
+  start?: InputMaybe<Scalars['Int']>
+  type?: InputMaybe<Scalars['String']>
+}>
+
+export type GetConteudoSetorQuery = {
+  __typename?: 'Query'
+  departments?: {
+    __typename?: 'DepartmentEntityResponseCollection'
+    meta: {
+      __typename?: 'ResponseCollectionMeta'
+      pagination: {
+        __typename?: 'Pagination'
+        total: number
+        pageCount: number
+        page: number
+        pageSize: number
+      }
+    }
+    data: Array<{
+      __typename?: 'DepartmentEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Department'
+        type?: Enum_Department_Type | null
+        sections?: Array<{
+          __typename?: 'ComponentPerguntasERespostasPAndR'
+          id: string
+          question: string
+          answers?: Array<{
+            __typename?: 'ComponentSectionsToContentSections'
+            id: string
+            title: string
+            subtitle?: string | null
+            content: string
+            cover?: {
+              __typename?: 'UploadFileEntityResponse'
+              data?: {
+                __typename?: 'UploadFileEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'UploadFile'
+                  name: string
+                  alternativeText?: string | null
+                  url: string
+                } | null
+              } | null
+            } | null
+          } | null> | null
+          documents?: Array<{
+            __typename?: 'ComponentArquivosArquivos'
+            name: string
+            file: {
+              __typename?: 'UploadFileEntityResponse'
+              data?: {
+                __typename?: 'UploadFileEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'UploadFile'
+                  name: string
+                  alternativeText?: string | null
+                  url: string
+                } | null
+              } | null
+            }
+          } | null> | null
+        } | null> | null
+      } | null
+    }>
+  } | null
+}
+
 export type GetFaQsQueryVariables = Exact<{ [key: string]: never }>
 
 export type GetFaQsQuery = {
@@ -3783,7 +4019,7 @@ export type GetTarifasDeTransportesRodoviariosQuery = {
       } | null
     }>
   } | null
-  tarifasRodoviarioMetropolitanoComplementar?: {
+  tarifasRodoviarioComplementar?: {
     __typename?: 'TransportFeeEntityResponseCollection'
     meta: {
       __typename?: 'ResponseCollectionMeta'
@@ -4699,6 +4935,116 @@ export type GetConsultasPublicasQueryResult = Apollo.QueryResult<
   GetConsultasPublicasQuery,
   GetConsultasPublicasQueryVariables
 >
+export const GetConteudoSetorDocument = gql`
+  query GetConteudoSetor($limit: Int!, $start: Int, $type: String) {
+    departments(
+      pagination: { limit: $limit, start: $start }
+      publicationState: LIVE
+      filters: { type: { eq: $type } }
+    ) {
+      meta {
+        pagination {
+          total
+          pageCount
+          page
+          pageSize
+        }
+      }
+      data {
+        id
+        attributes {
+          type
+          sections {
+            id
+            question
+            answers {
+              id
+              title
+              subtitle
+              cover {
+                data {
+                  id
+                  attributes {
+                    name
+                    alternativeText
+                    url
+                  }
+                }
+              }
+              content
+            }
+            documents {
+              name
+              file {
+                data {
+                  id
+                  attributes {
+                    name
+                    alternativeText
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useGetConteudoSetorQuery__
+ *
+ * To run a query within a React component, call `useGetConteudoSetorQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetConteudoSetorQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetConteudoSetorQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
+ *      type: // value for 'type'
+ *   },
+ * });
+ */
+export function useGetConteudoSetorQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    GetConteudoSetorQuery,
+    GetConteudoSetorQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetConteudoSetorQuery, GetConteudoSetorQueryVariables>(
+    GetConteudoSetorDocument,
+    options,
+  )
+}
+export function useGetConteudoSetorLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetConteudoSetorQuery,
+    GetConteudoSetorQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<
+    GetConteudoSetorQuery,
+    GetConteudoSetorQueryVariables
+  >(GetConteudoSetorDocument, options)
+}
+export type GetConteudoSetorQueryHookResult = ReturnType<
+  typeof useGetConteudoSetorQuery
+>
+export type GetConteudoSetorLazyQueryHookResult = ReturnType<
+  typeof useGetConteudoSetorLazyQuery
+>
+export type GetConteudoSetorQueryResult = Apollo.QueryResult<
+  GetConteudoSetorQuery,
+  GetConteudoSetorQueryVariables
+>
 export const GetFaQsDocument = gql`
   query GetFAQs {
     faqs(publicationState: LIVE) {
@@ -5418,6 +5764,7 @@ export const GetTarifasDeTransportesRodoviariosDocument = gql`
     tarifasRodoviarioIntermunicipal: transportFees(
       pagination: { limit: $limit, start: $start }
       publicationState: LIVE
+      sort: "name:asc"
       filters: { transportType: { eq: "Intermunicipal" } }
     ) {
       meta {
@@ -5454,6 +5801,7 @@ export const GetTarifasDeTransportesRodoviariosDocument = gql`
     tarifasRodoviarioMetropolitano: transportFees(
       pagination: { limit: $limit, start: $start }
       publicationState: LIVE
+      sort: "name:asc"
       filters: { transportType: { eq: "Metropolitano" } }
     ) {
       meta {
@@ -5490,6 +5838,7 @@ export const GetTarifasDeTransportesRodoviariosDocument = gql`
     tarifasRodoviarioSemiurbano: transportFees(
       pagination: { limit: $limit, start: $start }
       publicationState: LIVE
+      sort: "name:asc"
       filters: { transportType: { eq: "Semiurbano" } }
     ) {
       meta {
@@ -5523,9 +5872,10 @@ export const GetTarifasDeTransportesRodoviariosDocument = gql`
         }
       }
     }
-    tarifasRodoviarioMetropolitanoComplementar: transportFees(
+    tarifasRodoviarioComplementar: transportFees(
       pagination: { limit: $limit, start: $start }
       publicationState: LIVE
+      sort: "name:asc"
       filters: { transportType: { eq: "Complementar" } }
     ) {
       meta {
