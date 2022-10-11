@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -47,14 +48,6 @@ const citizenServicesGroup = [
 const companiesServicesGroup = [
   {
     id: uuidv4(),
-    title: 'Portal de Serviços - STIP',
-    url: 'http://agerba.stipweb.com.br',
-    imageUrl:
-      'https://images.unsplash.com/photo-1498644213631-031eabff31e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c2VydmljZXMlMjB0cmFuc3BvcnR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-    services: [],
-  },
-  {
-    id: uuidv4(),
     title: 'Licitações',
     url: '/licitacoes',
     imageUrl:
@@ -93,18 +86,20 @@ export function ServicesPanel() {
         {citizenServicesGroup.map((service) => (
           <Link key={service.id} href={service.url}>
             <a className="shadow-xl">
-              <div
-                className="w-[225px] min-w-[225px] h-full flex flex-col justify-end p-6 rounded-lg snap-always snap-center overflow-hidden bg-cover bg-no-repeat shadow-md group"
-                style={{
-                  background: `url(${service.imageUrl})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                }}
-              >
-                <span className="text-sm text-white font-bold leading-tight bg-primary p-4 rounded-lg">
-                  {service.title}
-                </span>
+              <div className="w-[225px] min-w-[225px] h-full flex flex-col justify-end rounded-lg snap-always snap-center overflow-hidden shadow-md group relative">
+                <picture className="w-full h-full flex">
+                  <img
+                    src={service.imageUrl}
+                    alt={service.title}
+                    className="object-cover object-center"
+                  />
+                </picture>
+
+                <div className="w-full h-full p-6 absolute flex items-end">
+                  <span className="w-full text-sm text-white font-bold leading-tight bg-primary p-4 rounded-lg">
+                    {service.title}
+                  </span>
+                </div>
               </div>
             </a>
           </Link>
@@ -121,20 +116,21 @@ export function ServicesPanel() {
       >
         {companiesServicesGroup.map((service) => (
           <Link key={service.id} href={service.url}>
-            <a className="">
-              <div
-                className="w-[225px] min-w-[225px] h-full flex flex-col justify-end p-6 rounded-lg snap-always snap-center overflow-hidden bg-cover bg-no-repeat shadow-md group"
-                style={{
-                  background: `url(${service.imageUrl})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                }}
-              >
-                {/* px-4 py-4 text-white bg-primary laptop:group-hover:bg-white laptop:group-hover:text-primary rounded-lg */}
-                <span className="text-sm text-white font-bold leading-tight bg-primary p-4 rounded-lg">
-                  {service.title}
-                </span>
+            <a className="shadow-xl">
+              <div className="w-[225px] min-w-[225px] h-full flex flex-col justify-end rounded-lg snap-always snap-center overflow-hidden shadow-md group relative">
+                <picture className="w-full h-full flex">
+                  <img
+                    src={service.imageUrl}
+                    alt={service.title}
+                    className="object-cover object-center"
+                  />
+                </picture>
+
+                <div className="w-full h-full p-6 absolute flex items-end">
+                  <span className="w-full text-sm text-white font-bold leading-tight bg-primary p-4 rounded-lg">
+                    {service.title}
+                  </span>
+                </div>
               </div>
             </a>
           </Link>

@@ -82,19 +82,46 @@ const RegistrationsPage: NextPageWithLayout = () => {
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
       {questions.map((item) => (
         <div key={item.id} className="flex flex-col gap-6">
-          <h1 className="font-bold text-[2rem]">Cadastros</h1>
+          <h1 className="font-bold text-[2rem]">
+            Cadastramento de Prestadores de Serviços
+          </h1>
 
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry standard dummy text ever
-            since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only
-            five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
+            O registro cadastral dos prestadores de serviços do SRI (Sistema de
+            Transporte Rodoviário Intermunicipal de Passageiros do Estado da
+            Bahia) foi previsto pelo art. 51 do Decreto Estadual nº 11.832 de
+            2009. Desta forma, estes prestadores de serviços ficam obrigados a
+            apresentar documentações mínimas, conforme Resoluções específicas
+            expedidas por esta Agência.
           </p>
+
+          <p>
+            No SRI existem sete modalidades de cadastro, que são diferenciadas
+            pelas características dos serviços prestados:
+          </p>
+
+          <ul>
+            <li className="list-disc list-inside">
+              Empresas concessionárias de linhas regulares;
+            </li>
+            <li className="list-disc list-inside">
+              Permissionárias de linhas do subsistema complementar;
+            </li>
+            <li className="list-disc list-inside">
+              Empresas operadoras de serviços especiais que objetivam licenças
+              de fretamento, escolar e turismo;
+            </li>
+            <li className="list-disc list-inside">
+              Empresas do sistema hidroviário;
+            </li>
+            <li className="list-disc list-inside">Empresas de publicidade;</li>
+            <li className="list-disc list-inside">
+              Empresas administradoras de terminais rodoviários e;
+            </li>
+            <li className="list-disc list-inside">
+              Empresas comercializadoras de gás.
+            </li>
+          </ul>
 
           {data?.departments?.data[0]?.attributes?.sections && (
             <ul className="flex flex-wrap gap-2">
@@ -122,7 +149,7 @@ const RegistrationsPage: NextPageWithLayout = () => {
                   className="w-full h-full flex flex-col gap-4"
                 >
                   {answer?.cover?.data && (
-                    <div className="shadow-lg">
+                    <div className="shadow-lg rounded-xl overflow-hidden">
                       <picture>
                         <img
                           src={urlBuilder(answer.cover.data?.attributes?.url)}
