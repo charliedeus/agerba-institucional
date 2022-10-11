@@ -82,9 +82,7 @@ const RegistrationsPage: NextPageWithLayout = () => {
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
       {questions.map((item) => (
         <div key={item.id} className="flex flex-col gap-6">
-          <h1 className="font-bold text-[2rem]">
-            {data?.departments?.data[0].attributes?.type}
-          </h1>
+          <h1 className="font-bold text-[2rem]">Cadastros</h1>
 
           <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -98,7 +96,7 @@ const RegistrationsPage: NextPageWithLayout = () => {
             PageMaker including versions of Lorem Ipsum.
           </p>
 
-          {data?.departments?.data[0].attributes?.sections && (
+          {data?.departments?.data[0]?.attributes?.sections && (
             <ul className="flex flex-wrap gap-2">
               {data?.departments?.data[0].attributes?.sections.map(
                 (question, index) => (
@@ -114,7 +112,7 @@ const RegistrationsPage: NextPageWithLayout = () => {
             </ul>
           )}
 
-          {data?.departments?.data[0].attributes?.sections && (
+          {data?.departments?.data[0]?.attributes?.sections && (
             <article className="flex flex-col gap-14">
               {data?.departments?.data[0].attributes?.sections[
                 isSelectQuestion
