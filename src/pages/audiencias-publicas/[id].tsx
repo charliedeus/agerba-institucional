@@ -11,11 +11,12 @@ import type { NextPageWithLayout } from '../_app'
 import { useGetAudienciaPublicaByIdQuery } from '../../graphql/generated'
 import Link from 'next/link'
 import { urlBuilder } from '../../lib/urlBuilder'
+import { Loader } from '../../components/Loader';
 
 const PublicHearingPage: NextPageWithLayout = () => {
   const router = useRouter()
 
-  const { data } = useGetAudienciaPublicaByIdQuery({
+  const { data, loading } = useGetAudienciaPublicaByIdQuery({
     variables: {
       id: String(router.query.id),
     },
@@ -44,240 +45,163 @@ const PublicHearingPage: NextPageWithLayout = () => {
   }
 
   return (
-    <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
-      <h1 className="font-bold text-[2rem]">{formattedEvent.formattedTitle}</h1>
+    <article className="flex flex-col gap-6 h-[calc(100vh-70px)] min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed" >
 
-      {formattedEvent.attributes?.notify && (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: formattedEvent.formattedNotify,
-          }}
-        />
-      )}
-
-      {formattedEvent.attributes?.calendar && (
+      {loading ?
+        <div className='w-full h-1/2 flex items-center justify-center'>
+          <Loader />
+        </div> :
         <>
-          <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
-            Calendário
-          </h1>
-          <ul className="flex flex-col gap-2">
-            {formattedEvent.attributes.calendar.map(evento => (
-              <li
-                key={evento?.id}
-                className="px-4 py-6 bg-gray-200 rounded-lg flex flex-col laptop:flex-row gap-2"
-              >
-                <div className="flex items-center gap-2 laptop:w-2/5 laptop:min-w-2/5">
-                  <CalendarBlank
-                    size={16}
-                    weight="light"
-                    className="text-gray-500"
-                  />
-                  <span className="font-bold">
-                    {new Date(evento?.starts_in).toLocaleDateString('pt-BR', {
-                      timeZone: 'UTC'
-                    })}
+          <h1 className="font-bold text-[2rem]">{formattedEvent.formattedTitle}</h1>
 
-                    {new Date(evento?.starts_in).getHours() > 0 && format(new Date(evento?.starts_in), "', às 'HH':'mm", {
-                      locale: ptBR,
-                    })}
+          {
+            formattedEvent.attributes?.notify && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: formattedEvent.formattedNotify,
+                }}
+              />
+            )
+          }
 
-                    {evento?.finish_in && (
-                      <>
-                        {evento?.finish_in && (
-                          ` a `
+          {
+            formattedEvent.attributes?.calendar && (
+              <>
+                <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
+                  Calendário
+                </h1>
+                <ul className="flex flex-col gap-2">
+                  {formattedEvent.attributes.calendar.map(evento => (
+                    <li
+                      key={evento?.id}
+                      className="px-4 py-6 bg-gray-200 rounded-lg flex flex-col laptop:flex-row gap-2"
+                    >
+                      <div className="flex items-center gap-2 laptop:w-2/5 laptop:min-w-2/5">
+                        <CalendarBlank
+                          size={16}
+                          weight="light"
+                          className="text-gray-500"
+                        />
+                        <span className="font-bold">
+                          {new Date(evento?.starts_in).toLocaleDateString('pt-BR', {
+                            timeZone: 'UTC'
+                          })}
+
+                          {new Date(evento?.starts_in).getHours() > 0 && format(new Date(evento?.starts_in), "', às 'HH':'mm", {
+                            locale: ptBR,
+                          })}
+
+                          {evento?.finish_in && (
+                            <>
+                              {evento?.finish_in && (
+                                ` a `
+                              )}
+                              {new Date(evento?.finish_in).toLocaleDateString('pt-BR', {
+                                timeZone: 'UTC'
+                              })}
+                              {new Date(evento?.finish_in).getHours() > 0 && format(new Date(evento?.finish_in), "', às 'HH':'mm", {
+                                locale: ptBR,
+                              })}
+                            </>
+                          )}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 laptop:w-2/5 laptop:min-w-2/5">
+                        <File
+                          size={16}
+                          weight="light"
+                          className="text-gray-500"
+                        />
+                        {evento?.title === 'Publicacao_do_Aviso' && (
+                          <span className="font-bold">
+                            Publicação do Aviso de Audiência Pública
+                          </span>
                         )}
-                        {new Date(evento?.finish_in).toLocaleDateString('pt-BR', {
-                          timeZone: 'UTC'
-                        })}
-                        {new Date(evento?.finish_in).getHours() > 0 && format(new Date(evento?.finish_in), "', às 'HH':'mm", {
-                          locale: ptBR,
-                        })}
-                      </>
-                    )}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 laptop:w-2/5 laptop:min-w-2/5">
-                  <File
-                    size={16}
-                    weight="light"
-                    className="text-gray-500"
-                  />
-                  {evento?.title === 'Publicacao_do_Aviso' && (
-                    <span className="font-bold">
-                      Publicação do Aviso de Audiência Pública
-                    </span>
-                  )}
 
-                  {evento?.title === 'Recebimento_de_Contribuicoes' && (
-                    <span className="font-bold">
-                      Recebimento de Contribuições
-                    </span>
-                  )}
+                        {evento?.title === 'Recebimento_de_Contribuicoes' && (
+                          <span className="font-bold">
+                            Recebimento de Contribuições
+                          </span>
+                        )}
 
-                  {evento?.title === 'Audiencia_Publica' && (
-                    <span className="font-bold">
-                      Audiência Pública
-                    </span>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
+                        {evento?.title === 'Audiencia_Publica' && (
+                          <span className="font-bold">
+                            Audiência Pública
+                          </span>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )
+          }
+
+          {
+            formattedEvent.attributes?.place && (
+              <>
+                <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
+                  Local de Realização
+                </h1>
+
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: formattedEvent.attributes.place,
+                  }}
+                />
+              </>
+            )
+          }
+
+          {
+            formattedEvent.attributes?.Documentos && formattedEvent.attributes?.Documentos?.length > 0 && (
+              <>
+                <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
+                  Documentos Anexos
+                </h1>
+
+                <ul role="list" className="flex flex-col gap-2">
+                  {formattedEvent.attributes?.Documentos?.map((documento) => (
+                    <li
+                      key={documento?.file.data?.attributes?.url}
+                      className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg"
+                    >
+                      <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
+                        <span className="font-bold laptop:flex-1 flex items-center gap-2">
+                          <FileDoc size={16} weight="light" className="text-gray-500" />{' '}
+                          {documento?.name}
+                        </span>
+
+                        {documento?.file.data?.attributes?.url && (
+                          <Link
+                            href={urlBuilder(
+                              documento?.file.data?.attributes?.url,
+                            )}
+                          >
+                            <a
+                              className="laptop:w-1/12 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center justify-center gap-2"
+                              download
+                              target="_blank"
+                            >
+                              <FileArrowDown
+                                size={24}
+                                weight="light"
+                                className="text-gray-900"
+                              />{' '}
+                            </a>
+                          </Link>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )
+          }
         </>
-      )
       }
 
-      {formattedEvent.attributes?.place && (
-        <>
-          <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
-            Local de Realização
-          </h1>
-
-          <div
-            dangerouslySetInnerHTML={{
-              __html: formattedEvent.attributes.place,
-            }}
-          />
-        </>
-      )}
-
-      {formattedEvent.attributes?.Documentos && formattedEvent.attributes?.Documentos?.length > 0 && (
-        <>
-          <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
-            Documentos Anexos
-          </h1>
-
-          <ul role="list" className="flex flex-col gap-2">
-            {formattedEvent.attributes?.Documentos?.map((documento) => (
-              <li
-                key={documento?.file.data?.attributes?.url}
-                className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg"
-              >
-                <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
-                  <span className="font-bold laptop:flex-1 flex items-center gap-2">
-                    <FileDoc size={16} weight="light" className="text-gray-500" />{' '}
-                    {documento?.name}
-                  </span>
-
-                  {documento?.file.data?.attributes?.url && (
-                    <Link
-                      href={urlBuilder(
-                        documento?.file.data?.attributes?.url,
-                      )}
-                    >
-                      <a
-                        className="laptop:w-1/12 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center justify-center gap-2"
-                        download
-                        target="_blank"
-                      >
-                        <FileArrowDown
-                          size={24}
-                          weight="light"
-                          className="text-gray-900"
-                        />{' '}
-                      </a>
-                    </Link>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-
-
-      {/* <ul className="flex flex-col gap-2">
-        {data?.audienciasPublica?.Calendario?.map((evento) => (
-          <li
-            key={evento?.id}
-            className="px-4 py-6 bg-gray-200 rounded-lg flex flex-col laptop:flex-row gap-2"
-          >
-            <div className="flex items-center gap-2 laptop:w-1/5 laptop:min-w-1/5">
-              <CalendarBlank
-                size={16}
-                weight="light"
-                className="text-gray-500"
-              />
-              <span className="font-bold">
-                {new Date(evento?.inicial).toLocaleDateString('pt-BR', {
-                  timeZone: 'UTC',
-                })}{' '}
-                {evento?.inicial !== evento?.final &&
-                  `à ${new Date(evento?.final).toLocaleDateString('pt-BR', {
-                    timeZone: 'UTC',
-                  })}`}
-              </span>
-            </div>
-
-            <div className="flex flex-1 items-center gap-2">
-              <File
-                size={16}
-                weight="light"
-                className="text-gray-500 hidden laptop:inline"
-              />
-              <span className="font-bold">{evento?.descricao}</span>
-            </div>
-          </li>
-        ))}
-      </ul> */}
-
-      {/* <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
-        Participação
-      </h1>
-      {data?.audienciasPublica?.participacao && (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: data?.audienciasPublica?.participacao,
-          }}
-        ></div>
-      )} */}
-
-      {/* <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
-        Encerramento e Divulgação
-      </h1>
-      {data?.audienciasPublica?.encerramento && (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: data?.audienciasPublica?.encerramento,
-          }}
-        ></div>
-      )} */}
-
-      {/* {data?.audienciasPublica?.documentos &&
-        data?.audienciasPublica?.documentos.length > 0 && (
-          <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
-            Documentos Anexos
-          </h1>
-        )}
-
-      <ul className="flex flex-col gap-2">
-        {data?.audienciasPublica?.documentos?.map((documento) => (
-          <li
-            key={documento?.id}
-            className="px-4 py-6 bg-gray-200 rounded-lg flex flex-col laptop:justify-between laptop:flex-row  gap-2"
-          >
-            <div className="flex flex-1 items-center gap-2">
-              <span>{documento?.name}</span>
-            </div>
-            {documento?.url && (
-              <Link href={urlBuilder(documento?.url)}>
-                <a
-                  download
-                  target="_blank"
-                  className="laptop:w-1/12 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center justify-center gap-2"
-                >
-                  <FileArrowDown
-                    size={24}
-                    weight="light"
-                    className="text-gray-900"
-                  />
-                </a>
-              </Link>
-            )}
-          </li>
-        ))}
-      </ul> */}
-    </article >
+    </article>
   )
 }
 

@@ -23,14 +23,6 @@ const Home: NextPageWithLayout = () => {
       }),
   )
 
-  // const formattedNoticias = noticias?.map((noticia) => {
-  //   return {
-  //     id: noticia.id,
-  //     title: noticia.attributes?.title,
-  //     imageUrl: noticia.attributes?.cover.data?.attributes?.url,
-  //   }
-  // })
-
   useEffect(() => {
     if (noticias?.length! > 0) {
       return document.body.classList.add('fixed')

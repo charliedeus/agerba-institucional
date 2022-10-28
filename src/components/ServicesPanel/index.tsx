@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -87,14 +88,24 @@ export function ServicesPanel() {
             <a className="shadow-xl">
               <div className="w-[225px] min-w-[225px] h-full flex flex-col justify-end rounded-lg snap-always snap-center overflow-hidden shadow-md group relative">
                 <picture className="w-full h-full flex">
-                  <img
+                  <motion.img
                     src={service.imageUrl}
                     alt={service.title}
                     className="object-cover object-center"
+                    animate="visible"
+                    variants={{
+                      visible: {
+                        scale: [1, 1.5],
+                        opacity: 1,
+                        transition: {
+                          duration: 15,
+                        },
+                      },
+                    }}
                   />
                 </picture>
 
-                <div className="w-full h-full p-6 absolute flex items-end">
+                <div className="w-full h-full p-6 absolute flex items-end z-10">
                   <span className="w-full text-sm text-white font-bold leading-tight bg-primary p-4 rounded-lg">
                     {service.title}
                   </span>
@@ -109,19 +120,26 @@ export function ServicesPanel() {
         SERVIÇOS / TRANSPORTE
       </h3>
 
-      <div
-        className="w-full h-[350px] flex overflow-x-scroll snap-mandatory scroll-p-6 scroll-smooth rounded-lg gap-3 p-6 snap-x no-scrollbar"
-        style={{}}
-      >
+      <div className="w-full h-[350px] flex overflow-x-scroll snap-mandatory scroll-p-6 scroll-smooth rounded-lg gap-3 p-6 snap-x no-scrollbar">
         {companiesServicesGroup.map((service) => (
           <Link key={service.id} href={service.url}>
             <a className="shadow-xl">
               <div className="w-[225px] min-w-[225px] h-full flex flex-col justify-end rounded-lg snap-always snap-center overflow-hidden shadow-md group relative">
                 <picture className="w-full h-full flex">
-                  <img
+                  <motion.img
                     src={service.imageUrl}
                     alt={service.title}
                     className="object-cover object-center"
+                    animate="visible"
+                    variants={{
+                      visible: {
+                        scale: [1, 1.5],
+                        opacity: 1,
+                        transition: {
+                          duration: 15,
+                        },
+                      },
+                    }}
                   />
                 </picture>
 
