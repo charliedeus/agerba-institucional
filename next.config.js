@@ -10,6 +10,17 @@ const nextConfig = withPWA({
   pwa: {
     runtimeCaching,
   },
+  images: {
+    domains: ['localhost:4000', 'images.unsplash.com'],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '4000',
+        pathname: '/uploads/**',
+      },
+    ],
+  },
   output: 'standalone',
   trailingSlash: true,
 })

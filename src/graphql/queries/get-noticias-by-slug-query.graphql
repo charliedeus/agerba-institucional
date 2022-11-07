@@ -1,0 +1,55 @@
+query GetNoticiasBySlug ($slug: String!) {
+  noticias (publicationState: LIVE, filters:{ slug: { eq: $slug } } ) {
+    data {
+      id
+      attributes {
+        cover {
+          data {
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+        
+        slug
+        title
+        subtitle
+        colorTitle
+        content
+        updatedAt
+        publishedAt
+        deadline
+        
+        Sections {
+          cover {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+          id
+          title
+          subtitle
+          content
+        }
+        
+        gallery {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}

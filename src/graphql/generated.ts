@@ -500,6 +500,11 @@ export enum Enum_Licitacao_Type {
   Presencial = 'Presencial',
 }
 
+export enum Enum_Noticia_Colortitle {
+  Black = 'black',
+  White = 'white',
+}
+
 export enum Enum_Noticia_Newtype {
   Noticias = 'Noticias',
   NoticiasUrgentes = 'Noticias_Urgentes',
@@ -1676,6 +1681,8 @@ export type MutationUploadArgs = {
 
 export type Noticia = {
   __typename?: 'Noticia'
+  Sections?: Maybe<Array<Maybe<ComponentSectionsToContentSections>>>
+  colorTitle?: Maybe<Enum_Noticia_Colortitle>
   content: Scalars['String']
   cover: UploadFileEntityResponse
   createdAt?: Maybe<Scalars['DateTime']>
@@ -1684,9 +1691,16 @@ export type Noticia = {
   highlight: Scalars['Boolean']
   newtype: Enum_Noticia_Newtype
   publishedAt?: Maybe<Scalars['DateTime']>
-  subtitle: Scalars['String']
+  slug: Scalars['String']
+  subtitle?: Maybe<Scalars['String']>
   title: Scalars['String']
   updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type NoticiaSectionsArgs = {
+  filters?: InputMaybe<ComponentSectionsToContentSectionsFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
 
 export type NoticiaGalleryArgs = {
@@ -1713,7 +1727,9 @@ export type NoticiaEntityResponseCollection = {
 }
 
 export type NoticiaFiltersInput = {
+  Sections?: InputMaybe<ComponentSectionsToContentSectionsFiltersInput>
   and?: InputMaybe<Array<InputMaybe<NoticiaFiltersInput>>>
+  colorTitle?: InputMaybe<StringFilterInput>
   content?: InputMaybe<StringFilterInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
   deadline?: InputMaybe<DateFilterInput>
@@ -1723,12 +1739,17 @@ export type NoticiaFiltersInput = {
   not?: InputMaybe<NoticiaFiltersInput>
   or?: InputMaybe<Array<InputMaybe<NoticiaFiltersInput>>>
   publishedAt?: InputMaybe<DateTimeFilterInput>
+  slug?: InputMaybe<StringFilterInput>
   subtitle?: InputMaybe<StringFilterInput>
   title?: InputMaybe<StringFilterInput>
   updatedAt?: InputMaybe<DateTimeFilterInput>
 }
 
 export type NoticiaInput = {
+  Sections?: InputMaybe<
+    Array<InputMaybe<ComponentSectionsToContentSectionsInput>>
+  >
+  colorTitle?: InputMaybe<Enum_Noticia_Colortitle>
   content?: InputMaybe<Scalars['String']>
   cover?: InputMaybe<Scalars['ID']>
   deadline?: InputMaybe<Scalars['Date']>
@@ -1736,6 +1757,7 @@ export type NoticiaInput = {
   highlight?: InputMaybe<Scalars['Boolean']>
   newtype?: InputMaybe<Enum_Noticia_Newtype>
   publishedAt?: InputMaybe<Scalars['DateTime']>
+  slug?: InputMaybe<Scalars['String']>
   subtitle?: InputMaybe<Scalars['String']>
   title?: InputMaybe<Scalars['String']>
 }
@@ -3676,9 +3698,11 @@ export type GetLicitacoesFuturasQuery = {
   } | null
 }
 
-export type GetNoticiasDestaqueQueryVariables = Exact<{ [key: string]: never }>
+export type GetNoticiasBySlugQueryVariables = Exact<{
+  slug: Scalars['String']
+}>
 
-export type GetNoticiasDestaqueQuery = {
+export type GetNoticiasBySlugQuery = {
   __typename?: 'Query'
   noticias?: {
     __typename?: 'NoticiaEntityResponseCollection'
@@ -3687,11 +3711,13 @@ export type GetNoticiasDestaqueQuery = {
       id?: string | null
       attributes?: {
         __typename?: 'Noticia'
+        slug: string
         title: string
-        subtitle: string
+        subtitle?: string | null
+        colorTitle?: Enum_Noticia_Colortitle | null
         content: string
-        newtype: Enum_Noticia_Newtype
-        highlight: boolean
+        updatedAt?: any | null
+        publishedAt?: any | null
         deadline?: any | null
         cover: {
           __typename?: 'UploadFileEntityResponse'
@@ -3705,6 +3731,26 @@ export type GetNoticiasDestaqueQuery = {
             } | null
           } | null
         }
+        Sections?: Array<{
+          __typename?: 'ComponentSectionsToContentSections'
+          id: string
+          title: string
+          subtitle?: string | null
+          content: string
+          cover?: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                name: string
+                alternativeText?: string | null
+                url: string
+              } | null
+            } | null
+          } | null
+        } | null> | null
         gallery?: {
           __typename?: 'UploadFileRelationResponseCollection'
           data: Array<{
@@ -3718,6 +3764,100 @@ export type GetNoticiasDestaqueQuery = {
             } | null
           }>
         } | null
+      } | null
+    }>
+  } | null
+}
+
+export type GetNoticiasDestaqueQueryVariables = Exact<{
+  limit: Scalars['Int']
+  start?: InputMaybe<Scalars['Int']>
+  data_atual: Scalars['Date']
+}>
+
+export type GetNoticiasDestaqueQuery = {
+  __typename?: 'Query'
+  noticias?: {
+    __typename?: 'NoticiaEntityResponseCollection'
+    meta: {
+      __typename?: 'ResponseCollectionMeta'
+      pagination: {
+        __typename?: 'Pagination'
+        total: number
+        pageCount: number
+        page: number
+        pageSize: number
+      }
+    }
+    data: Array<{
+      __typename?: 'NoticiaEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Noticia'
+        slug: string
+        title: string
+        subtitle?: string | null
+        colorTitle?: Enum_Noticia_Colortitle | null
+        content: string
+        publishedAt?: any | null
+        deadline?: any | null
+        cover: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            attributes?: {
+              __typename?: 'UploadFile'
+              name: string
+              alternativeText?: string | null
+              url: string
+            } | null
+          } | null
+        }
+      } | null
+    }>
+  } | null
+}
+
+export type GetListaNoticiasQueryVariables = Exact<{
+  limit: Scalars['Int']
+  start?: InputMaybe<Scalars['Int']>
+}>
+
+export type GetListaNoticiasQuery = {
+  __typename?: 'Query'
+  noticias?: {
+    __typename?: 'NoticiaEntityResponseCollection'
+    meta: {
+      __typename?: 'ResponseCollectionMeta'
+      pagination: {
+        __typename?: 'Pagination'
+        total: number
+        pageCount: number
+        page: number
+        pageSize: number
+      }
+    }
+    data: Array<{
+      __typename?: 'NoticiaEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Noticia'
+        slug: string
+        title: string
+        subtitle?: string | null
+        publishedAt?: any | null
+        cover: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            attributes?: {
+              __typename?: 'UploadFile'
+              name: string
+              alternativeText?: string | null
+              url: string
+            } | null
+          } | null
+        }
       } | null
     }>
   } | null
@@ -5431,9 +5571,9 @@ export type GetLicitacoesFuturasQueryResult = Apollo.QueryResult<
   GetLicitacoesFuturasQuery,
   GetLicitacoesFuturasQueryVariables
 >
-export const GetNoticiasDestaqueDocument = gql`
-  query GetNoticiasDestaque {
-    noticias(publicationState: LIVE, filters: { highlight: { eq: true } }) {
+export const GetNoticiasBySlugDocument = gql`
+  query GetNoticiasBySlug($slug: String!) {
+    noticias(publicationState: LIVE, filters: { slug: { eq: $slug } }) {
       data {
         id
         attributes {
@@ -5446,12 +5586,30 @@ export const GetNoticiasDestaqueDocument = gql`
               }
             }
           }
+          slug
           title
           subtitle
+          colorTitle
           content
-          newtype
-          highlight
+          updatedAt
+          publishedAt
           deadline
+          Sections {
+            cover {
+              data {
+                id
+                attributes {
+                  name
+                  alternativeText
+                  url
+                }
+              }
+            }
+            id
+            title
+            subtitle
+            content
+          }
           gallery {
             data {
               id
@@ -5462,6 +5620,97 @@ export const GetNoticiasDestaqueDocument = gql`
               }
             }
           }
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useGetNoticiasBySlugQuery__
+ *
+ * To run a query within a React component, call `useGetNoticiasBySlugQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetNoticiasBySlugQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetNoticiasBySlugQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useGetNoticiasBySlugQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    GetNoticiasBySlugQuery,
+    GetNoticiasBySlugQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<
+    GetNoticiasBySlugQuery,
+    GetNoticiasBySlugQueryVariables
+  >(GetNoticiasBySlugDocument, options)
+}
+export function useGetNoticiasBySlugLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetNoticiasBySlugQuery,
+    GetNoticiasBySlugQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<
+    GetNoticiasBySlugQuery,
+    GetNoticiasBySlugQueryVariables
+  >(GetNoticiasBySlugDocument, options)
+}
+export type GetNoticiasBySlugQueryHookResult = ReturnType<
+  typeof useGetNoticiasBySlugQuery
+>
+export type GetNoticiasBySlugLazyQueryHookResult = ReturnType<
+  typeof useGetNoticiasBySlugLazyQuery
+>
+export type GetNoticiasBySlugQueryResult = Apollo.QueryResult<
+  GetNoticiasBySlugQuery,
+  GetNoticiasBySlugQueryVariables
+>
+export const GetNoticiasDestaqueDocument = gql`
+  query GetNoticiasDestaque($limit: Int!, $start: Int, $data_atual: Date!) {
+    noticias(
+      pagination: { limit: $limit, start: $start }
+      publicationState: LIVE
+      sort: "publishedAt:DESC"
+      filters: { highlight: { eq: true }, deadline: { gte: $data_atual } }
+    ) {
+      meta {
+        pagination {
+          total
+          pageCount
+          page
+          pageSize
+        }
+      }
+      data {
+        id
+        attributes {
+          cover {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+          slug
+          title
+          subtitle
+          colorTitle
+          content
+          publishedAt
+          deadline
         }
       }
     }
@@ -5480,11 +5729,14 @@ export const GetNoticiasDestaqueDocument = gql`
  * @example
  * const { data, loading, error } = useGetNoticiasDestaqueQuery({
  *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
+ *      data_atual: // value for 'data_atual'
  *   },
  * });
  */
 export function useGetNoticiasDestaqueQuery(
-  baseOptions?: Apollo.QueryHookOptions<
+  baseOptions: Apollo.QueryHookOptions<
     GetNoticiasDestaqueQuery,
     GetNoticiasDestaqueQueryVariables
   >,
@@ -5516,6 +5768,95 @@ export type GetNoticiasDestaqueLazyQueryHookResult = ReturnType<
 export type GetNoticiasDestaqueQueryResult = Apollo.QueryResult<
   GetNoticiasDestaqueQuery,
   GetNoticiasDestaqueQueryVariables
+>
+export const GetListaNoticiasDocument = gql`
+  query GetListaNoticias($limit: Int!, $start: Int) {
+    noticias(
+      pagination: { limit: $limit, start: $start }
+      publicationState: LIVE
+      sort: "publishedAt:DESC"
+      filters: { highlight: { eq: true } }
+    ) {
+      meta {
+        pagination {
+          total
+          pageCount
+          page
+          pageSize
+        }
+      }
+      data {
+        id
+        attributes {
+          cover {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+          slug
+          title
+          subtitle
+          publishedAt
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useGetListaNoticiasQuery__
+ *
+ * To run a query within a React component, call `useGetListaNoticiasQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetListaNoticiasQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetListaNoticiasQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
+ *   },
+ * });
+ */
+export function useGetListaNoticiasQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    GetListaNoticiasQuery,
+    GetListaNoticiasQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetListaNoticiasQuery, GetListaNoticiasQueryVariables>(
+    GetListaNoticiasDocument,
+    options,
+  )
+}
+export function useGetListaNoticiasLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetListaNoticiasQuery,
+    GetListaNoticiasQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<
+    GetListaNoticiasQuery,
+    GetListaNoticiasQueryVariables
+  >(GetListaNoticiasDocument, options)
+}
+export type GetListaNoticiasQueryHookResult = ReturnType<
+  typeof useGetListaNoticiasQuery
+>
+export type GetListaNoticiasLazyQueryHookResult = ReturnType<
+  typeof useGetListaNoticiasLazyQuery
+>
+export type GetListaNoticiasQueryResult = Apollo.QueryResult<
+  GetListaNoticiasQuery,
+  GetListaNoticiasQueryVariables
 >
 export const GetStudentBySlugDocument = gql`
   query GetStudentBySlug($slug: String!) {
