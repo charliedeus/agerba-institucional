@@ -15,7 +15,8 @@ const nextConfig = withPWA({
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: process.env.NEXT_PUBLIC_STRAPI_API_BASEURL,
+        hostname: 'localhost',
+        port: '4000',
         pathname: '/uploads/**',
       },
     ],

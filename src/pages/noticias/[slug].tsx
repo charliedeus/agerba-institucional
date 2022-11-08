@@ -81,7 +81,6 @@ const NewsPage: NextPageWithLayout = () => {
                     data.noticias.data[0].attributes.cover.data?.attributes
                       ?.alternativeText || ''
                   }
-                  loading="lazy"
                   width={1000}
                   height={600}
                   className="w-full h-full max-h-[400px] object-cover object-center"
