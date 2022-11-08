@@ -51,9 +51,8 @@ export function News() {
     return (
       <svg
         onClick={props.onClick}
-        className={`w-[30px] h-[30px] absolute top-1/2 -translate-y-1/2 fill-white cursor-pointer ${
-          props.left ? 'left-8' : 'left-auto right-8'
-        } ${disabeld}`}
+        className={`w-[30px] h-[30px] absolute top-1/2 -translate-y-1/2 fill-white cursor-pointer ${props.left ? 'left-8' : 'left-auto right-8'
+          } ${disabeld}`}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
       >
@@ -125,11 +124,17 @@ export function News() {
                     {},
                   )}
                 >
-                  <h1>{highlightNew.attributes?.title}</h1>
+                  <h1
+                    className=""
+                    style={{ textShadow: '0 1px 3px rgb(0, 0, 0, 0.8)' }}
+                  >
+                    {highlightNew.attributes?.title}
+                  </h1>
 
                   {highlightNew.attributes?.subtitle && (
                     <h3
                       className={`hidden laptop:inline-flex text-2xl text-${highlightNew.attributes?.colorTitle}/75 font-semibold`}
+                      style={{ textShadow: '0 1px 3px rgb(0, 0, 0, 0.8)' }}
                     >
                       {highlightNew.attributes?.subtitle}
                     </h3>
@@ -147,7 +152,12 @@ export function News() {
                         },
                       )}
                     >
-                      <span className="text-base uppercase">Leia mais</span>
+                      <span
+                        className="text-base uppercase"
+                        style={{ textShadow: '0 1px 3px rgb(0, 0, 0, 0.8)' }}
+                      >
+                        Leia mais
+                      </span>
                       <div className="w-fit bottom-0">
                         <ArrowRight size={16} weight="light" />
                       </div>
