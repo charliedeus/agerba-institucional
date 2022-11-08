@@ -11,25 +11,25 @@ import { useGetNoticiasDestaqueQuery } from '../graphql/generated'
 import { News } from '../components/Banners/News'
 
 const Home: NextPageWithLayout = () => {
-  const { data } = useGetNoticiasDestaqueQuery()
+  // const { data } = useGetNoticiasDestaqueQuery()
 
-  const noticias = data?.noticias?.data.filter(
-    (noticia) =>
-      new Date(noticia.attributes?.deadline).toLocaleDateString('pt-BR', {
-        timeZone: 'UTC',
-      }) >=
-      new Date().toLocaleDateString('pt-BR', {
-        timeZone: 'UTC',
-      }),
-  )
+  // const noticias = data?.noticias?.data.filter(
+  //   (noticia) =>
+  //     new Date(noticia.attributes?.deadline).toLocaleDateString('pt-BR', {
+  //       timeZone: 'UTC',
+  //     }) >=
+  //     new Date().toLocaleDateString('pt-BR', {
+  //       timeZone: 'UTC',
+  //     }),
+  // )
 
-  useEffect(() => {
-    if (noticias?.length! > 0) {
-      return document.body.classList.add('fixed')
-    }
+  // useEffect(() => {
+  //   if (noticias?.length! > 0) {
+  //     return document.body.classList.add('fixed')
+  //   }
 
-    document.body.classList.remove('fixed')
-  }, [noticias])
+  //   document.body.classList.remove('fixed')
+  // }, [noticias])
 
   return (
     <>
