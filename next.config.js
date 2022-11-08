@@ -17,7 +17,7 @@ const nextConfig = withPWA({
         protocol: 'http',
         hostname: 'localhost',
         port: '4000',
-        pathname: '/uploads/**',
+        pathname: '/public/uploads/**',
       },
     ],
   },
