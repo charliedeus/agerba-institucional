@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Image from 'next/future/image'
 import { useGetListaNoticiasQuery } from '../../graphql/generated'
-import { urlBuilder } from '../../lib/urlBuilder'
+// import { urlBuilder } from '../../lib/urlBuilder'
 import { Pagination } from '../Pagination'
 import Link from 'next/link'
 
