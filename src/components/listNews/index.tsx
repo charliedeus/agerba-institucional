@@ -30,7 +30,7 @@ export function ListNews() {
                   {item.attributes?.cover && (
                     <div className="w-full max-w-xs h-full max-h-48 rounded-lg shadow-md overflow-hidden">
                       <Image
-                        src={urlBuilder(
+                        src={String(
                           item.attributes.cover.data?.attributes?.url,
                         )}
                         alt=""
