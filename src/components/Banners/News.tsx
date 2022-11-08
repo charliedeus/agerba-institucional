@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/future/image'
+// import Image from 'next/future/image'
 import classNames from 'classnames'
 import { ArrowRight } from 'phosphor-react'
 import { motion } from 'framer-motion'
@@ -51,9 +51,8 @@ export function News() {
     return (
       <svg
         onClick={props.onClick}
-        className={`w-[30px] h-[30px] absolute top-1/2 -translate-y-1/2 fill-white cursor-pointer ${
-          props.left ? 'left-8' : 'left-auto right-8'
-        } ${disabeld}`}
+        className={`w-[30px] h-[30px] absolute top-1/2 -translate-y-1/2 fill-white cursor-pointer ${props.left ? 'left-8' : 'left-auto right-8'
+          } ${disabeld}`}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
       >
@@ -93,7 +92,7 @@ export function News() {
                   }}
                   className="w-full h-full flex"
                 >
-                  <Image
+                  {/* <Image
                     src={urlBuilder(
                       highlightNew.attributes?.cover.data?.attributes?.url,
                     )}
@@ -104,7 +103,19 @@ export function News() {
                     width={1000}
                     height={600}
                     className="w-full h-full object-cover object-center"
-                  />
+                  /> */}
+                  <picture className="w-full">
+                    <img
+                      src={urlBuilder(
+                        highlightNew.attributes?.cover.data?.attributes?.url,
+                      )}
+                      alt={
+                        highlightNew.attributes?.cover.data?.attributes?.name ||
+                        ''
+                      }
+                      className="w-full h-full object-cover object-center"
+                    />
+                  </picture>
                 </motion.div>
 
                 <header
