@@ -20,7 +20,7 @@ const NewsPage: NextPageWithLayout = () => {
 
   const { data, loading } = useGetNoticiasBySlugQuery({
     variables: {
-      slug,
+      slug: String(slug),
     },
   })
 

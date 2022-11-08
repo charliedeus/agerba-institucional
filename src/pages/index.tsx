@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react'
+import { ReactElement } from 'react'
 
 import type { NextPageWithLayout } from './_app'
 
@@ -7,7 +7,7 @@ import { DefaultLayout } from '../layouts/DefaultLayout'
 import { Transparency } from '../components/Banners/Transparency'
 import { ServicesPanel } from '../components/ServicesPanel'
 // import { Modal } from '../components/Modal'
-import { useGetNoticiasDestaqueQuery } from '../graphql/generated'
+// import { useGetNoticiasDestaqueQuery } from '../graphql/generated'
 import { News } from '../components/Banners/News'
 
 const Home: NextPageWithLayout = () => {
