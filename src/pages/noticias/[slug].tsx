@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
 import { useRouter } from 'next/router'
-import Image from 'next/future/image'
+// import Image from 'next/future/image'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import 'keen-slider/keen-slider.min.css'
@@ -72,7 +72,7 @@ const NewsPage: NextPageWithLayout = () => {
           <main className="w-full flex flex-col gap-4">
             {data?.noticias?.data[0].attributes?.cover && (
               <div className="w-full h-full relative flex flex-col gap-2 overflow-hidden">
-                <Image
+                {/* <Image
                   src={urlBuilder(
                     data?.noticias?.data[0].attributes?.cover.data?.attributes
                       ?.url,
@@ -84,7 +84,20 @@ const NewsPage: NextPageWithLayout = () => {
                   width={1000}
                   height={600}
                   className="w-full h-full max-h-[400px] object-cover object-center"
-                />
+                /> */}
+                <picture className="w-full">
+                  <img
+                    src={urlBuilder(
+                      data?.noticias?.data[0].attributes?.cover.data?.attributes
+                        ?.url,
+                    )}
+                    alt={
+                      data.noticias.data[0].attributes.cover.data?.attributes
+                        ?.alternativeText || ''
+                    }
+                    className="w-full h-full max-h-[400px] object-cover object-center"
+                  />
+                </picture>
                 <small className="text-sm mx-auto">
                   {
                     data.noticias.data[0].attributes.cover.data?.attributes
@@ -110,7 +123,7 @@ const NewsPage: NextPageWithLayout = () => {
                   >
                     {section?.cover?.data?.attributes?.url && (
                       <div className="w-full h-full relative mb-4 flex flex-col gap-2 overflow-hidden">
-                        <Image
+                        {/* <Image
                           src={urlBuilder(section.cover.data?.attributes?.url)}
                           alt={
                             section.cover.data?.attributes?.alternativeText ||
@@ -119,7 +132,19 @@ const NewsPage: NextPageWithLayout = () => {
                           width={1000}
                           height={600}
                           className="w-full h-full max-h-[400px] object-cover object-center"
-                        />
+                        /> */}
+                        <picture className="w-full">
+                          <img
+                            src={urlBuilder(
+                              section.cover.data?.attributes?.url,
+                            )}
+                            alt={
+                              section.cover.data?.attributes?.alternativeText ||
+                              ''
+                            }
+                            className="w-full h-full max-h-[400px] object-cover object-center"
+                          />
+                        </picture>
                         <small className="text-sm mx-auto">
                           {section.cover.data?.attributes?.alternativeText ||
                             ''}
