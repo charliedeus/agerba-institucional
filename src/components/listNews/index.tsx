@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import Image from 'next/future/image'
+// import Image from 'next/future/image'
 import { useGetListaNoticiasQuery } from '../../graphql/generated'
-// import { urlBuilder } from '../../lib/urlBuilder'
+import { urlBuilder } from '../../lib/urlBuilder'
 import { Pagination } from '../Pagination'
 import Link from 'next/link'
 
@@ -29,15 +29,26 @@ export function ListNews() {
                 <li className="w-full h-full flex items-start gap-4">
                   {item.attributes?.cover && (
                     <div className="w-full max-w-xs h-full max-h-48 rounded-lg shadow-md overflow-hidden">
-                      <Image
-                        src={String(
+                      {/* <Image
+                        src={urlBuilder(
                           item.attributes.cover.data?.attributes?.url,
                         )}
                         alt=""
                         width={500}
                         height={500}
                         className="w-full object-cover object-center"
-                      />
+                      /> */}
+                      <picture className="w-full">
+                        <img
+                          src={urlBuilder(
+                            item.attributes.cover.data?.attributes?.url,
+                          )}
+                          alt=""
+                          width={500}
+                          height={500}
+                          className="w-full object-cover object-center"
+                        />
+                      </picture>
                     </div>
                   )}
                   <div className="w-full h-full flex flex-col items-start gap-4">
