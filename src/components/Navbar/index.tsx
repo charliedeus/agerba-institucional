@@ -26,7 +26,7 @@ export function Navbar() {
   return (
     <nav
       className={
-        'w-full h-[70px] laptop:h-[50px] bg-gradient-to-r from-[#EF3037] to-[#3F3F95] flex justify-center text-white text-sm transition-all duration-500 ease-linear'
+        'w-full h-[70px] laptop:h-[50px] bg-gradient-to-r from-[#EF3037] to-[#3F3F95] flex justify-center text-white text-sm transition-all duration-500 ease-linear z-50'
       }
     >
       <div className="px-[14px] w-full h-full flex items-center justify-between laptop:hidden">
@@ -133,7 +133,7 @@ export function Navbar() {
         </div>
       </div>
 
-      <div className="hidden w-full px-[14px] laptop:h-full laptop:max-w-[1280px] laptop:m-auto laptop:flex items-center justify-between gap-4">
+      <div className="hidden w-full px-[14px] laptop:h-full laptop:max-w-[1280px] laptop:m-auto laptop:flex items-center justify-between gap-4 z-10">
         <Link href="/">
           <a className="flex items-center gap-2">
             <House size={20} weight="light" />
