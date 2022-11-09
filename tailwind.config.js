@@ -43,7 +43,16 @@ module.exports = {
         'gray-800': '#262626',
         'gray-900': '#171717',
       },
+      gridTemplateAreas: {
+        news: ['itemA itemB', 'itemA itemC'],
+      },
+      gridTemplateColumns: {
+        news: '50% 50%',
+      },
     },
   },
-  plugins: [require('@tailwindcss/line-clamp')],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+    require('@savvywombat/tailwindcss-grid-areas'),
+  ],
 }

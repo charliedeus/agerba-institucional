@@ -9,6 +9,7 @@ import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 import { useGetNoticiasDestaqueQuery } from '../../graphql/generated'
 import { urlBuilder } from '../../lib/urlBuilder'
+// import { Loader } from '../Loader'
 
 export function News() {
   const [today] = useState(
@@ -23,7 +24,7 @@ export function News() {
 
   const { data } = useGetNoticiasDestaqueQuery({
     variables: {
-      limit: 5,
+      limit: 4,
       start: (page - 1) * 5,
       data_atual: today,
     },

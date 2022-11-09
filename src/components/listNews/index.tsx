@@ -52,7 +52,7 @@ export function ListNews() {
                     </div>
                   )}
                   <div className="w-full h-full flex flex-col items-start gap-4">
-                    <h1 className="text-3xl font-bold text-primary">
+                    <h1 className="text-3xl font-bold text-primary hover:text-secondary transition-colors duration-100 ease-in-out">
                       {item.attributes?.title}
                     </h1>
                     <h3 className="text-lg font-medium">

@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
 import { useRouter } from 'next/router'
-// import Image from 'next/future/image'
+import Image from 'next/future/image'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import 'keen-slider/keen-slider.min.css'
@@ -85,19 +85,41 @@ const NewsPage: NextPageWithLayout = () => {
                   height={600}
                   className="w-full h-full max-h-[400px] object-cover object-center"
                 /> */}
-                <picture className="w-full">
-                  <img
-                    src={urlBuilder(
-                      data?.noticias?.data[0].attributes?.cover.data?.attributes
-                        ?.url,
-                    )}
+                {data?.noticias?.data[0].attributes?.cover.data?.attributes
+                  ?.url ? (
+                  <Image
+                    src={
+                      urlBuilder(
+                        data?.noticias?.data[0].attributes?.cover.data
+                          ?.attributes?.url,
+                      ) || `/generic-image.png`
+                    }
+                    width={1000}
+                    height={600}
                     alt={
-                      data.noticias.data[0].attributes.cover.data?.attributes
-                        ?.alternativeText || ''
+                      data?.noticias?.data[0].attributes?.cover.data?.attributes
+                        ?.name ||
+                      data?.noticias?.data[0].attributes?.cover.data?.attributes
+                        ?.alternativeText ||
+                      ''
                     }
                     className="w-full h-full max-h-[400px] object-cover object-center"
                   />
-                </picture>
+                ) : (
+                  <Image
+                    src={`/generic-image.png`}
+                    width={1000}
+                    height={600}
+                    alt={
+                      data?.noticias?.data[0].attributes?.cover.data?.attributes
+                        ?.name ||
+                      data?.noticias?.data[0].attributes?.cover.data?.attributes
+                        ?.alternativeText ||
+                      ''
+                    }
+                    className="w-full h-full max-h-[400px] object-cover object-center"
+                  />
+                )}
                 <small className="text-sm mx-auto">
                   {
                     data.noticias.data[0].attributes.cover.data?.attributes
