@@ -9,6 +9,8 @@ import { useGetNoticiasDestaqueQuery } from '../../graphql/generated'
 import { urlBuilder } from '../../lib/urlBuilder'
 // import { Loader } from '../Loader'
 
+import genericImg from '../../assets/images/generic-image.png'
+
 export function NewsCols() {
   const [today] = useState(
     Intl.DateTimeFormat('fr-CA', {
@@ -92,7 +94,7 @@ export function NewsCols() {
                       ) : (
                         <picture className="w-full">
                           <img
-                            src="/generic-image.png"
+                            src={genericImg.src}
                             alt={''}
                             className="w-full h-full object-cover object-center"
                           />

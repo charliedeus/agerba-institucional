@@ -5,6 +5,8 @@ import { urlBuilder } from '../../lib/urlBuilder'
 import { Pagination } from '../Pagination'
 import Link from 'next/link'
 
+import genericImg from '../../assets/images/generic-image.png'
+
 export function ListNews() {
   const [page, setPage] = useState(1)
 
@@ -45,7 +47,7 @@ export function ListNews() {
                     <div className="w-full max-w-xs h-full max-h-48 rounded-lg shadow-md overflow-hidden">
                       <picture className="w-full h-full flex">
                         <img
-                          src={`/generic-image.png`}
+                          src={genericImg.src}
                           alt=""
                           width={500}
                           height={500}

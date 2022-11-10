@@ -12,6 +12,7 @@ import { useGetNoticiasBySlugQuery } from '../../graphql/generated'
 import { urlBuilder } from '../../lib/urlBuilder'
 import { Loader } from '../../components/Loader'
 import { ListNews } from '../../components/listNews'
+import genericImg from '../../assets/images/generic-image.png'
 
 const NewsPage: NextPageWithLayout = () => {
   const router = useRouter()
@@ -93,7 +94,7 @@ const NewsPage: NextPageWithLayout = () => {
                 ) : (
                   <picture className="w-full h-full flex">
                     <img
-                      src={`/generic-image.png`}
+                      src={genericImg.src}
                       alt=""
                       width={1000}
                       height={600}
