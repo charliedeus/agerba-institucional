@@ -1,6 +1,5 @@
 import { ReactElement } from 'react'
 import { useRouter } from 'next/router'
-import Image from 'next/future/image'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import 'keen-slider/keen-slider.min.css'
@@ -72,53 +71,35 @@ const NewsPage: NextPageWithLayout = () => {
           <main className="w-full flex flex-col gap-4">
             {data?.noticias?.data[0].attributes?.cover && (
               <div className="w-full h-full relative flex flex-col gap-2 overflow-hidden">
-                {/* <Image
-                  src={urlBuilder(
-                    data?.noticias?.data[0].attributes?.cover.data?.attributes
-                      ?.url,
-                  )}
-                  alt={
-                    data.noticias.data[0].attributes.cover.data?.attributes
-                      ?.alternativeText || ''
-                  }
-                  width={1000}
-                  height={600}
-                  className="w-full h-full max-h-[400px] object-cover object-center"
-                /> */}
-                {data?.noticias?.data[0].attributes?.cover.data?.attributes
-                  ?.url ? (
-                  <Image
-                    src={
-                      urlBuilder(
+                {data.noticias.data[0].attributes.cover.data ? (
+                  <picture className="w-full h-full flex">
+                    <img
+                      src={urlBuilder(
                         data?.noticias?.data[0].attributes?.cover.data
                           ?.attributes?.url,
-                      ) || `/generic-image.png`
-                    }
-                    width={1000}
-                    height={600}
-                    alt={
-                      data?.noticias?.data[0].attributes?.cover.data?.attributes
-                        ?.name ||
-                      data?.noticias?.data[0].attributes?.cover.data?.attributes
-                        ?.alternativeText ||
-                      ''
-                    }
-                    className="w-full h-full max-h-[400px] object-cover object-center"
-                  />
+                      )}
+                      alt={
+                        data?.noticias?.data[0].attributes?.cover.data
+                          ?.attributes?.name ||
+                        data?.noticias?.data[0].attributes?.cover.data
+                          ?.attributes?.alternativeText ||
+                        ''
+                      }
+                      width={1000}
+                      height={600}
+                      className="w-full h-full max-h-[400px] object-cover object-center"
+                    />
+                  </picture>
                 ) : (
-                  <Image
-                    src={`/generic-image.png`}
-                    width={1000}
-                    height={600}
-                    alt={
-                      data?.noticias?.data[0].attributes?.cover.data?.attributes
-                        ?.name ||
-                      data?.noticias?.data[0].attributes?.cover.data?.attributes
-                        ?.alternativeText ||
-                      ''
-                    }
-                    className="w-full h-full max-h-[400px] object-cover object-center"
-                  />
+                  <picture className="w-full h-full flex">
+                    <img
+                      src={`/generic-image.png`}
+                      alt=""
+                      width={1000}
+                      height={600}
+                      className="w-full h-full max-h-[400px] object-cover object-center"
+                    />
+                  </picture>
                 )}
                 <small className="text-sm mx-auto">
                   {

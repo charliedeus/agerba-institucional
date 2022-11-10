@@ -78,8 +78,8 @@ export function NewsCols() {
                         <Image
                           src={
                             urlBuilder(
-                              highlightNew.attributes?.cover.data?.attributes
-                                ?.url,
+                              highlightNew.attributes?.cover.data.attributes
+                                .url,
                             ) || `/generic-image.png`
                           }
                           width={1000}
