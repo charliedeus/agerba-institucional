@@ -79,8 +79,6 @@ export function NewsCols() {
                               highlightNew.attributes.cover.data.attributes
                                 ?.url,
                             )}
-                            width={1000}
-                            height={600}
                             alt={
                               highlightNew.attributes?.cover.data?.attributes
                                 ?.name ||
@@ -94,9 +92,7 @@ export function NewsCols() {
                       ) : (
                         <picture className="w-full">
                           <img
-                            src={`/generic-image.png`}
-                            width={1000}
-                            height={600}
+                            src="/generic-image.png"
                             alt={''}
                             className="w-full h-full object-cover object-center"
                           />
@@ -141,30 +137,6 @@ export function NewsCols() {
                           {highlightNew.attributes?.subtitle}
                         </h3>
                       )}
-
-                      {/* <Link href={`/noticias/${highlightNew.attributes?.slug}`}>
-                    <a
-                      className={classNames(
-                        `w-full laptop:w-[300px] flex items-center justify-center gap-2 border-2 py-2 laptop:py-4 rounded-lg transition duration-100 ease-out cursor-pointer`,
-                        {
-                          'border-black hover:bg-black hover:text-white':
-                            highlightNew.attributes?.colorTitle === 'black',
-                          'border-white hover:bg-white hover:text-black':
-                            highlightNew.attributes?.colorTitle === 'white',
-                        },
-                      )}
-                    >
-                      <span
-                        className="text-base uppercase"
-                        style={{ textShadow: '0 1px 3px rgb(0, 0, 0, 0.8)' }}
-                      >
-                        Leia mais
-                      </span>
-                      <div className="w-fit bottom-0">
-                        <ArrowRight size={16} weight="light" />
-                      </div>
-                    </a>
-                  </Link> */}
                     </header>
                   </a>
                 </Link>
