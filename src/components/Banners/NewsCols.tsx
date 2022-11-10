@@ -9,8 +9,6 @@ import { useGetNoticiasDestaqueQuery } from '../../graphql/generated'
 import { urlBuilder } from '../../lib/urlBuilder'
 // import { Loader } from '../Loader'
 
-import Image from 'next/future/image'
-
 export function NewsCols() {
   const [today] = useState(
     Intl.DateTimeFormat('fr-CA', {
@@ -74,58 +72,36 @@ export function NewsCols() {
                       }}
                       className="w-full h-full flex"
                     >
-                      {highlightNew.attributes?.cover.data?.attributes?.url ? (
-                        <Image
-                          src={
-                            urlBuilder(
-                              highlightNew.attributes?.cover.data.attributes
-                                .url,
-                            ) || `/generic-image.png`
-                          }
-                          width={1000}
-                          height={600}
-                          alt={
-                            highlightNew.attributes?.cover.data?.attributes
-                              ?.name ||
-                            highlightNew.attributes?.cover.data?.attributes
-                              ?.alternativeText ||
-                            ''
-                          }
-                          className="w-full h-full object-cover object-center"
-                        />
+                      {highlightNew?.attributes?.cover.data ? (
+                        <picture className="w-full">
+                          <img
+                            src={urlBuilder(
+                              highlightNew.attributes.cover.data.attributes
+                                ?.url,
+                            )}
+                            width={1000}
+                            height={600}
+                            alt={
+                              highlightNew.attributes?.cover.data?.attributes
+                                ?.name ||
+                              highlightNew.attributes?.cover.data?.attributes
+                                ?.alternativeText ||
+                              ''
+                            }
+                            className="w-full h-full object-cover object-center"
+                          />
+                        </picture>
                       ) : (
-                        <Image
-                          src={`/generic-image.png`}
-                          width={1000}
-                          height={600}
-                          alt={
-                            highlightNew.attributes?.cover.data?.attributes
-                              ?.name ||
-                            highlightNew.attributes?.cover.data?.attributes
-                              ?.alternativeText ||
-                            ''
-                          }
-                          className="w-full h-full object-cover object-center"
-                        />
+                        <picture className="w-full">
+                          <img
+                            src={`/generic-image.png`}
+                            width={1000}
+                            height={600}
+                            alt={''}
+                            className="w-full h-full object-cover object-center"
+                          />
+                        </picture>
                       )}
-                      {/* <picture className="w-full">
-                      <img
-                        src={
-                          urlBuilder(
-                            highlightNew.attributes?.cover.data?.attributes
-                              ?.url,
-                          ) || genericImage
-                        }
-                        alt={
-                          highlightNew.attributes?.cover.data?.attributes
-                            ?.name ||
-                          highlightNew.attributes?.cover.data?.attributes
-                            ?.alternativeText ||
-                          ''
-                        }
-                        className="w-full h-full object-cover object-center"
-                      />
-                    </picture> */}
                     </motion.div>
 
                     <header
