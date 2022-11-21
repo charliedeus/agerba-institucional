@@ -7,13 +7,18 @@ import Link from 'next/link'
 
 import genericImg from '../../assets/images/generic-image.png'
 
-export function ListNews() {
+interface ListNewsProps {
+  limit: number
+  start: number
+}
+
+export function ListNews({ limit = 10, start = 0 }: ListNewsProps) {
   const [page, setPage] = useState(1)
 
   const { data } = useGetListaNoticiasQuery({
     variables: {
-      limit: 10,
-      start: 0,
+      limit,
+      start,
     },
   })
 
@@ -29,7 +34,7 @@ export function ListNews() {
             <Link key={item.id} href={`/noticias/${item.attributes?.slug}`}>
               <a>
                 <li className="w-full h-full flex items-start gap-4">
-                  {item.attributes?.cover.data ? (
+                  {item.attributes?.cover?.data ? (
                     <div className="w-full max-w-xs h-full max-h-48 rounded-lg shadow-md overflow-hidden">
                       <picture className="w-full">
                         <img

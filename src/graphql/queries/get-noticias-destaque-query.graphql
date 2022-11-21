@@ -27,6 +27,10 @@ query GetNoticiasDestaque ($limit: Int!, $start: Int, $data_atual: Date!) {
         content
         publishedAt
         deadline
+        Tags {
+          id
+          Tag
+        }
       }
     }
   }

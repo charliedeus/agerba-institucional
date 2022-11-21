@@ -21,6 +21,10 @@ query GetNoticiasBySlug ($slug: String!) {
         updatedAt
         publishedAt
         deadline
+        Tags {
+          id
+          Tag
+        }
         
         Sections {
           cover {

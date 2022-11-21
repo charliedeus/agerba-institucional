@@ -9,6 +9,7 @@ import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 import { useGetNoticiasDestaqueQuery } from '../../graphql/generated'
 import { urlBuilder } from '../../lib/urlBuilder'
+import genericImg from '../../assets/images/generic-image.png'
 // import { Loader } from '../Loader'
 
 export function News() {
@@ -52,9 +53,8 @@ export function News() {
     return (
       <svg
         onClick={props.onClick}
-        className={`w-[30px] h-[30px] absolute top-1/2 -translate-y-1/2 fill-white cursor-pointer ${
-          props.left ? 'left-8' : 'left-auto right-8'
-        } ${disabeld}`}
+        className={`w-[30px] h-[30px] absolute top-1/2 -translate-y-1/2 fill-white cursor-pointer ${props.left ? 'left-8' : 'left-auto right-8'
+          } ${disabeld}`}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
       >
@@ -106,18 +106,31 @@ export function News() {
                     height={600}
                     className="w-full h-full object-cover object-center"
                   /> */}
-                  <picture className="w-full">
-                    <img
-                      src={urlBuilder(
-                        highlightNew.attributes?.cover.data?.attributes?.url,
-                      )}
-                      alt={
-                        highlightNew.attributes?.cover.data?.attributes?.name ||
-                        ''
-                      }
-                      className="w-full h-full object-cover object-center"
-                    />
-                  </picture>
+                  {highlightNew?.attributes?.cover?.data ? (
+                    <picture className="w-full">
+                      <img
+                        src={urlBuilder(
+                          highlightNew.attributes.cover.data.attributes?.url,
+                        )}
+                        alt={
+                          highlightNew.attributes?.cover.data?.attributes
+                            ?.name ||
+                          highlightNew.attributes?.cover.data?.attributes
+                            ?.alternativeText ||
+                          ''
+                        }
+                        className="w-full h-full object-cover object-center"
+                      />
+                    </picture>
+                  ) : (
+                    <picture className="w-full">
+                      <img
+                        src={genericImg.src}
+                        alt={''}
+                        className="w-full h-full object-cover object-center"
+                      />
+                    </picture>
+                  )}
                 </motion.div>
 
                 <header

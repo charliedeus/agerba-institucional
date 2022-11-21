@@ -8,7 +8,7 @@ import { Transparency } from '../components/Banners/Transparency'
 import { ServicesPanel } from '../components/ServicesPanel'
 // import { Modal } from '../components/Modal'
 // import { useGetNoticiasDestaqueQuery } from '../graphql/generated'
-// import { News } from '../components/Banners/News'
+import { News } from '../components/Banners/News'
 import { NewsCols } from '../components/Banners/NewsCols'
 
 const Home: NextPageWithLayout = () => {
@@ -34,8 +34,14 @@ const Home: NextPageWithLayout = () => {
 
   return (
     <>
-      <NewsCols />
-      {/* <News /> */}
+      <div className="hidden laptop:block">
+        <NewsCols />
+      </div>
+
+      <div className="laptop:hidden">
+        <News />
+      </div>
+
       <Transparency />
       <ServicesPanel />
 

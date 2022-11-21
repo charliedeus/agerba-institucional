@@ -47,7 +47,7 @@ export function NewsCols() {
                 },
               )}
             >
-              {data.noticias.data.map((highlightNew) => (
+              {data.noticias.data.map((highlightNew, index) => (
                 <Link
                   key={highlightNew.id}
                   href={`/noticias/${highlightNew.attributes?.slug}`}
@@ -123,7 +123,7 @@ export function NewsCols() {
                       {highlightNew.attributes?.subtitle && (
                         <h3
                           className={classNames(
-                            `text-md font-semibold overflow-hidden line-clamp-2`,
+                            'hidden text-md font-semibold overflow-hidden line-clamp-2',
                             {
                               'text-black/75':
                                 highlightNew.attributes?.colorTitle === 'black',
