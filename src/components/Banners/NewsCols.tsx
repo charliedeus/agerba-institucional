@@ -74,7 +74,7 @@ export function NewsCols() {
                       }}
                       className="w-full h-full flex"
                     >
-                      {highlightNew?.attributes?.cover.data ? (
+                      {highlightNew?.attributes?.cover?.data ? (
                         <picture className="w-full">
                           <img
                             src={urlBuilder(
