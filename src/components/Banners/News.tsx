@@ -53,8 +53,9 @@ export function News() {
     return (
       <svg
         onClick={props.onClick}
-        className={`w-[30px] h-[30px] absolute top-1/2 -translate-y-1/2 fill-white cursor-pointer ${props.left ? 'left-8' : 'left-auto right-8'
-          } ${disabeld}`}
+        className={`w-[30px] h-[30px] absolute top-1/2 -translate-y-1/2 fill-white cursor-pointer ${
+          props.left ? 'left-8' : 'left-auto right-8'
+        } ${disabeld}`}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
       >
