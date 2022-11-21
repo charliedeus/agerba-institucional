@@ -183,7 +183,7 @@ const NewsPage: NextPageWithLayout = () => {
 
       <div className="w-full h-1 bg-primary rounded-full" />
 
-      <ListNews />
+      <ListNews limit={5} start={0} />
     </article>
   )
 }
