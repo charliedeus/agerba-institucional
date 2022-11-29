@@ -41,7 +41,9 @@ const NewsPage: NextPageWithLayout = () => {
       ) : (
         <div className="flex flex-col gap-8">
           <header className="flex flex-col gap-4">
-            <h1 className="font-bold text-[3rem]">{news.attributes?.title}</h1>
+            <h1 className="font-bold text-[2rem] leading-[1.5] laptop:text-[3rem] laptop:leading-relaxed">
+              {news.attributes?.title}
+            </h1>
             {news.attributes?.subtitle && (
               <h3 className="text-[1.5rem] text-gray-400">
                 {news.attributes?.subtitle}
@@ -105,7 +107,7 @@ const NewsPage: NextPageWithLayout = () => {
               )}
 
               <div
-                className="text-gray-900 text-left mt-[-1rem] py-4 px-8 tablet:px-16 laptop:px-32 text-2xl leading-[2]"
+                className="text-gray-900 text-left mt-[-1rem] py-4 px-8 tablet:px-16 laptop:px-32 text-lg laptop:text-2xl leading-[1.75]"
                 dangerouslySetInnerHTML={{
                   __html: news.attributes?.content!,
                 }}
