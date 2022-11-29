@@ -1,5 +1,5 @@
 query GetNoticiasDestaque ($limit: Int!, $start: Int, $data_atual: Date!) {
-  noticias (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, sort: "publishedAt:DESC", filters:{ highlight: { eq: true }, deadline: { gte: $data_atual } } ) {
+  noticias (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, sort: "PublishDate:DESC", filters:{ highlight: { eq: true }, deadline: { gte: $data_atual } } ) {
     meta {
       pagination {
         total
@@ -26,6 +26,7 @@ query GetNoticiasDestaque ($limit: Int!, $start: Int, $data_atual: Date!) {
         colorTitle
         content
         publishedAt
+        PublishDate
         deadline
         Tags {
           id

@@ -49,7 +49,6 @@ const NewsPage: NextPageWithLayout = () => {
                 {news.attributes?.subtitle}
               </h3>
             )}
-
             <div className="flex flex-col gap-2 text-gray-700 leading-[1.5] mt-8">
               <strong>
                 Por ASCOM <span className="font-normal">-- Salvador</span>
@@ -122,16 +121,6 @@ const NewsPage: NextPageWithLayout = () => {
                     >
                       {section?.cover?.data?.attributes?.url && (
                         <div className="w-full h-full relative mb-4 flex flex-col gap-2 overflow-hidden">
-                          {/* <Image
-                          src={urlBuilder(section.cover.data?.attributes?.url)}
-                          alt={
-                            section.cover.data?.attributes?.alternativeText ||
-                            ''
-                          }
-                          width={1000}
-                          height={600}
-                          className="w-full h-full max-h-[400px] object-cover object-center"
-                        /> */}
                           <picture className="w-full">
                             <img
                               src={urlBuilder(

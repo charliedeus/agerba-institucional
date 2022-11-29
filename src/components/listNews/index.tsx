@@ -18,7 +18,7 @@ export function ListNews({ limit = 10, start = 0 }: ListNewsProps) {
   const { data } = useGetListaNoticiasQuery({
     variables: {
       limit,
-      start,
+      start: (page - 1) * limit,
     },
   })
 
@@ -33,10 +33,10 @@ export function ListNews({ limit = 10, start = 0 }: ListNewsProps) {
           {data?.noticias?.data.map((item) => (
             <Link key={item.id} href={`/noticias/${item.attributes?.slug}`}>
               <a>
-                <li className="w-full h-full flex items-start gap-4">
+                <li className="w-full h-full flex flex-col laptop:flex-row items-start gap-4">
                   {item.attributes?.cover?.data ? (
-                    <div className="w-full max-w-xs h-full max-h-48 rounded-lg shadow-md overflow-hidden">
-                      <picture className="w-full">
+                    <div className="w-full laptop:max-w-xs h-full max-h-48 rounded-lg shadow-md overflow-hidden">
+                      <picture className="flex">
                         <img
                           src={urlBuilder(
                             item.attributes.cover.data?.attributes?.url,
@@ -49,7 +49,7 @@ export function ListNews({ limit = 10, start = 0 }: ListNewsProps) {
                       </picture>
                     </div>
                   ) : (
-                    <div className="w-full max-w-xs h-full max-h-48 rounded-lg shadow-md overflow-hidden">
+                    <div className="w-full flex items-center justify-center laptop:max-w-xs h-full max-h-48 rounded-lg shadow-md overflow-hidden">
                       <picture className="w-full h-full flex">
                         <img
                           src={genericImg.src}
@@ -62,11 +62,11 @@ export function ListNews({ limit = 10, start = 0 }: ListNewsProps) {
                     </div>
                   )}
                   <div className="w-full h-full flex flex-col items-start gap-4">
-                    <h1 className="text-3xl font-bold text-primary hover:text-secondary transition-colors duration-100 ease-in-out">
+                    <h1 className="text-2xl laptop:text-3xl font-bold text-primary hover:text-secondary transition-colors duration-100 ease-in-out">
                       {item.attributes?.title}
                     </h1>
                     <h3 className="text-lg font-medium">
-                      {item.attributes?.subtitle}
+                      {item.attributes?.subtitle || item.attributes?.title}
                     </h3>
                   </div>
                 </li>
