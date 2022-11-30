@@ -14,14 +14,16 @@ export type NextPageWithLayout = NextPage & {
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
+  initialApolloState: any
 }
 
 export default function MyApp({
   Component,
   pageProps,
+  initialApolloState,
   router,
 }: AppPropsWithLayout) {
-  const client = useApollo(pageProps.initialApolloState)
+  const client = useApollo(initialApolloState)
 
   const getLayout = Component.getLayout ?? ((page) => page)
 
