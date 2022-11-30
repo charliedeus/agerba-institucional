@@ -1,3 +1,4 @@
+import { GetServerSidePropsContext, NextPage } from 'next'
 import {
   ApolloClient,
   ApolloProvider,
@@ -6,20 +7,18 @@ import {
   NormalizedCacheObject,
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
-import { GetServerSidePropsContext, NextPage } from 'next'
-import api from '../services/api'
-
-export type ApolloClientContext = GetServerSidePropsContext
 
 export const withApollo = (Component: NextPage) => {
   return function Provider(props: any) {
     return (
       <ApolloProvider client={getApolloClient(undefined, props.apolloState)}>
-        <Component {...props} />
+        <Component />
       </ApolloProvider>
     )
   }
 }
+
+export type ApolloClientContext = GetServerSidePropsContext
 
 export function getApolloClient(
   ctx?: ApolloClientContext,
@@ -27,25 +26,30 @@ export function getApolloClient(
 ) {
   const httpLink = createHttpLink({
     uri: `${process.env.NEXT_PUBLIC_STRAPI_API_BASEURL}/graphql`,
+    fetch,
   })
 
   const authLink = setContext(async (_, { headers }) => {
-    const { data } = await api.post('/auth/local', {
-      identifier: process.env.NEXT_PUBLIC_STRAPI_API_USER,
-      password: process.env.NEXT_PUBLIC_STRAPI_API_PASSWORD,
-    })
+    // const { data } = await api.post('/auth/local', {
+    //   identifier: process.env.NEXT_PUBLIC_STRAPI_API_USER,
+    //   password: process.env.NEXT_PUBLIC_STRAPI_API_PASSWORD,
+    // })
+
+    const token = process.env.NEXT_PUBLIC_API_TOKEN
 
     return {
       headers: {
         ...headers,
-        authorization: data ? `Bearer ${data.jwt}` : '',
+        authorization: `Bearer ${token}`,
       },
     }
   })
 
+  const cache = new InMemoryCache().restore(ssrCache ?? {})
+
   return new ApolloClient({
+    // link: from([httpLink]),
     link: authLink.concat(httpLink),
-    cache: new InMemoryCache().restore(ssrCache ?? {}),
-    credentials: 'include',
+    cache,
   })
 }

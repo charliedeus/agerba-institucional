@@ -1,53 +1,35 @@
-import { useState } from 'react'
 import Link from 'next/link'
 // import Image from 'next/future/image'
 import classNames from 'classnames'
 import { motion } from 'framer-motion'
 
 import 'keen-slider/keen-slider.min.css'
-import { useGetNoticiasDestaqueQuery } from '../../graphql/generated'
 import { urlBuilder } from '../../lib/urlBuilder'
+
 // import { Loader } from '../Loader'
 
 import genericImg from '../../assets/images/generic-image.png'
 
-export function NewsCols() {
-  const [today] = useState(
-    Intl.DateTimeFormat('fr-CA', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    }).format(Date.now()),
-  )
+interface highlightNewsProps {
+  highlightNews: any[]
+}
 
-  const { data } = useGetNoticiasDestaqueQuery({
-    variables: {
-      limit: 3,
-      start: 0,
-      data_atual: today,
-    },
-  })
-
+export function NewsCols({ highlightNews }: highlightNewsProps) {
   return (
     <>
-      {data?.noticias?.data && data?.noticias?.data?.length > 0 && (
-        <section
-          className={classNames(
-            'w-full desktop:max-w-[1280px] h-[calc(80vh-70px)] m-auto tablet:h-[calc(80vh-170px)] p-[14px] laptop:pt-[14px] laptop:pb-[14px] transition-transform duration-75 ease-in-out relative',
-            {},
-          )}
-        >
-          <div className={classNames('w-full h-full', {})}>
+      {highlightNews && highlightNews.length > 0 && (
+        <section className="w-full desktop:max-w-[1280px] h-[calc(80vh-70px)] m-auto tablet:h-[calc(80vh-170px)] p-[14px] laptop:pt-[14px] laptop:pb-[14px] transition-transform duration-75 ease-in-out relative">
+          <div className="w-full h-full">
             <div
               className={classNames(
                 'w-full h-full grid gap-4 rounded-lg overflow-hidden',
                 {
-                  'grid-cols-2': data.noticias.data.length === 2,
-                  'grid-areas-news': data.noticias.data.length > 2,
+                  'grid-cols-2': highlightNews.length === 2,
+                  'grid-areas-news': highlightNews.length > 2,
                 },
               )}
             >
-              {data.noticias.data.map((highlightNew, index) => (
+              {highlightNews.map((highlightNew, index) => (
                 <Link
                   key={highlightNew.id}
                   href={`/noticias/${highlightNew.attributes?.slug}`}
@@ -57,7 +39,7 @@ export function NewsCols() {
                       'w-full h-full flex items-end justify-center laptop:justify-start relative rounded-lg overflow-hidden',
                       {
                         'first:grid-in-itemA grid-in-itemB last:grid-in-itemC':
-                          data.noticias?.data && data.noticias.data.length > 2,
+                          highlightNews && highlightNews.length > 2,
                       },
                     )}
                   >
@@ -106,7 +88,7 @@ export function NewsCols() {
                       className={classNames(
                         `absolute w-full laptop:w-2/3 mb-4 flex flex-col gap-4 laptop:gap-8 p-2 px-4 laptop:px-10 font-bold leading-relaxed `,
                         {
-                          'mb-24': data?.noticias?.data.length === 1,
+                          'mb-24': highlightNews.length === 1,
                         },
                       )}
                     >

@@ -6,36 +6,27 @@ import { DefaultLayout } from '../layouts/DefaultLayout'
 
 import { Transparency } from '../components/Banners/Transparency'
 import { ServicesPanel } from '../components/ServicesPanel'
-// import { Modal } from '../components/Modal'
-// import { useGetNoticiasDestaqueQuery } from '../graphql/generated'
 import { News } from '../components/Banners/News'
 import { NewsCols } from '../components/Banners/NewsCols'
+import { GetServerSideProps } from 'next'
 
-const Home: NextPageWithLayout = () => {
-  // const { data } = useGetNoticiasDestaqueQuery()
+import { initializeApollo } from '../lib/apollo'
 
-  // const noticias = data?.noticias?.data.filter(
-  //   (noticia) =>
-  //     new Date(noticia.attributes?.deadline).toLocaleDateString('pt-BR', {
-  //       timeZone: 'UTC',
-  //     }) >=
-  //     new Date().toLocaleDateString('pt-BR', {
-  //       timeZone: 'UTC',
-  //     }),
-  // )
+import Head from 'next/head'
+import {
+  GetNoticiasDestaqueDocument,
+  GetNoticiasDestaqueQuery,
+} from '../graphql/generated'
 
-  // useEffect(() => {
-  //   if (noticias?.length! > 0) {
-  //     return document.body.classList.add('fixed')
-  //   }
-
-  //   document.body.classList.remove('fixed')
-  // }, [noticias])
-
+const Home: NextPageWithLayout = (props: any) => {
   return (
     <>
+      <Head>
+        <title>Início | AGERBA</title>
+      </Head>
+
       <div className="hidden laptop:block">
-        <NewsCols />
+        <NewsCols highlightNews={props.highlightNews} />
       </div>
 
       <div className="laptop:hidden">
@@ -44,8 +35,6 @@ const Home: NextPageWithLayout = () => {
 
       <Transparency />
       <ServicesPanel />
-
-      {/* {formattedNoticias?.length! > 0 && <Modal noticias={formattedNoticias} />} */}
     </>
   )
 }
@@ -55,3 +44,31 @@ Home.getLayout = function getLayout(page: ReactElement) {
 }
 
 export default Home
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const apolloClient = initializeApollo()
+
+  const today = Intl.DateTimeFormat('fr-CA', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(Date.now())
+
+  const { data: highlightNewsData } =
+    await apolloClient.query<GetNoticiasDestaqueQuery>({
+      query: GetNoticiasDestaqueDocument,
+      variables: {
+        limit: 3,
+        start: 0,
+        data_atual: today,
+      },
+    })
+
+  const highlightNews = highlightNewsData.noticias?.data
+
+  return {
+    props: {
+      highlightNews,
+    },
+  }
+}

@@ -30,8 +30,6 @@ const NewsPage: NextPageWithLayout = () => {
 
   const news = Object.assign({ ...data?.noticias?.data[0], tags })
 
-  console.log(news)
-
   return (
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
       {loading ? (
@@ -106,7 +104,7 @@ const NewsPage: NextPageWithLayout = () => {
               )}
 
               <div
-                className="text-gray-900 text-left mt-[-1rem] py-4 px-8 tablet:px-16 laptop:px-32 text-lg laptop:text-2xl leading-[1.75]"
+                className="text-gray-900 text-left mt-[-1rem] py-4 px-8 laptop:mt-2 tablet:px-16 laptop:px-32 text-lg laptop:text-2xl leading-[1.75]"
                 dangerouslySetInnerHTML={{
                   __html: news.attributes?.content!,
                 }}

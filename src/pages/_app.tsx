@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 import '../styles/globals.css'
 import { ApolloProvider } from '@apollo/client'
-import { client } from '../lib/apollo'
+import { useApollo } from '../lib/apollo'
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -21,6 +21,8 @@ export default function MyApp({
   pageProps,
   router,
 }: AppPropsWithLayout) {
+  const client = useApollo(pageProps.initialApolloState)
+
   const getLayout = Component.getLayout ?? ((page) => page)
 
   function onScroll() {

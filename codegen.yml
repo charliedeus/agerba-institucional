@@ -13,8 +13,11 @@ generates:
     config:
       reactApolloVersion: 3
       withHooks: true
+      exposeFetcher: true
       withHOC: false
       withComponent: false
+      exportFragmentSpreadSubTypes: true
+      documentMode: graphQLTag
   ./src/graphql/generated/page.tsx:
     documents: './src/graphql/**/*.graphql'
     config:
