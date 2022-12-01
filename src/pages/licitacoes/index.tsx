@@ -170,6 +170,7 @@ const BidsPage: NextPageWithLayout = () => {
                               />
                             </span>
                             <Link
+                              legacyBehavior
                               href={urlBuilder(
                                 documento?.file.data?.attributes?.url,
                               )}
@@ -197,7 +198,7 @@ const BidsPage: NextPageWithLayout = () => {
             <h1 className="font-bold text-lg">
               Não há registros a serem exibidos.
             </h1>
-            <Link href="/" passHref>
+            <Link legacyBehavior href="/" passHref>
               <a className="px-4 py-2 bg-secondary rounded-md text-white text-sm hover:bg-opacity-90">
                 <span>Voltar à Página Principal</span>
               </a>

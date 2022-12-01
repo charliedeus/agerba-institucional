@@ -1,5 +1,4 @@
 import { ReactElement } from 'react'
-import { useRouter } from 'next/router'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import 'keen-slider/keen-slider.min.css'
@@ -7,173 +6,193 @@ import 'keen-slider/keen-slider.min.css'
 import { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 
-import { useGetNoticiasBySlugQuery } from '../../graphql/generated'
+import {
+  GetNoticiasBySlugDocument,
+  GetNoticiasBySlugQuery,
+} from '../../graphql/generated'
 
 import { urlBuilder } from '../../lib/urlBuilder'
-import { Loader } from '../../components/Loader'
 import { ListNews } from '../../components/listNews'
 import genericImg from '../../assets/images/generic-image.png'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { initializeApollo } from '../../lib/apollo'
+import { useRouter } from 'next/router'
+import { Loader } from '../../components/Loader'
 
-const NewsPage: NextPageWithLayout = () => {
-  const router = useRouter()
-  const { slug } = router.query
+interface NewsSectionsProps {
+  id: string
+  cover: {
+    data: {
+      name: string
+      alternativeText: string
+      coverUrl: string
+    }
+  }
+  title: string
+  subtitle: string
+  content: string
+}
 
-  const { data, loading } = useGetNoticiasBySlugQuery({
-    variables: {
-      slug: String(slug),
-    },
-  })
+interface NewsSoloProps {
+  id: string
+  cover: {
+    data: {
+      name: string
+      alternativeText: string
+      coverUrl: string
+    }
+  }
+  title: string
+  subtitle: string
+  content: string
+  sections: any[]
+  publishedAt: string
+  updatedAt: string
+  tags: string[]
+}
 
-  const tags = data?.noticias?.data[0].attributes?.Tags?.map((tag) =>
-    tag?.Tag.toLowerCase(),
-  )
+// eslint-disable-next-line no-unused-vars
+interface NewsPageProps {
+  newsSolo: NewsSoloProps
+  initialApolloState: any
+}
 
-  const news = Object.assign({ ...data?.noticias?.data[0], tags })
+const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
+  const { isFallback } = useRouter()
+
+  if (isFallback) {
+    return <Loader />
+  }
 
   return (
-    <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
-      {loading ? (
-        <div className="w-full h-full flex items-center justify-center">
-          <Loader />
-        </div>
-      ) : (
+    <>
+      <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
         <div className="flex flex-col gap-8">
           <header className="flex flex-col gap-4">
             <h1 className="font-bold text-[2rem] leading-[1.5] laptop:text-[3rem] laptop:leading-relaxed">
-              {news.attributes?.title}
+              {props.newsSolo.title}
             </h1>
-            {news.attributes?.subtitle && (
+
+            {props.newsSolo.subtitle && (
               <h3 className="text-[1.5rem] text-gray-400">
-                {news.attributes?.subtitle}
+                {props.newsSolo.subtitle}
               </h3>
             )}
+
             <div className="flex flex-col gap-2 text-gray-700 leading-[1.5] mt-8">
               <strong>
                 Por ASCOM <span className="font-normal">-- Salvador</span>
               </strong>
+
               <span>
-                {format(new Date(news.attributes?.publishedAt), 'dd/MM/yyyy', {
+                {format(new Date(props.newsSolo.publishedAt), 'dd/MM/yyyy', {
                   locale: ptBR,
                 })}
                 {' • '}
                 Atualizado{' '}
-                {formatDistanceToNow(new Date(news.attributes?.updatedAt), {
+                {formatDistanceToNow(new Date(props.newsSolo.updatedAt), {
                   addSuffix: true,
                   locale: ptBR,
                 })}
               </span>
             </div>
           </header>
+
           <div className="w-full h-[2px] rounded-full bg-gray-100" />
+
           <main className="w-full flex flex-col gap-4">
             <>
-              {news.attributes?.cover && (
-                <div className="w-full h-full relative flex flex-col gap-2 overflow-hidden">
-                  {news.attributes.cover.data ? (
-                    <picture className="w-full h-full flex">
-                      <img
-                        src={urlBuilder(
-                          news.attributes?.cover.data?.attributes?.url,
-                        )}
-                        alt={
-                          news.attributes?.cover.data?.attributes?.name ||
-                          news.attributes?.cover.data?.attributes
-                            ?.alternativeText ||
-                          ''
-                        }
-                        width={1000}
-                        height={600}
-                        className="w-full h-full max-h-[400px] object-cover object-center"
-                      />
-                    </picture>
-                  ) : (
-                    <picture className="w-full h-full flex">
-                      <img
-                        src={genericImg.src}
-                        alt=""
-                        width={1000}
-                        height={600}
-                        className="w-full h-full max-h-[400px] object-cover object-center"
-                      />
-                    </picture>
-                  )}
-                  <small className="text-sm mx-auto">
-                    {news.attributes.cover.data?.attributes?.alternativeText}
-                  </small>
-                </div>
-              )}
-
-              <div
-                className="text-gray-900 text-left mt-[-1rem] py-4 px-8 laptop:mt-2 tablet:px-16 laptop:px-32 text-lg laptop:text-2xl leading-[1.75]"
-                dangerouslySetInnerHTML={{
-                  __html: news.attributes?.content!,
-                }}
-              />
-
-              {news.attributes?.Sections && (
-                <div className="w-full">
-                  {news.attributes.Sections.map((section: any) => (
-                    <div
-                      key={section?.id}
-                      className="w-full flex flex-col gap-4 px-8 tablet:px-16 laptop:px-32 mt-8"
-                    >
-                      {section?.cover?.data?.attributes?.url && (
-                        <div className="w-full h-full relative mb-4 flex flex-col gap-2 overflow-hidden">
-                          <picture className="w-full">
-                            <img
-                              src={urlBuilder(
-                                section.cover.data?.attributes?.url,
-                              )}
-                              alt={
-                                section.cover.data?.attributes
-                                  ?.alternativeText || ''
-                              }
-                              className="w-full h-full max-h-[400px] object-cover object-center"
-                            />
-                          </picture>
-                          <small className="text-sm mx-auto">
-                            {section.cover.data?.attributes?.alternativeText ||
-                              ''}
-                          </small>
-                        </div>
-                      )}
-
-                      <h1 className="text-3xl font-semibold">
-                        {section?.title}
-                      </h1>
-
-                      <div
-                        className="text-gray-900 text-left mt-[-1rem] py-4 text-2xl leading-[2]"
-                        dangerouslySetInnerHTML={{
-                          __html: news.attributes?.content || '',
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {news.attributes?.Tags && (
-                <ul className="flex flex-wrap items-center gap-4">
-                  {news.tags?.map((tag: string) => (
-                    <li
-                      key={tag}
-                      className="py-2 px-4 bg-gray-200 rounded-full"
-                    >
-                      #{tag}
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <div className="w-full h-full relative flex flex-col gap-2 overflow-hidden">
+                {props.newsSolo.cover.data !== null ? (
+                  <picture className="w-full h-full flex">
+                    <img
+                      src={urlBuilder(props.newsSolo.cover.data.coverUrl)}
+                      alt={
+                        props.newsSolo.cover.data.name ||
+                        props.newsSolo.cover.data.alternativeText ||
+                        ''
+                      }
+                      width={1000}
+                      height={600}
+                      className="w-full h-full max-h-[400px] object-cover object-center"
+                    />
+                  </picture>
+                ) : (
+                  <picture className="w-full h-full flex">
+                    <img
+                      src={genericImg.src}
+                      alt=""
+                      width={1000}
+                      height={600}
+                      className="w-full h-full max-h-[400px] object-cover object-center"
+                    />
+                  </picture>
+                )}
+                <small className="text-sm mx-auto">
+                  {props.newsSolo.cover.data?.alternativeText}
+                </small>
+              </div>
             </>
+
+            <div
+              className="text-gray-900 text-left mt-[-1rem] py-4 px-8 laptop:mt-2 tablet:px-16 laptop:px-32 text-lg laptop:text-2xl leading-[1.75]"
+              dangerouslySetInnerHTML={{
+                __html: props.newsSolo.content!,
+              }}
+            />
+
+            {props.newsSolo.sections && (
+              <div className="w-full">
+                {props.newsSolo.sections.map((section: NewsSectionsProps) => (
+                  <div
+                    key={section.id}
+                    className="w-full flex flex-col gap-4 px-8 tablet:px-16 laptop:px-32 mt-8"
+                  >
+                    {section.cover.data && (
+                      <div className="w-full h-full relative mb-4 flex flex-col gap-2 overflow-hidden">
+                        <picture className="w-full">
+                          <img
+                            src={urlBuilder(section.cover.data?.coverUrl)}
+                            alt={section.cover.data?.alternativeText || ''}
+                            className="w-full h-full max-h-[400px] object-cover object-center"
+                          />
+                        </picture>
+                        <small className="text-sm mx-auto">
+                          {section.cover.data?.alternativeText || ''}
+                        </small>
+                      </div>
+                    )}
+
+                    <h1 className="text-3xl font-semibold">{section.title}</h1>
+
+                    <div
+                      className="text-gray-900 text-left mt-[-1rem] py-4 text-2xl leading-[2]"
+                      dangerouslySetInnerHTML={{
+                        __html: section.content || '',
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {props.newsSolo.tags && (
+              <ul className="flex flex-wrap items-center gap-4">
+                {props.newsSolo.tags?.map((tag: string) => (
+                  <li key={tag} className="py-2 px-4 bg-gray-200 rounded-full">
+                    #{tag}
+                  </li>
+                ))}
+              </ul>
+            )}
           </main>
         </div>
-      )}
 
-      <div className="w-full h-1 bg-primary rounded-full" />
+        <div className="w-full h-1 bg-primary rounded-full" />
 
-      <ListNews limit={5} start={0} />
-    </article>
+        <ListNews limit={5} start={0} />
+      </article>
+    </>
   )
 }
 
@@ -182,3 +201,67 @@ NewsPage.getLayout = function getLayout(page: ReactElement) {
 }
 
 export default NewsPage
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: true,
+  }
+}
+
+export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({
+  params,
+}) => {
+  const slug = params!.slug
+
+  const apolloClient = initializeApollo()
+
+  const { data } = await apolloClient.query<GetNoticiasBySlugQuery>({
+    query: GetNoticiasBySlugDocument,
+    variables: {
+      slug,
+    },
+  })
+
+  const tags = data?.noticias?.data[0].attributes?.Tags?.map((tag) =>
+    tag?.Tag.toLowerCase(),
+  )
+
+  const sections = data.noticias?.data[0].attributes?.Sections?.map(
+    (section) => {
+      return {
+        id: section?.id,
+        cover: {
+          data: {
+            id: section?.cover?.data?.id,
+            name: section?.cover?.data?.attributes?.name,
+            alternativeText: section?.cover?.data?.attributes?.alternativeText,
+            coverUrl: section?.cover?.data?.attributes?.url,
+          },
+        },
+        content: section?.content,
+        title: section?.title,
+        subtitle: section?.subtitle,
+      }
+    },
+  )
+
+  const newsSolo: NewsSoloProps = Object.assign({
+    id: data?.noticias?.data[0].id,
+    cover: data?.noticias?.data[0].attributes?.cover,
+    title: data?.noticias?.data[0].attributes?.title,
+    subtitle: data?.noticias?.data[0].attributes?.subtitle,
+    content: data?.noticias?.data[0].attributes?.content,
+    sections,
+    publishedAt: data?.noticias?.data[0].attributes?.publishedAt,
+    updatedAt: data?.noticias?.data[0].attributes?.updatedAt,
+    tags,
+  })
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+      newsSolo,
+    },
+  }
+}

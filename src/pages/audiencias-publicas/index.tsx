@@ -95,6 +95,7 @@ const PublicHearingsPage: NextPageWithLayout = () => {
                       </Disclosure.Button>
                       <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2">
                         <Link
+                          legacyBehavior
                           href={`/audiencias-publicas/${audiencia.id}`}
                         >
                           <a

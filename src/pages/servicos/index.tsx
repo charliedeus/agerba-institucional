@@ -9,7 +9,7 @@ export default function ServicosPage() {
           <h3 className="text-base font-bold laptop:group-hover:text-white">
             Título do serviço
           </h3>
-          <Link href="#">
+          <Link legacyBehavior href="#">
             <a className="px-4 py-2 bg-[#3F3F95] laptop:group-hover:bg-white bg-opacity-50 rounded-lg">
               <span className="text-sm font-bold leading-tight">
                 Clique aqui

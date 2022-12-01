@@ -141,6 +141,7 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
                             </span>
                           </div>
                           <Link
+                            legacyBehavior
                             href={urlBuilder(
                               document?.file.data?.attributes?.url,
                             )}
@@ -275,6 +276,7 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
                             </span>
                           </div>
                           <Link
+                            legacyBehavior
                             href={urlBuilder(
                               document?.file.data?.attributes?.url,
                             )}
@@ -397,6 +399,7 @@ const WaterwayTransportPage: NextPageWithLayout = () => {
                             </span>
                           </div>
                           <Link
+                            legacyBehavior
                             href={urlBuilder(
                               document?.file.data?.attributes?.url,
                             )}

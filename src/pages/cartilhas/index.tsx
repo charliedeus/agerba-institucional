@@ -52,6 +52,7 @@ const HornBookPage: NextPageWithLayout = () => {
 
               {cartilha.attributes?.file.data?.attributes && (
                 <Link
+                  legacyBehavior
                   href={urlBuilder(
                     cartilha.attributes?.file.data?.attributes.url,
                   )}

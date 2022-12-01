@@ -8,7 +8,7 @@ export function Header() {
     <header className="hidden px-[14px] laptop:px=0 tablet:flex tablet:w-full tablet:h-full border-t-8 border-t-secondary">
       <div className="w-full desktop:max-w-[1280px] h-[6.25rem] flex items-center justify-between m-auto relative">
         <AnimatePresence>
-          <Link href="/">
+          <Link legacyBehavior href="/">
             <motion.a
               initial={{ x: -500, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -30,7 +30,7 @@ export function Header() {
               exit={{ x: 500, opacity: 0 }}
               className="social-links w-[12.5rem] h-full flex items-center justify-end gap-4"
             >
-              <Link href="https://www.instagram.com/seinfraba">
+              <Link legacyBehavior href="https://www.instagram.com/seinfraba">
                 <a className="py-2 border-2 border-transparent hover:border-b-primary">
                   <svg
                     width="24"
@@ -64,7 +64,7 @@ export function Header() {
                 </a>
               </Link>
 
-              <Link href="https://www.facebook.com/seinfra.ba">
+              <Link legacyBehavior href="https://www.facebook.com/seinfra.ba">
                 <a className="py-2 border-2 border-transparent hover:border-b-primary">
                   <svg
                     width="24"

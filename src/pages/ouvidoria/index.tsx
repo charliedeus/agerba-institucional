@@ -79,7 +79,10 @@ const OuvidoriaPage: NextPageWithLayout = () => {
                 weight="light"
                 className="text-gray-500"
               />{' '}
-              <Link href="http://www.agerba.ba.gov.br/ouvidoria-agerba">
+              <Link
+                legacyBehavior
+                href="http://www.agerba.ba.gov.br/ouvidoria-agerba"
+              >
                 <a target="_blank" className="text-blue-800 hover:underline">
                   http://www.agerba.ba.gov.br/ouvidoria-agerba
                 </a>

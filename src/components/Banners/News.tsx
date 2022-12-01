@@ -156,7 +156,10 @@ export function News() {
                     </h3>
                   )}
 
-                  <Link href={`/noticias/${highlightNew.attributes?.slug}`}>
+                  <Link
+                    legacyBehavior
+                    href={`/noticias/${highlightNew.attributes?.slug}`}
+                  >
                     <a
                       className={classNames(
                         `w-full laptop:w-[300px] flex items-center justify-center gap-2 border-2 py-2 laptop:py-4 rounded-lg transition duration-100 ease-out cursor-pointer`,

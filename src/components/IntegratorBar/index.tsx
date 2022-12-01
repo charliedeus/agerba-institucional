@@ -47,7 +47,7 @@ export function IntegratorBar() {
         <ul className="flex items-end justify-center gap-4 w-2/3 h-full mx-auto pb-1 rounded-full overflow-hidden text-white text-xs bg-primary shadow-lg z-50">
           {menuItems.map((item) => (
             <li key={item.id}>
-              <Link href={`${item.url}`}>
+              <Link legacyBehavior href={`${item.url}`}>
                 <a target={'_blank'} className="hover:underline">
                   {item.title}
                 </a>

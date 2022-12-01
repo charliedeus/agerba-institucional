@@ -110,6 +110,7 @@ const CollegiateMinutesPage: NextPageWithLayout = () => {
                   <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2 text">
                     {note.attributes?.document.data ? (
                       <Link
+                        legacyBehavior
                         href={urlBuilder(
                           note.attributes.document.data.attributes?.url,
                         )}

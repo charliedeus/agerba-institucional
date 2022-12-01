@@ -174,6 +174,7 @@ const PublicHearingPage: NextPageWithLayout = () => {
 
                         {documento?.file.data?.attributes?.url && (
                           <Link
+                            legacyBehavior
                             href={urlBuilder(
                               documento?.file.data?.attributes?.url,
                             )}

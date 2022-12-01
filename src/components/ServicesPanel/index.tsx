@@ -84,7 +84,7 @@ export function ServicesPanel() {
         style={{}}
       >
         {citizenServicesGroup.map((service) => (
-          <Link key={service.id} href={service.url}>
+          <Link legacyBehavior key={service.id} href={service.url}>
             <a className="shadow-xl">
               <div className="w-[225px] min-w-[225px] h-full flex flex-col justify-end rounded-lg snap-always snap-center overflow-hidden shadow-md group relative">
                 <picture className="w-full h-full flex">
@@ -122,7 +122,7 @@ export function ServicesPanel() {
 
       <div className="w-full h-[350px] flex overflow-x-scroll snap-mandatory scroll-p-6 scroll-smooth rounded-lg gap-3 p-6 snap-x no-scrollbar">
         {companiesServicesGroup.map((service) => (
-          <Link key={service.id} href={service.url}>
+          <Link legacyBehavior key={service.id} href={service.url}>
             <a className="shadow-xl">
               <div className="w-[225px] min-w-[225px] h-full flex flex-col justify-end rounded-lg snap-always snap-center overflow-hidden shadow-md group relative">
                 <picture className="w-full h-full flex">

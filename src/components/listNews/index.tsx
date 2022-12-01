@@ -31,7 +31,11 @@ export function ListNews({ limit = 10, start = 0 }: ListNewsProps) {
 
         <ul className="w-full flex flex-col gap-8">
           {data?.noticias?.data.map((item) => (
-            <Link key={item.id} href={`/noticias/${item.attributes?.slug}`}>
+            <Link
+              legacyBehavior
+              key={item.id}
+              href={`/noticias/${item.attributes?.slug}`}
+            >
               <a>
                 <li className="w-full h-full flex flex-col laptop:flex-row items-start gap-4">
                   {item.attributes?.cover?.data ? (

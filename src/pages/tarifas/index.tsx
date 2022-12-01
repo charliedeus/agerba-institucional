@@ -240,6 +240,7 @@ const TariffsPage: NextPageWithLayout = () => {
                             <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2 text">
                               {transportItem.attributes?.files ? (
                                 <Link
+                                  legacyBehavior
                                   href={urlBuilder(
                                     transportItem.attributes.files[0]?.file.data
                                       ?.attributes?.url,
@@ -322,6 +323,7 @@ const TariffsPage: NextPageWithLayout = () => {
                                           </span>
                                         </div>
                                         <Link
+                                          legacyBehavior
                                           href={urlBuilder(
                                             document?.file.data?.attributes
                                               ?.url,
@@ -443,6 +445,7 @@ const TariffsPage: NextPageWithLayout = () => {
                             <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2 text">
                               {transportItem.attributes?.files ? (
                                 <Link
+                                  legacyBehavior
                                   href={urlBuilder(
                                     transportItem.attributes.files[0]?.file.data
                                       ?.attributes?.url,
@@ -525,6 +528,7 @@ const TariffsPage: NextPageWithLayout = () => {
                                           </span>
                                         </div>
                                         <Link
+                                          legacyBehavior
                                           href={urlBuilder(
                                             document?.file.data?.attributes
                                               ?.url,
@@ -646,6 +650,7 @@ const TariffsPage: NextPageWithLayout = () => {
                             <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2 text">
                               {transportItem.attributes?.files ? (
                                 <Link
+                                  legacyBehavior
                                   href={urlBuilder(
                                     transportItem.attributes.files[0]?.file.data
                                       ?.attributes?.url,
@@ -728,6 +733,7 @@ const TariffsPage: NextPageWithLayout = () => {
                                           </span>
                                         </div>
                                         <Link
+                                          legacyBehavior
                                           href={urlBuilder(
                                             document?.file.data?.attributes
                                               ?.url,
@@ -847,6 +853,7 @@ const TariffsPage: NextPageWithLayout = () => {
                             <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2 text">
                               {transportItem.attributes?.files ? (
                                 <Link
+                                  legacyBehavior
                                   href={urlBuilder(
                                     transportItem.attributes.files[0]?.file.data
                                       ?.attributes?.url,
@@ -929,6 +936,7 @@ const TariffsPage: NextPageWithLayout = () => {
                                           </span>
                                         </div>
                                         <Link
+                                          legacyBehavior
                                           href={urlBuilder(
                                             document?.file.data?.attributes
                                               ?.url,
@@ -1052,6 +1060,7 @@ const TariffsPage: NextPageWithLayout = () => {
                             <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2 text">
                               {transportItem.attributes?.files ? (
                                 <Link
+                                  legacyBehavior
                                   href={urlBuilder(
                                     transportItem.attributes.files[0]?.file.data
                                       ?.attributes?.url,
@@ -1134,6 +1143,7 @@ const TariffsPage: NextPageWithLayout = () => {
                                           </span>
                                         </div>
                                         <Link
+                                          legacyBehavior
                                           href={urlBuilder(
                                             document?.file.data?.attributes
                                               ?.url,
@@ -1235,6 +1245,7 @@ const TariffsPage: NextPageWithLayout = () => {
                             <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2 text">
                               {transportItem.attributes?.files ? (
                                 <Link
+                                  legacyBehavior
                                   href={urlBuilder(
                                     transportItem.attributes.files[0]?.file.data
                                       ?.attributes?.url,
@@ -1317,6 +1328,7 @@ const TariffsPage: NextPageWithLayout = () => {
                                           </span>
                                         </div>
                                         <Link
+                                          legacyBehavior
                                           href={urlBuilder(
                                             document?.file.data?.attributes
                                               ?.url,
@@ -1418,6 +1430,7 @@ const TariffsPage: NextPageWithLayout = () => {
                             <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2 text">
                               {transportItem.attributes?.files ? (
                                 <Link
+                                  legacyBehavior
                                   href={urlBuilder(
                                     transportItem.attributes.files[0]?.file.data
                                       ?.attributes?.url,
@@ -1500,6 +1513,7 @@ const TariffsPage: NextPageWithLayout = () => {
                                           </span>
                                         </div>
                                         <Link
+                                          legacyBehavior
                                           href={urlBuilder(
                                             document?.file.data?.attributes
                                               ?.url,
@@ -1611,6 +1625,7 @@ const TariffsPage: NextPageWithLayout = () => {
                           <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2 text">
                             {transportItem.attributes?.document ? (
                               <Link
+                                legacyBehavior
                                 href={urlBuilder(
                                   transportItem.attributes.document[0]?.file
                                     .data?.attributes?.url,
@@ -1691,6 +1706,7 @@ const TariffsPage: NextPageWithLayout = () => {
                                         </span>
                                       </div>
                                       <Link
+                                        legacyBehavior
                                         href={urlBuilder(
                                           document?.file.data?.attributes?.url,
                                         )}
@@ -1778,6 +1794,7 @@ const TariffsPage: NextPageWithLayout = () => {
                           <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2 text">
                             {transportItem.attributes?.document ? (
                               <Link
+                                legacyBehavior
                                 href={urlBuilder(
                                   transportItem.attributes.document[0]?.file
                                     .data?.attributes?.url,
@@ -1858,6 +1875,7 @@ const TariffsPage: NextPageWithLayout = () => {
                                         </span>
                                       </div>
                                       <Link
+                                        legacyBehavior
                                         href={urlBuilder(
                                           document?.file.data?.attributes?.url,
                                         )}
@@ -1941,6 +1959,7 @@ const TariffsPage: NextPageWithLayout = () => {
                         <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2 text">
                           {transportItem.attributes?.document ? (
                             <Link
+                              legacyBehavior
                               href={urlBuilder(
                                 transportItem.attributes.document[0]?.file.data
                                   ?.attributes?.url,
@@ -2021,6 +2040,7 @@ const TariffsPage: NextPageWithLayout = () => {
                                       </span>
                                     </div>
                                     <Link
+                                      legacyBehavior
                                       href={urlBuilder(
                                         document?.file.data?.attributes?.url,
                                       )}

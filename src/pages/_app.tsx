@@ -8,7 +8,7 @@ import '../styles/globals.css'
 import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../lib/apollo'
 
-export type NextPageWithLayout = NextPage & {
+export type NextPageWithLayout<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactElement) => ReactNode
 }
 

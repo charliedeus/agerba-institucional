@@ -31,6 +31,7 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
             >
               {highlightNews.map((highlightNew, index) => (
                 <Link
+                  legacyBehavior
                   key={highlightNew.id}
                   href={`/noticias/${highlightNew.attributes?.slug}`}
                 >

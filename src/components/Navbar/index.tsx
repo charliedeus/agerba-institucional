@@ -95,37 +95,37 @@ export function Navbar() {
 
           <ul className="flex flex-col flex-1 h-full items-center justify-center text-lg">
             <li>
-              <Link href="/sobre">
+              <Link legacyBehavior href="/sobre">
                 <a onClick={handleCloseMenu}>Quem somos</a>
               </Link>
             </li>
             <li>
-              <Link href="/estrutura">
+              <Link legacyBehavior href="/estrutura">
                 <a onClick={handleCloseMenu}>Estrutura Organizacional</a>
               </Link>
             </li>
             <li>
-              <Link href="/transportes/hidroviario">
+              <Link legacyBehavior href="/transportes/hidroviario">
                 <a onClick={handleCloseMenu}>Transporte Hidroviário</a>
               </Link>
             </li>
             <li>
-              <Link href="/terminais">
+              <Link legacyBehavior href="/terminais">
                 <a onClick={handleCloseMenu}>Terminais</a>
               </Link>
             </li>
             <li>
-              <Link href="/terminais/rodoviarios">
+              <Link legacyBehavior href="/terminais/rodoviarios">
                 <a onClick={handleCloseMenu}>Terminais Rodoviários</a>
               </Link>
             </li>
             <li>
-              <Link href="/terminais/aeroviarios">
+              <Link legacyBehavior href="/terminais/aeroviarios">
                 <a onClick={handleCloseMenu}>Terminais Aeroviários</a>
               </Link>
             </li>
             <li>
-              <Link href="/faq">
+              <Link legacyBehavior href="/faq">
                 <a onClick={handleCloseMenu}>FAQ</a>
               </Link>
             </li>
@@ -134,7 +134,7 @@ export function Navbar() {
       </div>
 
       <div className="hidden w-full px-[14px] laptop:h-full laptop:max-w-[1280px] laptop:m-auto laptop:flex items-center justify-between gap-4 z-10">
-        <Link href="/">
+        <Link legacyBehavior href="/">
           <a className="flex items-center gap-2">
             <House size={20} weight="light" />
             <span className="font-normal">Início</span>
@@ -380,7 +380,7 @@ export function Navbar() {
           </Menu.Items>
         </Menu>
 
-        <Link href="/legislacoes">
+        <Link legacyBehavior href="/legislacoes">
           <a className="flex items-center gap-2">
             <BookBookmark size={20} weight="light" />
             <span className="font-normal">Legislações</span>
@@ -455,7 +455,7 @@ export function Navbar() {
           </Menu.Items>
         </Menu>
 
-        <Link href="http://www.acessoainformacao.ba.gov.br">
+        <Link legacyBehavior href="http://www.acessoainformacao.ba.gov.br">
           <a
             className="flex items-center rounded-lg bg-white gap-2"
             target="_blank"

@@ -6,27 +6,25 @@ export function Footer() {
     <footer className="min-h-[300px] flex items-center justify-center bg-[#3F3F95] py-16">
       <div className="w-full desktop:max-w-[1280px] flex flex-col desktop:flex-row items-center laptop:items-start justify-between gap-10 text-white">
         <Link href="/">
-          <a>
-            <picture>
-              <img className="max-w-[10rem]" src="/logo-white.png" alt="" />
-            </picture>
-          </a>
+          <picture>
+            <img className="max-w-[10rem]" src="/logo-white.png" alt="" />
+          </picture>
         </Link>
         <div>
           <ul className="flex flex-col gap-4">
             <li>
               <Link href="http://sider.agerba.ba.gov.br/atendimento">
-                <a target="_blank">Protocolo Online</a>
+                <span>Protocolo Online</span>
               </Link>
             </li>
             <li>
               <Link href="http://carteira.agerba.ba.gov.br/">
-                <a target="_blank">Carteira Estudantil</a>
+                <span>Carteira Estudantil</span>
               </Link>
             </li>
             <li>
               <Link href="/licitacoes">
-                <a>Licitações</a>
+                <span>Licitações</span>
               </Link>
             </li>
             <li>
@@ -47,9 +45,7 @@ export function Footer() {
           <ul className="flex flex-col gap-4">
             <li>
               <Link href="http://www.portalseibahia.saeb.ba.gov.br/">
-                <a target="_blank" className="text-white">
-                  Consultas Processos
-                </a>
+                <span className="text-white">Consultas Processos</span>
               </Link>
             </li>
             <li>
@@ -66,9 +62,7 @@ export function Footer() {
             </li>
             <li>
               <Link href="http://agerba.stipweb.com.br">
-                <a target="_blank" className="text-white">
-                  Portal de Serviços STIP
-                </a>
+                <span className="text-white">Portal de Serviços STIP</span>
               </Link>
             </li>
             <li>
