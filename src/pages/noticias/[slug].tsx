@@ -45,13 +45,12 @@ interface NewsSoloProps {
   title: string
   subtitle: string
   content: string
-  sections: any[]
+  sections: NewsSectionsProps[]
   publishedAt: string
   updatedAt: string
   tags: string[]
 }
 
-// eslint-disable-next-line no-unused-vars
 interface NewsPageProps {
   newsSolo: NewsSoloProps
   initialApolloState: any
@@ -66,7 +65,10 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
 
   return (
     <>
-      <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
+      <article
+        key={props.newsSolo.id}
+        className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed"
+      >
         <div className="flex flex-col gap-8">
           <header className="flex flex-col gap-4">
             <h1 className="font-bold text-[2rem] leading-[1.5] laptop:text-[3rem] laptop:leading-relaxed">
@@ -106,7 +108,10 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                 {props.newsSolo.cover.data !== null ? (
                   <picture className="w-full h-full flex">
                     <img
-                      src={urlBuilder(props.newsSolo.cover.data.coverUrl)}
+                      src={
+                        urlBuilder(props.newsSolo.cover.data.coverUrl) ||
+                        genericImg.src
+                      }
                       alt={
                         props.newsSolo.cover.data.name ||
                         props.newsSolo.cover.data.alternativeText ||
