@@ -256,8 +256,6 @@ export const getServerSideProps: GetServerSideProps<
     tags,
   })
 
-  console.log(newsSolo.cover)
-
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),

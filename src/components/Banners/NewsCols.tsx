@@ -1,5 +1,5 @@
 import Link from 'next/link'
-// import Image from 'next/future/image'
+import Image from 'next/image'
 import classNames from 'classnames'
 import { motion } from 'framer-motion'
 
@@ -59,7 +59,7 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                     >
                       {highlightNew?.attributes?.cover?.data ? (
                         <picture className="w-full">
-                          <img
+                          <Image
                             src={urlBuilder(
                               highlightNew.attributes.cover.data.attributes
                                 ?.url,
@@ -71,14 +71,16 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                                 ?.alternativeText ||
                               ''
                             }
+                            fill
                             className="w-full h-full object-cover object-center"
                           />
                         </picture>
                       ) : (
                         <picture className="w-full">
-                          <img
+                          <Image
                             src={genericImg.src}
                             alt={''}
+                            fill
                             className="w-full h-full object-cover object-center"
                           />
                         </picture>
