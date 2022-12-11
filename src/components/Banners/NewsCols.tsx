@@ -48,7 +48,7 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                       animate="visible"
                       variants={{
                         visible: {
-                          scale: [1, 1.3, 1],
+                          scale: [1, 1.1, 1],
                           opacity: 1,
                           transition: {
                             duration: 30,
@@ -58,36 +58,30 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                       className="w-full h-full flex"
                     >
                       {highlightNew?.attributes?.cover?.data ? (
-                        <figure className="w-full">
-                          <div className="w-full h-full">
-                            <Image
-                              src={urlBuilder(
-                                highlightNew.attributes.cover.data.attributes
-                                  ?.url,
-                              )}
-                              alt={
-                                highlightNew.attributes?.cover.data?.attributes
-                                  ?.name ||
-                                highlightNew.attributes?.cover.data?.attributes
-                                  ?.alternativeText ||
-                                ''
-                              }
-                              fill
-                              className="w-full h-full object-cover object-center"
-                            />
-                          </div>
-                        </figure>
+                        <picture className="w-full">
+                          <img
+                            src={urlBuilder(
+                              highlightNew.attributes.cover.data.attributes
+                                ?.url,
+                            )}
+                            alt={
+                              highlightNew.attributes?.cover.data?.attributes
+                                ?.name ||
+                              highlightNew.attributes?.cover.data?.attributes
+                                ?.alternativeText ||
+                              ''
+                            }
+                            className="w-full h-full object-cover object-center"
+                          />
+                        </picture>
                       ) : (
-                        <figure className="w-full">
-                          <div>
-                            <Image
-                              src={genericImg.src}
-                              alt={''}
-                              fill
-                              className="w-full h-full object-cover object-center"
-                            />
-                          </div>
-                        </figure>
+                        <picture className="w-full">
+                          <img
+                            src={genericImg.src}
+                            alt={''}
+                            className="w-full h-full object-cover object-center"
+                          />
+                        </picture>
                       )}
                     </motion.div>
 
