@@ -16,8 +16,6 @@ import { ListNews } from '../../components/listNews'
 import genericImg from '../../assets/images/generic-image.png'
 import { GetServerSideProps } from 'next'
 import { initializeApollo } from '../../lib/apollo'
-import { useRouter } from 'next/router'
-import { Loader } from '../../components/Loader'
 import { Tag } from '../../components/Tag'
 
 interface NewsSectionsProps {
