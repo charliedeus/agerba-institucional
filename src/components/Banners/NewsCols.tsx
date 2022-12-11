@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import classNames from 'classnames'
 import { motion } from 'framer-motion'
 
@@ -57,30 +58,37 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                       className="w-full h-full flex"
                     >
                       {highlightNew?.attributes?.cover?.data ? (
-                        <picture className="w-full">
-                          <img
-                            src={urlBuilder(
-                              highlightNew.attributes.cover.data.attributes
-                                ?.url,
-                            )}
-                            alt={
-                              highlightNew.attributes?.cover.data?.attributes
-                                ?.name ||
-                              highlightNew.attributes?.cover.data?.attributes
-                                ?.alternativeText ||
-                              ''
-                            }
-                            className="w-full h-full object-cover object-center"
-                          />
-                        </picture>
+                        <figure className="w-full">
+                          <div>
+                            <Image
+                              src={urlBuilder(
+                                highlightNew.attributes.cover.data.attributes
+                                  ?.url,
+                              )}
+                              alt={
+                                highlightNew.attributes?.cover.data?.attributes
+                                  ?.name ||
+                                highlightNew.attributes?.cover.data?.attributes
+                                  ?.alternativeText ||
+                                ''
+                              }
+                              width={1000}
+                              height={600}
+                              className="w-full h-full object-cover object-center"
+                            />
+                          </div>
+                        </figure>
                       ) : (
-                        <picture className="w-full">
-                          <img
-                            src={genericImg.src}
-                            alt={''}
-                            className="w-full h-full object-cover object-center"
-                          />
-                        </picture>
+                        <figure className="w-full">
+                          <div>
+                            <Image
+                              src={genericImg.src}
+                              alt={''}
+                              fill
+                              className="w-full h-full object-cover object-center"
+                            />
+                          </div>
+                        </figure>
                       )}
                     </motion.div>
 
