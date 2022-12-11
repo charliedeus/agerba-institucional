@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import classNames from 'classnames'
 import { motion } from 'framer-motion'
 
@@ -70,25 +69,21 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                     >
                       {highlightNew?.cover.url !== null ? (
                         <picture className="w-full">
-                          <Image
+                          <img
                             src={urlBuilder(highlightNew.cover.url)}
                             alt={
                               highlightNew.cover.name ||
                               highlightNew.cover.alternativeText ||
                               ''
                             }
-                            width={1000}
-                            height={600}
                             className="w-full h-full object-cover object-center"
                           />
                         </picture>
                       ) : (
                         <picture className="w-full">
-                          <Image
+                          <img
                             src={genericImg.src}
                             alt={''}
-                            width={1000}
-                            height={600}
                             className="w-full h-full object-cover object-center"
                           />
                         </picture>
