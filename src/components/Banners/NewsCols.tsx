@@ -71,6 +71,11 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                                 ?.alternativeText ||
                               ''
                             }
+                            placeholder="blur"
+                            blurDataURL={urlBuilder(
+                              highlightNew.attributes.cover.data.attributes
+                                ?.url,
+                            )}
                             fill
                             className="w-full h-full object-cover object-center"
                           />
@@ -80,6 +85,7 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                           <Image
                             src={genericImg.src}
                             alt={''}
+                            blurDataURL={genericImg.blurDataURL}
                             fill
                             className="w-full h-full object-cover object-center"
                           />
