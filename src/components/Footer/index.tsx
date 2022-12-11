@@ -28,10 +28,8 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <NextLink href="#" className="text-gray-400">
-                <span className="opacity-75 cursor-not-allowed">
-                  Audiências Públicas (em breve)
-                </span>
+              <NextLink href="/audiencias-publicas">
+                <span className="text-white">Audiências Públicas</span>
               </NextLink>
             </li>
             <li>
