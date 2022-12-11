@@ -14,7 +14,7 @@ import {
 import { urlBuilder } from '../../lib/urlBuilder'
 import { ListNews } from '../../components/listNews'
 import genericImg from '../../assets/images/generic-image.png'
-import { GetServerSideProps } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import { initializeApollo } from '../../lib/apollo'
 import { useRouter } from 'next/router'
 import { Loader } from '../../components/Loader'
@@ -58,6 +58,12 @@ interface NewsPageProps {
 }
 
 const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
+  const { isFallback } = useRouter()
+
+  if (isFallback) {
+    return <Loader />
+  }
+
   return (
     <>
       <article
@@ -200,10 +206,16 @@ NewsPage.getLayout = function getLayout(page: ReactElement) {
 
 export default NewsPage
 
-export const getServerSideProps: GetServerSideProps<
-  any,
-  { slug: string }
-> = async ({ params }) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: true,
+  }
+}
+
+export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({
+  params,
+}) => {
   const slug = params!.slug
 
   const apolloClient = initializeApollo()
