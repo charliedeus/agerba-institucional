@@ -59,7 +59,7 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                     >
                       {highlightNew?.attributes?.cover?.data ? (
                         <figure className="w-full">
-                          <div>
+                          <div className="w-full h-full">
                             <Image
                               src={urlBuilder(
                                 highlightNew.attributes.cover.data.attributes
@@ -72,8 +72,7 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                                   ?.alternativeText ||
                                 ''
                               }
-                              width={1000}
-                              height={600}
+                              fill
                               className="w-full h-full object-cover object-center"
                             />
                           </div>
