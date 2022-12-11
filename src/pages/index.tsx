@@ -64,7 +64,24 @@ export const getServerSideProps: GetServerSideProps = async () => {
       },
     })
 
-  const highlightNews = highlightNewsData.noticias?.data
+  const highlightNews = highlightNewsData.noticias?.data.map(
+    (highlightNew) => ({
+      id: highlightNew.id,
+      slug: highlightNew.attributes?.slug,
+      cover: {
+        name: highlightNew.attributes?.cover?.data?.attributes?.name || null,
+        alternativeText:
+          highlightNew.attributes?.cover?.data?.attributes?.alternativeText ||
+          null,
+        url: highlightNew.attributes?.cover?.data?.attributes?.url || null,
+      },
+      colorTitle: highlightNew.attributes?.colorTitle,
+      title: highlightNew.attributes?.title,
+      subtitle: highlightNew.attributes?.subtitle,
+    }),
+  )
+
+  console.log(highlightNews)
 
   return {
     props: {

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import classNames from 'classnames'
 import { motion } from 'framer-motion'
 
@@ -10,7 +11,18 @@ import { urlBuilder } from '../../lib/urlBuilder'
 import genericImg from '../../assets/images/generic-image.png'
 
 interface highlightNewsProps {
-  highlightNews: any[]
+  highlightNews: {
+    id: string
+    slug: string
+    cover: {
+      name: string
+      alternativeText: string
+      url: string
+    }
+    colorTitle: string
+    title: string
+    subtitle: string
+  }[]
 }
 
 export function NewsCols({ highlightNews }: highlightNewsProps) {
@@ -32,7 +44,7 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                 <Link
                   legacyBehavior
                   key={highlightNew.id}
-                  href={`/noticias/${highlightNew.attributes?.slug}`}
+                  href={`/noticias/${highlightNew.slug}`}
                 >
                   <a
                     className={classNames(
@@ -56,28 +68,27 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                       }}
                       className="w-full h-full flex"
                     >
-                      {highlightNew?.attributes?.cover?.data ? (
+                      {highlightNew?.cover.url !== null ? (
                         <picture className="w-full">
-                          <img
-                            src={urlBuilder(
-                              highlightNew.attributes.cover.data.attributes
-                                ?.url,
-                            )}
+                          <Image
+                            src={urlBuilder(highlightNew.cover.url)}
                             alt={
-                              highlightNew.attributes?.cover.data?.attributes
-                                ?.name ||
-                              highlightNew.attributes?.cover.data?.attributes
-                                ?.alternativeText ||
+                              highlightNew.cover.name ||
+                              highlightNew.cover.alternativeText ||
                               ''
                             }
+                            width={1000}
+                            height={600}
                             className="w-full h-full object-cover object-center"
                           />
                         </picture>
                       ) : (
                         <picture className="w-full">
-                          <img
+                          <Image
                             src={genericImg.src}
                             alt={''}
+                            width={1000}
+                            height={600}
                             className="w-full h-full object-cover object-center"
                           />
                         </picture>
@@ -94,23 +105,23 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                     >
                       <h1
                         className={classNames(
-                          `text-4xl laptop:text-2xl text-${highlightNew.attributes?.colorTitle}`,
+                          `text-4xl laptop:text-2xl text-${highlightNew.colorTitle}`,
                           {},
                         )}
                         style={{ textShadow: '0 1px 3px rgb(0, 0, 0, 0.8)' }}
                       >
-                        {highlightNew.attributes?.title}
+                        {highlightNew.title}
                       </h1>
 
-                      {highlightNew.attributes?.subtitle && (
+                      {highlightNew.subtitle && (
                         <h3
                           className={classNames(
                             'hidden text-md font-semibold overflow-hidden line-clamp-2',
                             {
                               'text-black/75':
-                                highlightNew.attributes?.colorTitle === 'black',
+                                highlightNew.colorTitle === 'black',
                               'text-white/75':
-                                highlightNew.attributes?.colorTitle === 'white',
+                                highlightNew.colorTitle === 'white',
                             },
                           )}
                           style={{
@@ -118,7 +129,7 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                             maxLines: 2,
                           }}
                         >
-                          {highlightNew.attributes?.subtitle}
+                          {highlightNew.subtitle}
                         </h3>
                       )}
                     </header>
