@@ -1,5 +1,4 @@
 import { ReactElement } from 'react'
-import Image from 'next/image'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import 'keen-slider/keen-slider.min.css'
@@ -105,7 +104,7 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
               <div className="w-full h-full relative flex flex-col gap-2 overflow-hidden">
                 {props.newsSolo.cover.data !== null ? (
                   <picture className="w-full h-full flex">
-                    <Image
+                    <img
                       src={
                         urlBuilder(props.newsSolo.cover.data.attributes.url) ||
                         genericImg.src
@@ -115,8 +114,6 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                         props.newsSolo.cover.data.attributes.alternativeText ||
                         ''
                       }
-                      width={1000}
-                      height={600}
                       className="w-full h-full max-h-[400px] object-cover object-center"
                     />
                   </picture>
