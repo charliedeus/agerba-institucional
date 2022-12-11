@@ -12,6 +12,8 @@ const nextConfig = withPWA({
   },
   images: {
     domains: ['localhost:4000', 'images.unsplash.com'],
+    path: '/_next/image',
+    loader: 'default',
     remotePatterns: [
       {
         protocol: 'http',

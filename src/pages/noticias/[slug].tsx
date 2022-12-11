@@ -1,4 +1,5 @@
 import { ReactElement } from 'react'
+import Image from 'next/image'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import 'keen-slider/keen-slider.min.css'
@@ -22,9 +23,11 @@ interface NewsSectionsProps {
   id: string
   cover: {
     data: {
-      name: string
-      alternativeText: string
-      coverUrl: string
+      attributes: {
+        name: string
+        alternativeText: string
+        url: string
+      }
     }
   }
   title: string
@@ -36,9 +39,11 @@ interface NewsSoloProps {
   id: string
   cover: {
     data: {
-      name: string
-      alternativeText: string
-      coverUrl: string
+      attributes: {
+        name: string
+        alternativeText: string
+        url: string
+      }
     }
   }
   title: string
@@ -100,14 +105,14 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
               <div className="w-full h-full relative flex flex-col gap-2 overflow-hidden">
                 {props.newsSolo.cover.data !== null ? (
                   <picture className="w-full h-full flex">
-                    <img
+                    <Image
                       src={
-                        urlBuilder(props.newsSolo.cover.data.coverUrl) ||
+                        urlBuilder(props.newsSolo.cover.data.attributes.url) ||
                         genericImg.src
                       }
                       alt={
-                        props.newsSolo.cover.data.name ||
-                        props.newsSolo.cover.data.alternativeText ||
+                        props.newsSolo.cover.data.attributes.name ||
+                        props.newsSolo.cover.data.attributes.alternativeText ||
                         ''
                       }
                       width={1000}
@@ -127,7 +132,7 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                   </picture>
                 )}
                 <small className="text-sm mx-auto">
-                  {props.newsSolo.cover.data?.alternativeText}
+                  {props.newsSolo.cover.data?.attributes.alternativeText}
                 </small>
               </div>
             </>
@@ -150,13 +155,16 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                       <div className="w-full h-full relative mb-4 flex flex-col gap-2 overflow-hidden">
                         <picture className="w-full">
                           <img
-                            src={urlBuilder(section.cover.data?.coverUrl)}
-                            alt={section.cover.data?.alternativeText || ''}
+                            src={urlBuilder(section.cover.data?.attributes.url)}
+                            alt={
+                              section.cover.data?.attributes.alternativeText ||
+                              ''
+                            }
                             className="w-full h-full max-h-[400px] object-cover object-center"
                           />
                         </picture>
                         <small className="text-sm mx-auto">
-                          {section.cover.data?.alternativeText || ''}
+                          {section.cover.data?.attributes.alternativeText || ''}
                         </small>
                       </div>
                     )}
@@ -223,10 +231,13 @@ export const getServerSideProps: GetServerSideProps<
         id: section?.id,
         cover: {
           data: {
-            id: section?.cover?.data?.id,
-            name: section?.cover?.data?.attributes?.name,
-            alternativeText: section?.cover?.data?.attributes?.alternativeText,
-            coverUrl: section?.cover?.data?.attributes?.url,
+            attributes: {
+              id: section?.cover?.data?.id,
+              name: section?.cover?.data?.attributes?.name,
+              alternativeText:
+                section?.cover?.data?.attributes?.alternativeText,
+              url: section?.cover?.data?.attributes?.url,
+            },
           },
         },
         content: section?.content,
@@ -247,6 +258,8 @@ export const getServerSideProps: GetServerSideProps<
     updatedAt: data?.noticias?.data[0].attributes?.updatedAt,
     tags,
   })
+
+  console.log(newsSolo.cover)
 
   return {
     props: {
