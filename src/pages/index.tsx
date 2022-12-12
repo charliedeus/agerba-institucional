@@ -81,8 +81,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
     }),
   )
 
-  console.log(highlightNews)
-
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),

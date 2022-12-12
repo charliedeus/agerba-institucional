@@ -13,6 +13,7 @@ const structureItems = [
     members: [
       {
         id: uuidv4(),
+        initials: 'CM',
         name: 'Carlos Henrique de Azevedo Martins',
         occupation: 'Diretor Executivo',
         phone: '71 3115-4828 / 8615 / 4863 / 8625',
@@ -20,6 +21,7 @@ const structureItems = [
       },
       {
         id: uuidv4(),
+        initials: 'CS',
         name: 'Claudia Sousa Carvalho de Santana',
         occupation: 'Chefe de Gabinete',
         phone: '71 3115-8631',
@@ -27,6 +29,7 @@ const structureItems = [
       },
       {
         id: uuidv4(),
+        initials: 'JG',
         name: 'Joaquim Cesar Campos Guerra',
         occupation: 'Assessor Chefe',
         phone: '71 3115-4889',
@@ -34,6 +37,7 @@ const structureItems = [
       },
       {
         id: uuidv4(),
+        initials: 'MJ',
         name: 'Mário Simões Ferreira Junior',
         occupation: 'Coordenador',
         phone: '71 3115-4841',
@@ -41,6 +45,7 @@ const structureItems = [
       },
       {
         id: uuidv4(),
+        initials: 'MC',
         name: 'Murilo Serafim da Costa',
         occupation: 'Ouvidor',
         phone: '71 3115-4702 / 4887',
@@ -48,6 +53,7 @@ const structureItems = [
       },
       {
         id: uuidv4(),
+        initials: 'LC',
         name: 'Lorena Lima de Jesus Carauna',
         occupation: 'Assessor de Comunicação',
         phone: '71 3115-8607',
@@ -61,6 +67,7 @@ const structureItems = [
     members: [
       {
         id: uuidv4(),
+        initials: 'TS',
         name: 'Tahis Flores Nunes Soares',
         occupation: 'Diretora Geral',
         phone: '71 3115-4839',
@@ -68,6 +75,7 @@ const structureItems = [
       },
       {
         id: uuidv4(),
+        initials: 'LS',
         name: 'Luciano Marcelo Dantas de Souza',
         occupation: 'Diretor de Tarifas',
         phone: '71 3115-4805',
@@ -75,6 +83,7 @@ const structureItems = [
       },
       {
         id: uuidv4(),
+        initials: 'MG',
         name: 'Nilton Roberto Martins Cabral Guimarães',
         occupation: 'Diretor de Pesquisas Socioeconomicas',
         phone: '71 3115-4866',
@@ -88,6 +97,7 @@ const structureItems = [
     members: [
       {
         id: uuidv4(),
+        initials: 'SC',
         name: 'Sosthenes José Paes Campos Campos',
         occupation: 'Diretor Geral',
         phone: '71 3115-4830',
@@ -95,6 +105,7 @@ const structureItems = [
       },
       {
         id: uuidv4(),
+        initials: 'ES',
         name: 'Eurico Bonfim Isaac da Silva',
         occupation: 'Diretor de Fiscalização',
         phone: '71 3115-4861',
@@ -102,6 +113,7 @@ const structureItems = [
       },
       {
         id: uuidv4(),
+        initials: 'GS',
         name: 'Geraldo Joaquim Telles de Souza',
         occupation: 'Diretor de Planejamento Operacioanl',
         phone: '71 3115-4859',
@@ -132,18 +144,6 @@ const StructureOrganizationPage: NextPageWithLayout = () => {
         Estrutura Organizacional
       </motion.h1>
 
-      <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
-      </p>
-
       {structureItems.map((section) => (
         <>
           <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
@@ -164,14 +164,10 @@ const StructureOrganizationPage: NextPageWithLayout = () => {
                 key={member.id}
                 className="list-none w-full laptop:max-w-[25rem]"
               >
-                <div className="group flex flex-col gap-4 items-center bg-gray-100 py-8 p-2 laptop:p-8 hover:bg-primary rounded-lg transition-colors duration-75">
-                  <picture>
-                    <img
-                      className="shrink-0 h-16 w-16 rounded-full"
-                      src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=60"
-                      alt=""
-                    />
-                  </picture>
+                <div className="group flex flex-col gap-4 items-center bg-gray-100 py-8 p-2 laptop:p-8 hover:bg-primary rounded-lg transition-colors duration-75 group">
+                  <div className="h-16 w-16 rounded-full bg-primary flex items-center justify-center text-white font-bold group-hover:bg-gray-100 group-hover:text-primary">
+                    {member.initials}
+                  </div>
                   <div className="ltr:ml-3 rtl:mr-3 flex-1 pl-2">
                     <p className="text-base font-bold text-gray-900 group-hover:text-gray-100">
                       {member.name}

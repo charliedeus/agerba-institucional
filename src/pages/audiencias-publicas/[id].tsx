@@ -31,21 +31,24 @@ const PublicHearingPage: NextPageWithLayout = () => {
         year: 'numeric',
         timeZone: 'UTC',
       })}`,
-    formattedNotify: `A Agência Estadual de Regulação de Serviços Públicos de Energia Transportes e Comunicações do Estado da Bahia – Agerba vem informar ${data?.eventoPublico?.data?.attributes?.notify?.replace(/(<([^>]+)>)/gi, "")} que realizará a <strong>AUDIÊNCIA PÚBLICA Nº ${data?.eventoPublico?.data?.attributes?.title
-      }/${new Date(
+    formattedNotify: `A Agência Estadual de Regulação de Serviços Públicos de Energia Transportes e Comunicações do Estado da Bahia – Agerba vem informar ${data?.eventoPublico?.data?.attributes?.notify?.replace(/(<([^>]+)>)/gi, "")} que realizará a <strong> AUDIÊNCIA PÚBLICA Nº ${data?.eventoPublico?.data?.attributes?.title
+      } /${new Date(
         data?.eventoPublico?.data?.attributes?.date,
       ).toLocaleDateString('pt-BR', {
         year: 'numeric',
         timeZone: 'UTC',
-      })}</strong>, no dia <strong>${new Date(
+      })}</strong >, no dia ${new Date(
         data?.eventoPublico?.data?.attributes?.date,
       ).toLocaleDateString('pt-BR', {
         timeZone: 'UTC',
-      })}</strong>.</p><br /><p>Para acesso simplificado ao evento ao vivo, clique <strong><a href="http://www.agerba.ba.gov.br/sites/default/files/documentos/2021-08/Passo%20a%20Passo%20-%20Ingresso%20na%20Transmi%C3%A7%C3%A3o%20Ao%20ViVo_PDLT%20de%20Valen%C3%A7a%20%282%29.pdf" target="_blank" download>aqui</a></strong></p>`,
+      })
+      }</strong >.</p ><br /><p>Para acesso simplificado ao evento ao vivo, clique <strong><a href="http://www.agerba.ba.gov.br/sites/default/files/documentos/2021-08/Passo%20a%20Passo%20-%20Ingresso%20na%20Transmi%C3%A7%C3%A3o%20Ao%20ViVo_PDLT%20de%20Valen%C3%A7a%20%282%29.pdf" target="_blank" download>aqui</a></strong></p>`,
   }
 
   return (
-    <article className="flex flex-col gap-6 h-[calc(100vh-70px)] min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed" >
+    <article
+      className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed"
+    >
 
       {loading ?
         <div className='w-full h-1/2 flex items-center justify-center'>
@@ -94,7 +97,7 @@ const PublicHearingPage: NextPageWithLayout = () => {
                           {evento?.finish_in && (
                             <>
                               {evento?.finish_in && (
-                                ` a `
+                                ` a`
                               )}
                               {new Date(evento?.finish_in).toLocaleDateString('pt-BR', {
                                 timeZone: 'UTC'
@@ -138,7 +141,39 @@ const PublicHearingPage: NextPageWithLayout = () => {
           }
 
           {
-            formattedEvent.attributes?.place && (
+            formattedEvent.attributes?.onlyRemote ? (
+              <>
+                <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
+                  Local de Realização
+                </h1>
+
+                <div className='flex flex-col gap-4'>
+                  <p>
+                    Os interessados em participar da {formattedEvent.attributes?.event_type === 'Audiencia_Publica' ? 'Audiência Pública' : 'Consulta Pública'} deverão acessar o link, disponibilizado em {new Date(
+                      formattedEvent.attributes.date,
+                    ).toLocaleDateString('pt-BR', {
+                      timeZone: 'UTC',
+                    })
+                    }, no endereço virtual disponível no site <Link href='/' target={'_blank'} className='text-primary font-bold underline'>http://agerba.ba.gov.br</Link> ou <Link href='http://www.infraestrutura.ba.gov.br/' target={'_blank'} passHref className='text-primary font-bold underline'>http://www.infraestrutura.ba.gov.br</Link>. O link direcionará à transmissão ao vivo, através da <span className='font-bold italic'>plataforma online Microsoft Teams</span>.
+                  </p>
+                  {formattedEvent.attributes.meetLink ? (
+                    <>
+                      <p>
+                        Para acessar, basta clicar no botão abaixo:
+                      </p>
+
+                      <Link href={formattedEvent.attributes?.meetLink} target='_blank' className='flex items-center justify-center py-2 px-4 bg-primary hover:transform hover:-translate-y-[2px] hover:shadow-lg hover:bg-primary/90 transition-all duration-150 ease-in-out rounded-lg text-white w-full laptop:w-1/2 m-auto'>
+                        Acessar a Reunião
+                      </Link>
+                    </>
+                  ) : (
+                    <button disabled className='flex items-center justify-center py-2 px-4 bg-gray-500 rounded-lg text-white w-full laptop:w-1/2 m-auto'>
+                      Acessar a Reunião (endereço ainda será divulgado)
+                    </button>
+                  )}
+                </div>
+              </>
+            ) : formattedEvent.attributes?.place && (
               <>
                 <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
                   Local de Realização
@@ -146,9 +181,25 @@ const PublicHearingPage: NextPageWithLayout = () => {
 
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: formattedEvent.attributes.place,
+                    __html: formattedEvent.attributes?.place
                   }}
                 />
+
+                {formattedEvent.attributes.meetLink && (
+                  <>
+                    <p>
+                      O evento <span className='font-bold'>também contará</span> com transmissão transmissão ao vivo, através da <span className='font-bold italic'>plataforma online Microsoft Teams</span>.
+                    </p>
+
+                    <p>
+                      Para acessar, basta clicar no botão abaixo:
+                    </p>
+
+                    <Link href={formattedEvent.attributes?.meetLink} target='_blank' className='flex items-center justify-center py-2 px-4 bg-primary hover:transform hover:-translate-y-[2px] hover:shadow-lg hover:bg-primary/90 transition-all duration-150 ease-in-out rounded-lg text-white w-full laptop:w-1/2 m-auto'>
+                      Acessar a Reunião
+                    </Link>
+                  </>
+                )}
               </>
             )
           }

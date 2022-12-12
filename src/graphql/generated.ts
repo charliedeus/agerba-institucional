@@ -630,7 +630,9 @@ export type EventoPublico = {
   createdAt?: Maybe<Scalars['DateTime']>
   date: Scalars['Date']
   event_type: Enum_Eventopublico_Event_Type
+  meetLink?: Maybe<Scalars['String']>
   notify?: Maybe<Scalars['String']>
+  onlyRemote?: Maybe<Scalars['Boolean']>
   place?: Maybe<Scalars['String']>
   publishedAt?: Maybe<Scalars['DateTime']>
   title: Scalars['String']
@@ -674,8 +676,10 @@ export type EventoPublicoFiltersInput = {
   date?: InputMaybe<DateFilterInput>
   event_type?: InputMaybe<StringFilterInput>
   id?: InputMaybe<IdFilterInput>
+  meetLink?: InputMaybe<StringFilterInput>
   not?: InputMaybe<EventoPublicoFiltersInput>
   notify?: InputMaybe<StringFilterInput>
+  onlyRemote?: InputMaybe<BooleanFilterInput>
   or?: InputMaybe<Array<InputMaybe<EventoPublicoFiltersInput>>>
   place?: InputMaybe<StringFilterInput>
   publishedAt?: InputMaybe<DateTimeFilterInput>
@@ -688,7 +692,9 @@ export type EventoPublicoInput = {
   calendar?: InputMaybe<Array<InputMaybe<ComponentEventEventInput>>>
   date?: InputMaybe<Scalars['Date']>
   event_type?: InputMaybe<Enum_Eventopublico_Event_Type>
+  meetLink?: InputMaybe<Scalars['String']>
   notify?: InputMaybe<Scalars['String']>
+  onlyRemote?: InputMaybe<Scalars['Boolean']>
   place?: InputMaybe<Scalars['String']>
   publishedAt?: InputMaybe<Scalars['DateTime']>
   title?: InputMaybe<Scalars['String']>
@@ -3419,6 +3425,8 @@ export type GetAudienciaPublicaByIdQuery = {
         notify?: string | null
         date: any
         place?: string | null
+        meetLink?: string | null
+        onlyRemote?: boolean | null
         calendar?: Array<{
           __typename?: 'ComponentEventEvent'
           id: string
@@ -4923,6 +4931,8 @@ export const GetAudienciaPublicaByIdDocument = gql`
             finish_in
           }
           place
+          meetLink
+          onlyRemote
           Documentos {
             name
             file {

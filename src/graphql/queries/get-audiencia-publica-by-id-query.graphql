@@ -16,6 +16,8 @@ query GetAudienciaPublicaById ($id: ID!) {
         }
         
         place
+        meetLink
+        onlyRemote
         
         Documentos {
           name
