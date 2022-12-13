@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { ReactElement } from 'react'
 import Link from 'next/link'
-import { File, Bookmark, CalendarBlank, ArrowUUpLeft } from 'phosphor-react'
+import { File, Bookmark, CalendarBlank } from 'phosphor-react'
 
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
