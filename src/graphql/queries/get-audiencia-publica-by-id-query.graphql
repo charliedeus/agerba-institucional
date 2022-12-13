@@ -13,6 +13,7 @@ query GetAudienciaPublicaById ($id: ID!) {
           title
           starts_in
           finish_in
+          retification
         }
         
         place
@@ -29,6 +30,24 @@ query GetAudienciaPublicaById ($id: ID!) {
             }
           }
         }
+        
+        finalReport {
+          id
+          name
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                caption
+                url
+              }
+            }
+          }
+        }
+        
+        justification
       }
     }
   }

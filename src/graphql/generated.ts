@@ -213,6 +213,7 @@ export type ComponentEventEvent = {
   __typename?: 'ComponentEventEvent'
   finish_in?: Maybe<Scalars['DateTime']>
   id: Scalars['ID']
+  retification: Scalars['Boolean']
   starts_in?: Maybe<Scalars['DateTime']>
   title: Enum_Componenteventevent_Title
 }
@@ -222,6 +223,7 @@ export type ComponentEventEventFiltersInput = {
   finish_in?: InputMaybe<DateTimeFilterInput>
   not?: InputMaybe<ComponentEventEventFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ComponentEventEventFiltersInput>>>
+  retification?: InputMaybe<BooleanFilterInput>
   starts_in?: InputMaybe<DateTimeFilterInput>
   title?: InputMaybe<StringFilterInput>
 }
@@ -229,6 +231,7 @@ export type ComponentEventEventFiltersInput = {
 export type ComponentEventEventInput = {
   finish_in?: InputMaybe<Scalars['DateTime']>
   id?: InputMaybe<Scalars['ID']>
+  retification?: InputMaybe<Scalars['Boolean']>
   starts_in?: InputMaybe<Scalars['DateTime']>
   title?: InputMaybe<Enum_Componenteventevent_Title>
 }
@@ -630,6 +633,8 @@ export type EventoPublico = {
   createdAt?: Maybe<Scalars['DateTime']>
   date: Scalars['Date']
   event_type: Enum_Eventopublico_Event_Type
+  finalReport?: Maybe<Array<Maybe<ComponentArquivosArquivos>>>
+  justification?: Maybe<Scalars['String']>
   meetLink?: Maybe<Scalars['String']>
   notify?: Maybe<Scalars['String']>
   onlyRemote?: Maybe<Scalars['Boolean']>
@@ -647,6 +652,12 @@ export type EventoPublicoDocumentosArgs = {
 
 export type EventoPublicoCalendarArgs = {
   filters?: InputMaybe<ComponentEventEventFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type EventoPublicoFinalReportArgs = {
+  filters?: InputMaybe<ComponentArquivosArquivosFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
@@ -675,7 +686,9 @@ export type EventoPublicoFiltersInput = {
   createdAt?: InputMaybe<DateTimeFilterInput>
   date?: InputMaybe<DateFilterInput>
   event_type?: InputMaybe<StringFilterInput>
+  finalReport?: InputMaybe<ComponentArquivosArquivosFiltersInput>
   id?: InputMaybe<IdFilterInput>
+  justification?: InputMaybe<StringFilterInput>
   meetLink?: InputMaybe<StringFilterInput>
   not?: InputMaybe<EventoPublicoFiltersInput>
   notify?: InputMaybe<StringFilterInput>
@@ -692,6 +705,8 @@ export type EventoPublicoInput = {
   calendar?: InputMaybe<Array<InputMaybe<ComponentEventEventInput>>>
   date?: InputMaybe<Scalars['Date']>
   event_type?: InputMaybe<Enum_Eventopublico_Event_Type>
+  finalReport?: InputMaybe<Array<InputMaybe<ComponentArquivosArquivosInput>>>
+  justification?: InputMaybe<Scalars['String']>
   meetLink?: InputMaybe<Scalars['String']>
   notify?: InputMaybe<Scalars['String']>
   onlyRemote?: InputMaybe<Scalars['Boolean']>
@@ -3427,12 +3442,14 @@ export type GetAudienciaPublicaByIdQuery = {
         place?: string | null
         meetLink?: string | null
         onlyRemote?: boolean | null
+        justification?: string | null
         calendar?: Array<{
           __typename?: 'ComponentEventEvent'
           id: string
           title: Enum_Componenteventevent_Title
           starts_in?: any | null
           finish_in?: any | null
+          retification: boolean
         } | null> | null
         Documentos?: Array<{
           __typename?: 'ComponentArquivosArquivos'
@@ -3442,6 +3459,25 @@ export type GetAudienciaPublicaByIdQuery = {
             data?: {
               __typename?: 'UploadFileEntity'
               attributes?: { __typename?: 'UploadFile'; url: string } | null
+            } | null
+          }
+        } | null> | null
+        finalReport?: Array<{
+          __typename?: 'ComponentArquivosArquivos'
+          id: string
+          name: string
+          file: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                name: string
+                alternativeText?: string | null
+                caption?: string | null
+                url: string
+              } | null
             } | null
           }
         } | null> | null
@@ -4929,6 +4965,7 @@ export const GetAudienciaPublicaByIdDocument = gql`
             title
             starts_in
             finish_in
+            retification
           }
           place
           meetLink
@@ -4943,6 +4980,22 @@ export const GetAudienciaPublicaByIdDocument = gql`
               }
             }
           }
+          finalReport {
+            id
+            name
+            file {
+              data {
+                id
+                attributes {
+                  name
+                  alternativeText
+                  caption
+                  url
+                }
+              }
+            }
+          }
+          justification
         }
       }
     }

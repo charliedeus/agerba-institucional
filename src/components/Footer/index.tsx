@@ -23,9 +23,9 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <NextLink href="/audiencias-publicas">
+              <Link href="/audiencias-publicas">
                 <span className="text-white">Audiências Públicas</span>
-              </NextLink>
+              </Link>
             </li>
             <li>
               <NextLink href="#" className="text-gray-400">
