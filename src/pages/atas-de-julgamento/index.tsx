@@ -40,7 +40,7 @@ const CollegiateMinutesPage: NextPageWithLayout = () => {
         }}
         className="font-bold text-[2rem]"
       >
-        Atas de Julgamento
+        Atas de Julgamento <span>(Arquivos em Atualização)</span>
       </motion.h1>
 
       <ul role="list" className="flex flex-col gap-2">

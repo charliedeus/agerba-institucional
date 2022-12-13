@@ -16,11 +16,12 @@ import ptBR from 'date-fns/locale/pt-BR'
 import Link from 'next/link'
 import { urlBuilder } from '../../lib/urlBuilder'
 import Head from 'next/head'
+import { Loader } from '../../components/Loader'
 
 const BidsPage: NextPageWithLayout = () => {
   const [today] = useState(new Date().toISOString())
 
-  const { data } = useGetLicitacoesFuturasQuery({
+  const { data, loading } = useGetLicitacoesFuturasQuery({
     variables: {
       data_atual: today,
     },
@@ -63,7 +64,9 @@ const BidsPage: NextPageWithLayout = () => {
           será aberta 30 minutos antes da hora marcada na tabela abaixo.
         </p>
 
-        {data?.licitacaos?.data && data.licitacaos.data.length > 0 ? (
+        {loading ? (
+          <Loader />
+        ) : data?.licitacaos?.data && data.licitacaos.data.length > 0 ? (
           <ul role="list" className="flex flex-col gap-2">
             {data.licitacaos.data.map((licitacao) => (
               <li
