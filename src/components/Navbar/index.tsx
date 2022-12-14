@@ -30,7 +30,7 @@ export function Navbar() {
       }
     >
       <div className="px-[14px] w-full h-full flex items-center justify-between laptop:hidden">
-        <Link href="/">
+        <Link href="/" prefetch>
           <picture>
             <img className="w-[90px]" src="/logo-white.png" alt="" />
           </picture>

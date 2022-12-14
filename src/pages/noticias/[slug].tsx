@@ -1,4 +1,5 @@
 import { ReactElement } from 'react'
+import { GetServerSideProps } from 'next'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import 'keen-slider/keen-slider.min.css'
@@ -14,7 +15,6 @@ import {
 import { urlBuilder } from '../../lib/urlBuilder'
 import { ListNews } from '../../components/listNews'
 import genericImg from '../../assets/images/generic-image.png'
-import { GetServerSideProps } from 'next'
 import { initializeApollo } from '../../lib/apollo'
 import { Tag } from '../../components/Tag'
 

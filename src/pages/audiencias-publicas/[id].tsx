@@ -22,6 +22,10 @@ const PublicHearingPage: NextPageWithLayout = () => {
     },
   })
 
+  if (!data) {
+    return <h1>Erro</h1>
+  }
+
   const hasRetification = data?.eventoPublico?.data?.attributes?.calendar?.map(item => {
     return !!item?.retification
   })
