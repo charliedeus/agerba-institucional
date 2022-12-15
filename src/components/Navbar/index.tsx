@@ -30,7 +30,7 @@ export function Navbar() {
       }
     >
       <div className="px-[14px] w-full h-full flex items-center justify-between laptop:hidden">
-        <Link href="/" prefetch>
+        <Link href="/">
           <picture>
             <img className="w-[90px]" src="/logo-white.png" alt="" />
           </picture>
@@ -94,6 +94,11 @@ export function Navbar() {
           </div>
 
           <ul className="flex flex-col flex-1 h-full items-center justify-center text-lg">
+            <li>
+              <Link legacyBehavior href="/noticias">
+                <a onClick={handleCloseMenu}>Notícias</a>
+              </Link>
+            </li>
             <li>
               <Link legacyBehavior href="/sobre">
                 <a onClick={handleCloseMenu}>Quem somos</a>

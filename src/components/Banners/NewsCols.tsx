@@ -28,7 +28,7 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
   return (
     <>
       {highlightNews && highlightNews.length > 0 && (
-        <section className="w-full desktop:max-w-[1280px] h-[calc(80vh-70px)] m-auto tablet:h-[calc(80vh-170px)] p-[14px] laptop:pt-[14px] laptop:pb-[14px] transition-transform duration-75 ease-in-out relative">
+        <section className="w-full desktop:max-w-[1280px] h-[calc(80vh-7.475rem)] m-auto tablet:h-[calc(80vh-170px)] p-[14px] laptop:pt-[14px] laptop:pb-[14px] transition-transform duration-75 ease-in-out relative">
           <div className="w-full h-full">
             <div
               className={classNames(
@@ -39,7 +39,7 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                 },
               )}
             >
-              {highlightNews.map((highlightNew, index) => (
+              {highlightNews.map((highlightNew) => (
                 <Link
                   legacyBehavior
                   key={highlightNew.id}

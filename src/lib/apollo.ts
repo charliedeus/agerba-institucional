@@ -11,15 +11,9 @@ let apolloClient: ApolloClient<NormalizedCacheObject>
 
 const httpLink = createHttpLink({
   uri: `${process.env.NEXT_PUBLIC_STRAPI_API_BASEURL}/graphql`,
-  // uri: '/graphql',
 })
 
 const authLink = setContext(async (_, { headers }) => {
-  // const { data } = await api.post('/auth/local', {
-  //   identifier: process.env.NEXT_PUBLIC_STRAPI_API_USER,
-  //   password: process.env.NEXT_PUBLIC_STRAPI_API_PASSWORD,
-  // })
-
   const token = process.env.NEXT_PUBLIC_API_TOKEN
 
   return {
