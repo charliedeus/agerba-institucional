@@ -7,6 +7,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import '../styles/globals.css'
 import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../lib/apollo'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -24,6 +27,7 @@ export default function MyApp({
   router,
 }: AppPropsWithLayout) {
   const client = useApollo(initialApolloState)
+  const queryClient = new QueryClient()
 
   const getLayout = Component.getLayout ?? ((page) => page)
 
@@ -44,51 +48,55 @@ export default function MyApp({
   }
 
   return getLayout(
-    <ApolloProvider client={client}>
-      <AnimatePresence>
-        <motion.div
-          key={router.route}
-          initial="pageInitial"
-          animate="pageAnimate"
-          variants={{
-            pageInitial: {
-              opacity: 0,
-            },
-            pageAnimate: {
-              opacity: 1,
-            },
-          }}
-        >
-          <NextNProgress color="#3F3F95" height={8} />
-          <Component {...pageProps} />
+    <QueryClientProvider client={queryClient}>
+      <ApolloProvider client={client}>
+        <AnimatePresence>
+          <motion.div
+            key={router.route}
+            initial="pageInitial"
+            animate="pageAnimate"
+            variants={{
+              pageInitial: {
+                opacity: 0,
+              },
+              pageAnimate: {
+                opacity: 1,
+              },
+            }}
+          >
+            <NextNProgress color="#3F3F95" height={8} />
+            <Component {...pageProps} />
 
-          <a href="#" id="backToTopButton" className="laptop:hidden">
-            <svg
-              width="40"
-              height="40"
-              viewBox="0 0 40 40"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="20" cy="20" r="20" fill="#EF3037" />
-              <path
-                d="M20 27V13"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M13 20L20 13L27 20"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </a>
-        </motion.div>
-      </AnimatePresence>
-    </ApolloProvider>,
+            <a href="#" id="backToTopButton" className="laptop:hidden">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 40 40"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="20" cy="20" r="20" fill="#EF3037" />
+                <path
+                  d="M20 27V13"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M13 20L20 13L27 20"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </a>
+          </motion.div>
+        </AnimatePresence>
+      </ApolloProvider>
+
+      <ReactQueryDevtools />
+    </QueryClientProvider>,
   )
 }

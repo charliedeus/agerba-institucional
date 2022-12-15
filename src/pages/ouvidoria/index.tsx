@@ -42,11 +42,18 @@ const OuvidoriaPage: NextPageWithLayout = () => {
 
         <p>
           Os canais oficiais de acesso à Ouvidoria são o telefone 0800-071-0080
-          e o site http://www.agerba.ba.gov.br/ouvidoria-agerba. São através
-          desses que os usuários do serviço podem expressar seus anseios e
-          críticas, os quais serão encaminhados à sede desta Autarquia para que
-          servidores competentes possam dar prosseguimento à demanda e garantir
-          aos cidadãos, sempre, respostas efetivas aos seus registros.
+          e o site{' '}
+          <Link
+            href="http://www.agerbaouvidoria.ba.gov.br/novo/form_verificasolicitante_viapagina.asp"
+            className="text-blue-800 hover:underline"
+            passHref
+          >
+            http://www.agerbaouvidoria.ba.gov.br/novo/form_verificasolicitante_viapagina.asp
+          </Link>
+          . São através desses que os usuários do serviço podem expressar seus
+          anseios e críticas, os quais serão encaminhados à sede desta Autarquia
+          para que servidores competentes possam dar prosseguimento à demanda e
+          garantir aos cidadãos, sempre, respostas efetivas aos seus registros.
         </p>
 
         <p>
@@ -81,10 +88,10 @@ const OuvidoriaPage: NextPageWithLayout = () => {
               />{' '}
               <Link
                 legacyBehavior
-                href="http://www.agerba.ba.gov.br/ouvidoria-agerba"
+                href="http://www.agerbaouvidoria.ba.gov.br/novo/form_verificasolicitante_viapagina.asp"
               >
                 <a target="_blank" className="text-blue-800 hover:underline">
-                  http://www.agerba.ba.gov.br/ouvidoria-agerba
+                  http://www.agerbaouvidoria.ba.gov.br/novo/form_verificasolicitante_viapagina.asp
                 </a>
               </Link>
             </span>
