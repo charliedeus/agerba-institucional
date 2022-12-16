@@ -17,6 +17,7 @@ import { ListNews } from '../../components/listNews'
 import genericImg from '../../assets/images/generic-image.png'
 import { initializeApollo } from '../../lib/apollo'
 import { Tag } from '../../components/Tag'
+import Image from 'next/image'
 
 interface NewsSectionsProps {
   id: string
@@ -104,7 +105,7 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
               <div className="w-full h-full relative flex flex-col gap-2 overflow-hidden">
                 {props.newsSolo.cover.data !== null ? (
                   <picture className="w-full h-full flex">
-                    <img
+                    <Image
                       src={
                         urlBuilder(props.newsSolo.cover.data.attributes.url) ||
                         genericImg.src
