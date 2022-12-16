@@ -104,8 +104,8 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
             <>
               <div className="w-full h-full relative flex flex-col gap-2 overflow-hidden">
                 {props.newsSolo.cover.data !== null ? (
-                  <picture className="w-full h-full flex">
-                    <img
+                  <figure className="w-full h-full flex">
+                    <Image
                       src={
                         urlBuilder(props.newsSolo.cover.data.attributes.url) ||
                         genericImg.src
@@ -117,17 +117,17 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                       }
                       className="w-full h-full max-h-[400px] object-cover object-center"
                     />
-                  </picture>
+                  </figure>
                 ) : (
-                  <picture className="w-full h-full flex">
-                    <img
+                  <figure className="w-full h-full flex">
+                    <Image
                       src={genericImg.src}
                       alt=""
                       width={1000}
                       height={600}
                       className="w-full h-full max-h-[400px] object-cover object-center"
                     />
-                  </picture>
+                  </figure>
                 )}
                 <small className="text-sm mx-auto">
                   {props.newsSolo.cover.data?.attributes.alternativeText}
