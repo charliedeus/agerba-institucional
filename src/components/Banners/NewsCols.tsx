@@ -77,6 +77,8 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                               highlightNew.cover.alternativeText ||
                               ''
                             }
+                            width={1000}
+                            height={600}
                             className="w-full h-full object-cover object-center"
                           />
                         </picture>
@@ -85,6 +87,8 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                           <Image
                             src={genericImg.src}
                             alt={''}
+                            width={1000}
+                            height={600}
                             className="w-full h-full object-cover object-center"
                           />
                         </picture>

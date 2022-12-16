@@ -12,34 +12,37 @@ import { Loader } from '../../components/Loader'
 import { queryClient } from '../../services/queryClient'
 import api from '../../services/api'
 import { GetServerSideProps } from 'next'
+import { ListNews } from '../../components/listNews'
 
 const NewsPage: NextPageWithLayout = () => {
   const [page, setPage] = useState(1)
-  const { data, isLoading, error } = useNews(page, 9)
+  // const { data, isLoading, error } = useNews(page, 9)
 
-  async function handlePrefetchNews(slug: string) {
-    await queryClient.prefetchQuery({
-      queryKey: ['noticias', slug],
-      queryFn: async () => {
-        const response = await api.get(`/api/noticias/${slug}`)
+  // async function handlePrefetchNews(slug: string) {
+  //   await queryClient.prefetchQuery({
+  //     queryKey: ['noticias', slug],
+  //     queryFn: async () => {
+  //       const response = await api.get(`/api/noticias/${slug}`)
 
-        return response.data
-      },
-      staleTime: 1000 * 30,
-    })
-  }
+  //       return response.data
+  //     },
+  //     staleTime: 1000 * 30,
+  //   })
+  // }
 
   return (
     <>
-      {isLoading ? (
+      {/* {isLoading ? (
         <Loader />
       ) : error ? (
         <p>Erro ao carregar dados...</p>
-      ) : (
-        <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
-          <h1 className="font-bold text-[2rem]">Notícias da AGERBA:</h1>
+      ) : ( */}
+      <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
+        <h1 className="font-bold text-[2rem]">Notícias da AGERBA:</h1>
 
-          <ul className="flex flex-wrap flex-col tablet:flex-row gap-4">
+        <ListNews limit={10} start={0} />
+
+        {/* <ul className="flex flex-wrap flex-col tablet:flex-row gap-4">
             {data?.newsList.map((item) => (
               <Link
                 key={item.id}
@@ -63,9 +66,9 @@ const NewsPage: NextPageWithLayout = () => {
                 </li>
               </Link>
             ))}
-          </ul>
+          </ul> */}
 
-          {data?.newsList && data.totalCountRegisters > 0 && (
+        {/* {data?.newsList && data.totalCountRegisters > 0 && (
             <Pagination
               totalCountRegisters={Number(data.totalCountRegisters)}
               currentPage={page}
@@ -73,9 +76,9 @@ const NewsPage: NextPageWithLayout = () => {
               onPageChange={setPage}
               registersPerPage={Number(data.totalPageSize)}
             />
-          )}
-        </article>
-      )}
+          )} */}
+      </article>
+      {/* )} */}
     </>
   )
 }
