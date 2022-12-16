@@ -1,21 +1,15 @@
-import { ReactElement, useState } from 'react'
+import { ReactElement } from 'react'
 import 'keen-slider/keen-slider.min.css'
 
 import { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
-import { getNews, useNews } from '../../hooks/useNews'
-import { Pagination } from '../../components/Pagination'
+import { getNews } from '../../hooks/useNews'
 
-import genericImg from '../../assets/images/generic-image.png'
-import Link from 'next/link'
-import { Loader } from '../../components/Loader'
-import { queryClient } from '../../services/queryClient'
-import api from '../../services/api'
 import { GetServerSideProps } from 'next'
 import { ListNews } from '../../components/listNews'
 
 const NewsPage: NextPageWithLayout = () => {
-  const [page, setPage] = useState(1)
+  // const [page, setPage] = useState(1)
   // const { data, isLoading, error } = useNews(page, 9)
 
   // async function handlePrefetchNews(slug: string) {
