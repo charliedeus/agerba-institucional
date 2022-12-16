@@ -7,13 +7,11 @@ import { getNews, useNews } from '../../hooks/useNews'
 import { Pagination } from '../../components/Pagination'
 
 import genericImg from '../../assets/images/generic-image.png'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Loader } from '../../components/Loader'
 import { queryClient } from '../../services/queryClient'
 import api from '../../services/api'
 import { GetServerSideProps } from 'next'
-import { urlBuilder } from '../../lib/urlBuilder'
 
 const NewsPage: NextPageWithLayout = () => {
   const [page, setPage] = useState(1)
@@ -51,13 +49,13 @@ const NewsPage: NextPageWithLayout = () => {
               >
                 <li className="w-full">
                   <div className="w-full h-1/2 bg-primary/60 overflow-hidden">
-                    <figure>
-                      <Image
-                        src={genericImg}
+                    <picture>
+                      <img
+                        src={genericImg.src}
                         alt=""
                         className="object-cover object-center"
                       />
-                    </figure>
+                    </picture>
                   </div>
                   <h1 className="text-xl font-bold leading-relaxed text-primary hover:text-secondary transition-all duration-150 ease-in-out p-2">
                     {item.attributes.title}
