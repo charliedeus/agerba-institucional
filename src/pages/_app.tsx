@@ -7,9 +7,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import '../styles/globals.css'
 import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../lib/apollo'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryClientProvider } from '@tanstack/react-query'
 
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { queryClient } from '../services/queryClient'
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -27,7 +28,6 @@ export default function MyApp({
   router,
 }: AppPropsWithLayout) {
   const client = useApollo(initialApolloState)
-  const queryClient = new QueryClient()
 
   const getLayout = Component.getLayout ?? ((page) => page)
 
