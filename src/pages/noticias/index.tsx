@@ -13,6 +13,7 @@ import { Loader } from '../../components/Loader'
 import { queryClient } from '../../services/queryClient'
 import api from '../../services/api'
 import { GetServerSideProps } from 'next'
+import { urlBuilder } from '../../lib/urlBuilder'
 
 const NewsPage: NextPageWithLayout = () => {
   const [page, setPage] = useState(1)
@@ -50,11 +51,13 @@ const NewsPage: NextPageWithLayout = () => {
               >
                 <li className="w-full">
                   <div className="w-full h-1/2 bg-primary/60 overflow-hidden">
-                    <Image
-                      src={genericImg.src}
-                      alt=""
-                      className="object-cover object-center"
-                    />
+                    <figure>
+                      <Image
+                        src={genericImg}
+                        alt=""
+                        className="object-cover object-center"
+                      />
+                    </figure>
                   </div>
                   <h1 className="text-xl font-bold leading-relaxed text-primary hover:text-secondary transition-all duration-150 ease-in-out p-2">
                     {item.attributes.title}
