@@ -104,8 +104,8 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
             <>
               <div className="w-full h-full relative flex flex-col gap-2 overflow-hidden">
                 {props.newsSolo.cover.data !== null ? (
-                  <figure className="w-full h-full flex">
-                    <Image
+                  <picture className="w-full h-full flex">
+                    <img
                       src={
                         urlBuilder(props.newsSolo.cover.data.attributes.url) ||
                         genericImg.src
@@ -117,17 +117,17 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                       }
                       className="w-full h-full max-h-[400px] object-cover object-center"
                     />
-                  </figure>
+                  </picture>
                 ) : (
-                  <figure className="w-full h-full flex">
-                    <Image
+                  <picture className="w-full h-full flex">
+                    <img
                       src={genericImg.src}
                       alt=""
                       width={1000}
                       height={600}
                       className="w-full h-full max-h-[400px] object-cover object-center"
                     />
-                  </figure>
+                  </picture>
                 )}
                 <small className="text-sm mx-auto">
                   {props.newsSolo.cover.data?.attributes.alternativeText}
@@ -151,8 +151,8 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                   >
                     {section.cover.data && (
                       <div className="w-full h-full relative mb-4 flex flex-col gap-2 overflow-hidden">
-                        <figure className="w-full">
-                          <Image
+                        <picture className="w-full">
+                          <img
                             src={urlBuilder(section.cover.data?.attributes.url)}
                             alt={
                               section.cover.data?.attributes.alternativeText ||
@@ -160,7 +160,7 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                             }
                             className="w-full h-full max-h-[400px] object-cover object-center"
                           />
-                        </figure>
+                        </picture>
                         <small className="text-sm mx-auto">
                           {section.cover.data?.attributes.alternativeText || ''}
                         </small>
