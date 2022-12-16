@@ -11,7 +11,13 @@ const nextConfig = withPWA({
     runtimeCaching,
   },
   images: {
-    domains: ['localhost:4000', 'images.unsplash.com', 'agerba.ba.gov.br', '10.71.246.210:4000'],
+    domains: [
+      'localhost:4000',
+      'images.unsplash.com',
+      'agerba.ba.gov.br',
+      '10.71.246.210:4000',
+      '10.71.246.210',
+    ],
     loader: 'default',
     remotePatterns: [
       {
@@ -25,6 +31,11 @@ const nextConfig = withPWA({
         hostname: '10.71.246.210',
         port: '4000',
         pathname: '/uploads/**',
+      },
+      {
+        protocol: 'http',
+        hostname: '10.71.246.210',
+        pathname: '/**',
       },
       {
         protocol: 'http',
