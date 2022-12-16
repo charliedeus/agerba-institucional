@@ -70,7 +70,7 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                     >
                       {highlightNew?.cover.url !== null ? (
                         <picture className="w-full">
-                          <img
+                          <Image
                             src={urlBuilder(highlightNew.cover.url)}
                             alt={
                               highlightNew.cover.name ||
