@@ -120,7 +120,7 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                   </picture>
                 ) : (
                   <picture className="w-full h-full flex">
-                    <img
+                    <Image
                       src={genericImg.src}
                       alt=""
                       width={1000}
@@ -152,7 +152,7 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                     {section.cover.data && (
                       <div className="w-full h-full relative mb-4 flex flex-col gap-2 overflow-hidden">
                         <picture className="w-full">
-                          <img
+                          <Image
                             src={urlBuilder(section.cover.data?.attributes.url)}
                             alt={
                               section.cover.data?.attributes.alternativeText ||
