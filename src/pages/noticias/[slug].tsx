@@ -110,6 +110,8 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                         urlBuilder(props.newsSolo.cover.data.attributes.url) ||
                         genericImg.src
                       }
+                      width={1000}
+                      height={600}
                       alt={
                         props.newsSolo.cover.data.attributes.name ||
                         props.newsSolo.cover.data.attributes.alternativeText ||
@@ -154,6 +156,8 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                         <picture className="w-full">
                           <Image
                             src={urlBuilder(section.cover.data?.attributes.url)}
+                            width={1000}
+                            height={600}
                             alt={
                               section.cover.data?.attributes.alternativeText ||
                               ''

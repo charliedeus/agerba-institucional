@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import classNames from 'classnames'
 import { motion } from 'framer-motion'
 
@@ -81,7 +82,7 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                         </picture>
                       ) : (
                         <picture className="w-full">
-                          <img
+                          <Image
                             src={genericImg.src}
                             alt={''}
                             className="w-full h-full object-cover object-center"
