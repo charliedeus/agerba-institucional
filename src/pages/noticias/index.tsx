@@ -51,7 +51,7 @@ const NewsPage: NextPageWithLayout = () => {
                 <li className="w-full">
                   <div className="w-full h-1/2 bg-primary/60 overflow-hidden">
                     <Image
-                      src={genericImg}
+                      src={genericImg.src}
                       alt=""
                       className="object-cover object-center"
                     />
