@@ -12,11 +12,10 @@ const nextConfig = withPWA({
   },
   images: {
     domains: [
-      'localhost:4000',
+      'localhost',
+      '10.71.246.210',
       'images.unsplash.com',
       'agerba.ba.gov.br',
-      '10.71.246.210:4000',
-      '10.71.246.210',
     ],
     loader: 'default',
     remotePatterns: [
