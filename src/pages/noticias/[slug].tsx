@@ -1,6 +1,5 @@
 import { ReactElement } from 'react'
 import { GetServerSideProps } from 'next'
-import Image from 'next/image'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import 'keen-slider/keen-slider.min.css'
