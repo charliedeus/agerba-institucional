@@ -57,17 +57,7 @@ const PublicHearingPage: NextPageWithLayout<ConsultaPublicaProps> = ({ data }) =
       year: 'numeric',
       timeZone: 'UTC',
     })}`,
-    formattedNotify: `A Agência Estadual de Regulação de Serviços Públicos de Energia Transportes e Comunicações do Estado da Bahia – Agerba vem informar ${data?.attributes?.notify?.replace(/(<([^>]+)>)/gi, "")} que realizará a <strong>CONSULTA PÚBLICA Nº ${data?.attributes?.title
-      }/${new Date(
-        data?.attributes?.date,
-      ).toLocaleDateString('pt-BR', {
-        year: 'numeric',
-        timeZone: 'UTC',
-      })}</strong>, no dia <strong>${new Date(
-        data?.attributes?.date,
-      ).toLocaleDateString('pt-BR', {
-        timeZone: 'UTC',
-      })}</strong>.</p>`,
+    formattedNotify: `A Agência Estadual de Regulação de Serviços Públicos de Energia Transportes e Comunicações do Estado da Bahia – Agerba vem informar ${data?.attributes?.notify?.replace(/(<([^>]+)>)/gi, "")}</p>`,
   }
 
   return (
