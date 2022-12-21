@@ -1,15 +1,26 @@
 import Link from 'next/link'
 import { NextLink } from '../NextLink'
+import Image from 'next/image'
 
 export function Footer() {
   return (
-    <footer className="h-full min-h-[300px] flex items-center justify-center bg-[#3F3F95] py-16">
+    <footer className="h-full min-h-[300px] flex items-center justify-center bg-[#3F3F95] py-16 border">
       <div className="w-full h-full desktop:max-w-[1280px] flex flex-col desktop:flex-row items-center laptop:items-start justify-between gap-10 text-white">
-        <Link href="/">
-          <picture>
-            <img className="max-w-[10rem]" src="/logo-white.png" alt="" />
-          </picture>
-        </Link>
+        <div className="flex flex-col gap-2">
+          <Link href="/">
+            <picture>
+              <Image
+                className="max-w-[10rem]"
+                src="/logo-white.png"
+                alt=""
+                width={200}
+                height={200}
+              />
+            </picture>
+          </Link>
+          <p>4º Avenida, 435 - Centro Administrativo da Bahia</p>
+          <p>Salvador - BA, 41745-002</p>
+        </div>
         <div>
           <ul className="flex flex-col gap-4">
             <li>

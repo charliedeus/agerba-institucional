@@ -1,31 +1,44 @@
-query GetListaNoticias ($limit: Int!, $start: Int!) {
-  noticias (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, sort: "PublishDate:DESC" ) {
-    meta {
-      pagination {
-        total
-        pageCount
-        page
-        pageSize
-      }
-    }
-    data {
-      id
-      attributes {
-        cover {
+query GetListaNoticias($limit: Int!, $start: Int!) {
+	noticias(
+		pagination: { limit: $limit, start: $start }
+		publicationState: LIVE
+		sort: "PublishDate:DESC"
+	) {
+		meta {
+			pagination {
+				total
+				pageCount
+				page
+				pageSize
+			}
+		}
+		data {
+			id
+			attributes {
+				cover {
+					data {
+						attributes {
+							name
+							alternativeText
+							url
+						}
+					}
+				}
+				slug
+				title
+				subtitle
+				shortTitle
+				publishedAt
+        
+        categorias {
           data {
+            id
             attributes {
               name
-              alternativeText
-              url
             }
           }
         }
-        slug
-        title
-        subtitle
-        shortTitle
-        publishedAt
-      }
-    }
-  }
+			}
+		}
+	}
 }

@@ -4037,6 +4037,14 @@ export type GetListaNoticiasQuery = {
             } | null
           } | null
         } | null
+        categorias?: {
+          __typename?: 'CategoryRelationResponseCollection'
+          data: Array<{
+            __typename?: 'CategoryEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Category'; name: string } | null
+          }>
+        } | null
       } | null
     }>
   } | null
@@ -6008,6 +6016,14 @@ export const GetListaNoticiasDocument = gql`
           subtitle
           shortTitle
           publishedAt
+          categorias {
+            data {
+              id
+              attributes {
+                name
+              }
+            }
+          }
         }
       }
     }
