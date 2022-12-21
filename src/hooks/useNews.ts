@@ -49,7 +49,7 @@ export async function getNews(
         slug: item.attributes?.slug!,
         coverUrl:
           item.attributes?.cover &&
-            item.attributes.cover.data?.attributes?.url !== undefined
+          item.attributes.cover.data?.attributes?.url !== undefined
             ? urlBuilder(item.attributes?.cover?.data?.attributes?.url)
             : genericImg.src,
         title: item.attributes?.title!,
