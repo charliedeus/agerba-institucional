@@ -580,6 +580,11 @@ export enum Enum_Noticia_Newtype {
   NoticiasUrgentes = 'Noticias_Urgentes',
 }
 
+export enum Enum_Publicconsultation_Eventtype {
+  AudienciaPublica = 'Audiencia_Publica',
+  ConsultaPublica = 'Consulta_Publica',
+}
+
 export enum Enum_Quadrotarifario_Entitytype {
   Empresa = 'Empresa',
   Polo = 'Polo',
@@ -869,6 +874,7 @@ export type GenericMorph =
   | Log
   | MeetingNote
   | Noticia
+  | PublicConsultation
   | QuadroTarifario
   | RevenueGroup
   | RevenueService
@@ -1276,6 +1282,7 @@ export type Mutation = {
   createLog?: Maybe<LogEntityResponse>
   createMeetingNote?: Maybe<MeetingNoteEntityResponse>
   createNoticia?: Maybe<NoticiaEntityResponse>
+  createPublicConsultation?: Maybe<PublicConsultationEntityResponse>
   createQuadroTarifario?: Maybe<QuadroTarifarioEntityResponse>
   createRevenueGroup?: Maybe<RevenueGroupEntityResponse>
   createRevenueService?: Maybe<RevenueServiceEntityResponse>
@@ -1306,6 +1313,7 @@ export type Mutation = {
   deleteLog?: Maybe<LogEntityResponse>
   deleteMeetingNote?: Maybe<MeetingNoteEntityResponse>
   deleteNoticia?: Maybe<NoticiaEntityResponse>
+  deletePublicConsultation?: Maybe<PublicConsultationEntityResponse>
   deleteQuadroTarifario?: Maybe<QuadroTarifarioEntityResponse>
   deleteRevenueGroup?: Maybe<RevenueGroupEntityResponse>
   deleteRevenueService?: Maybe<RevenueServiceEntityResponse>
@@ -1348,6 +1356,7 @@ export type Mutation = {
   updateLog?: Maybe<LogEntityResponse>
   updateMeetingNote?: Maybe<MeetingNoteEntityResponse>
   updateNoticia?: Maybe<NoticiaEntityResponse>
+  updatePublicConsultation?: Maybe<PublicConsultationEntityResponse>
   updateQuadroTarifario?: Maybe<QuadroTarifarioEntityResponse>
   updateRevenueGroup?: Maybe<RevenueGroupEntityResponse>
   updateRevenueService?: Maybe<RevenueServiceEntityResponse>
@@ -1421,6 +1430,10 @@ export type MutationCreateMeetingNoteArgs = {
 
 export type MutationCreateNoticiaArgs = {
   data: NoticiaInput
+}
+
+export type MutationCreatePublicConsultationArgs = {
+  data: PublicConsultationInput
 }
 
 export type MutationCreateQuadroTarifarioArgs = {
@@ -1532,6 +1545,10 @@ export type MutationDeleteMeetingNoteArgs = {
 }
 
 export type MutationDeleteNoticiaArgs = {
+  id: Scalars['ID']
+}
+
+export type MutationDeletePublicConsultationArgs = {
   id: Scalars['ID']
 }
 
@@ -1694,6 +1711,11 @@ export type MutationUpdateMeetingNoteArgs = {
 
 export type MutationUpdateNoticiaArgs = {
   data: NoticiaInput
+  id: Scalars['ID']
+}
+
+export type MutationUpdatePublicConsultationArgs = {
+  data: PublicConsultationInput
   id: Scalars['ID']
 }
 
@@ -1908,6 +1930,80 @@ export type PaginationArg = {
   start?: InputMaybe<Scalars['Int']>
 }
 
+export type PublicConsultation = {
+  __typename?: 'PublicConsultation'
+  calendar?: Maybe<Array<Maybe<ComponentEventEvent>>>
+  closure?: Maybe<Scalars['String']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  date: Scalars['Date']
+  documents?: Maybe<Array<Maybe<ComponentArquivosArquivos>>>
+  eventType: Enum_Publicconsultation_Eventtype
+  notify?: Maybe<Scalars['String']>
+  participation?: Maybe<Scalars['String']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  title: Scalars['String']
+  updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type PublicConsultationCalendarArgs = {
+  filters?: InputMaybe<ComponentEventEventFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type PublicConsultationDocumentsArgs = {
+  filters?: InputMaybe<ComponentArquivosArquivosFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type PublicConsultationEntity = {
+  __typename?: 'PublicConsultationEntity'
+  attributes?: Maybe<PublicConsultation>
+  id?: Maybe<Scalars['ID']>
+}
+
+export type PublicConsultationEntityResponse = {
+  __typename?: 'PublicConsultationEntityResponse'
+  data?: Maybe<PublicConsultationEntity>
+}
+
+export type PublicConsultationEntityResponseCollection = {
+  __typename?: 'PublicConsultationEntityResponseCollection'
+  data: Array<PublicConsultationEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type PublicConsultationFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<PublicConsultationFiltersInput>>>
+  calendar?: InputMaybe<ComponentEventEventFiltersInput>
+  closure?: InputMaybe<StringFilterInput>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  date?: InputMaybe<DateFilterInput>
+  documents?: InputMaybe<ComponentArquivosArquivosFiltersInput>
+  eventType?: InputMaybe<StringFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  not?: InputMaybe<PublicConsultationFiltersInput>
+  notify?: InputMaybe<StringFilterInput>
+  or?: InputMaybe<Array<InputMaybe<PublicConsultationFiltersInput>>>
+  participation?: InputMaybe<StringFilterInput>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  title?: InputMaybe<StringFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type PublicConsultationInput = {
+  calendar?: InputMaybe<Array<InputMaybe<ComponentEventEventInput>>>
+  closure?: InputMaybe<Scalars['String']>
+  date?: InputMaybe<Scalars['Date']>
+  documents?: InputMaybe<Array<InputMaybe<ComponentArquivosArquivosInput>>>
+  eventType?: InputMaybe<Enum_Publicconsultation_Eventtype>
+  notify?: InputMaybe<Scalars['String']>
+  participation?: InputMaybe<Scalars['String']>
+  publishedAt?: InputMaybe<Scalars['DateTime']>
+  title?: InputMaybe<Scalars['String']>
+}
+
 export enum PublicationState {
   Live = 'LIVE',
   Preview = 'PREVIEW',
@@ -1999,6 +2095,8 @@ export type Query = {
   meetingNotes?: Maybe<MeetingNoteEntityResponseCollection>
   noticia?: Maybe<NoticiaEntityResponse>
   noticias?: Maybe<NoticiaEntityResponseCollection>
+  publicConsultation?: Maybe<PublicConsultationEntityResponse>
+  publicConsultations?: Maybe<PublicConsultationEntityResponseCollection>
   quadroTarifario?: Maybe<QuadroTarifarioEntityResponse>
   quadroTarifarios?: Maybe<QuadroTarifarioEntityResponseCollection>
   revenueGroup?: Maybe<RevenueGroupEntityResponse>
@@ -2170,6 +2268,17 @@ export type QueryNoticiaArgs = {
 
 export type QueryNoticiasArgs = {
   filters?: InputMaybe<NoticiaFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type QueryPublicConsultationArgs = {
+  id?: InputMaybe<Scalars['ID']>
+}
+
+export type QueryPublicConsultationsArgs = {
+  filters?: InputMaybe<PublicConsultationFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
@@ -3545,20 +3654,73 @@ export type GetCartilhasQuery = {
   } | null
 }
 
-export type GetConsultasPublicasQueryVariables = Exact<{ [key: string]: never }>
+export type GetConsultaPublicaByidQueryVariables = Exact<{
+  id: Scalars['ID']
+}>
+
+export type GetConsultaPublicaByidQuery = {
+  __typename?: 'Query'
+  publicConsultation?: {
+    __typename?: 'PublicConsultationEntityResponse'
+    data?: {
+      __typename?: 'PublicConsultationEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'PublicConsultation'
+        title: string
+        eventType: Enum_Publicconsultation_Eventtype
+        notify?: string | null
+        date: any
+        participation?: string | null
+        closure?: string | null
+        calendar?: Array<{
+          __typename?: 'ComponentEventEvent'
+          id: string
+          title: Enum_Componenteventevent_Title
+          starts_in?: any | null
+          finish_in?: any | null
+          retification: boolean
+        } | null> | null
+        documents?: Array<{
+          __typename?: 'ComponentArquivosArquivos'
+          id: string
+          name: string
+          file: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                name: string
+                alternativeText?: string | null
+                url: string
+              } | null
+            } | null
+          }
+        } | null> | null
+      } | null
+    } | null
+  } | null
+}
+
+export type GetConsultasPublicasQueryVariables = Exact<{
+  limit: Scalars['Int']
+  start: Scalars['Int']
+}>
 
 export type GetConsultasPublicasQuery = {
   __typename?: 'Query'
-  eventosPublicos?: {
-    __typename?: 'EventoPublicoEntityResponseCollection'
+  publicConsultations?: {
+    __typename?: 'PublicConsultationEntityResponseCollection'
     data: Array<{
-      __typename?: 'EventoPublicoEntity'
+      __typename?: 'PublicConsultationEntity'
       id?: string | null
       attributes?: {
-        __typename?: 'EventoPublico'
+        __typename?: 'PublicConsultation'
         title: string
         notify?: string | null
-        event_type: Enum_Eventopublico_Event_Type
+        eventType: Enum_Publicconsultation_Eventtype
         date: any
         calendar?: Array<{
           __typename?: 'ComponentEventEvent'
@@ -5207,19 +5369,108 @@ export type GetCartilhasQueryResult = Apollo.QueryResult<
   GetCartilhasQuery,
   GetCartilhasQueryVariables
 >
+export const GetConsultaPublicaByidDocument = gql`
+  query GetConsultaPublicaByid($id: ID!) {
+    publicConsultation(id: $id) {
+      data {
+        id
+        attributes {
+          title
+          eventType
+          notify
+          date
+          participation
+          closure
+          calendar {
+            id
+            title
+            starts_in
+            finish_in
+            retification
+          }
+          documents {
+            id
+            name
+            file {
+              data {
+                id
+                attributes {
+                  name
+                  alternativeText
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useGetConsultaPublicaByidQuery__
+ *
+ * To run a query within a React component, call `useGetConsultaPublicaByidQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetConsultaPublicaByidQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetConsultaPublicaByidQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetConsultaPublicaByidQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    GetConsultaPublicaByidQuery,
+    GetConsultaPublicaByidQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<
+    GetConsultaPublicaByidQuery,
+    GetConsultaPublicaByidQueryVariables
+  >(GetConsultaPublicaByidDocument, options)
+}
+export function useGetConsultaPublicaByidLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetConsultaPublicaByidQuery,
+    GetConsultaPublicaByidQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<
+    GetConsultaPublicaByidQuery,
+    GetConsultaPublicaByidQueryVariables
+  >(GetConsultaPublicaByidDocument, options)
+}
+export type GetConsultaPublicaByidQueryHookResult = ReturnType<
+  typeof useGetConsultaPublicaByidQuery
+>
+export type GetConsultaPublicaByidLazyQueryHookResult = ReturnType<
+  typeof useGetConsultaPublicaByidLazyQuery
+>
+export type GetConsultaPublicaByidQueryResult = Apollo.QueryResult<
+  GetConsultaPublicaByidQuery,
+  GetConsultaPublicaByidQueryVariables
+>
 export const GetConsultasPublicasDocument = gql`
-  query GetConsultasPublicas {
-    eventosPublicos(
+  query GetConsultasPublicas($limit: Int!, $start: Int!) {
+    publicConsultations(
+      pagination: { limit: $limit, start: $start }
       publicationState: LIVE
       sort: "date:desc"
-      filters: { event_type: { eq: "Consulta Pública" } }
     ) {
       data {
         id
         attributes {
           title
           notify
-          event_type
+          eventType
           date
           calendar {
             title
@@ -5244,11 +5495,13 @@ export const GetConsultasPublicasDocument = gql`
  * @example
  * const { data, loading, error } = useGetConsultasPublicasQuery({
  *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
  *   },
  * });
  */
 export function useGetConsultasPublicasQuery(
-  baseOptions?: Apollo.QueryHookOptions<
+  baseOptions: Apollo.QueryHookOptions<
     GetConsultasPublicasQuery,
     GetConsultasPublicasQueryVariables
   >,

@@ -39,11 +39,9 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <NextLink href="#" className="text-gray-400">
-                <span className="opacity-75 cursor-not-allowed">
-                  Consultas Públicas (em breve)
-                </span>
-              </NextLink>
+              <Link href="/consultas-publicas">
+                <span className="text-white">Consultas Públicas</span>
+              </Link>
             </li>
             <li>
               <Link href="http://www.portalseibahia.saeb.ba.gov.br/">

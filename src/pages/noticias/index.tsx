@@ -21,8 +21,6 @@ const NewsPage: NextPageWithLayout = () => {
 
   const { data, isLoading, error } = useNews(page, 9, {})
 
-  console.log(data)
-
   async function handlePrefetchNews(slug: string) {
     await queryClient.prefetchQuery({
       queryKey: ['noticias', slug],
@@ -44,8 +42,6 @@ const NewsPage: NextPageWithLayout = () => {
       ) : (
         <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
           <h1 className="font-bold text-[2rem] flex-1">Notícias da AGERBA:</h1>
-
-          {/* <ListNews limit={10} start={0} /> */}
 
           <ul className="flex flex-wrap flex-col tablet:flex-row gap-4">
             {data?.noticias?.map((item) => (

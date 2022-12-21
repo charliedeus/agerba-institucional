@@ -1,0 +1,38 @@
+query GetConsultaPublicaByid ($id: ID!) {
+  publicConsultation (id: $id) {
+    data {
+      id
+      attributes {
+        title
+        eventType
+        notify
+        date
+        participation
+        closure
+        
+        calendar {
+          id
+          title
+          starts_in
+          finish_in
+          retification
+        }
+        
+        documents {
+          id
+          name
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

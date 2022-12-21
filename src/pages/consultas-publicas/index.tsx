@@ -6,18 +6,31 @@ import { File, Bookmark, CalendarBlank } from 'phosphor-react'
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 
-import { useGetConsultasPublicasQuery } from '../../graphql/generated'
+import { GetConsultasPublicasDocument, GetConsultasPublicasQuery } from '../../graphql/generated'
 import { motion } from 'framer-motion'
 import { Disclosure, Transition } from '@headlessui/react'
+import { GetServerSideProps } from 'next'
+import { initializeApollo } from '../../lib/apollo'
 
-const PublicConsultationsPage: NextPageWithLayout = () => {
-  const { data } = useGetConsultasPublicasQuery()
+interface ConsultaPublicaProps {
+  id: string
+  title: string
+  notify: string
+  eventType: string
+  date: string
+}
 
-  const publicConsultations = data?.eventosPublicos?.data.map((evento) => {
+interface ConsultasPublicasPageProps {
+  consultasPublicas: ConsultaPublicaProps[]
+}
+
+const PublicConsultationsPage: NextPageWithLayout<ConsultasPublicasPageProps> = ({ consultasPublicas }) => {
+
+  const publicConsultations = consultasPublicas.map((item) => {
     return {
-      ...evento,
-      formattedTitle: `Consulta Pública ${evento.attributes?.title
-        }/${new Date(evento.attributes?.date).toLocaleDateString(
+      ...item,
+      formattedTitle: `Consulta Pública ${item.title
+        }/${new Date(item.date).toLocaleDateString(
           'pt-BR',
           {
             year: 'numeric',
@@ -38,9 +51,9 @@ const PublicConsultationsPage: NextPageWithLayout = () => {
         className="transition-all duration-100 ease-in-out"
       >
         <ul role="list" className="flex flex-col gap-2">
-          {publicConsultations?.map((consulta) => (
+          {publicConsultations?.map((item) => (
             <li
-              key={consulta.id}
+              key={item.id}
               className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg transition-colors duration-100 ease-in-out border hover:border-secondary"
             >
               <Disclosure as="div" className="flex flex-col gap-8 w-full">
@@ -52,7 +65,7 @@ const PublicConsultationsPage: NextPageWithLayout = () => {
                         weight="light"
                         className="text-gray-500"
                       />{' '}
-                      {consulta.formattedTitle}
+                      {item.formattedTitle}
                     </span>
                     <span className="flex laptop:border-l-2 laptop:border-primary laptop:pl-2 items-center gap-2">
                       <Bookmark
@@ -72,7 +85,7 @@ const PublicConsultationsPage: NextPageWithLayout = () => {
                       />
                       <span className="font-bold">
                         {new Date(
-                          consulta.attributes?.date,
+                          item.date,
                         ).toLocaleDateString('pt-BR', {
                           timeZone: 'UTC',
                         })}
@@ -82,7 +95,7 @@ const PublicConsultationsPage: NextPageWithLayout = () => {
                   <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2">
                     <Link
                       legacyBehavior
-                      href={`/consultas-publicas/${consulta.id}`}
+                      href={`/consultas-publicas/${item.id}`}
                     >
                       <a
                         className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] hover:border hover:border-primary group border border-transparent"
@@ -102,12 +115,12 @@ const PublicConsultationsPage: NextPageWithLayout = () => {
                   leaveFrom="transform scale-100 opacity-100"
                   leaveTo="transform scale-95 opacity-0"
                 >
-                  {consulta.attributes?.notify && (
+                  {item.notify && (
                     <Disclosure.Panel
                       as="div"
                       className="text-gray-500 text-sm text-left mt-[-1rem] bg-gray-200 p-4 rounded-b-lg line-clamp-4"
                     >
-                      <p>{`[...] ${consulta.attributes.notify.replace(/(<([^>]+)>)/gi, "")} [...]`}</p>
+                      <p>{`[...] ${item.notify.replace(/(<([^>]+)>)/gi, "")} [...]`}</p>
                     </Disclosure.Panel>
                   )}
                 </Transition>
@@ -126,3 +139,32 @@ PublicConsultationsPage.getLayout = function getLayout(page: ReactElement) {
 }
 
 export default PublicConsultationsPage
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const apolloClient = initializeApollo()
+
+  const { data } = await apolloClient.query<GetConsultasPublicasQuery>({
+    query: GetConsultasPublicasDocument,
+    variables: {
+      limit: 5,
+      start: 0,
+    }
+  })
+
+  const consultasPublicas = data.publicConsultations?.data.map(item => {
+    return {
+      id: item.id!,
+      title: item.attributes?.title!,
+      notify: item.attributes?.notify!,
+      eventType: item.attributes?.eventType!,
+      date: item.attributes?.date!
+    }
+  })
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+      consultasPublicas
+    }
+  }
+}

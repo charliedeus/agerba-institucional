@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import { ReactElement } from 'react'
-import { useRouter } from 'next/router'
 import { CalendarBlank, File, FileArrowDown, FileDoc } from 'phosphor-react'
 import { format } from "date-fns";
 import ptBR from 'date-fns/locale/pt-BR'
@@ -8,46 +7,74 @@ import ptBR from 'date-fns/locale/pt-BR'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 import type { NextPageWithLayout } from '../_app'
 
-import { useGetAudienciaPublicaByIdQuery } from '../../graphql/generated'
+import { GetConsultaPublicaByidDocument, GetConsultaPublicaByidQuery } from '../../graphql/generated'
 import Link from 'next/link'
 import { urlBuilder } from '../../lib/urlBuilder'
+import { GetServerSideProps } from 'next';
+import { initializeApollo } from '../../lib/apollo';
 
-const PublicHearingPage: NextPageWithLayout = () => {
-  const router = useRouter()
+interface ConsultaPublicaProps {
+  data: {
+    id: string
+    attributes: {
+      title: string
+      eventType: string
+      notify: string
+      participation: string
+      closure: string
+      date: string
+      calendar: {
+        id: string
+        title: string
+        starts_in: string
+        finish_in: string
+        retification: boolean
+      }[]
+      documents: {
+        id: string
+        name: string
+        file: {
+          data: {
+            attributes: {
+              name: string
+              alternativeText: string
+              url: string
+            }
+          }
+        }
+      }[]
+    }
+  }
+}
 
-  const { data } = useGetAudienciaPublicaByIdQuery({
-    variables: {
-      id: String(router.query.id),
-    },
-  })
+const PublicHearingPage: NextPageWithLayout<ConsultaPublicaProps> = ({ data }) => {
 
   const formattedEvent = {
-    ...data?.eventoPublico?.data,
-    formattedTitle: `Consulta Pública ${data?.eventoPublico?.data?.attributes?.title
+    ...data,
+    formattedTitle: `Consulta Pública ${data?.attributes?.title}/${new Date(
+      data?.attributes?.date
+    ).toLocaleDateString('pt-BR', {
+      year: 'numeric',
+      timeZone: 'UTC',
+    })}`,
+    formattedNotify: `A Agência Estadual de Regulação de Serviços Públicos de Energia Transportes e Comunicações do Estado da Bahia – Agerba vem informar ${data?.attributes?.notify?.replace(/(<([^>]+)>)/gi, "")} que realizará a <strong>CONSULTA PÚBLICA Nº ${data?.attributes?.title
       }/${new Date(
-        data?.eventoPublico?.data?.attributes?.date,
-      ).toLocaleDateString('pt-BR', {
-        year: 'numeric',
-        timeZone: 'UTC',
-      })}`,
-    formattedNotify: `A Agência Estadual de Regulação de Serviços Públicos de Energia Transportes e Comunicações do Estado da Bahia – Agerba vem informar ${data?.eventoPublico?.data?.attributes?.notify?.replace(/(<([^>]+)>)/gi, "")} que realizará a <strong>CONSULTA PÚBLICA Nº ${data?.eventoPublico?.data?.attributes?.title
-      }/${new Date(
-        data?.eventoPublico?.data?.attributes?.date,
+        data?.attributes?.date,
       ).toLocaleDateString('pt-BR', {
         year: 'numeric',
         timeZone: 'UTC',
       })}</strong>, no dia <strong>${new Date(
-        data?.eventoPublico?.data?.attributes?.date,
+        data?.attributes?.date,
       ).toLocaleDateString('pt-BR', {
         timeZone: 'UTC',
-      })}</strong>.</p><br /><p>Para acesso simplificado ao evento ao vivo, clique <strong><a href="http://www.agerba.ba.gov.br/sites/default/files/documentos/2021-08/Passo%20a%20Passo%20-%20Ingresso%20na%20Transmi%C3%A7%C3%A3o%20Ao%20ViVo_PDLT%20de%20Valen%C3%A7a%20%282%29.pdf" target="_blank" download>aqui</a></strong></p>`,
+      })}</strong>.</p>`,
   }
 
   return (
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
       <h1 className="font-bold text-[2rem]">{formattedEvent.formattedTitle}</h1>
 
-      {formattedEvent.attributes?.notify && (
+      {formattedEvent.formattedNotify && (
         <div
           dangerouslySetInnerHTML={{
             __html: formattedEvent.formattedNotify,
@@ -55,11 +82,12 @@ const PublicHearingPage: NextPageWithLayout = () => {
         />
       )}
 
-      {formattedEvent.attributes?.calendar && (
+      {formattedEvent?.attributes?.calendar && (
         <>
-          <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
+          <h1 className="font-bold text-lg border-primary border-l-4 pl-4">
             Calendário
           </h1>
+
           <ul className="flex flex-col gap-2">
             {formattedEvent.attributes.calendar.map(evento => (
               <li
@@ -127,43 +155,58 @@ const PublicHearingPage: NextPageWithLayout = () => {
       )
       }
 
-      {formattedEvent.attributes?.place && (
+      {formattedEvent.attributes.participation && (
         <>
-          <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
-            Local de Realização
+          <h1 className="font-bold text-lg border-primary border-l-4 pl-4">
+            Participação
           </h1>
 
           <div
             dangerouslySetInnerHTML={{
-              __html: formattedEvent.attributes.place,
+              __html: formattedEvent.attributes.participation,
             }}
           />
         </>
       )}
 
-      {formattedEvent.attributes?.Documentos && formattedEvent.attributes?.Documentos?.length > 0 && (
+      {formattedEvent.attributes.closure && (
         <>
-          <h1 className="font-bold text-lg border-gray-700 border-l-4 pl-4">
+          <h1 className="font-bold text-lg border-primary border-l-4 pl-4">
+            Encerramento
+          </h1>
+
+          <div
+            dangerouslySetInnerHTML={{
+              __html: formattedEvent.attributes.closure,
+            }}
+          />
+        </>
+      )}
+
+
+      {formattedEvent.attributes?.documents && formattedEvent.attributes?.documents.length > 0 && (
+        <>
+          <h1 className="font-bold text-lg border-primary border-l-4 pl-4">
             Documentos Anexos
           </h1>
 
           <ul role="list" className="flex flex-col gap-2">
-            {formattedEvent.attributes?.Documentos?.map((documento) => (
+            {formattedEvent.attributes?.documents.map((documento) => (
               <li
-                key={documento?.file.data?.attributes?.url}
+                key={documento.id}
                 className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg"
               >
                 <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
                   <span className="font-bold laptop:flex-1 flex items-center gap-2">
                     <FileDoc size={16} weight="light" className="text-gray-500" />{' '}
-                    {documento?.name}
+                    {documento.name}
                   </span>
 
-                  {documento?.file.data?.attributes?.url && (
+                  {documento.file.data.attributes && (
                     <Link
                       legacyBehavior
                       href={urlBuilder(
-                        documento?.file.data?.attributes?.url,
+                        documento.file.data.attributes.url,
                       )}
                     >
                       <a
@@ -194,3 +237,24 @@ PublicHearingPage.getLayout = function getLayout(page: ReactElement) {
 }
 
 export default PublicHearingPage
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const apolloClient = initializeApollo()
+  const { id } = query
+
+  const { data } = await apolloClient.query<GetConsultaPublicaByidQuery>({
+    query: GetConsultaPublicaByidDocument,
+    variables: {
+      id
+    }
+  })
+
+  const consultaPublica = data.publicConsultation?.data
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+      data: consultaPublica
+    }
+  }
+}

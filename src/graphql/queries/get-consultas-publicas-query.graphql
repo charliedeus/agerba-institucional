@@ -1,11 +1,14 @@
-query GetConsultasPublicas {
-  eventosPublicos (publicationState: LIVE, sort: "date:desc" , filters: { event_type: { eq: "Consulta Pública"}}) {
+query GetConsultasPublicas ($limit: Int!, $start: Int!) {
+  publicConsultations (
+    pagination: { limit: $limit, start: $start }, 
+    publicationState: LIVE, sort: "date:desc"
+  ) {
     data {
       id
       attributes {
         title
         notify
-        event_type
+        eventType
         date
         
         calendar {
