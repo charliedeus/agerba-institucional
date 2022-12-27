@@ -4106,7 +4106,6 @@ export type GetNoticiasBySlugQuery = {
 export type GetNoticiasDestaqueQueryVariables = Exact<{
   limit: Scalars['Int']
   start?: InputMaybe<Scalars['Int']>
-  data_atual: Scalars['Date']
 }>
 
 export type GetNoticiasDestaqueQuery = {
@@ -6140,12 +6139,12 @@ export type GetNoticiasBySlugQueryResult = Apollo.QueryResult<
   GetNoticiasBySlugQueryVariables
 >
 export const GetNoticiasDestaqueDocument = gql`
-  query GetNoticiasDestaque($limit: Int!, $start: Int, $data_atual: Date!) {
+  query GetNoticiasDestaque($limit: Int!, $start: Int) {
     noticias(
       pagination: { limit: $limit, start: $start }
       publicationState: LIVE
       sort: "PublishDate:DESC"
-      filters: { highlight: { eq: true }, deadline: { gte: $data_atual } }
+      filters: { highlight: { eq: true } }
     ) {
       meta {
         pagination {
@@ -6199,7 +6198,6 @@ export const GetNoticiasDestaqueDocument = gql`
  *   variables: {
  *      limit: // value for 'limit'
  *      start: // value for 'start'
- *      data_atual: // value for 'data_atual'
  *   },
  * });
  */

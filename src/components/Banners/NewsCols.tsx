@@ -112,26 +112,6 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                       >
                         {highlightNew.title}
                       </h1>
-
-                      {highlightNew.subtitle && (
-                        <h3
-                          className={classNames(
-                            'hidden text-md font-semibold overflow-hidden line-clamp-2',
-                            {
-                              'text-black/75':
-                                highlightNew.colorTitle === 'black',
-                              'text-white/75':
-                                highlightNew.colorTitle === 'white',
-                            },
-                          )}
-                          style={{
-                            textShadow: '0 1px 3px rgb(0, 0, 0, 0.8)',
-                            maxLines: 2,
-                          }}
-                        >
-                          {highlightNew.subtitle}
-                        </h3>
-                      )}
                     </header>
                   </a>
                 </Link>

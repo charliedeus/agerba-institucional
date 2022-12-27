@@ -1,5 +1,5 @@
-query GetNoticiasDestaque ($limit: Int!, $start: Int, $data_atual: Date!) {
-  noticias (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, sort: "PublishDate:DESC", filters:{ highlight: { eq: true }, deadline: { gte: $data_atual } } ) {
+query GetNoticiasDestaque ($limit: Int!, $start: Int) {
+  noticias (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, sort: "PublishDate:DESC", filters:{ highlight: { eq: true } } ) {
     meta {
       pagination {
         total

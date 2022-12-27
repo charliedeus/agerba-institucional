@@ -48,19 +48,12 @@ export default Home
 export const getServerSideProps: GetServerSideProps = async () => {
   const apolloClient = initializeApollo()
 
-  const today = Intl.DateTimeFormat('fr-CA', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).format(Date.now())
-
   const { data: highlightNewsData } =
     await apolloClient.query<GetNoticiasDestaqueQuery>({
       query: GetNoticiasDestaqueDocument,
       variables: {
         limit: 3,
         start: 0,
-        data_atual: today,
       },
     })
 
