@@ -13,21 +13,12 @@ import genericImg from '../../assets/images/generic-image.png'
 // import { Loader } from '../Loader'
 
 export function News() {
-  const [today] = useState(
-    Intl.DateTimeFormat('fr-CA', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    }).format(Date.now()),
-  )
-
   const [page] = useState(1)
 
   const { data } = useGetNoticiasDestaqueQuery({
     variables: {
       limit: 4,
       start: (page - 1) * 5,
-      data_atual: today,
     },
   })
 
