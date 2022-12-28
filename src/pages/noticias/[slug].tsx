@@ -151,31 +151,6 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                     key={section.id}
                     className="w-full flex flex-col gap-4 px-8 tablet:px-16 laptop:px-32 mt-8"
                   >
-                    {section.cover.data && (
-                      <div className="w-full h-full relative mb-4 flex flex-col gap-2 overflow-hidden">
-                        <picture className="w-full h-full flex">
-                          <Image
-                            src={
-                              urlBuilder(section.cover.data?.attributes.url) ||
-                              genericImg.src
-                            }
-                            width={1000}
-                            height={600}
-                            alt={
-                              section.cover.data?.attributes.name ||
-                              section.cover.data?.attributes.alternativeText ||
-                              ''
-                            }
-                            className="w-full h-full max-h-[400px] object-cover object-center"
-                          />
-                        </picture>
-
-                        <small className="text-sm mx-auto">
-                          {section.cover.data?.attributes.alternativeText || ''}
-                        </small>
-                      </div>
-                    )}
-
                     <h1 className="text-3xl font-semibold">{section.title}</h1>
 
                     <div
