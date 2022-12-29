@@ -5,8 +5,8 @@ import Image from 'next/image'
 export function Footer() {
   return (
     <footer className="h-full min-h-[300px] flex items-center justify-center bg-[#3F3F95] py-16 border">
-      <div className="w-full h-full desktop:max-w-[1280px] flex flex-col desktop:flex-row items-center laptop:items-start justify-between gap-10 text-white">
-        <div className="flex flex-col gap-2">
+      <div className="w-1/2 h-full desktop:max-w-[1280px] flex flex-col desktop:flex-row items-center laptop:items-start justify-between gap-10 text-white">
+        <div className="flex flex-col gap-4">
           <Link href="/">
             <picture>
               <Image
