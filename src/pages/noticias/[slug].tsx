@@ -65,7 +65,7 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
     <>
       <article
         key={props.newsSolo.id}
-        className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed"
+        className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed overflow-hidden"
       >
         <div className="flex flex-col gap-8">
           <header className="flex flex-col gap-4">
