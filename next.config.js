@@ -13,7 +13,7 @@ const nextConfig = withPWA({
   images: {
     domains: [
       'localhost',
-      '10.71.246.210',
+      '200.187.9.138',
       'images.unsplash.com',
       'agerba.ba.gov.br',
     ],
@@ -27,13 +27,13 @@ const nextConfig = withPWA({
       },
       {
         protocol: 'http',
-        hostname: '10.71.246.210',
+        hostname: '200.187.9.138',
         port: '4000',
         pathname: '/uploads/**',
       },
       {
         protocol: 'http',
-        hostname: '10.71.246.210',
+        hostname: '200.187.9.138',
         pathname: '/**',
       },
       {

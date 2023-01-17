@@ -44,11 +44,11 @@ const OuvidoriaPage: NextPageWithLayout = () => {
           Os canais oficiais de acesso à Ouvidoria são o telefone 0800-071-0080
           e o site{' '}
           <Link
-            href="http://www.agerbaouvidoria.ba.gov.br/novo/form_verificasolicitante_viapagina.asp"
+            href="http://www.agerba2.ba.gov.br/ouvidoria_novo/login_acompanhamento.htm"
             className="text-blue-800 hover:underline"
             passHref
           >
-            http://www.agerbaouvidoria.ba.gov.br/novo/form_verificasolicitante_viapagina.asp
+            http://www.agerba2.ba.gov.br/ouvidoria_novo/login_acompanhamento.htm
           </Link>
           . São através desses que os usuários do serviço podem expressar seus
           anseios e críticas, os quais serão encaminhados à sede desta Autarquia
@@ -80,21 +80,38 @@ const OuvidoriaPage: NextPageWithLayout = () => {
               <Phone size={16} weight="light" className="text-gray-500" /> 0800
               071 0080
             </span>
-            <span className="laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
-              <EnvelopeSimple
-                size={16}
-                weight="light"
-                className="text-gray-500"
-              />{' '}
-              <Link
-                legacyBehavior
-                href="http://www.agerbaouvidoria.ba.gov.br/novo/form_verificasolicitante_viapagina.asp"
-              >
-                <a target="_blank" className="text-blue-800 hover:underline">
-                  http://www.agerbaouvidoria.ba.gov.br/novo/form_verificasolicitante_viapagina.asp
-                </a>
-              </Link>
-            </span>
+            <div className="laptop:border-l-2 laptop:border-primary laptop:pl-2 flex flex-col items-center gap-2">
+              <span className="w-full flex items-center gap-2">
+                <EnvelopeSimple
+                  size={16}
+                  weight="light"
+                  className="text-gray-500"
+                />{' '}
+                <Link
+                  legacyBehavior
+                  href="http://www.agerba2.ba.gov.br/ouvidoria_novo/form_verificasolicitante_viapagina.asp"
+                >
+                  <a target="_blank" className="text-blue-800 hover:underline">
+                    Para novo boletim
+                  </a>
+                </Link>
+              </span>
+              <span className="w-full flex items-center gap-2">
+                <EnvelopeSimple
+                  size={16}
+                  weight="light"
+                  className="text-gray-500"
+                />{' '}
+                <Link
+                  legacyBehavior
+                  href="http://www.agerba2.ba.gov.br/ouvidoria_novo/form_verificasolicitante_viapagina.asp"
+                >
+                  <a target="_blank" className="text-blue-800 hover:underline">
+                    Para acompanhar boletim existente
+                  </a>
+                </Link>
+              </span>
+            </div>
           </div>
         </div>
       </article>
