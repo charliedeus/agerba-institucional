@@ -89,10 +89,10 @@ const OuvidoriaPage: NextPageWithLayout = () => {
                 />{' '}
                 <Link
                   legacyBehavior
-                  href="http://www.agerba2.ba.gov.br/ouvidoria_novo/form_verificasolicitante_viapagina.asp"
+                  href="http://www.agerba2.ba.gov.br/ouvidoria_novo/login_acompanhamento.htm"
                 >
                   <a target="_blank" className="text-blue-800 hover:underline">
-                    Para novo boletim
+                    Acompanhamento de Solicitação
                   </a>
                 </Link>
               </span>
@@ -107,7 +107,7 @@ const OuvidoriaPage: NextPageWithLayout = () => {
                   href="http://www.agerba2.ba.gov.br/ouvidoria_novo/form_verificasolicitante_viapagina.asp"
                 >
                   <a target="_blank" className="text-blue-800 hover:underline">
-                    Para acompanhar boletim existente
+                    Boletim de Solicitação
                   </a>
                 </Link>
               </span>
