@@ -35,53 +35,57 @@ const NewsPage: NextPageWithLayout = () => {
 
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : error ? (
-        <p>Erro ao carregar dados...</p>
-      ) : (
-        <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
-          <h1 className="font-bold text-[2rem] flex-1">Notícias da AGERBA:</h1>
+      <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
+        {isLoading ? (
+          <Loader />
+        ) : error ? (
+          <p>Erro ao carregar dados...</p>
+        ) : (
+          <>
+            <h1 className="font-bold text-[2rem] flex-1">
+              Notícias da AGERBA:
+            </h1>
 
-          <ul className="flex flex-wrap flex-col tablet:flex-row gap-4">
-            {data?.noticias?.map((item) => (
-              <Link
-                key={item.id}
-                href={`/noticias/${item.slug}`}
-                onMouseEnter={() => handlePrefetchNews(item.slug)}
-                className="w-full tablet:max-w-[24rem] h-96 border rounded-lg overflow-hidden shadow-md m-auto"
-              >
-                <li className="w-full">
-                  <div className="w-full h-56 max-h-56 bg-primary/60 overflow-hidden">
-                    <picture>
-                      <Image
-                        src={item.coverUrl || genericImg.src}
-                        alt=""
-                        width={1000}
-                        height={600}
-                        className="w-full h-full object-cover object-center"
-                      />
-                    </picture>
-                  </div>
-                  <h1 className="text-xl font-bold leading-relaxed text-primary hover:text-secondary transition-all duration-150 ease-in-out p-2">
-                    {item.title}
-                  </h1>
-                </li>
-              </Link>
-            ))}
-          </ul>
+            <ul className="flex flex-wrap flex-col tablet:flex-row gap-4">
+              {data?.noticias?.map((item) => (
+                <Link
+                  key={item.id}
+                  href={`/noticias/${item.slug}`}
+                  onMouseEnter={() => handlePrefetchNews(item.slug)}
+                  className="w-full tablet:max-w-[24rem] h-96 border rounded-lg overflow-hidden shadow-md m-auto"
+                >
+                  <li className="w-full">
+                    <div className="w-full h-56 max-h-56 bg-primary/60 overflow-hidden">
+                      <picture>
+                        <Image
+                          src={item.coverUrl || genericImg.src}
+                          alt=""
+                          width={1000}
+                          height={600}
+                          className="w-full h-full object-cover object-center"
+                        />
+                      </picture>
+                    </div>
+                    <h1 className="text-xl font-bold leading-relaxed text-primary hover:text-secondary transition-all duration-150 ease-in-out p-2">
+                      {item.title}
+                    </h1>
+                  </li>
+                </Link>
+              ))}
+            </ul>
 
-          {data?.noticias && (
-            <Pagination
-              totalCountRegisters={Number(data.totalCountRegisters)}
-              currentPage={page}
-              totalPages={Number(data.totalPages)}
-              onPageChange={setPage}
-              registersPerPage={Number(data.totalRegistersPerPage)}
-            />
-          )}
-        </article>
-      )}
+            {data?.noticias && (
+              <Pagination
+                totalCountRegisters={Number(data.totalCountRegisters)}
+                currentPage={page}
+                totalPages={Number(data.totalPages)}
+                onPageChange={setPage}
+                registersPerPage={Number(data.totalRegistersPerPage)}
+              />
+            )}
+          </>
+        )}
+      </article>
     </>
   )
 }
