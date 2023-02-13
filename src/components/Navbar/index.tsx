@@ -12,6 +12,8 @@ import { Menu, Transition } from '@headlessui/react'
 
 import { NextLink } from '../NextLink'
 
+// const fileUrl = `/.well-known/pki-validation/arquivo.txt`
+
 export function Navbar() {
   function handleOpenMenu() {
     document.body.classList.add('menu-expanded')
@@ -457,6 +459,17 @@ export function Navbar() {
                 </NextLink>
               )}
             </Menu.Item>
+            {/* <Menu.Item>
+              {({ active }) => (
+                <NextLink
+                  href={fileUrl}
+                  download
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>Valida certificado</span>
+                </NextLink>
+              )}
+            </Menu.Item> */}
           </Menu.Items>
         </Menu>
 

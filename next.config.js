@@ -57,6 +57,7 @@ const nextConfig = withPWA({
   },
   output: 'standalone',
   trailingSlash: true,
+  // assetPrefix: 'http://localhost.com:3000',
 })
 
 module.exports = nextConfig
