@@ -80,10 +80,10 @@ const companiesServicesGroup = [
   },
   {
     id: uuidv4(),
-    title: 'Atas de Colegiado',
-    url: '/atas-do-colegiado',
+    title: 'Terminais',
+    url: '/terminais',
     imageUrl:
-      'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=60',
+      'https://images.unsplash.com/photo-1635810409702-223bb934b781?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=60',
     services: [],
   },
 ]
