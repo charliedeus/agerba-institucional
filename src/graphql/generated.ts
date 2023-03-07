@@ -1,3 +1,6 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-unused-vars */
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
@@ -3772,13 +3775,13 @@ export const GetAtasDeJulgamentoDocument = gql`
  * });
  */
 export function useGetAtasDeJulgamentoQuery(baseOptions: Apollo.QueryHookOptions<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>(GetAtasDeJulgamentoDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>(GetAtasDeJulgamentoDocument, options);
+}
 export function useGetAtasDeJulgamentoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>(GetAtasDeJulgamentoDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>(GetAtasDeJulgamentoDocument, options);
+}
 export type GetAtasDeJulgamentoQueryHookResult = ReturnType<typeof useGetAtasDeJulgamentoQuery>;
 export type GetAtasDeJulgamentoLazyQueryHookResult = ReturnType<typeof useGetAtasDeJulgamentoLazyQuery>;
 export type GetAtasDeJulgamentoQueryResult = Apollo.QueryResult<GetAtasDeJulgamentoQuery, GetAtasDeJulgamentoQueryVariables>;
@@ -3834,13 +3837,13 @@ export const GetAtasDeReuniaoDocument = gql`
  * });
  */
 export function useGetAtasDeReuniaoQuery(baseOptions: Apollo.QueryHookOptions<GetAtasDeReuniaoQuery, GetAtasDeReuniaoQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetAtasDeReuniaoQuery, GetAtasDeReuniaoQueryVariables>(GetAtasDeReuniaoDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetAtasDeReuniaoQuery, GetAtasDeReuniaoQueryVariables>(GetAtasDeReuniaoDocument, options);
+}
 export function useGetAtasDeReuniaoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAtasDeReuniaoQuery, GetAtasDeReuniaoQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetAtasDeReuniaoQuery, GetAtasDeReuniaoQueryVariables>(GetAtasDeReuniaoDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetAtasDeReuniaoQuery, GetAtasDeReuniaoQueryVariables>(GetAtasDeReuniaoDocument, options);
+}
 export type GetAtasDeReuniaoQueryHookResult = ReturnType<typeof useGetAtasDeReuniaoQuery>;
 export type GetAtasDeReuniaoLazyQueryHookResult = ReturnType<typeof useGetAtasDeReuniaoLazyQuery>;
 export type GetAtasDeReuniaoQueryResult = Apollo.QueryResult<GetAtasDeReuniaoQuery, GetAtasDeReuniaoQueryVariables>;
@@ -3913,13 +3916,13 @@ export const GetAudienciaPublicaByIdDocument = gql`
  * });
  */
 export function useGetAudienciaPublicaByIdQuery(baseOptions: Apollo.QueryHookOptions<GetAudienciaPublicaByIdQuery, GetAudienciaPublicaByIdQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetAudienciaPublicaByIdQuery, GetAudienciaPublicaByIdQueryVariables>(GetAudienciaPublicaByIdDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetAudienciaPublicaByIdQuery, GetAudienciaPublicaByIdQueryVariables>(GetAudienciaPublicaByIdDocument, options);
+}
 export function useGetAudienciaPublicaByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAudienciaPublicaByIdQuery, GetAudienciaPublicaByIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetAudienciaPublicaByIdQuery, GetAudienciaPublicaByIdQueryVariables>(GetAudienciaPublicaByIdDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetAudienciaPublicaByIdQuery, GetAudienciaPublicaByIdQueryVariables>(GetAudienciaPublicaByIdDocument, options);
+}
 export type GetAudienciaPublicaByIdQueryHookResult = ReturnType<typeof useGetAudienciaPublicaByIdQuery>;
 export type GetAudienciaPublicaByIdLazyQueryHookResult = ReturnType<typeof useGetAudienciaPublicaByIdLazyQuery>;
 export type GetAudienciaPublicaByIdQueryResult = Apollo.QueryResult<GetAudienciaPublicaByIdQuery, GetAudienciaPublicaByIdQueryVariables>;
@@ -3964,13 +3967,13 @@ export const GetAudienciasPublicasDocument = gql`
  * });
  */
 export function useGetAudienciasPublicasQuery(baseOptions?: Apollo.QueryHookOptions<GetAudienciasPublicasQuery, GetAudienciasPublicasQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetAudienciasPublicasQuery, GetAudienciasPublicasQueryVariables>(GetAudienciasPublicasDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetAudienciasPublicasQuery, GetAudienciasPublicasQueryVariables>(GetAudienciasPublicasDocument, options);
+}
 export function useGetAudienciasPublicasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAudienciasPublicasQuery, GetAudienciasPublicasQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetAudienciasPublicasQuery, GetAudienciasPublicasQueryVariables>(GetAudienciasPublicasDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetAudienciasPublicasQuery, GetAudienciasPublicasQueryVariables>(GetAudienciasPublicasDocument, options);
+}
 export type GetAudienciasPublicasQueryHookResult = ReturnType<typeof useGetAudienciasPublicasQuery>;
 export type GetAudienciasPublicasLazyQueryHookResult = ReturnType<typeof useGetAudienciasPublicasLazyQuery>;
 export type GetAudienciasPublicasQueryResult = Apollo.QueryResult<GetAudienciasPublicasQuery, GetAudienciasPublicasQueryVariables>;
@@ -4014,13 +4017,13 @@ export const GetCartilhasDocument = gql`
  * });
  */
 export function useGetCartilhasQuery(baseOptions?: Apollo.QueryHookOptions<GetCartilhasQuery, GetCartilhasQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetCartilhasQuery, GetCartilhasQueryVariables>(GetCartilhasDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetCartilhasQuery, GetCartilhasQueryVariables>(GetCartilhasDocument, options);
+}
 export function useGetCartilhasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCartilhasQuery, GetCartilhasQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetCartilhasQuery, GetCartilhasQueryVariables>(GetCartilhasDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetCartilhasQuery, GetCartilhasQueryVariables>(GetCartilhasDocument, options);
+}
 export type GetCartilhasQueryHookResult = ReturnType<typeof useGetCartilhasQuery>;
 export type GetCartilhasLazyQueryHookResult = ReturnType<typeof useGetCartilhasLazyQuery>;
 export type GetCartilhasQueryResult = Apollo.QueryResult<GetCartilhasQuery, GetCartilhasQueryVariables>;
@@ -4080,13 +4083,13 @@ export const GetConsultaPublicaByidDocument = gql`
  * });
  */
 export function useGetConsultaPublicaByidQuery(baseOptions: Apollo.QueryHookOptions<GetConsultaPublicaByidQuery, GetConsultaPublicaByidQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetConsultaPublicaByidQuery, GetConsultaPublicaByidQueryVariables>(GetConsultaPublicaByidDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetConsultaPublicaByidQuery, GetConsultaPublicaByidQueryVariables>(GetConsultaPublicaByidDocument, options);
+}
 export function useGetConsultaPublicaByidLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetConsultaPublicaByidQuery, GetConsultaPublicaByidQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetConsultaPublicaByidQuery, GetConsultaPublicaByidQueryVariables>(GetConsultaPublicaByidDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetConsultaPublicaByidQuery, GetConsultaPublicaByidQueryVariables>(GetConsultaPublicaByidDocument, options);
+}
 export type GetConsultaPublicaByidQueryHookResult = ReturnType<typeof useGetConsultaPublicaByidQuery>;
 export type GetConsultaPublicaByidLazyQueryHookResult = ReturnType<typeof useGetConsultaPublicaByidLazyQuery>;
 export type GetConsultaPublicaByidQueryResult = Apollo.QueryResult<GetConsultaPublicaByidQuery, GetConsultaPublicaByidQueryVariables>;
@@ -4133,13 +4136,13 @@ export const GetConsultasPublicasDocument = gql`
  * });
  */
 export function useGetConsultasPublicasQuery(baseOptions: Apollo.QueryHookOptions<GetConsultasPublicasQuery, GetConsultasPublicasQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetConsultasPublicasQuery, GetConsultasPublicasQueryVariables>(GetConsultasPublicasDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetConsultasPublicasQuery, GetConsultasPublicasQueryVariables>(GetConsultasPublicasDocument, options);
+}
 export function useGetConsultasPublicasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetConsultasPublicasQuery, GetConsultasPublicasQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetConsultasPublicasQuery, GetConsultasPublicasQueryVariables>(GetConsultasPublicasDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetConsultasPublicasQuery, GetConsultasPublicasQueryVariables>(GetConsultasPublicasDocument, options);
+}
 export type GetConsultasPublicasQueryHookResult = ReturnType<typeof useGetConsultasPublicasQuery>;
 export type GetConsultasPublicasLazyQueryHookResult = ReturnType<typeof useGetConsultasPublicasLazyQuery>;
 export type GetConsultasPublicasQueryResult = Apollo.QueryResult<GetConsultasPublicasQuery, GetConsultasPublicasQueryVariables>;
@@ -4220,13 +4223,13 @@ export const GetConteudoSetorDocument = gql`
  * });
  */
 export function useGetConteudoSetorQuery(baseOptions: Apollo.QueryHookOptions<GetConteudoSetorQuery, GetConteudoSetorQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetConteudoSetorQuery, GetConteudoSetorQueryVariables>(GetConteudoSetorDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetConteudoSetorQuery, GetConteudoSetorQueryVariables>(GetConteudoSetorDocument, options);
+}
 export function useGetConteudoSetorLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetConteudoSetorQuery, GetConteudoSetorQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetConteudoSetorQuery, GetConteudoSetorQueryVariables>(GetConteudoSetorDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetConteudoSetorQuery, GetConteudoSetorQueryVariables>(GetConteudoSetorDocument, options);
+}
 export type GetConteudoSetorQueryHookResult = ReturnType<typeof useGetConteudoSetorQuery>;
 export type GetConteudoSetorLazyQueryHookResult = ReturnType<typeof useGetConteudoSetorLazyQuery>;
 export type GetConteudoSetorQueryResult = Apollo.QueryResult<GetConteudoSetorQuery, GetConteudoSetorQueryVariables>;
@@ -4261,13 +4264,13 @@ export const GetFaQsDocument = gql`
  * });
  */
 export function useGetFaQsQuery(baseOptions?: Apollo.QueryHookOptions<GetFaQsQuery, GetFaQsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetFaQsQuery, GetFaQsQueryVariables>(GetFaQsDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetFaQsQuery, GetFaQsQueryVariables>(GetFaQsDocument, options);
+}
 export function useGetFaQsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFaQsQuery, GetFaQsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetFaQsQuery, GetFaQsQueryVariables>(GetFaQsDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetFaQsQuery, GetFaQsQueryVariables>(GetFaQsDocument, options);
+}
 export type GetFaQsQueryHookResult = ReturnType<typeof useGetFaQsQuery>;
 export type GetFaQsLazyQueryHookResult = ReturnType<typeof useGetFaQsLazyQuery>;
 export type GetFaQsQueryResult = Apollo.QueryResult<GetFaQsQuery, GetFaQsQueryVariables>;
@@ -4323,13 +4326,13 @@ export const GetGruposEServicosDocument = gql`
  * });
  */
 export function useGetGruposEServicosQuery(baseOptions: Apollo.QueryHookOptions<GetGruposEServicosQuery, GetGruposEServicosQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetGruposEServicosQuery, GetGruposEServicosQueryVariables>(GetGruposEServicosDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetGruposEServicosQuery, GetGruposEServicosQueryVariables>(GetGruposEServicosDocument, options);
+}
 export function useGetGruposEServicosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetGruposEServicosQuery, GetGruposEServicosQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetGruposEServicosQuery, GetGruposEServicosQueryVariables>(GetGruposEServicosDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetGruposEServicosQuery, GetGruposEServicosQueryVariables>(GetGruposEServicosDocument, options);
+}
 export type GetGruposEServicosQueryHookResult = ReturnType<typeof useGetGruposEServicosQuery>;
 export type GetGruposEServicosLazyQueryHookResult = ReturnType<typeof useGetGruposEServicosLazyQuery>;
 export type GetGruposEServicosQueryResult = Apollo.QueryResult<GetGruposEServicosQuery, GetGruposEServicosQueryVariables>;
@@ -4461,13 +4464,13 @@ export const GetLegislacoesDocument = gql`
  * });
  */
 export function useGetLegislacoesQuery(baseOptions: Apollo.QueryHookOptions<GetLegislacoesQuery, GetLegislacoesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetLegislacoesQuery, GetLegislacoesQueryVariables>(GetLegislacoesDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetLegislacoesQuery, GetLegislacoesQueryVariables>(GetLegislacoesDocument, options);
+}
 export function useGetLegislacoesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLegislacoesQuery, GetLegislacoesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetLegislacoesQuery, GetLegislacoesQueryVariables>(GetLegislacoesDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetLegislacoesQuery, GetLegislacoesQueryVariables>(GetLegislacoesDocument, options);
+}
 export type GetLegislacoesQueryHookResult = ReturnType<typeof useGetLegislacoesQuery>;
 export type GetLegislacoesLazyQueryHookResult = ReturnType<typeof useGetLegislacoesLazyQuery>;
 export type GetLegislacoesQueryResult = Apollo.QueryResult<GetLegislacoesQuery, GetLegislacoesQueryVariables>;
@@ -4521,13 +4524,13 @@ export const GetLicitacoesFuturasDocument = gql`
  * });
  */
 export function useGetLicitacoesFuturasQuery(baseOptions: Apollo.QueryHookOptions<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>(GetLicitacoesFuturasDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>(GetLicitacoesFuturasDocument, options);
+}
 export function useGetLicitacoesFuturasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>(GetLicitacoesFuturasDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>(GetLicitacoesFuturasDocument, options);
+}
 export type GetLicitacoesFuturasQueryHookResult = ReturnType<typeof useGetLicitacoesFuturasQuery>;
 export type GetLicitacoesFuturasLazyQueryHookResult = ReturnType<typeof useGetLicitacoesFuturasLazyQuery>;
 export type GetLicitacoesFuturasQueryResult = Apollo.QueryResult<GetLicitacoesFuturasQuery, GetLicitacoesFuturasQueryVariables>;
@@ -4607,13 +4610,13 @@ export const GetNoticiasBySlugDocument = gql`
  * });
  */
 export function useGetNoticiasBySlugQuery(baseOptions: Apollo.QueryHookOptions<GetNoticiasBySlugQuery, GetNoticiasBySlugQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetNoticiasBySlugQuery, GetNoticiasBySlugQueryVariables>(GetNoticiasBySlugDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetNoticiasBySlugQuery, GetNoticiasBySlugQueryVariables>(GetNoticiasBySlugDocument, options);
+}
 export function useGetNoticiasBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetNoticiasBySlugQuery, GetNoticiasBySlugQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetNoticiasBySlugQuery, GetNoticiasBySlugQueryVariables>(GetNoticiasBySlugDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetNoticiasBySlugQuery, GetNoticiasBySlugQueryVariables>(GetNoticiasBySlugDocument, options);
+}
 export type GetNoticiasBySlugQueryHookResult = ReturnType<typeof useGetNoticiasBySlugQuery>;
 export type GetNoticiasBySlugLazyQueryHookResult = ReturnType<typeof useGetNoticiasBySlugLazyQuery>;
 export type GetNoticiasBySlugQueryResult = Apollo.QueryResult<GetNoticiasBySlugQuery, GetNoticiasBySlugQueryVariables>;
@@ -4681,13 +4684,13 @@ export const GetNoticiasDestaqueDocument = gql`
  * });
  */
 export function useGetNoticiasDestaqueQuery(baseOptions: Apollo.QueryHookOptions<GetNoticiasDestaqueQuery, GetNoticiasDestaqueQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetNoticiasDestaqueQuery, GetNoticiasDestaqueQueryVariables>(GetNoticiasDestaqueDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetNoticiasDestaqueQuery, GetNoticiasDestaqueQueryVariables>(GetNoticiasDestaqueDocument, options);
+}
 export function useGetNoticiasDestaqueLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetNoticiasDestaqueQuery, GetNoticiasDestaqueQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetNoticiasDestaqueQuery, GetNoticiasDestaqueQueryVariables>(GetNoticiasDestaqueDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetNoticiasDestaqueQuery, GetNoticiasDestaqueQueryVariables>(GetNoticiasDestaqueDocument, options);
+}
 export type GetNoticiasDestaqueQueryHookResult = ReturnType<typeof useGetNoticiasDestaqueQuery>;
 export type GetNoticiasDestaqueLazyQueryHookResult = ReturnType<typeof useGetNoticiasDestaqueLazyQuery>;
 export type GetNoticiasDestaqueQueryResult = Apollo.QueryResult<GetNoticiasDestaqueQuery, GetNoticiasDestaqueQueryVariables>;
@@ -4755,13 +4758,13 @@ export const GetListaNoticiasDocument = gql`
  * });
  */
 export function useGetListaNoticiasQuery(baseOptions: Apollo.QueryHookOptions<GetListaNoticiasQuery, GetListaNoticiasQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetListaNoticiasQuery, GetListaNoticiasQueryVariables>(GetListaNoticiasDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetListaNoticiasQuery, GetListaNoticiasQueryVariables>(GetListaNoticiasDocument, options);
+}
 export function useGetListaNoticiasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetListaNoticiasQuery, GetListaNoticiasQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetListaNoticiasQuery, GetListaNoticiasQueryVariables>(GetListaNoticiasDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetListaNoticiasQuery, GetListaNoticiasQueryVariables>(GetListaNoticiasDocument, options);
+}
 export type GetListaNoticiasQueryHookResult = ReturnType<typeof useGetListaNoticiasQuery>;
 export type GetListaNoticiasLazyQueryHookResult = ReturnType<typeof useGetListaNoticiasLazyQuery>;
 export type GetListaNoticiasQueryResult = Apollo.QueryResult<GetListaNoticiasQuery, GetListaNoticiasQueryVariables>;
@@ -4816,13 +4819,13 @@ export const GetStudentBySlugDocument = gql`
  * });
  */
 export function useGetStudentBySlugQuery(baseOptions: Apollo.QueryHookOptions<GetStudentBySlugQuery, GetStudentBySlugQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetStudentBySlugQuery, GetStudentBySlugQueryVariables>(GetStudentBySlugDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetStudentBySlugQuery, GetStudentBySlugQueryVariables>(GetStudentBySlugDocument, options);
+}
 export function useGetStudentBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetStudentBySlugQuery, GetStudentBySlugQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetStudentBySlugQuery, GetStudentBySlugQueryVariables>(GetStudentBySlugDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetStudentBySlugQuery, GetStudentBySlugQueryVariables>(GetStudentBySlugDocument, options);
+}
 export type GetStudentBySlugQueryHookResult = ReturnType<typeof useGetStudentBySlugQuery>;
 export type GetStudentBySlugLazyQueryHookResult = ReturnType<typeof useGetStudentBySlugLazyQuery>;
 export type GetStudentBySlugQueryResult = Apollo.QueryResult<GetStudentBySlugQuery, GetStudentBySlugQueryVariables>;
@@ -4951,13 +4954,13 @@ export const GetTarifasDeTransportesHidroviariosDocument = gql`
  * });
  */
 export function useGetTarifasDeTransportesHidroviariosQuery(baseOptions: Apollo.QueryHookOptions<GetTarifasDeTransportesHidroviariosQuery, GetTarifasDeTransportesHidroviariosQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetTarifasDeTransportesHidroviariosQuery, GetTarifasDeTransportesHidroviariosQueryVariables>(GetTarifasDeTransportesHidroviariosDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetTarifasDeTransportesHidroviariosQuery, GetTarifasDeTransportesHidroviariosQueryVariables>(GetTarifasDeTransportesHidroviariosDocument, options);
+}
 export function useGetTarifasDeTransportesHidroviariosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTarifasDeTransportesHidroviariosQuery, GetTarifasDeTransportesHidroviariosQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetTarifasDeTransportesHidroviariosQuery, GetTarifasDeTransportesHidroviariosQueryVariables>(GetTarifasDeTransportesHidroviariosDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetTarifasDeTransportesHidroviariosQuery, GetTarifasDeTransportesHidroviariosQueryVariables>(GetTarifasDeTransportesHidroviariosDocument, options);
+}
 export type GetTarifasDeTransportesHidroviariosQueryHookResult = ReturnType<typeof useGetTarifasDeTransportesHidroviariosQuery>;
 export type GetTarifasDeTransportesHidroviariosLazyQueryHookResult = ReturnType<typeof useGetTarifasDeTransportesHidroviariosLazyQuery>;
 export type GetTarifasDeTransportesHidroviariosQueryResult = Apollo.QueryResult<GetTarifasDeTransportesHidroviariosQuery, GetTarifasDeTransportesHidroviariosQueryVariables>;
@@ -5132,13 +5135,13 @@ export const GetTarifasDeTransportesRodoviariosDocument = gql`
  * });
  */
 export function useGetTarifasDeTransportesRodoviariosQuery(baseOptions: Apollo.QueryHookOptions<GetTarifasDeTransportesRodoviariosQuery, GetTarifasDeTransportesRodoviariosQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetTarifasDeTransportesRodoviariosQuery, GetTarifasDeTransportesRodoviariosQueryVariables>(GetTarifasDeTransportesRodoviariosDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetTarifasDeTransportesRodoviariosQuery, GetTarifasDeTransportesRodoviariosQueryVariables>(GetTarifasDeTransportesRodoviariosDocument, options);
+}
 export function useGetTarifasDeTransportesRodoviariosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTarifasDeTransportesRodoviariosQuery, GetTarifasDeTransportesRodoviariosQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetTarifasDeTransportesRodoviariosQuery, GetTarifasDeTransportesRodoviariosQueryVariables>(GetTarifasDeTransportesRodoviariosDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetTarifasDeTransportesRodoviariosQuery, GetTarifasDeTransportesRodoviariosQueryVariables>(GetTarifasDeTransportesRodoviariosDocument, options);
+}
 export type GetTarifasDeTransportesRodoviariosQueryHookResult = ReturnType<typeof useGetTarifasDeTransportesRodoviariosQuery>;
 export type GetTarifasDeTransportesRodoviariosLazyQueryHookResult = ReturnType<typeof useGetTarifasDeTransportesRodoviariosLazyQuery>;
 export type GetTarifasDeTransportesRodoviariosQueryResult = Apollo.QueryResult<GetTarifasDeTransportesRodoviariosQuery, GetTarifasDeTransportesRodoviariosQueryVariables>;
@@ -5198,13 +5201,13 @@ export const GetTutEsDocument = gql`
  * });
  */
 export function useGetTutEsQuery(baseOptions: Apollo.QueryHookOptions<GetTutEsQuery, GetTutEsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetTutEsQuery, GetTutEsQueryVariables>(GetTutEsDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetTutEsQuery, GetTutEsQueryVariables>(GetTutEsDocument, options);
+}
 export function useGetTutEsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTutEsQuery, GetTutEsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetTutEsQuery, GetTutEsQueryVariables>(GetTutEsDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetTutEsQuery, GetTutEsQueryVariables>(GetTutEsDocument, options);
+}
 export type GetTutEsQueryHookResult = ReturnType<typeof useGetTutEsQuery>;
 export type GetTutEsLazyQueryHookResult = ReturnType<typeof useGetTutEsLazyQuery>;
 export type GetTutEsQueryResult = Apollo.QueryResult<GetTutEsQuery, GetTutEsQueryVariables>;
@@ -5265,13 +5268,13 @@ export const GetTarifasGasDocument = gql`
  * });
  */
 export function useGetTarifasGasQuery(baseOptions: Apollo.QueryHookOptions<GetTarifasGasQuery, GetTarifasGasQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetTarifasGasQuery, GetTarifasGasQueryVariables>(GetTarifasGasDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetTarifasGasQuery, GetTarifasGasQueryVariables>(GetTarifasGasDocument, options);
+}
 export function useGetTarifasGasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTarifasGasQuery, GetTarifasGasQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetTarifasGasQuery, GetTarifasGasQueryVariables>(GetTarifasGasDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetTarifasGasQuery, GetTarifasGasQueryVariables>(GetTarifasGasDocument, options);
+}
 export type GetTarifasGasQueryHookResult = ReturnType<typeof useGetTarifasGasQuery>;
 export type GetTarifasGasLazyQueryHookResult = ReturnType<typeof useGetTarifasGasLazyQuery>;
 export type GetTarifasGasQueryResult = Apollo.QueryResult<GetTarifasGasQuery, GetTarifasGasQueryVariables>;
@@ -5332,13 +5335,13 @@ export const GetRodoviasPedagiadasDocument = gql`
  * });
  */
 export function useGetRodoviasPedagiadasQuery(baseOptions: Apollo.QueryHookOptions<GetRodoviasPedagiadasQuery, GetRodoviasPedagiadasQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetRodoviasPedagiadasQuery, GetRodoviasPedagiadasQueryVariables>(GetRodoviasPedagiadasDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetRodoviasPedagiadasQuery, GetRodoviasPedagiadasQueryVariables>(GetRodoviasPedagiadasDocument, options);
+}
 export function useGetRodoviasPedagiadasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRodoviasPedagiadasQuery, GetRodoviasPedagiadasQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetRodoviasPedagiadasQuery, GetRodoviasPedagiadasQueryVariables>(GetRodoviasPedagiadasDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetRodoviasPedagiadasQuery, GetRodoviasPedagiadasQueryVariables>(GetRodoviasPedagiadasDocument, options);
+}
 export type GetRodoviasPedagiadasQueryHookResult = ReturnType<typeof useGetRodoviasPedagiadasQuery>;
 export type GetRodoviasPedagiadasLazyQueryHookResult = ReturnType<typeof useGetRodoviasPedagiadasLazyQuery>;
 export type GetRodoviasPedagiadasQueryResult = Apollo.QueryResult<GetRodoviasPedagiadasQuery, GetRodoviasPedagiadasQueryVariables>;
@@ -5464,13 +5467,13 @@ export const GetTerminaisDocument = gql`
  * });
  */
 export function useGetTerminaisQuery(baseOptions: Apollo.QueryHookOptions<GetTerminaisQuery, GetTerminaisQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetTerminaisQuery, GetTerminaisQueryVariables>(GetTerminaisDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetTerminaisQuery, GetTerminaisQueryVariables>(GetTerminaisDocument, options);
+}
 export function useGetTerminaisLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTerminaisQuery, GetTerminaisQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetTerminaisQuery, GetTerminaisQueryVariables>(GetTerminaisDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetTerminaisQuery, GetTerminaisQueryVariables>(GetTerminaisDocument, options);
+}
 export type GetTerminaisQueryHookResult = ReturnType<typeof useGetTerminaisQuery>;
 export type GetTerminaisLazyQueryHookResult = ReturnType<typeof useGetTerminaisLazyQuery>;
 export type GetTerminaisQueryResult = Apollo.QueryResult<GetTerminaisQuery, GetTerminaisQueryVariables>;
@@ -5608,13 +5611,13 @@ export const GetTransportesHidroviariosDocument = gql`
  * });
  */
 export function useGetTransportesHidroviariosQuery(baseOptions: Apollo.QueryHookOptions<GetTransportesHidroviariosQuery, GetTransportesHidroviariosQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetTransportesHidroviariosQuery, GetTransportesHidroviariosQueryVariables>(GetTransportesHidroviariosDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetTransportesHidroviariosQuery, GetTransportesHidroviariosQueryVariables>(GetTransportesHidroviariosDocument, options);
+}
 export function useGetTransportesHidroviariosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTransportesHidroviariosQuery, GetTransportesHidroviariosQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetTransportesHidroviariosQuery, GetTransportesHidroviariosQueryVariables>(GetTransportesHidroviariosDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetTransportesHidroviariosQuery, GetTransportesHidroviariosQueryVariables>(GetTransportesHidroviariosDocument, options);
+}
 export type GetTransportesHidroviariosQueryHookResult = ReturnType<typeof useGetTransportesHidroviariosQuery>;
 export type GetTransportesHidroviariosLazyQueryHookResult = ReturnType<typeof useGetTransportesHidroviariosLazyQuery>;
 export type GetTransportesHidroviariosQueryResult = Apollo.QueryResult<GetTransportesHidroviariosQuery, GetTransportesHidroviariosQueryVariables>;
