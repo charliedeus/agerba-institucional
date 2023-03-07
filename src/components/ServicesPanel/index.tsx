@@ -70,6 +70,22 @@ const companiesServicesGroup = [
       'https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8ZG9jdW1lbnR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
     services: [],
   },
+  {
+    id: uuidv4(),
+    title: 'Taxas',
+    url: '/taxas',
+    imageUrl:
+      'https://plus.unsplash.com/premium_photo-1661382019197-94d5edb38186?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=60',
+    services: [],
+  },
+  {
+    id: uuidv4(),
+    title: 'Atas de Colegiado',
+    url: '/atas-do-colegiado',
+    imageUrl:
+      'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=60',
+    services: [],
+  },
 ]
 
 export function ServicesPanel() {
