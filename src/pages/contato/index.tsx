@@ -7,7 +7,7 @@ const Contact: NextPageWithLayout = () => {
     <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
       <h1>Formulário</h1>
 
-      <form
+      {/* <form
         action="https://formsubmit.co/darlan.jesus@agerba.ba.gov.br"
         method="POST"
         className="flex flex-col gap-8"
@@ -19,7 +19,7 @@ const Contact: NextPageWithLayout = () => {
         <input type="hidden" name="_captcha" value="false" />
 
         <button type="submit">Enviar</button>
-      </form>
+      </form> */}
     </article>
   )
 }
