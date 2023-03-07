@@ -1,4 +1,4 @@
-import { User } from 'phosphor-react'
+// import { User } from 'phosphor-react'
 import { ReactElement } from 'react'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 import { NextPageWithLayout } from '../_app'
