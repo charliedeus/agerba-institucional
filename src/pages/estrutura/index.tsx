@@ -97,19 +97,19 @@ const structureItems = [
     members: [
       {
         id: uuidv4(),
-        initials: 'SC',
-        name: 'Sosthenes José Paes Campos Campos',
+        initials: 'ES',
+        name: 'Eurico Bonfim Isaac da Silva',
         occupation: 'Diretor Geral',
         phone: '71 3115-4830',
-        email: 'sosthenes.campos@agerba.ba.gov.br',
+        email: 'eurico.silva@agerba.ba.gov.br',
       },
       {
         id: uuidv4(),
-        initials: 'ES',
-        name: 'Eurico Bonfim Isaac da Silva',
+        initials: '-',
+        name: ' - ',
         occupation: 'Diretor de Fiscalização',
         phone: '71 3115-4861',
-        email: 'eurico.silva@agerba.ba.gov.br',
+        email: '---',
       },
       {
         id: uuidv4(),
