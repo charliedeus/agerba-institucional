@@ -53,6 +53,12 @@ const nextConfig = withPWA({
         port: '4000',
         pathname: '/uploads/**',
       },
+      // Add
+      {
+        protocol: 'http',
+        hostname: '10.71.0.162',
+        pathname: '/**',
+      }
     ],
   },
   output: 'standalone',
