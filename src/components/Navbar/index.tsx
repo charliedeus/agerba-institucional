@@ -183,12 +183,13 @@ export function Navbar() {
                   </NextLink>
                 )}
               </Menu.Item>
-              <Menu.Item disabled>
+              <Menu.Item>
                 {({ active }) => (
-                  <NextLink href="/" className={`${active && 'text-gray-900'}`}>
-                    <span className="opacity-50 cursor-not-allowed">
-                      Organograma (em breve)
-                    </span>
+                  <NextLink
+                    href="/organograma"
+                    className={`${active && 'text-gray-900'}`}
+                  >
+                    Organograma
                   </NextLink>
                 )}
               </Menu.Item>
