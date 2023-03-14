@@ -154,7 +154,7 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                     <h1 className="text-3xl font-semibold">{section.title}</h1>
 
                     <div
-                      className="text-gray-900 text-left mt-[-1rem] py-4 text-2xl leading-[2]"
+                      className="text-gray-900 text-left mt-[-1rem] py-4 px-8 laptop:mt-2 tablet:px-16 laptop:px-32 text-lg laptop:text-2xl leading-[1.75]"
                       dangerouslySetInnerHTML={{
                         __html: section.content || '',
                       }}
