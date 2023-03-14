@@ -279,7 +279,18 @@ export function Navbar() {
             <Info size={20} weight="light" />
             <span className="font-normal">Informações Gerais</span>
           </Menu.Button>
+
           <Menu.Items className="absolute flex flex-col justify-around gap-2 w-max mt-4 py-2 px-6 border border-gray-400 rounded bg-white">
+            <Menu.Item>
+              {({ active }) => (
+                <NextLink
+                  href="/contato"
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>Declaração de Tarifa</span>
+                </NextLink>
+              )}
+            </Menu.Item>
             <Menu.Item>
               {({ active }) => (
                 <NextLink

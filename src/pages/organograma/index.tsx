@@ -1,14 +1,10 @@
 import { ReactElement } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import Image from 'next/image'
 import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
-import { EnvelopeSimple, Phone } from 'phosphor-react'
 import { motion } from 'framer-motion'
 
 import organogramaImg from './../../assets/images/organograma.jpg'
-
-
 
 const OrganogramaPage: NextPageWithLayout = () => {
   return (
@@ -30,10 +26,14 @@ const OrganogramaPage: NextPageWithLayout = () => {
       >
         Organograma
       </motion.h1>
-      <div className=' flex items-center justify-center flex-1 '>
-        <Image src={organogramaImg} alt="" className='object-cover object-center' />
+      <div className=" flex items-center justify-center flex-1 ">
+        <Image
+          src={organogramaImg}
+          alt=""
+          className="object-cover object-center"
+        />
       </div>
-    </article >
+    </article>
   )
 }
 
