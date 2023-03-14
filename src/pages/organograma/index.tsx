@@ -29,7 +29,7 @@ const OrganogramaPage: NextPageWithLayout = () => {
       <div className=" flex items-center justify-center flex-1 ">
         <Image
           src={organogramaImg}
-          alt=""
+          alt="Organograma AGERBA"
           className="object-cover object-center"
         />
       </div>
