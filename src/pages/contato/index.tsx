@@ -40,7 +40,7 @@ const Contact: NextPageWithLayout = () => {
         method="POST"
         className="flex flex-col gap-8"
       >
-        <label className="flex items-center border-2 border-gray-200 rounded-md focus-within:border-primary">
+        <label className=" focus-within:border-primary flex items-center border-2 border-gray-200 rounded-md">
           <User size={22} weight="light" className="mx-2 text-gray-600" />
           <input
             type="text"
@@ -51,7 +51,7 @@ const Contact: NextPageWithLayout = () => {
         </label>
 
         <div className="flex flex-col tablet:flex-row items-center gap-4">
-          <label className="flex items-center flex-1 border-2 w-full border-gray-200 rounded-md">
+          <label className=" focus-within:border-primary flex items-center flex-1 border-2 w-full border-gray-200 rounded-md">
             <IdentificationCard
               size={22}
               weight="light"
@@ -65,7 +65,7 @@ const Contact: NextPageWithLayout = () => {
             />
           </label>
 
-          <label className="w-full flex items-center flex-1 border-2 border-gray-200 rounded-md">
+          <label className=" focus-within:border-primary w-full flex items-center flex-1 border-2 border-gray-200 rounded-md">
             <At size={22} weight="light" className="mx-2 text-gray-600" />
             <input
               type="email"
@@ -75,7 +75,7 @@ const Contact: NextPageWithLayout = () => {
             />
           </label>
 
-          <label className="w-full flex items-center flex-1 border-2 border-gray-200 rounded-md">
+          <label className=" focus-within:border-primary w-full flex items-center flex-1 border-2 border-gray-200 rounded-md">
             <PhoneIncoming
               size={22}
               weight="light"
@@ -91,7 +91,7 @@ const Contact: NextPageWithLayout = () => {
         </div>
 
         <div className="flex flex-col tablet:flex-row items-center gap-4">
-          <label className="w-full flex items-center flex-1 border-2 border-gray-200 rounded-md">
+          <label className=" focus-within:border-primary w-full flex items-center flex-1 border-2 border-gray-200 rounded-md">
             <Buildings
               size={22}
               weight="light"
@@ -105,7 +105,7 @@ const Contact: NextPageWithLayout = () => {
             />
           </label>
 
-          <label className="w-full flex items-center flex-1 border-2 border-gray-200 rounded-md">
+          <label className=" focus-within:border-primary w-full flex items-center flex-1 border-2 border-gray-200 rounded-md">
             <House size={22} weight="light" className="mx-2 text-gray-600" />
             <input
               type="text"
@@ -117,7 +117,7 @@ const Contact: NextPageWithLayout = () => {
         </div>
 
         <div className="flex flex-col tablet:flex-row items-center gap-4">
-          <label className="w-full flex items-center flex-1 border-2 border-gray-200 rounded-md">
+          <label className=" focus-within:border-primary w-full flex items-center flex-1 border-2 border-gray-200 rounded-md">
             <Bus size={22} weight="light" className="mx-2 text-gray-600" />
             <input
               type="text"
@@ -126,7 +126,7 @@ const Contact: NextPageWithLayout = () => {
               className="w-full focus-within:border-primary py-2 rounded-md outline-none bg-transparent"
             />
           </label>
-          <label className="w-full flex items-center flex-1 border-2 border-gray-200 rounded-md">
+          <label className=" focus-within:border-primary w-full flex items-center flex-1 border-2 border-gray-200 rounded-md">
             <UsersFour
               size={22}
               weight="light"
@@ -140,7 +140,7 @@ const Contact: NextPageWithLayout = () => {
             />
           </label>
 
-          <label className="w-full flex items-center flex-1 border-2 border-gray-200 rounded-md">
+          <label className=" focus-within:border-primary w-full flex items-center flex-1 border-2 border-gray-200 rounded-md">
             <Buildings
               size={22}
               weight="light"
@@ -154,7 +154,7 @@ const Contact: NextPageWithLayout = () => {
             />
           </label>
 
-          <label className="w-full flex items-center flex-1 border-2 border-gray-200 rounded-md focus-within:border-primary">
+          <label className=" focus-within:border-primary w-full flex items-center flex-1 border-2 border-gray-200 rounded-md focus-within:border-primary">
             <Buildings
               size={22}
               weight="light"
@@ -168,7 +168,7 @@ const Contact: NextPageWithLayout = () => {
             />
           </label>
         </div>
-        <label className="w-full flex items-center flex-1 border-2 border-gray-200 rounded-md">
+        <label className=" focus-within:border-primary w-full flex items-center flex-1 border-2 border-gray-200 rounded-md">
           <ChatCircleDots
             size={22}
             weight="light"
