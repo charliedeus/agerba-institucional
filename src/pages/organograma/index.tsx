@@ -5,6 +5,9 @@ import { DefaultLayout } from '../../layouts/DefaultLayout'
 import { motion } from 'framer-motion'
 
 import organogramaImg from './../../assets/images/organograma.jpg'
+import { Disclosure } from '@headlessui/react'
+import { File, FileArrowDown } from 'phosphor-react'
+import Link from 'next/link'
 
 const OrganogramaPage: NextPageWithLayout = () => {
   return (
@@ -26,6 +29,7 @@ const OrganogramaPage: NextPageWithLayout = () => {
       >
         Organograma
       </motion.h1>
+
       <div className=" flex items-center justify-center flex-1 ">
         <Image
           src={organogramaImg}
@@ -33,6 +37,39 @@ const OrganogramaPage: NextPageWithLayout = () => {
           className="object-cover object-center"
         />
       </div>
+
+      <ul role="list" className="flex flex-col gap-2">
+        <li className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg transition-colors duration-100 ease-in-out border border-transparent hover:border-secondary box-border">
+          <Disclosure as="div" className="flex flex-col gap-8 w-full">
+            <div className="flex flex-col laptop:flex-row laptop:w-full gap-2">
+              <Disclosure.Button className="flex flex-col gap-4 flex-1 laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center text-left">
+                <span className="font-bold flex-1  laptop:border-primary flex items-center gap-2">
+                  <File size={16} weight="light" className="text-gray-500" />{' '}
+                  Organograma
+                </span>
+              </Disclosure.Button>
+              <div className="flex items-center justify-center w-full laptop:max-w-[8rem] p-2 laptop:border-l-2 laptop:border-primary laptop:pl-2 text">
+                <Link legacyBehavior href={organogramaImg.src}>
+                  <a
+                    download
+                    target="_blank"
+                    className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] border border-transparent hover:border-primary group"
+                  >
+                    <FileArrowDown
+                      size={24}
+                      weight="light"
+                      className="text-white group-hover:text-primary"
+                    />
+                    <span className="font-normal text-sm group-hover:text-primary">
+                      Baixar
+                    </span>
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </Disclosure>
+        </li>
+      </ul>
     </article>
   )
 }

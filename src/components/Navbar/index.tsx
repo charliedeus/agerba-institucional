@@ -195,10 +195,11 @@ export function Navbar() {
               </Menu.Item>
               <Menu.Item>
                 {({ active }) => (
-                  <NextLink href="/" className={`${active && 'text-gray-900'}`}>
-                    <span className="opacity-50 cursor-not-allowed">
-                      Polos Regionais (em breve)
-                    </span>
+                  <NextLink
+                    href="/polosba"
+                    className={`${active && 'text-gray-900'}`}
+                  >
+                    Polos Regionais
                   </NextLink>
                 )}
               </Menu.Item>
@@ -349,10 +350,11 @@ export function Navbar() {
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <NextLink href="/" className={`${active && 'text-gray-900'}`}>
-                  <span className="opacity-50 cursor-not-allowed">
-                    Direitos e Deveres (em breve)
-                  </span>
+                <NextLink
+                  href="/direitos-e-deveres"
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>Direitos e Deveres</span>
                 </NextLink>
               )}
             </Menu.Item>
