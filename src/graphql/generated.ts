@@ -4306,6 +4306,8 @@ export type GetNoticiasBySlugQuery = {
         } | null
         Files?: Array<{
           __typename?: 'ComponentArquivosArquivos'
+          id: string
+          name: string
           file: {
             __typename?: 'UploadFileEntityResponse'
             data?: {
@@ -6373,6 +6375,8 @@ export const GetNoticiasBySlugDocument = gql`
             }
           }
           Files {
+            id
+            name
             file {
               data {
                 attributes {

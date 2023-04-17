@@ -42,6 +42,7 @@ interface NewsSoloProps {
   cover: {
     data: {
       attributes: {
+        id: string
         name: string
         alternativeText: string
         url: string
@@ -278,7 +279,8 @@ export const getServerSideProps: GetServerSideProps<
 
   const files = data.noticias?.data[0].attributes?.Files?.map((item) => {
     return {
-      name: item?.file.data?.attributes?.name,
+      id: item?.id,
+      name: item?.name,
       alternativeText: item?.file.data?.attributes?.alternativeText,
       url: item?.file.data?.attributes?.url,
     }

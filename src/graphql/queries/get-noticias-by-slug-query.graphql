@@ -55,6 +55,8 @@ query GetNoticiasBySlug ($slug: String!) {
         }
         
         Files {
+          id
+          name
           file {
             data {
               attributes {
