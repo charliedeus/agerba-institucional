@@ -1,0 +1,20 @@
+query GetLinhas ($limit: Int!, $start: Int!) {
+  linhas (
+    pagination: { limit: $limit, start: $start }, 
+    publicationState: LIVE,
+    filters: {boativo: { eq: true }}
+  ) {
+    data {
+      id
+      attributes {
+        cdlinha
+        nulinha
+        deorigem
+        dedestino
+        dedescricao
+        nupermissionarios
+        boativo
+      }
+    }
+  }
+}

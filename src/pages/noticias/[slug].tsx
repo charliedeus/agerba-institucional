@@ -18,6 +18,8 @@ import genericImg from '../../assets/images/generic-image.png'
 import { initializeApollo } from '../../lib/apollo'
 import { Tag } from '../../components/Tag'
 import Image from 'next/image'
+import { FileArrowDown, FileDoc } from 'phosphor-react'
+import Link from 'next/link'
 
 interface NewsSectionsProps {
   id: string
@@ -53,6 +55,11 @@ interface NewsSoloProps {
   publishedAt: string
   updatedAt: string
   tags: string[]
+  files: {
+    name: string
+    alternativeText: string
+    url: string
+  }[]
 }
 
 interface NewsPageProps {
@@ -136,14 +143,12 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                 </small>
               </div>
             </>
-
             <div
               className="text-gray-900 text-left mt-[-1rem] py-4 px-8 laptop:mt-2 tablet:px-16 laptop:px-32 text-lg laptop:text-2xl leading-[1.75]"
               dangerouslySetInnerHTML={{
                 __html: props.newsSolo.content!,
               }}
             />
-
             {props.newsSolo.sections && (
               <div className="w-full">
                 {props.newsSolo.sections.map((section: NewsSectionsProps) => (
@@ -162,6 +167,48 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                   </div>
                 ))}
               </div>
+            )}
+
+            {props.newsSolo.files && (
+              <>
+                <h1 className="font-bold text-lg border-primary border-l-4 pl-4">
+                  Documentos Anexos
+                </h1>
+
+                <ul role="list" className="flex flex-col gap-2 mb-10">
+                  {props.newsSolo.files.map((item) => (
+                    <li
+                      key={item.url}
+                      className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg"
+                    >
+                      <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
+                        <span className="font-bold laptop:flex-1 flex items-center gap-2">
+                          <FileDoc
+                            size={16}
+                            weight="light"
+                            className="text-gray-500"
+                          />{' '}
+                          {item.name}
+                        </span>
+
+                        <Link legacyBehavior href={urlBuilder(item.url)}>
+                          <a
+                            className="laptop:w-1/12 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center justify-center gap-2"
+                            download
+                            target="_blank"
+                          >
+                            <FileArrowDown
+                              size={24}
+                              weight="light"
+                              className="text-gray-900"
+                            />{' '}
+                          </a>
+                        </Link>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </>
             )}
 
             {props.newsSolo.tags && (
@@ -229,6 +276,14 @@ export const getServerSideProps: GetServerSideProps<
     },
   )
 
+  const files = data.noticias?.data[0].attributes?.Files?.map((item) => {
+    return {
+      name: item?.file.data?.attributes?.name,
+      alternativeText: item?.file.data?.attributes?.alternativeText,
+      url: item?.file.data?.attributes?.url,
+    }
+  })
+
   const newsSolo: NewsSoloProps = Object.assign({
     id: data?.noticias?.data[0].id,
     cover: data?.noticias?.data[0].attributes?.cover,
@@ -239,6 +294,7 @@ export const getServerSideProps: GetServerSideProps<
     publishedAt: data?.noticias?.data[0].attributes?.publishedAt,
     updatedAt: data?.noticias?.data[0].attributes?.updatedAt,
     tags,
+    files,
   })
 
   return {

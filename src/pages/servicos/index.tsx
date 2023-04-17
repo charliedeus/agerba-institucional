@@ -1,23 +1,36 @@
-import Link from 'next/link'
+import { ReactElement } from 'react'
+import Head from 'next/head'
 
-export default function ServicosPage() {
+import type { NextPageWithLayout } from '../_app'
+import { DefaultLayout } from '../../layouts/DefaultLayout'
+import { GetServerSideProps } from 'next'
+import { getLinhas } from '../../hooks/useLinhas'
+
+const ServicesPage: NextPageWithLayout = () => {
   return (
     <>
-      <h1>Services Page</h1>
-      <div className="flex flex-wrap items-center justify-center gap-4 min-h-[250px] mt-[0.875rem]">
-        <div className="flex flex-col justify-between w-[200px] h-full min-h-[250px] p-4 shadow-[2px_2px_8px_rgba(0,0,0,0.25)] shadow-gray-400 laptop:hover:bg-[#3F3F95] laptop:hover:text-[#3F3F95] group">
-          <h3 className="text-base font-bold laptop:group-hover:text-white">
-            Título do serviço
-          </h3>
-          <Link legacyBehavior href="#">
-            <a className="px-4 py-2 bg-[#3F3F95] laptop:group-hover:bg-white bg-opacity-50 rounded-lg">
-              <span className="text-sm font-bold leading-tight">
-                Clique aqui
-              </span>
-            </a>
-          </Link>
-        </div>
-      </div>
+      <Head>
+        <title>Linhas | AGERBA</title>
+      </Head>
+      <article className="flex flex-col gap-6 min-h-[calc(100vh-70px)] desktop:max-w-[1280px] m-auto px-[14px] py-16 text-base leading-relaxed">
+        <h1 className="font-bold text-[2rem]">Linhas</h1>
+      </article>
     </>
   )
+}
+
+ServicesPage.getLayout = function getLayout(page: ReactElement) {
+  return <DefaultLayout>{page}</DefaultLayout>
+}
+
+export default ServicesPage
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { linhas } = await getLinhas(1, 9)
+
+  return {
+    props: {
+      linhas,
+    },
+  }
 }

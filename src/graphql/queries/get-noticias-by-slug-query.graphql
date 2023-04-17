@@ -53,6 +53,18 @@ query GetNoticiasBySlug ($slug: String!) {
             }
           }
         }
+        
+        Files {
+          file {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
       }
     }
   }

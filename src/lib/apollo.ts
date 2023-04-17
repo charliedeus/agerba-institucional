@@ -6,11 +6,14 @@ import {
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { useMemo } from 'react'
+// import crossFetch from 'cross-fetch'
 
 let apolloClient: ApolloClient<NormalizedCacheObject>
 
 const httpLink = createHttpLink({
   uri: `${process.env.NEXT_PUBLIC_STRAPI_API_BASEURL}/graphql`,
+  // credentials: 'same-origin',
+  // fetch: crossFetch,
 })
 
 const authLink = setContext(async (_, { headers }) => {
