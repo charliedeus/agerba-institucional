@@ -12,7 +12,5 @@ export default async function useHandler(
     query: GetLinhasDocument,
   })
 
-  console.log(data)
-
-  return res.status(200).end()
+  return res.json(data.linhas?.data)
 }

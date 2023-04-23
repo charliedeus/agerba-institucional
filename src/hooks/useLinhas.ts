@@ -21,7 +21,7 @@ interface GetLinhasProps {
   }[]
 }
 
-export async function getLinhas(page: number, pageSize: number) {
+export async function getLinhas(page: number, pageSize: number, query: string) {
   const apolloClient = initializeApollo()
 
   const { data } = await apolloClient.query<GetLinhasQuery>({
@@ -29,22 +29,32 @@ export async function getLinhas(page: number, pageSize: number) {
     variables: {
       limit: pageSize,
       start: (page - 1) * pageSize,
+      query,
     },
   })
 
+  const linhas = data.linhas?.data
+  const totalCountRegisters = data.linhas?.meta.pagination.total
+  const totalRegistersPerPage = data.linhas?.meta.pagination.pageSize
+  const totalPages = data.linhas?.meta.pagination.pageCount
+
   return {
-    linhas: data,
+    linhas,
+    totalCountRegisters,
+    totalRegistersPerPage,
+    totalPages,
   }
 }
 
 export function useLinhas(
   page: number,
   pageSize: number,
+  query: string,
   options?: UseQueryOptions,
 ) {
   return useQuery({
     queryKey: ['linhas', page],
-    queryFn: () => getLinhas(page, pageSize),
+    queryFn: () => getLinhas(page, pageSize, query),
     staleTime: 1000 * 5,
     ...options,
   }) as UseQueryResult<GetLinhasProps, unknown>

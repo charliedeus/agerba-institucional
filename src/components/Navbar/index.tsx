@@ -235,6 +235,16 @@ export function Navbar() {
             <Menu.Item>
               {({ active }) => (
                 <NextLink
+                  href="/servicos"
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>Serviços</span>
+                </NextLink>
+              )}
+            </Menu.Item>
+            <Menu.Item>
+              {({ active }) => (
+                <NextLink
                   href="/terminais"
                   className={`${active && 'text-gray-900'}`}
                 >

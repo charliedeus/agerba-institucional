@@ -4210,12 +4210,23 @@ export type GetLicitacoesFuturasQuery = {
 export type GetLinhasQueryVariables = Exact<{
   limit: Scalars['Int']
   start: Scalars['Int']
+  query?: InputMaybe<Scalars['String']>
 }>
 
 export type GetLinhasQuery = {
   __typename?: 'Query'
   linhas?: {
     __typename?: 'LinhaEntityResponseCollection'
+    meta: {
+      __typename?: 'ResponseCollectionMeta'
+      pagination: {
+        __typename?: 'Pagination'
+        total: number
+        pageCount: number
+        page: number
+        pageSize: number
+      }
+    }
     data: Array<{
       __typename?: 'LinhaEntity'
       id?: string | null
@@ -6253,12 +6264,20 @@ export type GetLicitacoesFuturasQueryResult = Apollo.QueryResult<
   GetLicitacoesFuturasQueryVariables
 >
 export const GetLinhasDocument = gql`
-  query GetLinhas($limit: Int!, $start: Int!) {
+  query GetLinhas($limit: Int!, $start: Int!, $query: String) {
     linhas(
       pagination: { limit: $limit, start: $start }
       publicationState: LIVE
-      filters: { boativo: { eq: true } }
+      filters: { boativo: { eq: true }, dedescricao: { containsi: $query } }
     ) {
+      meta {
+        pagination {
+          total
+          pageCount
+          page
+          pageSize
+        }
+      }
       data {
         id
         attributes {
@@ -6289,6 +6308,7 @@ export const GetLinhasDocument = gql`
  *   variables: {
  *      limit: // value for 'limit'
  *      start: // value for 'start'
+ *      query: // value for 'query'
  *   },
  * });
  */

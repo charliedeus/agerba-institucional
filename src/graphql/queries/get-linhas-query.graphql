@@ -1,9 +1,17 @@
-query GetLinhas ($limit: Int!, $start: Int!) {
+query GetLinhas ($limit: Int!, $start: Int!, $query: String) {
   linhas (
     pagination: { limit: $limit, start: $start }, 
     publicationState: LIVE,
-    filters: {boativo: { eq: true }}
+    filters: { boativo: { eq: true }, dedescricao: { containsi: $query } }
   ) {
+    meta {
+			pagination {
+				total
+				pageCount
+				page
+				pageSize
+			}
+		}
     data {
       id
       attributes {
