@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-use-before-define */
+/* eslint-disable no-unused-vars */
 import { gql } from '@apollo/client'
 import * as Apollo from '@apollo/client'
 export type Maybe<T> = T | null
@@ -30,8 +30,10 @@ export type Scalars = {
 
 export type Advertisement = {
   __typename?: 'Advertisement'
+  backgroundColor?: Maybe<Enum_Advertisement_Backgroundcolor>
   cover?: Maybe<UploadFileEntityResponse>
   createdAt?: Maybe<Scalars['DateTime']>
+  description: Scalars['String']
   endDate?: Maybe<Scalars['Date']>
   publishedAt?: Maybe<Scalars['DateTime']>
   startDate: Scalars['Date']
@@ -59,7 +61,9 @@ export type AdvertisementEntityResponseCollection = {
 
 export type AdvertisementFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<AdvertisementFiltersInput>>>
+  backgroundColor?: InputMaybe<StringFilterInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
+  description?: InputMaybe<StringFilterInput>
   endDate?: InputMaybe<DateFilterInput>
   id?: InputMaybe<IdFilterInput>
   not?: InputMaybe<AdvertisementFiltersInput>
@@ -72,7 +76,9 @@ export type AdvertisementFiltersInput = {
 }
 
 export type AdvertisementInput = {
+  backgroundColor?: InputMaybe<Enum_Advertisement_Backgroundcolor>
   cover?: InputMaybe<Scalars['ID']>
+  description?: InputMaybe<Scalars['String']>
   endDate?: InputMaybe<Scalars['Date']>
   publishedAt?: InputMaybe<Scalars['DateTime']>
   startDate?: InputMaybe<Scalars['Date']>
@@ -573,6 +579,11 @@ export type DepartmentInput = {
     Array<InputMaybe<ComponentPerguntasERespostasPAndRInput>>
   >
   type?: InputMaybe<Enum_Department_Type>
+}
+
+export enum Enum_Advertisement_Backgroundcolor {
+  Azul = 'Azul',
+  Vermelho = 'Vermelho',
 }
 
 export enum Enum_Componenteventevent_Title {
@@ -4445,6 +4456,40 @@ export type GetListaNoticiasQuery = {
   } | null
 }
 
+export type GetDestaquesQueryVariables = Exact<{ [key: string]: never }>
+
+export type GetDestaquesQuery = {
+  __typename?: 'Query'
+  advertisements?: {
+    __typename?: 'AdvertisementEntityResponseCollection'
+    data: Array<{
+      __typename?: 'AdvertisementEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Advertisement'
+        title: string
+        url?: string | null
+        startDate: any
+        endDate?: any | null
+        description: string
+        backgroundColor?: Enum_Advertisement_Backgroundcolor | null
+        cover?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            attributes?: {
+              __typename?: 'UploadFile'
+              name: string
+              alternativeText?: string | null
+              url: string
+            } | null
+          } | null
+        } | null
+      } | null
+    }>
+  } | null
+}
+
 export type GetStudentBySlugQueryVariables = Exact<{
   slug: Scalars['String']
 }>
@@ -6656,6 +6701,82 @@ export type GetListaNoticiasLazyQueryHookResult = ReturnType<
 export type GetListaNoticiasQueryResult = Apollo.QueryResult<
   GetListaNoticiasQuery,
   GetListaNoticiasQueryVariables
+>
+export const GetDestaquesDocument = gql`
+  query GetDestaques {
+    advertisements(publicationState: LIVE) {
+      data {
+        id
+        attributes {
+          cover {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+          title
+          url
+          startDate
+          endDate
+          description
+          backgroundColor
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useGetDestaquesQuery__
+ *
+ * To run a query within a React component, call `useGetDestaquesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetDestaquesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetDestaquesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetDestaquesQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetDestaquesQuery,
+    GetDestaquesQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetDestaquesQuery, GetDestaquesQueryVariables>(
+    GetDestaquesDocument,
+    options,
+  )
+}
+export function useGetDestaquesLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetDestaquesQuery,
+    GetDestaquesQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetDestaquesQuery, GetDestaquesQueryVariables>(
+    GetDestaquesDocument,
+    options,
+  )
+}
+export type GetDestaquesQueryHookResult = ReturnType<
+  typeof useGetDestaquesQuery
+>
+export type GetDestaquesLazyQueryHookResult = ReturnType<
+  typeof useGetDestaquesLazyQuery
+>
+export type GetDestaquesQueryResult = Apollo.QueryResult<
+  GetDestaquesQuery,
+  GetDestaquesQueryVariables
 >
 export const GetStudentBySlugDocument = gql`
   query GetStudentBySlug($slug: String!) {

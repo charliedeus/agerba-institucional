@@ -1,4 +1,5 @@
 import { ReactElement } from 'react'
+import { useKeenSlider } from 'keen-slider/react'
 
 import type { NextPageWithLayout } from './_app'
 
@@ -10,35 +11,71 @@ import { News } from '../components/Banners/News'
 import { NewsCols } from '../components/Banners/NewsCols'
 import { GetServerSideProps } from 'next'
 
+import 'keen-slider/keen-slider.min.css'
+
 import { initializeApollo } from '../lib/apollo'
 
 import Head from 'next/head'
 import {
   GetNoticiasDestaqueDocument,
   GetNoticiasDestaqueQuery,
+  useGetDestaquesQuery,
 } from '../graphql/generated'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import classNames from 'classnames'
 
 const Home: NextPageWithLayout = (props: any) => {
+  const [sliderRef] = useKeenSlider<HTMLDivElement>(
+    {
+      slides: {
+        spacing: 2,
+      },
+      loop: true,
+    },
+    [
+      (slider) => {
+        let timeout: ReturnType<typeof setTimeout>
+        let mouseOver = false
+        function clearNextTimeout() {
+          clearTimeout(timeout)
+        }
+        function nextTimeout() {
+          clearTimeout(timeout)
+          if (mouseOver) return
+          timeout = setTimeout(() => {
+            slider.next()
+          }, 5000)
+        }
+        slider.on('created', () => {
+          slider.container.addEventListener('mouseover', () => {
+            mouseOver = true
+            clearNextTimeout()
+          })
+          slider.container.addEventListener('mouseout', () => {
+            mouseOver = false
+            nextTimeout()
+          })
+          nextTimeout()
+        })
+        slider.on('dragStarted', clearNextTimeout)
+        slider.on('animationEnded', nextTimeout)
+        slider.on('updated', nextTimeout)
+      },
+    ],
+  )
+
+  const { data } = useGetDestaquesQuery()
+
   return (
     <>
       <Head>
         <title>Início | AGERBA</title>
       </Head>
 
-      <Link
-        href="http://sider.agerba.ba.gov.br/cnd"
-        target="_blank"
-        className="
-          w-full desktop:max-w-[1280px]
-          h-32
-          flex items-center justify-center
-          mt-4
-          m-auto 
-          transition-transform duration-75 ease-in-out relative"
-      >
+      {data?.advertisements && (
         <motion.div
+          ref={sliderRef}
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{
@@ -46,42 +83,42 @@ const Home: NextPageWithLayout = (props: any) => {
             delay: 0.5,
             ease: [0, 0.71, 0.2, 1.01],
           }}
-          className="
-            w-full 
-            h-full 
-            mx-8
-            flex flex-col items-center justify-center 
-            rounded-lg
-            bg-primary
-            object-cover object-center
-            overflow-hidden
-            relative
-          "
+          className="border keen-slider w-full max-w-[1200px] h-56 mt-4 mx-auto border-zinc-500 rounded-md overflow-hidden"
         >
-          <h1
-            className="
-            text-white
-              text-center
-              text-bold
-              text-lg
-              laptop:text-2xl
-            "
-          >
-            Atenção! Estamos com novo portal para emissão de Certidões de
-            Regularidade Financeira!
-          </h1>
-          <span
-            className="
-            text-white
-              text-center
-              text-base
-              laptop:text-lg
-            "
-          >
-            (Clique aqui)
-          </span>
+          {data.advertisements.data.map((item) => (
+            <Link
+              key={item.id}
+              href={item.attributes?.url || '#'}
+              target="_blank"
+              className={classNames(
+                `flex flex-col items-center justify-center h-32 max-h-fit gap-2 rounded-md keen-slider__slide`,
+                {
+                  'bg-primary': item.attributes?.backgroundColor === 'Azul',
+                  'bg-secondary':
+                    item.attributes?.backgroundColor === 'Vermelho',
+                },
+              )}
+            >
+              <h1 className="w-full text-lg text-center text-white text-bold laptop:text-2xl">
+                {item.attributes?.title}
+              </h1>
+
+              <div
+                className="text-white text-left mt-[-1rem] py-4 px-8 laptop:mt-2 tablet:px-16 laptop:px-32 text-lg laptop:text-xl leading-[1.75]"
+                dangerouslySetInnerHTML={{
+                  __html: item.attributes?.description!,
+                }}
+              />
+
+              {item.attributes?.url && (
+                <span className="text-base text-center text-white laptop:text-lg">
+                  (Clique aqui)
+                </span>
+              )}
+            </Link>
+          ))}
         </motion.div>
-      </Link>
+      )}
 
       <div className="hidden laptop:block">
         <NewsCols highlightNews={props.highlightNews} />

@@ -1,0 +1,25 @@
+query GetDestaques {
+  advertisements(publicationState: LIVE) {
+    data {
+      id
+      attributes {
+        cover {
+          data {
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+
+        title
+        url
+        startDate
+        endDate
+        description
+        backgroundColor
+      }
+    }
+  }
+}
