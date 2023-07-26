@@ -1,29 +1,29 @@
-import { ReactElement } from 'react'
 import { useKeenSlider } from 'keen-slider/react'
+import { ReactElement } from 'react'
 
 import type { NextPageWithLayout } from './_app'
 
 import { DefaultLayout } from '../layouts/DefaultLayout'
 
-import { Transparency } from '../components/Banners/Transparency'
-import { ServicesPanel } from '../components/ServicesPanel'
+import { GetServerSideProps } from 'next'
 import { News } from '../components/Banners/News'
 import { NewsCols } from '../components/Banners/NewsCols'
-import { GetServerSideProps } from 'next'
+import { Transparency } from '../components/Banners/Transparency'
+import { ServicesPanel } from '../components/ServicesPanel'
 
 import 'keen-slider/keen-slider.min.css'
 
 import { initializeApollo } from '../lib/apollo'
 
+import classNames from 'classnames'
+import { motion } from 'framer-motion'
 import Head from 'next/head'
+import Link from 'next/link'
 import {
   GetNoticiasDestaqueDocument,
   GetNoticiasDestaqueQuery,
   useGetDestaquesQuery,
 } from '../graphql/generated'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import classNames from 'classnames'
 
 const Home: NextPageWithLayout = (props: any) => {
   const [sliderRef] = useKeenSlider<HTMLDivElement>(
@@ -73,7 +73,7 @@ const Home: NextPageWithLayout = (props: any) => {
         <title>Início | AGERBA</title>
       </Head>
 
-      {data?.advertisements && (
+      {data?.advertisements && data.advertisements.data.length > 0 && (
         <motion.div
           ref={sliderRef}
           initial={{ opacity: 0, scale: 0.5 }}

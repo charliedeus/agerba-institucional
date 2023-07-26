@@ -1,25 +1,25 @@
-import { ReactElement } from 'react'
-import { GetServerSideProps } from 'next'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import 'keen-slider/keen-slider.min.css'
+import { GetServerSideProps } from 'next'
+import { ReactElement } from 'react'
 
-import { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
+import { NextPageWithLayout } from '../_app'
 
 import {
   GetNoticiasBySlugDocument,
   GetNoticiasBySlugQuery,
 } from '../../graphql/generated'
 
-import { urlBuilder } from '../../lib/urlBuilder'
-import { ListNews } from '../../components/listNews'
-import genericImg from '../../assets/images/generic-image.png'
-import { initializeApollo } from '../../lib/apollo'
-import { Tag } from '../../components/Tag'
 import Image from 'next/image'
-import { FileArrowDown, FileDoc } from 'phosphor-react'
 import Link from 'next/link'
+import { FileArrowDown, FileDoc } from 'phosphor-react'
+import genericImg from '../../assets/images/generic-image.png'
+import { Tag } from '../../components/Tag'
+import { ListNews } from '../../components/listNews'
+import { initializeApollo } from '../../lib/apollo'
+import { urlBuilder } from '../../lib/urlBuilder'
 
 interface NewsSectionsProps {
   id: string
@@ -108,11 +108,11 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
 
           <div className="w-full h-[2px] rounded-full bg-gray-100" />
 
-          <main className="w-full flex flex-col gap-4">
+          <main className="flex flex-col w-full gap-4">
             <>
-              <div className="w-full h-full relative flex flex-col gap-2 overflow-hidden">
+              <div className="relative flex flex-col w-full h-full gap-2 overflow-hidden">
                 {props.newsSolo.cover.data !== null ? (
-                  <picture className="w-full h-full flex">
+                  <picture className="flex w-full h-full">
                     <Image
                       src={
                         urlBuilder(props.newsSolo.cover.data.attributes.url) ||
@@ -129,7 +129,7 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                     />
                   </picture>
                 ) : (
-                  <picture className="w-full h-full flex">
+                  <picture className="flex w-full h-full">
                     <Image
                       src={genericImg.src}
                       alt=""
@@ -139,7 +139,7 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                     />
                   </picture>
                 )}
-                <small className="text-sm mx-auto">
+                <small className="mx-auto text-sm">
                   {props.newsSolo.cover.data?.attributes.alternativeText}
                 </small>
               </div>
@@ -155,7 +155,7 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                 {props.newsSolo.sections.map((section: NewsSectionsProps) => (
                   <div
                     key={section.id}
-                    className="w-full flex flex-col gap-4 px-8 tablet:px-16 laptop:px-32 mt-8"
+                    className="flex flex-col w-full gap-4 px-8 mt-8 tablet:px-16 laptop:px-32"
                   >
                     <h1 className="text-3xl font-semibold">{section.title}</h1>
 
@@ -170,9 +170,9 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
               </div>
             )}
 
-            {props.newsSolo.files && (
+            {props.newsSolo.files && props.newsSolo.files.length > 0 && (
               <>
-                <h1 className="font-bold text-lg border-primary border-l-4 pl-4">
+                <h1 className="pl-4 text-lg font-bold border-l-4 border-primary">
                   Documentos Anexos
                 </h1>
 
@@ -180,10 +180,10 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
                   {props.newsSolo.files.map((item) => (
                     <li
                       key={item.url}
-                      className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg"
+                      className="flex flex-col gap-2 px-4 py-6 bg-gray-200 rounded-lg laptop:flex-row"
                     >
                       <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
-                        <span className="font-bold laptop:flex-1 flex items-center gap-2">
+                        <span className="flex items-center gap-2 font-bold laptop:flex-1">
                           <FileDoc
                             size={16}
                             weight="light"
@@ -194,7 +194,7 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
 
                         <Link legacyBehavior href={urlBuilder(item.url)}>
                           <a
-                            className="laptop:w-1/12 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center justify-center gap-2"
+                            className="flex items-center justify-center gap-2 laptop:w-1/12 laptop:border-l-2 laptop:border-primary laptop:pl-2"
                             download
                             target="_blank"
                           >
@@ -222,7 +222,7 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
           </main>
         </div>
 
-        <div className="w-full h-1 bg-primary rounded-full" />
+        <div className="w-full h-1 rounded-full bg-primary" />
 
         <ListNews limit={5} start={0} />
       </article>

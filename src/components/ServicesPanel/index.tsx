@@ -37,10 +37,10 @@ const citizenServicesGroup = [
   },
   {
     id: uuidv4(),
-    title: 'Contratos e Aquisições - COVID 19',
-    url: '/#',
+    title: 'Seleção REDA 2023',
+    url: '/noticias/edital-selecao-reda-2023/',
     imageUrl:
-      'https://images.unsplash.com/photo-1603796846097-bee99e4a601f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=60',
+      'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=60',
     services: [],
   },
 ]
@@ -83,7 +83,7 @@ const companiesServicesGroup = [
     title: 'Terminais',
     url: '/terminais',
     imageUrl:
-      'https://images.unsplash.com/photo-1635810409702-223bb934b781?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=60',
+      'https://images.unsplash.com/photo-1501503125584-bb1da5f56d48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=60',
     services: [],
   },
 ]
@@ -91,7 +91,7 @@ const companiesServicesGroup = [
 export function ServicesPanel() {
   return (
     <section className="w-full max-w-[1280px] h-full p-[14px] laptop:py-16 m-auto">
-      <h3 className="font-bold text-base laptop:text-2xl laptop:pb-8 uppercase">
+      <h3 className="text-base font-bold uppercase laptop:text-2xl laptop:pb-8">
         SERVIÇOS / CIDADÃO
       </h3>
 
@@ -103,7 +103,7 @@ export function ServicesPanel() {
           <Link legacyBehavior key={service.id} href={service.url}>
             <a className="shadow-xl">
               <div className="w-[225px] min-w-[225px] h-full flex flex-col justify-end rounded-lg snap-always snap-center overflow-hidden shadow-md group relative">
-                <picture className="w-full h-full flex">
+                <picture className="flex w-full h-full">
                   <motion.img
                     src={service.imageUrl}
                     alt={service.title}
@@ -121,8 +121,8 @@ export function ServicesPanel() {
                   />
                 </picture>
 
-                <div className="w-full h-full p-6 absolute flex items-end z-10">
-                  <span className="w-full text-sm text-white font-bold leading-tight bg-primary p-4 rounded-lg">
+                <div className="absolute z-10 flex items-end w-full h-full p-6">
+                  <span className="w-full p-4 text-sm font-bold leading-tight text-white rounded-lg bg-primary">
                     {service.title}
                   </span>
                 </div>
@@ -132,7 +132,7 @@ export function ServicesPanel() {
         ))}
       </div>
 
-      <h3 className="font-bold text-base laptop:text-2xl laptop:py-8 uppercase">
+      <h3 className="text-base font-bold uppercase laptop:text-2xl laptop:py-8">
         SERVIÇOS / TRANSPORTE
       </h3>
 
@@ -141,7 +141,7 @@ export function ServicesPanel() {
           <Link legacyBehavior key={service.id} href={service.url}>
             <a className="shadow-xl">
               <div className="w-[225px] min-w-[225px] h-full flex flex-col justify-end rounded-lg snap-always snap-center overflow-hidden shadow-md group relative">
-                <picture className="w-full h-full flex">
+                <picture className="flex w-full h-full">
                   <motion.img
                     src={service.imageUrl}
                     alt={service.title}
@@ -159,8 +159,8 @@ export function ServicesPanel() {
                   />
                 </picture>
 
-                <div className="w-full h-full p-6 absolute flex items-end">
-                  <span className="w-full text-sm text-white font-bold leading-tight bg-primary p-4 rounded-lg">
+                <div className="absolute flex items-end w-full h-full p-6">
+                  <span className="w-full p-4 text-sm font-bold leading-tight text-white rounded-lg bg-primary">
                     {service.title}
                   </span>
                 </div>
