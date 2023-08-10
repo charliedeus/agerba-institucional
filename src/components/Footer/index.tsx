@@ -1,6 +1,6 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { NextLink } from '../NextLink'
-import Image from 'next/image'
 
 export function Footer() {
   return (
@@ -57,13 +57,13 @@ export function Footer() {
                 <span className="text-white">Ouvidoria</span>
               </NextLink>
             </li>
-            <li>
+            {/* <li>
               <NextLink href="#" className="text-gray-400">
                 <span className="opacity-75 cursor-not-allowed">
                   Contratos e Aquisições - COVID 19 (em breve)
                 </span>
               </NextLink>
-            </li>
+            </li> */}
             <li>
               <Link href="http://agerba.stipweb.com.br">
                 <span className="text-white">Portal de Serviços STIP</span>
@@ -73,6 +73,11 @@ export function Footer() {
               <NextLink href="/licitacoes">
                 <span className="text-white">Licitações</span>
               </NextLink>
+            </li>
+            <li>
+              <Link href="http://sider.agerba.ba.gov.br/cnd" target="_blank">
+                <span className="text-white">Portal CND</span>
+              </Link>
             </li>
           </ul>
         </div>

@@ -1,20 +1,20 @@
-import { ReactElement, useState } from 'react'
+import 'keen-slider/keen-slider.min.css'
 import { GetServerSideProps } from 'next'
 import Image from 'next/image'
-import 'keen-slider/keen-slider.min.css'
+import { ReactElement, useState } from 'react'
 
-import { NextPageWithLayout } from '../_app'
-import { DefaultLayout } from '../../layouts/DefaultLayout'
 import { getNews, useNews } from '../../hooks/useNews'
+import { DefaultLayout } from '../../layouts/DefaultLayout'
+import { NextPageWithLayout } from '../_app'
 
 import Link from 'next/link'
-import { queryClient } from '../../services/queryClient'
 import api from '../../services/api'
+import { queryClient } from '../../services/queryClient'
 
 import genericImg from '../../assets/images/generic-image.png'
 
-import { Pagination } from '../../components/Pagination'
 import { Loader } from '../../components/Loader'
+import { Pagination } from '../../components/Pagination'
 
 const NewsPage: NextPageWithLayout = () => {
   const [page, setPage] = useState(1)
@@ -46,7 +46,7 @@ const NewsPage: NextPageWithLayout = () => {
               Notícias da AGERBA:
             </h1>
 
-            <ul className="flex flex-wrap flex-col tablet:flex-row gap-4">
+            <ul className="flex flex-col flex-wrap gap-4 tablet:flex-row">
               {data?.noticias?.map((item) => (
                 <Link
                   key={item.id}
@@ -55,18 +55,20 @@ const NewsPage: NextPageWithLayout = () => {
                   className="w-full tablet:max-w-[24rem] h-96 border rounded-lg overflow-hidden shadow-md m-auto"
                 >
                   <li className="w-full">
-                    <div className="w-full h-56 max-h-56 bg-primary/60 overflow-hidden">
+                    <div className="w-full h-56 overflow-hidden max-h-56 bg-primary/60">
                       <picture>
                         <Image
                           src={item.coverUrl || genericImg.src}
                           alt=""
                           width={1000}
                           height={600}
-                          className="w-full h-full object-cover object-center"
+                          className="object-cover object-center w-full h-full"
                         />
                       </picture>
                     </div>
-                    <h1 className="text-xl font-bold leading-relaxed text-primary hover:text-secondary transition-all duration-150 ease-in-out p-2">
+                    <h1
+                      className={`text-xl font-bold leading-relaxed text-primary hover:text-secondary transition-all duration-150 ease-in-out p-2`}
+                    >
                       {item.title}
                     </h1>
                   </li>

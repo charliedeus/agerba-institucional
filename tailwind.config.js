@@ -11,6 +11,9 @@ module.exports = {
       laptop: '1024px',
       desktop: '1280px',
     },
+    clipPath: {
+      mypoligon: 'polygon(0% 0%, 75% 0%, 80% 50%, 75% 100%, 0% 100%)',
+    },
     extend: {
       backgroundImage: {
         'banner-section': "url('/background-img.jpg')",
@@ -54,5 +57,6 @@ module.exports = {
   plugins: [
     require('@tailwindcss/line-clamp'),
     require('@savvywombat/tailwindcss-grid-areas'),
+    require('tailwind-clip-path'),
   ],
 }

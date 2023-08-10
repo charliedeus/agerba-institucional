@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import Image from 'next/image'
 import classNames from 'classnames'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
 
 import 'keen-slider/keen-slider.min.css'
 import { urlBuilder } from '../../lib/urlBuilder'
@@ -40,7 +40,7 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                 },
               )}
             >
-              {highlightNews.map((highlightNew) => (
+              {highlightNews.map((highlightNew, index) => (
                 <Link
                   legacyBehavior
                   key={highlightNew.id}
@@ -66,7 +66,7 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                           },
                         },
                       }}
-                      className="w-full h-full flex"
+                      className="flex w-full h-full"
                     >
                       {highlightNew?.cover.url !== null ? (
                         <picture className="w-full">
@@ -79,7 +79,7 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                             }
                             width={1000}
                             height={600}
-                            className="w-full h-full object-cover object-center"
+                            className="object-cover object-center w-full h-full"
                           />
                         </picture>
                       ) : (
@@ -89,7 +89,7 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                             alt={''}
                             width={1000}
                             height={600}
-                            className="w-full h-full object-cover object-center"
+                            className="object-cover object-center w-full h-full"
                           />
                         </picture>
                       )}
@@ -105,8 +105,10 @@ export function NewsCols({ highlightNews }: highlightNewsProps) {
                     >
                       <h1
                         className={classNames(
-                          `text-4xl laptop:text-2xl text-${highlightNew.colorTitle}`,
-                          {},
+                          `text-4xl text-${highlightNew.colorTitle}`,
+                          {
+                            'laptop:text-2xl': index !== 0,
+                          },
                         )}
                         style={{ textShadow: '0 1px 3px rgb(0, 0, 0, 0.8)' }}
                       >

@@ -1,148 +1,66 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowCircleLeft, ArrowCircleRight, Circle, X } from 'phosphor-react'
-import { wrap } from 'popmotion'
-import { urlBuilder } from '../../lib/urlBuilder'
-import classNames from 'classnames'
-
-const variants = {
-  enter: (direction: number) => {
-    return {
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-    }
-  },
-  center: {
-    zIndex: 1,
-    x: 0,
-    opacity: 1,
-  },
-  exit: (direction: number) => {
-    return {
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-    }
-  },
-}
-
-const swipeConfidenceThreshold = 10000
-const swipePower = (offset: number, velocity: number) => {
-  return Math.abs(offset) * velocity
-}
-
-interface NoticiaProps {
-  id?: string
-  title?: string
-  imageUrl?: string
-}
+import { Dialog } from '@headlessui/react'
 
 interface ModalProps {
-  noticias: NoticiaProps[]
+  isOpen: boolean
+  setIsOpen: (isOpen: boolean) => void
 }
 
-export function Modal({ noticias }: ModalProps) {
-  const [[page, direction], setPage] = useState([0, 0])
-
-  const newIndex = wrap(0, noticias.length, page)
-
-  const paginate = (newDirection: number) => {
-    setPage([page + newDirection, newDirection])
-  }
-
-  const handleToggleModal = () => {
-    document.querySelector('#mainModal')?.classList.add('hidden')
-    document.body.classList.remove('fixed')
-  }
-
+export function Modal({ isOpen, setIsOpen }: ModalProps) {
   return (
-    <section
-      id="mainModal"
-      className="absolute w-full min-w-full h-full min-h-full left-0 top-0 bg-black/70 backdrop-blur-[3px] flex items-center justify-center p-[14px]"
+    <Dialog
+      open={isOpen}
+      onClose={() => setIsOpen(false)}
+      className="relative z-50"
     >
-      <AnimatePresence initial={false} custom={direction}>
-        <div className="relative w-full h-full laptop:h-[70%] laptop:w-[70%] laptop:min-h-[70%] laptop:min-w-[70%] bg-white rounded-lg overflow-hidden p-6 shadow-black/[.04] flex">
-          <div className="absolute top-0 left-0 w-full h-full flex justify-between z-10">
-            <button
-              type="button"
-              className={classNames(
-                'w-fit h-full z-10 flex items-center px-2',
-                {
-                  hidden: noticias.length <= 1,
-                },
-              )}
-              onClick={() => paginate(-1)}
-            >
-              <ArrowCircleLeft size={32} weight="fill" color="white" />
-            </button>
-            <button
-              type="button"
-              className="absolute top-0 right-0 p-4 text-white z-20"
-              onClick={handleToggleModal}
-            >
-              <X size={24} />
-            </button>
-            <button
-              type="button"
-              className={classNames(
-                'w-fit h-full z-10 flex items-center px-2',
-                {
-                  hidden: noticias.length <= 1,
-                },
-              )}
-              onClick={() => paginate(1)}
-            >
-              <ArrowCircleRight size={32} weight="fill" color="white" />
-            </button>
+      <div className="fixed inset-0 flex items-center justify-center p-4 overflow-x-hidden outline-none laptop:p-0 bg-neutral-800/70 focus:outline-none">
+        <Dialog.Panel
+          as="div"
+          className="relative flex flex-col justify-between w-full h-full max-w-5xl duration-300 rounded-md laptop:h-fit laptop:aspect-video translate bg-blend-exclusion bg-gradient-to-br from-secondary to-primary"
+        >
+          <div className="absolute inset-0 flex flex-col gap-8 p-8 leading-relaxed">
+            <Dialog.Title className="absolute w-full p-4 text-lg font-bold text-white rounded-md laptop:text-xl laptop:w-1/2 -left-2 bg-primary clip-path-mypoligon">
+              COMUNICADO IMPORTANTE!!!
+            </Dialog.Title>
+
+            <div className="flex flex-col flex-1 gap-10 p-8 mt-20 leading-relaxed bg-white rounded-lg laptop:p-4 laptop:gap-4 laptop:text-xl text-zinc-900 laptop:mt-20">
+              <Dialog.Description className="text-2xl font-semibold">
+                Prezados,
+              </Dialog.Description>
+
+              <Dialog.Description className="flex flex-col gap-2 font-medium">
+                <p>
+                  Em decorrência da manutenção necessária junto ao datacenter da
+                  PRODEB, comunicamos a indisponibilidade de soluções utilizadas
+                  no atendimento aos públicos interno e externo, sendo:
+                </p>
+
+                <p className="mt-4 font-semibold">Das soluções afetadas:</p>
+
+                <ul className="list-disc list-inside">
+                  <li>Site Institucional da Agência;</li>
+                  <li>SIDER, e:</li>
+                  <li>STIP.</li>
+                </ul>
+
+                <p className="mt-4 font-semibold">
+                  Período previsto de indisponibilidade:
+                </p>
+                <p>
+                  Entre os dias <strong>14/08/2023, à partir das 18h</strong> e
+                  dia <strong>15/08/2023 às 18h</strong>.
+                </p>
+              </Dialog.Description>
+
+              <button
+                onClick={() => setIsOpen(false)}
+                className="px-4 py-2 mt-auto text-white rounded-md laptop:ml-auto bg-primary"
+              >
+                Fechar
+              </button>
+            </div>
           </div>
-          <picture className="absolute top-0 left-0 w-full h-full">
-            <motion.img
-              className="flex w-full h-full object-cover object-center"
-              key={page}
-              src={urlBuilder(noticias[newIndex]?.imageUrl)}
-              custom={direction}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: 'spring', stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 },
-              }}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={1}
-              onDragEnd={(e, { offset, velocity }) => {
-                const swipe = swipePower(offset.x, velocity.x)
-
-                if (swipe < -swipeConfidenceThreshold) {
-                  paginate(1)
-                } else if (swipe > swipeConfidenceThreshold) {
-                  paginate(-1)
-                }
-              }}
-            />
-          </picture>
-          <div className="absolute w-full h-full top-0 left-0 bg-black/50" />
-
-          <header className="absolute top-0 left-0 w-full h-full flex flex-col p-6 laptop:p-20 laptop:pb-10 justify-end gap-6 text-white">
-            <h1 className="laptop:text-lg">Notícias Urgentes!!!</h1>
-            <p className="font-bold text-lg uppercase laptop:text-3xl laptop:leading-relaxed laptop:w-2/3">
-              {noticias[newIndex]?.title}
-            </p>
-
-            <footer className="w-full flex items-center justify-center gap-2">
-              {noticias.map((item, index) =>
-                index === newIndex ? (
-                  <Circle key={index} size={16} weight="fill" />
-                ) : (
-                  <Circle key={index} size={12} />
-                ),
-              )}
-            </footer>
-          </header>
-        </div>
-      </AnimatePresence>
-    </section>
+        </Dialog.Panel>
+      </div>
+    </Dialog>
   )
 }

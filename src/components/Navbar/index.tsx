@@ -1,3 +1,4 @@
+import { Menu, Transition } from '@headlessui/react'
 import Link from 'next/link'
 import {
   Bank,
@@ -8,7 +9,6 @@ import {
   Tag,
   X,
 } from 'phosphor-react'
-import { Menu, Transition } from '@headlessui/react'
 
 import { NextLink } from '../NextLink'
 
@@ -95,7 +95,7 @@ export function Navbar() {
             </a>
           </div>
 
-          <ul className="flex flex-col flex-1 h-full items-center justify-center text-lg">
+          <ul className="flex flex-col items-center justify-center flex-1 h-full text-lg">
             <li>
               <Link legacyBehavior href="/noticias">
                 <a onClick={handleCloseMenu}>Notícias</a>
@@ -149,7 +149,7 @@ export function Navbar() {
         </Link>
 
         <Menu as="div" className="relative h-full">
-          <Menu.Button className="h-full flex items-center gap-2">
+          <Menu.Button className="flex items-center h-full gap-2">
             <Bank size={20} weight="light" />
             <span className="font-normal">Institucional</span>
           </Menu.Button>
@@ -161,7 +161,7 @@ export function Navbar() {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Menu.Items className="absolute flex flex-col justify-around gap-2 w-max mt-4 py-2 px-6 border border-gray-400 rounded bg-white">
+            <Menu.Items className="absolute flex flex-col justify-around gap-2 px-6 py-2 mt-4 bg-white border border-gray-400 rounded w-max">
               <Menu.Item>
                 {({ active }) => (
                   <NextLink
@@ -212,8 +212,8 @@ export function Navbar() {
             <Tag size={20} weight="light" />
             <span className="font-normal">Serviços Regulados</span>
           </Menu.Button>
-          <Menu.Items className="absolute flex flex-col justify-around gap-2 w-max mt-4 py-2 px-6 border border-gray-400 rounded bg-white">
-            <Menu.Item>
+          <Menu.Items className="absolute flex flex-col justify-around gap-2 px-6 py-2 mt-4 bg-white border border-gray-400 rounded w-max">
+            {/* <Menu.Item>
               {({ active }) => (
                 <NextLink href="/" className={`${active && 'text-gray-900'}`}>
                   <span className="opacity-50 cursor-not-allowed">
@@ -221,7 +221,7 @@ export function Navbar() {
                   </span>
                 </NextLink>
               )}
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item>
               {({ active }) => (
                 <NextLink
@@ -291,7 +291,7 @@ export function Navbar() {
             <span className="font-normal">Informações Gerais</span>
           </Menu.Button>
 
-          <Menu.Items className="absolute flex flex-col justify-around gap-2 w-max mt-4 py-2 px-6 border border-gray-400 rounded bg-white">
+          <Menu.Items className="absolute flex flex-col justify-around gap-2 px-6 py-2 mt-4 bg-white border border-gray-400 rounded w-max">
             <Menu.Item>
               {({ active }) => (
                 <NextLink
@@ -312,7 +312,7 @@ export function Navbar() {
                 </NextLink>
               )}
             </Menu.Item>
-            <Menu.Item>
+            {/* <Menu.Item>
               {({ active }) => (
                 <NextLink href="/" className={`${active && 'text-gray-900'}`}>
                   <span className="opacity-50 cursor-not-allowed">
@@ -320,8 +320,8 @@ export function Navbar() {
                   </span>
                 </NextLink>
               )}
-            </Menu.Item>
-            <Menu.Item>
+            </Menu.Item> */}
+            {/* <Menu.Item>
               {({ active }) => (
                 <NextLink href="/" className={`${active && 'text-gray-900'}`}>
                   <span className="opacity-50 cursor-not-allowed">
@@ -329,8 +329,8 @@ export function Navbar() {
                   </span>
                 </NextLink>
               )}
-            </Menu.Item>
-            <Menu.Item>
+            </Menu.Item> */}
+            {/* <Menu.Item>
               {({ active }) => (
                 <NextLink href="/" className={`${active && 'text-gray-900'}`}>
                   <span className="opacity-50 cursor-not-allowed">
@@ -338,8 +338,8 @@ export function Navbar() {
                   </span>
                 </NextLink>
               )}
-            </Menu.Item>
-            <Menu.Item>
+            </Menu.Item> */}
+            {/* <Menu.Item>
               {({ active }) => (
                 <NextLink href="/" className={`${active && 'text-gray-900'}`}>
                   <span className="opacity-50 cursor-not-allowed">
@@ -347,7 +347,7 @@ export function Navbar() {
                   </span>
                 </NextLink>
               )}
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item>
               {({ active }) => (
                 <NextLink
@@ -423,7 +423,7 @@ export function Navbar() {
             <LockOpen size={20} weight="light" />
             <span className="font-normal">Transparência</span>
           </Menu.Button>
-          <Menu.Items className="absolute flex flex-col justify-around gap-2 w-max mt-4 py-2 px-6 border border-gray-400 rounded bg-white">
+          <Menu.Items className="absolute flex flex-col justify-around gap-2 px-6 py-2 mt-4 bg-white border border-gray-400 rounded w-max">
             <Menu.Item>
               {({ active }) => (
                 <NextLink
@@ -476,13 +476,24 @@ export function Navbar() {
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
+                <NextLink
+                  href="http://sider.agerba.ba.gov.br/cnd"
+                  target="_blank"
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>Portal CND</span>
+                </NextLink>
+              )}
+            </Menu.Item>
+            {/* <Menu.Item>
+              {({ active }) => (
                 <NextLink href="/" className={`${active && 'text-gray-900'}`}>
                   <span className="opacity-50 cursor-not-allowed">
                     Transparências COVID (em breve)
                   </span>
                 </NextLink>
               )}
-            </Menu.Item>
+            </Menu.Item> */}
             {/* <Menu.Item>
               {({ active }) => (
                 <NextLink
@@ -499,7 +510,7 @@ export function Navbar() {
 
         <Link legacyBehavior href="http://www.acessoainformacao.ba.gov.br">
           <a
-            className="flex items-center rounded-lg bg-white gap-2"
+            className="flex items-center gap-2 bg-white rounded-lg"
             target="_blank"
           >
             <picture>
