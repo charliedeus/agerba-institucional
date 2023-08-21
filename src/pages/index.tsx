@@ -1,5 +1,5 @@
 import { useKeenSlider } from 'keen-slider/react'
-import { ReactElement, useState } from 'react'
+import { ReactElement } from 'react'
 
 import type { NextPageWithLayout } from './_app'
 
@@ -19,7 +19,7 @@ import classNames from 'classnames'
 import { motion } from 'framer-motion'
 import Head from 'next/head'
 import Link from 'next/link'
-import { Modal } from '../components/Modal'
+// import { Modal } from '../components/Modal'
 import {
   GetNoticiasDestaqueDocument,
   GetNoticiasDestaqueQuery,
@@ -27,7 +27,7 @@ import {
 } from '../graphql/generated'
 
 const Home: NextPageWithLayout = (props: any) => {
-  const [modalIsOpen, setModalIsOpen] = useState(true)
+  // const [modalIsOpen, setModalIsOpen] = useState(true)
 
   const [sliderRef] = useKeenSlider<HTMLDivElement>(
     {
@@ -134,7 +134,7 @@ const Home: NextPageWithLayout = (props: any) => {
       <Transparency />
       <ServicesPanel />
 
-      <Modal isOpen={modalIsOpen} setIsOpen={setModalIsOpen} />
+      {/* <Modal isOpen={modalIsOpen} setIsOpen={setModalIsOpen} /> */}
     </>
   )
 }
