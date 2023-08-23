@@ -1,15 +1,15 @@
 /* eslint-disable prettier/prettier */
-import { ReactElement } from 'react'
 import Link from 'next/link'
-import { File, Bookmark, CalendarBlank } from 'phosphor-react'
+import { Bookmark, CalendarBlank, File } from 'phosphor-react'
+import { ReactElement } from 'react'
 
-import type { NextPageWithLayout } from '../_app'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
+import type { NextPageWithLayout } from '../_app'
 
-import { GetConsultasPublicasDocument, GetConsultasPublicasQuery } from '../../graphql/generated'
-import { motion } from 'framer-motion'
 import { Disclosure, Transition } from '@headlessui/react'
+import { motion } from 'framer-motion'
 import { GetServerSideProps } from 'next'
+import { GetConsultasPublicasDocument, GetConsultasPublicasQuery } from '../../graphql/generated'
 import { initializeApollo } from '../../lib/apollo'
 
 interface ConsultaPublicaProps {
@@ -54,12 +54,12 @@ const PublicConsultationsPage: NextPageWithLayout<ConsultasPublicasPageProps> = 
           {publicConsultations?.map((item) => (
             <li
               key={item.id}
-              className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg transition-colors duration-100 ease-in-out border hover:border-secondary"
+              className="flex flex-col gap-2 px-4 py-6 transition-colors duration-100 ease-in-out bg-gray-200 border rounded-lg laptop:flex-row hover:border-secondary"
             >
-              <Disclosure as="div" className="flex flex-col gap-8 w-full">
-                <div className="flex flex-col laptop:flex-row laptop:w-full gap-2">
-                  <Disclosure.Button className="flex flex-col gap-4 flex-1 laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center text-left">
-                    <span className="font-bold flex-1 flex items-center gap-2">
+              <Disclosure as="div" className="flex flex-col w-full gap-8">
+                <div className="flex flex-col gap-2 laptop:flex-row laptop:w-full">
+                  <Disclosure.Button className="flex flex-col flex-1 gap-4 text-left laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
+                    <span className="flex items-center flex-1 gap-2 font-bold">
                       <File
                         size={16}
                         weight="light"
@@ -67,17 +67,17 @@ const PublicConsultationsPage: NextPageWithLayout<ConsultasPublicasPageProps> = 
                       />{' '}
                       {item.formattedTitle}
                     </span>
-                    <span className="flex laptop:border-l-2 laptop:border-primary laptop:pl-2 items-center gap-2">
+                    <span className="flex items-center gap-2 laptop:border-l-2 laptop:border-primary laptop:pl-2">
                       <Bookmark
                         size={16}
                         weight="light"
                         className="text-gray-500"
                       />
-                      <span className="font-normal text-xs text-gray-500">
+                      <span className="text-xs font-normal text-gray-500">
                         Consulta Pública
                       </span>
                     </span>
-                    <span className="laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center gap-2">
+                    <span className="flex items-center gap-2 laptop:border-l-2 laptop:border-primary laptop:pl-2">
                       <CalendarBlank
                         size={16}
                         weight="light"
@@ -100,7 +100,7 @@ const PublicConsultationsPage: NextPageWithLayout<ConsultasPublicasPageProps> = 
                       <a
                         className="flex gap-2 items-center justify-center bg-primary hover:bg-white text-white hover:text-primary px-4 py-2 rounded-[4px] hover:border hover:border-primary group border border-transparent"
                       >
-                        <span className="font-normal text-sm group-hover:text-primary">
+                        <span className="text-sm font-normal group-hover:text-primary">
                           Leia mais...
                         </span>
                       </a>

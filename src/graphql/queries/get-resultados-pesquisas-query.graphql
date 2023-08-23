@@ -1,0 +1,33 @@
+query GetPesquisasDeSatisfacao ($limit: Int!, $start: Int) {
+  searchResults (pagination: { limit: $limit, start: $start, }, publicationState: LIVE, sort: "date:DESC") {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        title
+        date
+        
+        document {
+          id
+          name
+          file {
+            data {
+              id
+              attributes {
+                name
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

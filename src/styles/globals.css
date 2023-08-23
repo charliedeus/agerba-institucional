@@ -17,7 +17,7 @@
   }
 
   html {
-    @apply text-gray-900;
+    @apply text-gray-900 min-h-screen;
     font-family: 'Roboto', sans-serif;
     scroll-behavior: smooth;
   }

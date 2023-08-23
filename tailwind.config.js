@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: 'jit',
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
@@ -19,7 +18,7 @@ module.exports = {
         'banner-section': "url('/background-img.jpg')",
       },
       fontFamily: {
-        sans: 'Roboto, sans-serif',
+        sans: ['var(--font-roboto)'],
       },
       colors: {
         primary: '#3F3F95',

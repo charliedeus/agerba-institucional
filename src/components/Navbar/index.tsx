@@ -1,3 +1,5 @@
+'use client'
+
 import { Menu, Transition } from '@headlessui/react'
 import Link from 'next/link'
 import {
@@ -424,6 +426,16 @@ export function Navbar() {
             <span className="font-normal">Transparência</span>
           </Menu.Button>
           <Menu.Items className="absolute flex flex-col justify-around gap-2 px-6 py-2 mt-4 bg-white border border-gray-400 rounded w-max">
+            <Menu.Item>
+              {({ active }) => (
+                <NextLink
+                  href="/pesquisas-resultados"
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>Resultados de Pesquisas</span>
+                </NextLink>
+              )}
+            </Menu.Item>
             <Menu.Item>
               {({ active }) => (
                 <NextLink

@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-unused-vars */
-import { gql } from '@apollo/client'
 import * as Apollo from '@apollo/client'
+import { gql } from '@apollo/client'
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -944,6 +944,7 @@ export type GenericMorph =
   | RevenueGroup
   | RevenueService
   | School
+  | SearchResult
   | StudentId
   | Terminal
   | TerminalsUsageFee
@@ -1413,6 +1414,7 @@ export type Mutation = {
   createRevenueGroup?: Maybe<RevenueGroupEntityResponse>
   createRevenueService?: Maybe<RevenueServiceEntityResponse>
   createSchool?: Maybe<SchoolEntityResponse>
+  createSearchResult?: Maybe<SearchResultEntityResponse>
   createStudentId?: Maybe<StudentIdEntityResponse>
   createTerminal?: Maybe<TerminalEntityResponse>
   createTerminalsUsageFee?: Maybe<TerminalsUsageFeeEntityResponse>
@@ -1446,6 +1448,7 @@ export type Mutation = {
   deleteRevenueGroup?: Maybe<RevenueGroupEntityResponse>
   deleteRevenueService?: Maybe<RevenueServiceEntityResponse>
   deleteSchool?: Maybe<SchoolEntityResponse>
+  deleteSearchResult?: Maybe<SearchResultEntityResponse>
   deleteStudentId?: Maybe<StudentIdEntityResponse>
   deleteTerminal?: Maybe<TerminalEntityResponse>
   deleteTerminalsUsageFee?: Maybe<TerminalsUsageFeeEntityResponse>
@@ -1491,6 +1494,7 @@ export type Mutation = {
   updateRevenueGroup?: Maybe<RevenueGroupEntityResponse>
   updateRevenueService?: Maybe<RevenueServiceEntityResponse>
   updateSchool?: Maybe<SchoolEntityResponse>
+  updateSearchResult?: Maybe<SearchResultEntityResponse>
   updateStudentId?: Maybe<StudentIdEntityResponse>
   updateTerminal?: Maybe<TerminalEntityResponse>
   updateTerminalsUsageFee?: Maybe<TerminalsUsageFeeEntityResponse>
@@ -1588,6 +1592,10 @@ export type MutationCreateRevenueServiceArgs = {
 
 export type MutationCreateSchoolArgs = {
   data: SchoolInput
+}
+
+export type MutationCreateSearchResultArgs = {
+  data: SearchResultInput
 }
 
 export type MutationCreateStudentIdArgs = {
@@ -1711,6 +1719,10 @@ export type MutationDeleteRevenueServiceArgs = {
 }
 
 export type MutationDeleteSchoolArgs = {
+  id: Scalars['ID']
+}
+
+export type MutationDeleteSearchResultArgs = {
   id: Scalars['ID']
 }
 
@@ -1892,6 +1904,11 @@ export type MutationUpdateRevenueServiceArgs = {
 
 export type MutationUpdateSchoolArgs = {
   data: SchoolInput
+  id: Scalars['ID']
+}
+
+export type MutationUpdateSearchResultArgs = {
+  data: SearchResultInput
   id: Scalars['ID']
 }
 
@@ -2274,6 +2291,8 @@ export type Query = {
   revenueServices?: Maybe<RevenueServiceEntityResponseCollection>
   school?: Maybe<SchoolEntityResponse>
   schools?: Maybe<SchoolEntityResponseCollection>
+  searchResult?: Maybe<SearchResultEntityResponse>
+  searchResults?: Maybe<SearchResultEntityResponseCollection>
   studentId?: Maybe<StudentIdEntityResponse>
   studentIds?: Maybe<StudentIdEntityResponseCollection>
   terminais?: Maybe<TerminalEntityResponseCollection>
@@ -2514,6 +2533,17 @@ export type QuerySchoolArgs = {
 
 export type QuerySchoolsArgs = {
   filters?: InputMaybe<SchoolFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type QuerySearchResultArgs = {
+  id?: InputMaybe<Scalars['ID']>
+}
+
+export type QuerySearchResultsArgs = {
+  filters?: InputMaybe<SearchResultFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
@@ -2806,6 +2836,59 @@ export type SchoolInput = {
   name?: InputMaybe<Scalars['String']>
   publishedAt?: InputMaybe<Scalars['DateTime']>
   slug?: InputMaybe<Scalars['String']>
+}
+
+export type SearchResult = {
+  __typename?: 'SearchResult'
+  createdAt?: Maybe<Scalars['DateTime']>
+  date: Scalars['Date']
+  document?: Maybe<Array<Maybe<ComponentArquivosArquivos>>>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  title: Scalars['String']
+  updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type SearchResultDocumentArgs = {
+  filters?: InputMaybe<ComponentArquivosArquivosFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type SearchResultEntity = {
+  __typename?: 'SearchResultEntity'
+  attributes?: Maybe<SearchResult>
+  id?: Maybe<Scalars['ID']>
+}
+
+export type SearchResultEntityResponse = {
+  __typename?: 'SearchResultEntityResponse'
+  data?: Maybe<SearchResultEntity>
+}
+
+export type SearchResultEntityResponseCollection = {
+  __typename?: 'SearchResultEntityResponseCollection'
+  data: Array<SearchResultEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type SearchResultFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<SearchResultFiltersInput>>>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  date?: InputMaybe<DateFilterInput>
+  document?: InputMaybe<ComponentArquivosArquivosFiltersInput>
+  id?: InputMaybe<IdFilterInput>
+  not?: InputMaybe<SearchResultFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<SearchResultFiltersInput>>>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  title?: InputMaybe<StringFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type SearchResultInput = {
+  date?: InputMaybe<Scalars['Date']>
+  document?: InputMaybe<Array<InputMaybe<ComponentArquivosArquivosInput>>>
+  publishedAt?: InputMaybe<Scalars['DateTime']>
+  title?: InputMaybe<Scalars['String']>
 }
 
 export type StringFilterInput = {
@@ -4490,6 +4573,54 @@ export type GetDestaquesQuery = {
   } | null
 }
 
+export type GetPesquisasDeSatisfacaoQueryVariables = Exact<{
+  limit: Scalars['Int']
+  start?: InputMaybe<Scalars['Int']>
+}>
+
+export type GetPesquisasDeSatisfacaoQuery = {
+  __typename?: 'Query'
+  searchResults?: {
+    __typename?: 'SearchResultEntityResponseCollection'
+    meta: {
+      __typename?: 'ResponseCollectionMeta'
+      pagination: {
+        __typename?: 'Pagination'
+        total: number
+        pageCount: number
+        page: number
+        pageSize: number
+      }
+    }
+    data: Array<{
+      __typename?: 'SearchResultEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'SearchResult'
+        title: string
+        date: any
+        document?: Array<{
+          __typename?: 'ComponentArquivosArquivos'
+          id: string
+          name: string
+          file: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                name: string
+                url: string
+              } | null
+            } | null
+          }
+        } | null> | null
+      } | null
+    }>
+  } | null
+}
+
 export type GetStudentBySlugQueryVariables = Exact<{
   slug: Scalars['String']
 }>
@@ -5229,38 +5360,38 @@ export type GetTransportesHidroviariosQuery = {
 }
 
 export const GetAtasDeJulgamentoDocument = gql`
-  query GetAtasDeJulgamento($limit: Int!, $start: Int) {
-    judgmentNotes(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      sort: "judgment_date:DESC"
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
+    query GetAtasDeJulgamento($limit: Int!, $start: Int) {
+  judgmentNotes(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "judgment_date:DESC"
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
       }
-      data {
-        id
-        attributes {
-          title
-          description
-          judgment_date
-          document {
-            data {
-              attributes {
-                url
-              }
+    }
+    data {
+      id
+      attributes {
+        title
+        description
+        judgment_date
+        document {
+          data {
+            attributes {
+              url
             }
           }
         }
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetAtasDeJulgamentoQuery__
@@ -5314,38 +5445,38 @@ export type GetAtasDeJulgamentoQueryResult = Apollo.QueryResult<
   GetAtasDeJulgamentoQueryVariables
 >
 export const GetAtasDeReuniaoDocument = gql`
-  query GetAtasDeReuniao($limit: Int!, $start: Int) {
-    meetingNotes(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      sort: "meeting_date:DESC"
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
+    query GetAtasDeReuniao($limit: Int!, $start: Int) {
+  meetingNotes(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "meeting_date:DESC"
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
       }
-      data {
-        id
-        attributes {
-          title
-          description
-          meeting_date
-          document {
-            data {
-              attributes {
-                url
-              }
+    }
+    data {
+      id
+      attributes {
+        title
+        description
+        meeting_date
+        document {
+          data {
+            attributes {
+              url
             }
           }
         }
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetAtasDeReuniaoQuery__
@@ -5399,56 +5530,56 @@ export type GetAtasDeReuniaoQueryResult = Apollo.QueryResult<
   GetAtasDeReuniaoQueryVariables
 >
 export const GetAudienciaPublicaByIdDocument = gql`
-  query GetAudienciaPublicaById($id: ID!) {
-    eventoPublico(id: $id) {
-      data {
-        id
-        attributes {
+    query GetAudienciaPublicaById($id: ID!) {
+  eventoPublico(id: $id) {
+    data {
+      id
+      attributes {
+        title
+        event_type
+        notify
+        date
+        calendar {
+          id
           title
-          event_type
-          notify
-          date
-          calendar {
-            id
-            title
-            starts_in
-            finish_in
-            retification
-          }
-          place
-          meetLink
-          onlyRemote
-          Documentos {
-            name
-            file {
-              data {
-                attributes {
-                  url
-                }
-              }
-            }
-          }
-          finalReport {
-            id
-            name
-            file {
-              data {
-                id
-                attributes {
-                  name
-                  alternativeText
-                  caption
-                  url
-                }
-              }
-            }
-          }
-          justification
+          starts_in
+          finish_in
+          retification
         }
+        place
+        meetLink
+        onlyRemote
+        Documentos {
+          name
+          file {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+        finalReport {
+          id
+          name
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                caption
+                url
+              }
+            }
+          }
+        }
+        justification
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetAudienciaPublicaByIdQuery__
@@ -5501,29 +5632,29 @@ export type GetAudienciaPublicaByIdQueryResult = Apollo.QueryResult<
   GetAudienciaPublicaByIdQueryVariables
 >
 export const GetAudienciasPublicasDocument = gql`
-  query GetAudienciasPublicas {
-    eventosPublicos(
-      publicationState: LIVE
-      sort: "date:desc"
-      filters: { event_type: { eq: "Audiência Pública" } }
-    ) {
-      data {
-        id
-        attributes {
+    query GetAudienciasPublicas {
+  eventosPublicos(
+    publicationState: LIVE
+    sort: "date:desc"
+    filters: {event_type: {eq: "Audiência Pública"}}
+  ) {
+    data {
+      id
+      attributes {
+        title
+        notify
+        event_type
+        date
+        calendar {
           title
-          notify
-          event_type
-          date
-          calendar {
-            title
-            starts_in
-            finish_in
-          }
+          starts_in
+          finish_in
         }
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetAudienciasPublicasQuery__
@@ -5575,28 +5706,28 @@ export type GetAudienciasPublicasQueryResult = Apollo.QueryResult<
   GetAudienciasPublicasQueryVariables
 >
 export const GetCartilhasDocument = gql`
-  query GetCartilhas {
-    titles {
-      data {
-        id
-        attributes {
-          title
-          slug
-          year
-          file {
-            data {
-              id
-              attributes {
-                name
-                url
-              }
+    query GetCartilhas {
+  titles {
+    data {
+      id
+      attributes {
+        title
+        slug
+        year
+        file {
+          data {
+            id
+            attributes {
+              name
+              url
             }
           }
         }
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetCartilhasQuery__
@@ -5648,35 +5779,34 @@ export type GetCartilhasQueryResult = Apollo.QueryResult<
   GetCartilhasQueryVariables
 >
 export const GetConsultaPublicaByidDocument = gql`
-  query GetConsultaPublicaByid($id: ID!) {
-    publicConsultation(id: $id) {
-      data {
-        id
-        attributes {
+    query GetConsultaPublicaByid($id: ID!) {
+  publicConsultation(id: $id) {
+    data {
+      id
+      attributes {
+        title
+        eventType
+        notify
+        date
+        participation
+        closure
+        calendar {
+          id
           title
-          eventType
-          notify
-          date
-          participation
-          closure
-          calendar {
-            id
-            title
-            starts_in
-            finish_in
-            retification
-          }
-          documents {
-            id
-            name
-            file {
-              data {
-                id
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
+          starts_in
+          finish_in
+          retification
+        }
+        documents {
+          id
+          name
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
               }
             }
           }
@@ -5684,7 +5814,8 @@ export const GetConsultaPublicaByidDocument = gql`
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetConsultaPublicaByidQuery__
@@ -5737,29 +5868,29 @@ export type GetConsultaPublicaByidQueryResult = Apollo.QueryResult<
   GetConsultaPublicaByidQueryVariables
 >
 export const GetConsultasPublicasDocument = gql`
-  query GetConsultasPublicas($limit: Int!, $start: Int!) {
-    publicConsultations(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      sort: "date:desc"
-    ) {
-      data {
-        id
-        attributes {
+    query GetConsultasPublicas($limit: Int!, $start: Int!) {
+  publicConsultations(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "date:desc"
+  ) {
+    data {
+      id
+      attributes {
+        title
+        notify
+        eventType
+        date
+        calendar {
           title
-          notify
-          eventType
-          date
-          calendar {
-            title
-            starts_in
-            finish_in
-          }
+          starts_in
+          finish_in
         }
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetConsultasPublicasQuery__
@@ -5813,53 +5944,52 @@ export type GetConsultasPublicasQueryResult = Apollo.QueryResult<
   GetConsultasPublicasQueryVariables
 >
 export const GetConteudoSetorDocument = gql`
-  query GetConteudoSetor($limit: Int!, $start: Int, $type: String) {
-    departments(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      filters: { type: { eq: $type } }
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
+    query GetConteudoSetor($limit: Int!, $start: Int, $type: String) {
+  departments(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {type: {eq: $type}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
       }
-      data {
-        id
-        attributes {
-          type
-          sections {
+    }
+    data {
+      id
+      attributes {
+        type
+        sections {
+          id
+          question
+          answers {
             id
-            question
-            answers {
-              id
-              title
-              subtitle
-              cover {
-                data {
-                  id
-                  attributes {
-                    name
-                    alternativeText
-                    url
-                  }
+            title
+            subtitle
+            cover {
+              data {
+                id
+                attributes {
+                  name
+                  alternativeText
+                  url
                 }
               }
-              content
             }
-            documents {
-              name
-              file {
-                data {
-                  id
-                  attributes {
-                    name
-                    alternativeText
-                    url
-                  }
+            content
+          }
+          documents {
+            name
+            file {
+              data {
+                id
+                attributes {
+                  name
+                  alternativeText
+                  url
                 }
               }
             }
@@ -5868,7 +5998,8 @@ export const GetConteudoSetorDocument = gql`
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetConteudoSetorQuery__
@@ -5923,19 +6054,19 @@ export type GetConteudoSetorQueryResult = Apollo.QueryResult<
   GetConteudoSetorQueryVariables
 >
 export const GetFaQsDocument = gql`
-  query GetFAQs {
-    faqs(publicationState: LIVE) {
-      data {
-        id
-        attributes {
-          question
-          answer
-          updatedAt
-        }
+    query GetFAQs {
+  faqs(publicationState: LIVE) {
+    data {
+      id
+      attributes {
+        question
+        answer
+        updatedAt
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetFaQsQuery__
@@ -5980,38 +6111,38 @@ export type GetFaQsQueryResult = Apollo.QueryResult<
   GetFaQsQueryVariables
 >
 export const GetGruposEServicosDocument = gql`
-  query GetGruposEServicos($limit: Int!, $start: Int) {
-    revenueGroups(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
+    query GetGruposEServicos($limit: Int!, $start: Int) {
+  revenueGroups(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
       }
-      data {
-        id
-        attributes {
-          title
-          revenue_services {
-            data {
-              id
-              attributes {
-                title
-                description
-                cost
-              }
+    }
+    data {
+      id
+      attributes {
+        title
+        revenue_services {
+          data {
+            id
+            attributes {
+              title
+              description
+              cost
             }
           }
         }
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetGruposEServicosQuery__
@@ -6065,114 +6196,114 @@ export type GetGruposEServicosQueryResult = Apollo.QueryResult<
   GetGruposEServicosQueryVariables
 >
 export const GetLegislacoesDocument = gql`
-  query GetLegislacoes($limit: Int!, $start: Int!) {
-    resolutions: legislations(
-      pagination: { limit: $limit, start: $start }
-      filters: { type: { eq: "Resoluções" } }
-      publicationState: LIVE
-      sort: "publication_date:DESC"
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
-      }
-      data {
-        id
-        attributes {
-          title
-          menu
-          slug
-          type
-          publication_date
-          file {
-            data {
-              id
-              attributes {
-                name
-                alternativeText
-                url
-              }
-            }
-          }
-        }
+    query GetLegislacoes($limit: Int!, $start: Int!) {
+  resolutions: legislations(
+    pagination: {limit: $limit, start: $start}
+    filters: {type: {eq: "Resoluções"}}
+    publicationState: LIVE
+    sort: "publication_date:DESC"
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
       }
     }
-    laws: legislations(
-      pagination: { limit: $limit, start: $start }
-      filters: { type: { eq: "Leis" } }
-      publicationState: LIVE
-      sort: "publication_date:DESC"
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
-      }
-      data {
-        id
-        attributes {
-          title
-          menu
-          slug
-          type
-          publication_date
-          file {
-            data {
-              id
-              attributes {
-                name
-                alternativeText
-                url
-              }
-            }
-          }
-        }
-      }
-    }
-    decrees: legislations(
-      pagination: { limit: $limit, start: $start }
-      filters: { type: { eq: "Decretos" } }
-      publicationState: LIVE
-      sort: "publication_date:DESC"
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
-      }
-      data {
-        id
-        attributes {
-          title
-          menu
-          slug
-          type
-          publication_date
-          file {
-            data {
-              id
-              attributes {
-                name
-                alternativeText
-                url
-              }
+    data {
+      id
+      attributes {
+        title
+        menu
+        slug
+        type
+        publication_date
+        file {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              url
             }
           }
         }
       }
     }
   }
-`
+  laws: legislations(
+    pagination: {limit: $limit, start: $start}
+    filters: {type: {eq: "Leis"}}
+    publicationState: LIVE
+    sort: "publication_date:DESC"
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        title
+        menu
+        slug
+        type
+        publication_date
+        file {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+  decrees: legislations(
+    pagination: {limit: $limit, start: $start}
+    filters: {type: {eq: "Decretos"}}
+    publicationState: LIVE
+    sort: "publication_date:DESC"
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        title
+        menu
+        slug
+        type
+        publication_date
+        file {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `
 
 /**
  * __useGetLegislacoesQuery__
@@ -6226,29 +6357,28 @@ export type GetLegislacoesQueryResult = Apollo.QueryResult<
   GetLegislacoesQueryVariables
 >
 export const GetLicitacoesFuturasDocument = gql`
-  query GetLicitacoesFuturas($data_atual: DateTime!) {
-    licitacaos(
-      filters: { date: { gte: $data_atual } }
-      publicationState: LIVE
-      sort: "date:desc"
-    ) {
-      data {
-        id
-        attributes {
-          type
-          title
-          subtitle
-          date
-          description
-          place
-          documents {
-            id
-            name
-            file {
-              data {
-                attributes {
-                  url
-                }
+    query GetLicitacoesFuturas($data_atual: DateTime!) {
+  licitacaos(
+    filters: {date: {gte: $data_atual}}
+    publicationState: LIVE
+    sort: "date:desc"
+  ) {
+    data {
+      id
+      attributes {
+        type
+        title
+        subtitle
+        date
+        description
+        place
+        documents {
+          id
+          name
+          file {
+            data {
+              attributes {
+                url
               }
             }
           }
@@ -6256,7 +6386,8 @@ export const GetLicitacoesFuturasDocument = gql`
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetLicitacoesFuturasQuery__
@@ -6309,35 +6440,35 @@ export type GetLicitacoesFuturasQueryResult = Apollo.QueryResult<
   GetLicitacoesFuturasQueryVariables
 >
 export const GetLinhasDocument = gql`
-  query GetLinhas($limit: Int!, $start: Int!, $query: String) {
-    linhas(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      filters: { boativo: { eq: true }, dedescricao: { containsi: $query } }
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
+    query GetLinhas($limit: Int!, $start: Int!, $query: String) {
+  linhas(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {boativo: {eq: true}, dedescricao: {containsi: $query}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
       }
-      data {
-        id
-        attributes {
-          cdlinha
-          nulinha
-          deorigem
-          dedestino
-          dedescricao
-          nupermissionarios
-          boativo
-        }
+    }
+    data {
+      id
+      attributes {
+        cdlinha
+        nulinha
+        deorigem
+        dedestino
+        dedescricao
+        nupermissionarios
+        boativo
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetLinhasQuery__
@@ -6387,49 +6518,34 @@ export type GetLinhasQueryResult = Apollo.QueryResult<
   GetLinhasQueryVariables
 >
 export const GetNoticiasBySlugDocument = gql`
-  query GetNoticiasBySlug($slug: String!) {
-    noticias(publicationState: LIVE, filters: { slug: { eq: $slug } }) {
-      data {
-        id
-        attributes {
+    query GetNoticiasBySlug($slug: String!) {
+  noticias(publicationState: LIVE, filters: {slug: {eq: $slug}}) {
+    data {
+      id
+      attributes {
+        cover {
+          data {
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+        slug
+        title
+        subtitle
+        colorTitle
+        content
+        updatedAt
+        publishedAt
+        deadline
+        Tags {
+          id
+          Tag
+        }
+        Sections {
           cover {
-            data {
-              attributes {
-                name
-                alternativeText
-                url
-              }
-            }
-          }
-          slug
-          title
-          subtitle
-          colorTitle
-          content
-          updatedAt
-          publishedAt
-          deadline
-          Tags {
-            id
-            Tag
-          }
-          Sections {
-            cover {
-              data {
-                id
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
-              }
-            }
-            id
-            title
-            subtitle
-            content
-          }
-          gallery {
             data {
               id
               attributes {
@@ -6439,16 +6555,30 @@ export const GetNoticiasBySlugDocument = gql`
               }
             }
           }
-          Files {
+          id
+          title
+          subtitle
+          content
+        }
+        gallery {
+          data {
             id
-            name
-            file {
-              data {
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+        Files {
+          id
+          name
+          file {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
               }
             }
           }
@@ -6456,7 +6586,8 @@ export const GetNoticiasBySlugDocument = gql`
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetNoticiasBySlugQuery__
@@ -6509,50 +6640,50 @@ export type GetNoticiasBySlugQueryResult = Apollo.QueryResult<
   GetNoticiasBySlugQueryVariables
 >
 export const GetNoticiasDestaqueDocument = gql`
-  query GetNoticiasDestaque($limit: Int!, $start: Int) {
-    noticias(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      sort: "PublishDate:DESC"
-      filters: { highlight: { eq: true } }
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
+    query GetNoticiasDestaque($limit: Int!, $start: Int) {
+  noticias(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "PublishDate:DESC"
+    filters: {highlight: {eq: true}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
       }
-      data {
-        id
-        attributes {
-          cover {
-            data {
-              attributes {
-                name
-                alternativeText
-                url
-              }
+    }
+    data {
+      id
+      attributes {
+        cover {
+          data {
+            attributes {
+              name
+              alternativeText
+              url
             }
           }
-          slug
-          title
-          subtitle
-          colorTitle
-          content
-          publishedAt
-          PublishDate
-          deadline
-          Tags {
-            id
-            Tag
-          }
+        }
+        slug
+        title
+        subtitle
+        colorTitle
+        content
+        publishedAt
+        PublishDate
+        deadline
+        Tags {
+          id
+          Tag
         }
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetNoticiasDestaqueQuery__
@@ -6606,50 +6737,50 @@ export type GetNoticiasDestaqueQueryResult = Apollo.QueryResult<
   GetNoticiasDestaqueQueryVariables
 >
 export const GetListaNoticiasDocument = gql`
-  query GetListaNoticias($limit: Int!, $start: Int!) {
-    noticias(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      sort: "PublishDate:DESC"
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
+    query GetListaNoticias($limit: Int!, $start: Int!) {
+  noticias(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "PublishDate:DESC"
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
       }
-      data {
-        id
-        attributes {
-          cover {
-            data {
-              attributes {
-                name
-                alternativeText
-                url
-              }
+    }
+    data {
+      id
+      attributes {
+        cover {
+          data {
+            attributes {
+              name
+              alternativeText
+              url
             }
           }
-          slug
-          title
-          subtitle
-          shortTitle
-          publishedAt
-          categorias {
-            data {
-              id
-              attributes {
-                name
-              }
+        }
+        slug
+        title
+        subtitle
+        shortTitle
+        publishedAt
+        categorias {
+          data {
+            id
+            attributes {
+              name
             }
           }
         }
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetListaNoticiasQuery__
@@ -6703,31 +6834,31 @@ export type GetListaNoticiasQueryResult = Apollo.QueryResult<
   GetListaNoticiasQueryVariables
 >
 export const GetDestaquesDocument = gql`
-  query GetDestaques {
-    advertisements(publicationState: LIVE) {
-      data {
-        id
-        attributes {
-          cover {
-            data {
-              attributes {
-                name
-                alternativeText
-                url
-              }
+    query GetDestaques {
+  advertisements(publicationState: LIVE) {
+    data {
+      id
+      attributes {
+        cover {
+          data {
+            attributes {
+              name
+              alternativeText
+              url
             }
           }
-          title
-          url
-          startDate
-          endDate
-          description
-          backgroundColor
         }
+        title
+        url
+        startDate
+        endDate
+        description
+        backgroundColor
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetDestaquesQuery__
@@ -6778,39 +6909,129 @@ export type GetDestaquesQueryResult = Apollo.QueryResult<
   GetDestaquesQuery,
   GetDestaquesQueryVariables
 >
-export const GetStudentBySlugDocument = gql`
-  query GetStudentBySlug($slug: String!) {
-    studentIds(publicationState: LIVE, filters: { slug: { eq: $slug } }) {
-      data {
-        id
-        attributes {
+export const GetPesquisasDeSatisfacaoDocument = gql`
+    query GetPesquisasDeSatisfacao($limit: Int!, $start: Int) {
+  searchResults(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "date:DESC"
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        title
+        date
+        document {
+          id
           name
-          document
-          slug
-          bio
-          avatar {
+          file {
             data {
+              id
               attributes {
                 name
-                alternativeText
                 url
               }
             }
-          }
-          resources(
-            sort: "endsAt:desc"
-            pagination: { limit: 1 }
-            filters: { approved: { eq: true } }
-          ) {
-            id
-            endsAt
-            approved
           }
         }
       }
     }
   }
-`
+}
+    `
+
+/**
+ * __useGetPesquisasDeSatisfacaoQuery__
+ *
+ * To run a query within a React component, call `useGetPesquisasDeSatisfacaoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPesquisasDeSatisfacaoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPesquisasDeSatisfacaoQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
+ *   },
+ * });
+ */
+export function useGetPesquisasDeSatisfacaoQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    GetPesquisasDeSatisfacaoQuery,
+    GetPesquisasDeSatisfacaoQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<
+    GetPesquisasDeSatisfacaoQuery,
+    GetPesquisasDeSatisfacaoQueryVariables
+  >(GetPesquisasDeSatisfacaoDocument, options)
+}
+export function useGetPesquisasDeSatisfacaoLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetPesquisasDeSatisfacaoQuery,
+    GetPesquisasDeSatisfacaoQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<
+    GetPesquisasDeSatisfacaoQuery,
+    GetPesquisasDeSatisfacaoQueryVariables
+  >(GetPesquisasDeSatisfacaoDocument, options)
+}
+export type GetPesquisasDeSatisfacaoQueryHookResult = ReturnType<
+  typeof useGetPesquisasDeSatisfacaoQuery
+>
+export type GetPesquisasDeSatisfacaoLazyQueryHookResult = ReturnType<
+  typeof useGetPesquisasDeSatisfacaoLazyQuery
+>
+export type GetPesquisasDeSatisfacaoQueryResult = Apollo.QueryResult<
+  GetPesquisasDeSatisfacaoQuery,
+  GetPesquisasDeSatisfacaoQueryVariables
+>
+export const GetStudentBySlugDocument = gql`
+    query GetStudentBySlug($slug: String!) {
+  studentIds(publicationState: LIVE, filters: {slug: {eq: $slug}}) {
+    data {
+      id
+      attributes {
+        name
+        document
+        slug
+        bio
+        avatar {
+          data {
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+        resources(
+          sort: "endsAt:desc"
+          pagination: {limit: 1}
+          filters: {approved: {eq: true}}
+        ) {
+          id
+          endsAt
+          approved
+        }
+      }
+    }
+  }
+}
+    `
 
 /**
  * __useGetStudentBySlugQuery__
@@ -6863,103 +7084,34 @@ export type GetStudentBySlugQueryResult = Apollo.QueryResult<
   GetStudentBySlugQueryVariables
 >
 export const GetTarifasDeTransportesHidroviariosDocument = gql`
-  query GetTarifasDeTransportesHidroviarios($limit: Int!, $start: Int) {
-    tarifasHidroviarioFerryBoat: waterwayTransportTariffs(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      filters: { entityType: { eq: "FerryBoat" } }
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
-      }
-      data {
-        id
-        attributes {
-          entityType
-          files(sort: "starts_in:DESC") {
-            id
-            starts_in
-            file {
-              data {
-                id
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
-              }
-            }
-          }
-        }
+    query GetTarifasDeTransportesHidroviarios($limit: Int!, $start: Int) {
+  tarifasHidroviarioFerryBoat: waterwayTransportTariffs(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {entityType: {eq: "FerryBoat"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
       }
     }
-    tarifasHidroviarioCatamara: waterwayTransportTariffs(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      filters: { entityType: { eq: "Catamarã" } }
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
-      }
-      data {
-        id
-        attributes {
-          entityType
-          files(sort: "starts_in:DESC") {
-            id
-            starts_in
-            file {
-              data {
-                id
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    tarifasHidroviarioLanchas: waterwayTransportTariffs(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      filters: { entityType: { eq: "Lanchas" } }
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
-      }
-      data {
-        id
-        attributes {
-          entityType
-          files(sort: "starts_in:DESC") {
-            id
-            starts_in
-            file {
-              data {
-                id
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
+    data {
+      id
+      attributes {
+        entityType
+        files(sort: "starts_in:DESC") {
+          id
+          starts_in
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
               }
             }
           }
@@ -6967,7 +7119,76 @@ export const GetTarifasDeTransportesHidroviariosDocument = gql`
       }
     }
   }
-`
+  tarifasHidroviarioCatamara: waterwayTransportTariffs(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {entityType: {eq: "Catamarã"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        entityType
+        files(sort: "starts_in:DESC") {
+          id
+          starts_in
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  tarifasHidroviarioLanchas: waterwayTransportTariffs(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {entityType: {eq: "Lanchas"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        entityType
+        files(sort: "starts_in:DESC") {
+          id
+          starts_in
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `
 
 /**
  * __useGetTarifasDeTransportesHidroviariosQuery__
@@ -7021,149 +7242,37 @@ export type GetTarifasDeTransportesHidroviariosQueryResult = Apollo.QueryResult<
   GetTarifasDeTransportesHidroviariosQueryVariables
 >
 export const GetTarifasDeTransportesRodoviariosDocument = gql`
-  query GetTarifasDeTransportesRodoviarios($limit: Int!, $start: Int) {
-    tarifasRodoviarioIntermunicipal: transportFees(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      sort: "name:asc"
-      filters: { transportType: { eq: "Intermunicipal" } }
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
-      }
-      data {
-        id
-        attributes {
-          name
-          entityType
-          transportType
-          files(sort: "starts_in:DESC") {
-            id
-            starts_in
-            file {
-              data {
-                id
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
-              }
-            }
-          }
-        }
+    query GetTarifasDeTransportesRodoviarios($limit: Int!, $start: Int) {
+  tarifasRodoviarioIntermunicipal: transportFees(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "name:asc"
+    filters: {transportType: {eq: "Intermunicipal"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
       }
     }
-    tarifasRodoviarioMetropolitano: transportFees(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      sort: "name:asc"
-      filters: { transportType: { eq: "Metropolitano" } }
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
-      }
-      data {
-        id
-        attributes {
-          name
-          entityType
-          transportType
-          files(sort: "starts_in:DESC") {
-            id
-            starts_in
-            file {
-              data {
-                id
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    tarifasRodoviarioSemiurbano: transportFees(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      sort: "name:asc"
-      filters: { transportType: { eq: "Semiurbano" } }
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
-      }
-      data {
-        id
-        attributes {
-          name
-          entityType
-          transportType
-          files(sort: "starts_in:DESC") {
-            id
-            starts_in
-            file {
-              data {
-                id
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    tarifasRodoviarioComplementar: transportFees(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      sort: "name:asc"
-      filters: { transportType: { eq: "Complementar" } }
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
-      }
-      data {
-        id
-        attributes {
-          name
-          entityType
-          transportType
-          files {
-            id
-            starts_in
-            file {
-              data {
-                id
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
+    data {
+      id
+      attributes {
+        name
+        entityType
+        transportType
+        files(sort: "starts_in:DESC") {
+          id
+          starts_in
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
               }
             }
           }
@@ -7171,7 +7280,119 @@ export const GetTarifasDeTransportesRodoviariosDocument = gql`
       }
     }
   }
-`
+  tarifasRodoviarioMetropolitano: transportFees(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "name:asc"
+    filters: {transportType: {eq: "Metropolitano"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        entityType
+        transportType
+        files(sort: "starts_in:DESC") {
+          id
+          starts_in
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  tarifasRodoviarioSemiurbano: transportFees(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "name:asc"
+    filters: {transportType: {eq: "Semiurbano"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        entityType
+        transportType
+        files(sort: "starts_in:DESC") {
+          id
+          starts_in
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  tarifasRodoviarioComplementar: transportFees(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "name:asc"
+    filters: {transportType: {eq: "Complementar"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        entityType
+        transportType
+        files {
+          id
+          starts_in
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `
 
 /**
  * __useGetTarifasDeTransportesRodoviariosQuery__
@@ -7225,34 +7446,33 @@ export type GetTarifasDeTransportesRodoviariosQueryResult = Apollo.QueryResult<
   GetTarifasDeTransportesRodoviariosQueryVariables
 >
 export const GetTutEsDocument = gql`
-  query GetTUTEs($limit: Int!, $start: Int) {
-    tarifasTerminaisTUTE: terminalsUsageFees(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
+    query GetTUTEs($limit: Int!, $start: Int) {
+  tarifasTerminaisTUTE: terminalsUsageFees(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
       }
-      data {
-        id
-        attributes {
-          type
-          document(sort: "starts_in:desc") {
-            id
-            starts_in
-            file {
-              data {
-                id
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
+    }
+    data {
+      id
+      attributes {
+        type
+        document(sort: "starts_in:desc") {
+          id
+          starts_in
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
               }
             }
           }
@@ -7260,7 +7480,8 @@ export const GetTutEsDocument = gql`
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetTutEsQuery__
@@ -7309,35 +7530,34 @@ export type GetTutEsQueryResult = Apollo.QueryResult<
   GetTutEsQueryVariables
 >
 export const GetTarifasGasDocument = gql`
-  query GetTarifasGas($limit: Int!, $start: Int) {
-    tarifasGas: gasTariffs(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      sort: "name:asc"
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
+    query GetTarifasGas($limit: Int!, $start: Int) {
+  tarifasGas: gasTariffs(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "name:asc"
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
       }
-      data {
-        id
-        attributes {
-          name
-          document(sort: "starts_in:DESC") {
-            id
-            starts_in
-            file {
-              data {
-                id
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
+    }
+    data {
+      id
+      attributes {
+        name
+        document(sort: "starts_in:DESC") {
+          id
+          starts_in
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
               }
             }
           }
@@ -7345,7 +7565,8 @@ export const GetTarifasGasDocument = gql`
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetTarifasGasQuery__
@@ -7399,35 +7620,34 @@ export type GetTarifasGasQueryResult = Apollo.QueryResult<
   GetTarifasGasQueryVariables
 >
 export const GetRodoviasPedagiadasDocument = gql`
-  query GetRodoviasPedagiadas($limit: Int!, $start: Int) {
-    tarifasRodoviasPedagiadas: tollRoadTariffs(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      sort: "name:asc"
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
+    query GetRodoviasPedagiadas($limit: Int!, $start: Int) {
+  tarifasRodoviasPedagiadas: tollRoadTariffs(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    sort: "name:asc"
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
       }
-      data {
-        id
-        attributes {
-          name
-          document(sort: "starts_in:DESC") {
-            id
-            starts_in
-            file {
-              data {
-                id
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
+    }
+    data {
+      id
+      attributes {
+        name
+        document(sort: "starts_in:DESC") {
+          id
+          starts_in
+          file {
+            data {
+              id
+              attributes {
+                name
+                alternativeText
+                url
               }
             }
           }
@@ -7435,7 +7655,8 @@ export const GetRodoviasPedagiadasDocument = gql`
       }
     }
   }
-`
+}
+    `
 
 /**
  * __useGetRodoviasPedagiadasQuery__
@@ -7489,108 +7710,108 @@ export type GetRodoviasPedagiadasQueryResult = Apollo.QueryResult<
   GetRodoviasPedagiadasQueryVariables
 >
 export const GetTerminaisDocument = gql`
-  query GetTerminais($limit: Int!, $start: Int) {
-    rodoviario: terminais(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      filters: { active: { eq: true }, type: { eq: "Rodoviário" } }
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
-      }
-      data {
-        id
-        attributes {
-          name
-          phone
-          email
-          type
-          active
-          document {
-            data {
-              id
-              attributes {
-                name
-                url
-              }
-            }
-          }
-        }
+    query GetTerminais($limit: Int!, $start: Int) {
+  rodoviario: terminais(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {active: {eq: true}, type: {eq: "Rodoviário"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
       }
     }
-    hidroviario: terminais(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      filters: { active: { eq: true }, type: { eq: "Hidroviário" } }
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
-      }
-      data {
-        id
-        attributes {
-          name
-          phone
-          email
-          type
-          active
-          document {
-            data {
-              id
-              attributes {
-                name
-                url
-              }
-            }
-          }
-        }
-      }
-    }
-    aeroviario: terminais(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      filters: { active: { eq: true }, type: { eq: "Aeroviário" } }
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
-      }
-      data {
-        id
-        attributes {
-          name
-          phone
-          email
-          type
-          active
-          document {
-            data {
-              id
-              attributes {
-                name
-                url
-              }
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        active
+        document {
+          data {
+            id
+            attributes {
+              name
+              url
             }
           }
         }
       }
     }
   }
-`
+  hidroviario: terminais(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {active: {eq: true}, type: {eq: "Hidroviário"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        active
+        document {
+          data {
+            id
+            attributes {
+              name
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+  aeroviario: terminais(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {active: {eq: true}, type: {eq: "Aeroviário"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        active
+        document {
+          data {
+            id
+            attributes {
+              name
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `
 
 /**
  * __useGetTerminaisQuery__
@@ -7644,112 +7865,37 @@ export type GetTerminaisQueryResult = Apollo.QueryResult<
   GetTerminaisQueryVariables
 >
 export const GetTransportesHidroviariosDocument = gql`
-  query GetTransportesHidroviarios($limit: Int!, $start: Int) {
-    ferryBoat: waterwayTransports(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      filters: { type: { eq: "Ferry Boat" } }
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
-      }
-      data {
-        id
-        attributes {
-          name
-          phone
-          email
-          type
-          address
-          documents {
-            id
-            name
-            file {
-              data {
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
-              }
-            }
-          }
-        }
+    query GetTransportesHidroviarios($limit: Int!, $start: Int) {
+  ferryBoat: waterwayTransports(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {type: {eq: "Ferry Boat"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
       }
     }
-    lanchas: waterwayTransports(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      filters: { type: { eq: "Lanchas" } }
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
-      }
-      data {
-        id
-        attributes {
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        address
+        documents {
+          id
           name
-          phone
-          email
-          type
-          address
-          documents {
-            id
-            name
-            file {
-              data {
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    catamara: waterwayTransports(
-      pagination: { limit: $limit, start: $start }
-      publicationState: LIVE
-      filters: { type: { eq: "Catamarã" } }
-    ) {
-      meta {
-        pagination {
-          total
-          pageCount
-          page
-          pageSize
-        }
-      }
-      data {
-        id
-        attributes {
-          name
-          phone
-          email
-          type
-          address
-          documents {
-            id
-            name
-            file {
-              data {
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
+          file {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
               }
             }
           }
@@ -7757,7 +7903,82 @@ export const GetTransportesHidroviariosDocument = gql`
       }
     }
   }
-`
+  lanchas: waterwayTransports(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {type: {eq: "Lanchas"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        address
+        documents {
+          id
+          name
+          file {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  catamara: waterwayTransports(
+    pagination: {limit: $limit, start: $start}
+    publicationState: LIVE
+    filters: {type: {eq: "Catamarã"}}
+  ) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
+    data {
+      id
+      attributes {
+        name
+        phone
+        email
+        type
+        address
+        documents {
+          id
+          name
+          file {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `
 
 /**
  * __useGetTransportesHidroviariosQuery__
