@@ -1,17 +1,17 @@
 /* eslint-disable prettier/prettier */
-import { ReactElement } from 'react'
-import { CalendarBlank, File, FileArrowDown, FileDoc } from 'phosphor-react'
 import { format } from "date-fns";
-import ptBR from 'date-fns/locale/pt-BR'
+import ptBR from 'date-fns/locale/pt-BR';
+import { CalendarBlank, File, FileArrowDown, FileDoc } from 'phosphor-react';
+import { ReactElement } from 'react';
 
-import { DefaultLayout } from '../../layouts/DefaultLayout'
-import type { NextPageWithLayout } from '../_app'
+import { DefaultLayout } from '../../layouts/DefaultLayout';
+import type { NextPageWithLayout } from '../_app';
 
-import { GetConsultaPublicaByidDocument, GetConsultaPublicaByidQuery } from '../../graphql/generated'
-import Link from 'next/link'
-import { urlBuilder } from '../../lib/urlBuilder'
 import { GetServerSideProps } from 'next';
+import Link from 'next/link';
+import { GetConsultaPublicaByidDocument, GetConsultaPublicaByidQuery } from '../../graphql/generated';
 import { initializeApollo } from '../../lib/apollo';
+import { urlBuilder } from '../../lib/urlBuilder';
 
 interface ConsultaPublicaProps {
   data: {
@@ -74,7 +74,7 @@ const PublicHearingPage: NextPageWithLayout<ConsultaPublicaProps> = ({ data }) =
 
       {formattedEvent?.attributes?.calendar && (
         <>
-          <h1 className="font-bold text-lg border-primary border-l-4 pl-4">
+          <h1 className="pl-4 text-lg font-bold border-l-4 border-primary">
             Calendário
           </h1>
 
@@ -82,7 +82,7 @@ const PublicHearingPage: NextPageWithLayout<ConsultaPublicaProps> = ({ data }) =
             {formattedEvent.attributes.calendar.map(evento => (
               <li
                 key={evento?.id}
-                className="px-4 py-6 bg-gray-200 rounded-lg flex flex-col laptop:flex-row gap-2"
+                className="flex flex-col gap-2 px-4 py-6 bg-gray-200 rounded-lg laptop:flex-row"
               >
                 <div className="flex items-center gap-2 laptop:w-2/5 laptop:min-w-2/5">
                   <CalendarBlank
@@ -147,7 +147,7 @@ const PublicHearingPage: NextPageWithLayout<ConsultaPublicaProps> = ({ data }) =
 
       {formattedEvent.attributes.participation && (
         <>
-          <h1 className="font-bold text-lg border-primary border-l-4 pl-4">
+          <h1 className="pl-4 text-lg font-bold border-l-4 border-primary">
             Participação
           </h1>
 
@@ -161,7 +161,7 @@ const PublicHearingPage: NextPageWithLayout<ConsultaPublicaProps> = ({ data }) =
 
       {formattedEvent.attributes.closure && (
         <>
-          <h1 className="font-bold text-lg border-primary border-l-4 pl-4">
+          <h1 className="pl-4 text-lg font-bold border-l-4 border-primary">
             Encerramento
           </h1>
 
@@ -176,7 +176,7 @@ const PublicHearingPage: NextPageWithLayout<ConsultaPublicaProps> = ({ data }) =
 
       {formattedEvent.attributes?.documents && formattedEvent.attributes?.documents.length > 0 && (
         <>
-          <h1 className="font-bold text-lg border-primary border-l-4 pl-4">
+          <h1 className="pl-4 text-lg font-bold border-l-4 border-primary">
             Documentos Anexos
           </h1>
 
@@ -184,10 +184,10 @@ const PublicHearingPage: NextPageWithLayout<ConsultaPublicaProps> = ({ data }) =
             {formattedEvent.attributes?.documents.map((documento) => (
               <li
                 key={documento.id}
-                className="flex flex-col laptop:flex-row gap-2 bg-gray-200 px-4 py-6 rounded-lg"
+                className="flex flex-col gap-2 px-4 py-6 bg-gray-200 rounded-lg laptop:flex-row"
               >
                 <div className="flex flex-col laptop:w-full laptop:flex-row laptop:gap-2 laptop:items-center">
-                  <span className="font-bold laptop:flex-1 flex items-center gap-2">
+                  <span className="flex items-center gap-2 font-bold laptop:flex-1">
                     <FileDoc size={16} weight="light" className="text-gray-500" />{' '}
                     {documento.name}
                   </span>
@@ -200,7 +200,7 @@ const PublicHearingPage: NextPageWithLayout<ConsultaPublicaProps> = ({ data }) =
                       )}
                     >
                       <a
-                        className="laptop:w-1/12 laptop:border-l-2 laptop:border-primary laptop:pl-2 flex items-center justify-center gap-2"
+                        className="flex items-center justify-center gap-2 laptop:w-1/12 laptop:border-l-2 laptop:border-primary laptop:pl-2"
                         download
                         target="_blank"
                       >

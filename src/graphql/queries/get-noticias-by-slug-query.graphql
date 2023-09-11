@@ -54,7 +54,7 @@ query GetNoticiasBySlug ($slug: String!) {
           }
         }
         
-        Files {
+        Files (pagination: { limit: 100 }) {
           id
           name
           file {
