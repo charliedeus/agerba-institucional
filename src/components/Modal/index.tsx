@@ -19,7 +19,7 @@ export function Modal({ isOpen, setIsOpen }: ModalProps) {
         >
           <div className="absolute inset-0 flex flex-col gap-8 p-8 leading-relaxed">
             <Dialog.Title className="absolute w-full p-4 text-lg font-bold text-white rounded-md laptop:text-xl laptop:w-1/2 -left-2 bg-primary clip-path-mypoligon">
-              COMUNICADO IMPORTANTE!!!
+              COMUNICADO URGENTE!!!
             </Dialog.Title>
 
             <div className="flex flex-col flex-1 gap-10 p-8 mt-20 leading-relaxed bg-white rounded-lg laptop:p-4 laptop:gap-4 laptop:text-xl text-zinc-900 laptop:mt-20">
@@ -29,15 +29,15 @@ export function Modal({ isOpen, setIsOpen }: ModalProps) {
 
               <Dialog.Description className="flex flex-col gap-2 font-medium">
                 <p>
-                  Em decorrência da manutenção necessária junto ao datacenter da
-                  PRODEB, comunicamos a indisponibilidade de soluções utilizadas
+                  Em decorrência da manutenção emergencial junto ao datacenter da
+                  PRODEB, comunicamos a <span className='font-bold uppercase'>indisponibilidade</span> de soluções utilizadas
                   no atendimento aos públicos interno e externo, sendo:
                 </p>
 
                 <p className="mt-4 font-semibold">Das soluções afetadas:</p>
 
                 <ul className="list-disc list-inside">
-                  <li>Site Institucional da Agência;</li>
+                  {/* <li>Site Institucional da Agência;</li> */}
                   <li>SIDER, e:</li>
                   <li>STIP.</li>
                 </ul>
@@ -46,8 +46,8 @@ export function Modal({ isOpen, setIsOpen }: ModalProps) {
                   Período previsto de indisponibilidade:
                 </p>
                 <p>
-                  Entre os dias <strong>14/08/2023, à partir das 18h</strong> e
-                  dia <strong>15/08/2023 às 18h</strong>.
+                  Entre os dias <strong>17/11/2023, à partir das 18h</strong> e
+                  dia <strong>20/11/2023 às 10h</strong>.
                 </p>
               </Dialog.Description>
 
