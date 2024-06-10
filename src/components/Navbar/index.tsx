@@ -314,6 +314,16 @@ export function Navbar() {
                 </NextLink>
               )}
             </Menu.Item>
+            <Menu.Item>
+              {({ active }) => (
+                <NextLink
+                  href="/veiculos-e-vistorias"
+                  className={`${active && 'text-gray-900'}`}
+                >
+                  <span>Veículos e Vistorias</span>
+                </NextLink>
+              )}
+            </Menu.Item>
             {/* <Menu.Item>
               {({ active }) => (
                 <NextLink href="/" className={`${active && 'text-gray-900'}`}>

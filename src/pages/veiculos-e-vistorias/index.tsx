@@ -65,7 +65,7 @@ const questions = [
   },
 ]
 
-const RegistrationsPage: NextPageWithLayout = () => {
+const CovitPage: NextPageWithLayout = () => {
   const [page] = useState(1)
   const [isSelectQuestion, setIsSelectQuestion] = useState(0)
 
@@ -73,7 +73,7 @@ const RegistrationsPage: NextPageWithLayout = () => {
     variables: {
       limit: 5,
       start: (page - 1) * 5,
-      type: 'Cadastros',
+      type: 'Veículos e Vistorias',
     },
   })
 
@@ -82,45 +82,12 @@ const RegistrationsPage: NextPageWithLayout = () => {
       {questions.map((item) => (
         <div key={item.id} className="flex flex-col gap-6">
           <h1 className="font-bold text-[2rem]">
-            Cadastramento de Prestadores de Serviços
+            Veículos e Vistorias
           </h1>
 
           <p>
-            O registro cadastral dos prestadores de serviços do SRI (Sistema de
-            Transporte Rodoviário Intermunicipal de Passageiros do Estado da
-            Bahia) foi previsto pelo art. 51 do Decreto Estadual nº 11.832 de
-            2009. Desta forma, estes prestadores de serviços ficam obrigados a
-            apresentar documentações mínimas, conforme Resoluções específicas
-            expedidas por esta Agência.
+            Esta resolução define as regras para a inspeção técnica de veículos que operam no Sistema de Transporte Rodoviário Intermunicipal de Passageiros do Estado da Bahia (SRI)
           </p>
-
-          <p>
-            No SRI existem sete modalidades de cadastro, que são diferenciadas
-            pelas características dos serviços prestados:
-          </p>
-
-          <ul>
-            <li className="list-disc list-inside">
-              Empresas concessionárias de linhas regulares;
-            </li>
-            <li className="list-disc list-inside">
-              Permissionárias de linhas do subsistema complementar;
-            </li>
-            <li className="list-disc list-inside">
-              Empresas operadoras de serviços especiais que objetivam licenças
-              de fretamento, escolar e turismo;
-            </li>
-            <li className="list-disc list-inside">
-              Empresas do sistema hidroviário;
-            </li>
-            <li className="list-disc list-inside">Empresas de publicidade;</li>
-            <li className="list-disc list-inside">
-              Empresas administradoras de terminais rodoviários e;
-            </li>
-            <li className="list-disc list-inside">
-              Empresas comercializadoras de gás.
-            </li>
-          </ul>
 
           {data?.departments?.data[0]?.attributes?.sections && (
             <ul className="flex flex-wrap gap-2">
@@ -239,8 +206,8 @@ const RegistrationsPage: NextPageWithLayout = () => {
   )
 }
 
-RegistrationsPage.getLayout = function getLayout(page: ReactElement) {
+CovitPage.getLayout = function getLayout(page: ReactElement) {
   return <DefaultLayout>{page}</DefaultLayout>
 }
 
-export default RegistrationsPage
+export default CovitPage
