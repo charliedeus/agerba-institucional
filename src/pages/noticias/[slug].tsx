@@ -145,7 +145,7 @@ const NewsPage: NextPageWithLayout<NewsPageProps> = (props) => {
               </div>
             </>
             <div
-              className="text-gray-900 text-left mt-[-1rem] py-4 px-8 laptop:-mt-48 laptop:bg-white z-10 tablet:p-16 rounded-lg laptop:mx-32 text-lg laptop:text-xl laptop:leading-relaxed leading-[1.75]"
+              className="text-gray-900 text-left py-4 px-8  laptop:bg-white z-10 tablet:p-16 rounded-lg laptop:mx-32 text-lg laptop:text-xl laptop:leading-relaxed leading-[1.75]"
               dangerouslySetInnerHTML={{
                 __html: props.newsSolo.content!,
               }}
