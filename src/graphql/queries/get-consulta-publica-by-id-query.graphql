@@ -18,7 +18,7 @@ query GetConsultaPublicaByid ($id: ID!) {
           retification
         }
         
-        documents {
+        documents (pagination: { limit: 100 }) {
           id
           name
           file {
