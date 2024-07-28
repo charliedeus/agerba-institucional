@@ -129,6 +129,7 @@ const PublicConsultationsPage: NextPageWithLayout<ConsultasPublicasPageProps> = 
             </li>
           ))}
         </ul>
+
       </motion.div>
     </article >
   )
@@ -146,7 +147,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await apolloClient.query<GetConsultasPublicasQuery>({
     query: GetConsultasPublicasDocument,
     variables: {
-      limit: 5,
+      limit: 100,
       start: 0,
     }
   })

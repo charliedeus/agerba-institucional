@@ -1,5 +1,13 @@
 query GetConsultaPublicaByid ($id: ID!) {
   publicConsultation (id: $id) {
+    meta {
+      pagination {
+        total
+        pageCount
+        page
+        pageSize
+      }
+    }
     data {
       id
       attributes {
