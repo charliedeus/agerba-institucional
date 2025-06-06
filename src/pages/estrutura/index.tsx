@@ -22,7 +22,7 @@ const structureItems = [
       {
         id: uuidv4(),
         initials: 'CS',
-        name: 'Claudia Sousa Carvalho de Santana',
+        name: 'Filipe de Araújo Vieira',
         occupation: 'Chefe de Gabinete',
         phone: '71 3115-8631',
         email: 'chefe.gabinete@agerba.ba.gov.br',
@@ -46,7 +46,7 @@ const structureItems = [
       {
         id: uuidv4(),
         initials: 'GM',
-        name: 'Gláucia Lopes Pedreira Macêdo',
+        name: 'Claúdia Sousa Carvalho de Santana',
         occupation: 'Ouvidora',
         phone: '71 3115-4702 / 4887',
         email: 'agerba.ouvidoria@agerba.ba.gov.br',

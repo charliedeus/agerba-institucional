@@ -19,7 +19,7 @@ import classNames from 'classnames'
 import { motion } from 'framer-motion'
 import Head from 'next/head'
 import Link from 'next/link'
-// import { Modal } from '../components/Modal'
+import { Modal } from '../components/Modal'
 import {
   GetNoticiasDestaqueDocument,
   GetNoticiasDestaqueQuery,
@@ -27,7 +27,7 @@ import {
 } from '../graphql/generated'
 
 const Home: NextPageWithLayout = (props: any) => {
-  // const [modalIsOpen, setModalIsOpen] = useState(true)
+  const [modalIsOpen, setModalIsOpen] = useState(true)
 
   const [sliderRef] = useKeenSlider<HTMLDivElement>(
     {
